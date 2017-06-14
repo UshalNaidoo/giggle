@@ -1,0 +1,68 @@
+package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.ProfileImage;
+
+public class ImageHelper implements onSubmitListener {
+
+  public void saveProfilePicture(Bitmap bitmap, int userId) {
+    try {
+      String file_path =
+          Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures";
+      File dir = new File(file_path);
+      if (!dir.exists()) {
+        dir.mkdirs();
+      }
+      File file = new File(dir, "profile_picture_" + userId + ".png");
+      FileOutputStream fOut = new FileOutputStream(file);
+      bitmap.compress(Bitmap.CompressFormat.JPEG, 55, fOut);
+      fOut.flush();
+      fOut.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static Bitmap getProfilePicture(int userId) {
+    Bitmap bitmap = null;
+    String file_path =
+        Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures/"
+        + "profile_picture_" + userId + ".png";
+    File f = new File(file_path);
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    try {
+      bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    return bitmap;
+  }
+
+  @Override
+  public void setOnSubmitListener(Activity activity, Object arg) {
+    ProfileImage profileImage = (ProfileImage) arg;
+    saveProfilePicture(profileImage.getImage(), profileImage.getUser().getId());
+    PostHelper.updatePosts(profileImage.getUser().getId(), profileImage.getUser()
+        .getName(), ImageHelper.getProfilePicture(profileImage.getUser().getId()));
+    UIHelper.updateScreen();
+    UserProfileActivity.refreshUser(profileImage.getUser());
+  }
+
+  @Override
+  public void setOnSubmitListener(Object arg) {
+    setOnSubmitListener(null, arg);
+  }
+}
