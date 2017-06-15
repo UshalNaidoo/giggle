@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -23,6 +24,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddTextByteDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.ImageByteOptionsDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Favorite;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
@@ -31,15 +33,15 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
-//import com.github.clans.fab.FloatingActionButton;
-//import com.github.clans.fab.FloatingActionMenu;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 public class MainActivity extends FragmentActivity {
 
   private Activity activity;
   public static Post selectedPost;
   public static Map<Integer, Bitmap> cachedProfilePictures = new HashMap<Integer, Bitmap>();
-//  private static FloatingActionMenu menuDown;
+  private static FloatingActionMenu menuDown;
   private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;
   private Fragment_New fragment_new;
@@ -61,7 +63,7 @@ public class MainActivity extends FragmentActivity {
     swipePagerAdapter = new SwipePagerAdapter(getSupportFragmentManager());
     pager.setAdapter(swipePagerAdapter);
     pager.setOnPageChangeListener(pageChangeListener);
-//    menuDown = (FloatingActionMenu) findViewById(R.id.menu_down);
+    menuDown = (FloatingActionMenu) findViewById(R.id.menu_down);
 
     UIHelper.setActionBar(this);
 
@@ -76,15 +78,15 @@ public class MainActivity extends FragmentActivity {
       }
     },100);
 
-//    FloatingActionButton addPost = (FloatingActionButton) findViewById(R.id.addPost);
-//    FloatingActionButton addImage = (FloatingActionButton) findViewById(R.id.addImage);
-//    FloatingActionButton searchUser = (FloatingActionButton) findViewById(R.id.searchUser);
-//    FloatingActionButton viewProfile = (FloatingActionButton) findViewById(R.id.viewProfile);
+    FloatingActionButton addPost = (FloatingActionButton) findViewById(R.id.addPost);
+    FloatingActionButton addImage = (FloatingActionButton) findViewById(R.id.addImage);
+    FloatingActionButton searchUser = (FloatingActionButton) findViewById(R.id.searchUser);
+    FloatingActionButton viewProfile = (FloatingActionButton) findViewById(R.id.viewProfile);
 
-//    addPost.setOnClickListener(clickListener);
-//    addImage.setOnClickListener(clickListener);
-//    searchUser.setOnClickListener(clickListener);
-//    viewProfile.setOnClickListener(clickListener);
+    addPost.setOnClickListener(clickListener);
+    addImage.setOnClickListener(clickListener);
+    searchUser.setOnClickListener(clickListener);
+    viewProfile.setOnClickListener(clickListener);
 
     // Get intent, action and MIME type
     Intent intent = getIntent();
@@ -130,26 +132,26 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onClick(View v) {
       User user = UserHelper.getUserDetails(activity);
-//      switch (v.getId()) {
-//        case R.id.addPost:
-//          AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
-//          addTextByteDialog.setListener(new PostHelper());
-//          addTextByteDialog.setUserId(user.getId());
-//          addTextByteDialog.setUserName(user.getName());
-//          addTextByteDialog.show(getFragmentManager(), "");
-//          break;
-//        case R.id.addImage:
-//          ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
-//          imageByteOptionsDialog.show(getFragmentManager(), "");
-//          break;
-//        case R.id.searchUser:
-//          Intent searchIntent = new Intent(activity, SearchActivity.class);
-//          startActivity(searchIntent);
-//          break;
-//        case R.id.viewProfile:
-//          viewProfile(activity);
-//          break;
-//      }
+      switch (v.getId()) {
+        case R.id.addPost:
+          AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
+          addTextByteDialog.setListener(new PostHelper());
+          addTextByteDialog.setUserId(user.getId());
+          addTextByteDialog.setUserName(user.getName());
+          addTextByteDialog.show(getFragmentManager(), "");
+          break;
+        case R.id.addImage:
+          ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
+          imageByteOptionsDialog.show(getFragmentManager(), "");
+          break;
+        case R.id.searchUser:
+          Intent searchIntent = new Intent(activity, SearchActivity.class);
+          startActivity(searchIntent);
+          break;
+        case R.id.viewProfile:
+          viewProfile(activity);
+          break;
+      }
     }
   };
 
@@ -214,16 +216,16 @@ public class MainActivity extends FragmentActivity {
 
   @Override
   public void onBackPressed() {
-//    if (menuDown.isOpened()) {
-//      menuDown.hideMenuButton(false);
-//      new Handler().postDelayed(new Runnable() {
-//        @Override
-//        public void run() {
-//          menuDown.showMenuButton(true);
-//        }
-//      }, 300);
-//    }
-//    else
+    if (menuDown.isOpened()) {
+      menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          menuDown.showMenuButton(true);
+        }
+      }, 300);
+    }
+    else
       if (pager.getCurrentItem() != 0) {
       pager.setCurrentItem(0, true);
     } else {
@@ -267,14 +269,14 @@ public class MainActivity extends FragmentActivity {
   @Override
   protected void onResume() {
     super.onResume();
-//    if (menuDown != null) {
-//      menuDown.hideMenuButton(false);
-//      new Handler().postDelayed(new Runnable() {
-//        @Override
-//        public void run() {
-//          menuDown.showMenuButton(true);
-//        }
-//      }, 300);
-//    }
+    if (menuDown != null) {
+      menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          menuDown.showMenuButton(true);
+        }
+      }, 300);
+    }
   }
 }

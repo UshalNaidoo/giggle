@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -19,11 +20,14 @@ import jokes.gigglebyte.destino.ush.gigglebyte.adapters.CommentListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddCommentDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
-//import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionButton;
 
 public class CommentActivity extends Activity implements onSubmitListener {
 
@@ -31,7 +35,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
   private Activity activity;
   private int postId;
   private int posterId;
-//  private static FloatingActionButton floatingActionButton;
+  private static FloatingActionButton floatingActionButton;
   private static ListView listView;
   private static List<Comment> comments;
 
@@ -51,21 +55,21 @@ public class CommentActivity extends Activity implements onSubmitListener {
 
     UIHelper.setActionBar(this, "Comments", true);
 
-//    floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
-//    floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        User user = UserHelper.getUserDetails(activity);
-//        AddCommentDialog addCommentDialog = new AddCommentDialog();
-//        addCommentDialog.setListener(CommentActivity.this);
-//        addCommentDialog.setPostId(postId);
-//        addCommentDialog.setPosterId(posterId);
-//        addCommentDialog.setUserId(user.getId());
-//        addCommentDialog.setUserName(user.getName());
-//        addCommentDialog.show(getFragmentManager(), "");
-//      }
-//    });
-//    floatingActionButton.hide(false);
+    floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        User user = UserHelper.getUserDetails(activity);
+        AddCommentDialog addCommentDialog = new AddCommentDialog();
+        addCommentDialog.setListener(CommentActivity.this);
+        addCommentDialog.setPostId(postId);
+        addCommentDialog.setPosterId(posterId);
+        addCommentDialog.setUserId(user.getId());
+        addCommentDialog.setUserName(user.getName());
+        addCommentDialog.show(getFragmentManager(), "");
+      }
+    });
+    floatingActionButton.hide(false);
 
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
@@ -135,13 +139,13 @@ public class CommentActivity extends Activity implements onSubmitListener {
   }
 
   private void animateFloatingActionButton() {
-//    floatingActionButton.hide(false);
-//    new Handler().postDelayed(new Runnable() {
-//      @Override
-//      public void run() {
-//        floatingActionButton.show(true);
-//      }
-//    }, 300);
+    floatingActionButton.hide(false);
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        floatingActionButton.show(true);
+      }
+    }, 300);
   }
 
   @Override
