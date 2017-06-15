@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
@@ -29,7 +31,7 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.get
 
 public class UserProfileActivity extends Activity {
 
-//  private static FloatingActionMenu menuDown;
+  private static FloatingActionMenu menuDown;
   private static Activity activity;
   private static ListView listView;
   private static TextView userName;
@@ -41,7 +43,7 @@ public class UserProfileActivity extends Activity {
     super.onCreate(savedInstanceState);
     activity = this;
     setContentView(R.layout.activity_user_profile);
-//    menuDown = (FloatingActionMenu) findViewById(R.id.menu_down);
+    menuDown = (FloatingActionMenu) findViewById(R.id.menu_down);
     userName = (TextView) findViewById(R.id.userName);
     listView = (ListView) findViewById(R.id.listView);
     myProfile = UserHelper.getUserDetails(activity);
@@ -79,13 +81,13 @@ public class UserProfileActivity extends Activity {
 
     UIHelper.setActionBar(this, "", true);
 
-//    FloatingActionButton changeNameFab = (FloatingActionButton) findViewById(R.id.changeNameFab);
-//    FloatingActionButton changeDescriptionFab = (FloatingActionButton) findViewById(R.id.changeDescriptionFab);
-//    FloatingActionButton changePictureFab = (FloatingActionButton) findViewById(R.id.changePictureFab);
+    FloatingActionButton changeNameFab = (FloatingActionButton) findViewById(R.id.changeNameFab);
+    FloatingActionButton changeDescriptionFab = (FloatingActionButton) findViewById(R.id.changeDescriptionFab);
+    FloatingActionButton changePictureFab = (FloatingActionButton) findViewById(R.id.changePictureFab);
 
-//    changeNameFab.setOnClickListener(clickListener);
-//    changeDescriptionFab.setOnClickListener(clickListener);
-//    changePictureFab.setOnClickListener(clickListener);
+    changeNameFab.setOnClickListener(clickListener);
+    changeDescriptionFab.setOnClickListener(clickListener);
+    changePictureFab.setOnClickListener(clickListener);
 
 
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -129,15 +131,15 @@ public class UserProfileActivity extends Activity {
   }
 
   public static void refreshFragment() {
-//    if (menuDown != null) {
-//      menuDown.hideMenuButton(false);
-//      new Handler().postDelayed(new Runnable() {
-//        @Override
-//        public void run() {
-//          menuDown.showMenuButton(true);
-//        }
-//      }, 300);
-//    }
+    if (menuDown != null) {
+      menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          menuDown.showMenuButton(true);
+        }
+      }, 300);
+    }
   }
 
   private View.OnClickListener clickListener = new View.OnClickListener() {
