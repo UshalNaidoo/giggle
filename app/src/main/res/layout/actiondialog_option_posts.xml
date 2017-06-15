@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#9e9c9f"
+    android:gravity="center"
+    android:padding="4dp"
+    android:orientation="vertical">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="#9e9c9f"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:paddingBottom="2dp">
+    <TextView
+        android:layout_marginStart="2dip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/main_black"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight="1"/>
+    <ImageButton
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="end"
+        android:background="@drawable/button_close_selector"
+        android:src="@drawable/ic_close"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="300dp"
+      android:layout_height="match_parent"
+      android:background="@color/main_black"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="10dp"
+      android:paddingLeft="40dp"
+      android:paddingRight="40dp">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="top">
+
+      <FrameLayout
+          android:id="@+id/frame"
+          android:layout_width="40dp"
+          android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/nobody_m"/>
+
+        <ImageView
+            android:id="@+id/circle_crop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/circle_crop"/>
+
+      </FrameLayout>
+
+      <LinearLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/postText"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="start"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:background="@color/main_black"
+            android:maxLines="4"
+            android:minLines="1"
+            android:ellipsize="end"/>
+
+      </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/buttonProfileView"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="View Profile"/>
+    <Button
+        android:id="@+id/buttonCommentsView"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="View Comments"/>
+    <Button
+        android:id="@+id/buttonFlag"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
+        android:text="Flag Byte"/>
+  </LinearLayout>
+</LinearLayout>

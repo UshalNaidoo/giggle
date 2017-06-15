@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="2dp"
+    android:background="@color/main_black">
+  <android.support.v4.view.ViewPager
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:fab="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/pager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <android.support.v4.view.PagerTitleStrip
+        android:id="@+id/pager_title_strip"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="top"
+        android:background="#1f2025"
+        android:textColor="#fff"
+        style="@android:style/TextAppearance.Medium"
+        android:paddingBottom="4dp"/>
+  </android.support.v4.view.ViewPager>
+
+  <!--<com.github.clans.fab.FloatingActionMenu-->
+      <!--android:id="@+id/menu_down"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_alignParentEnd="true"-->
+      <!--android:layout_alignParentBottom="true"-->
+      <!--android:layout_gravity="bottom"-->
+      <!--android:paddingRight="10dp"-->
+      <!--android:paddingBottom="10dp"-->
+      <!--android:paddingLeft="10dp"-->
+      <!--android:elevation="6dp"-->
+      <!--fab:menu_labels_ellipsize="end"-->
+      <!--fab:menu_labels_singleLine="true"-->
+      <!--fab:menu_fab_size="mini"-->
+      <!--fab:menu_openDirection="up"-->
+      <!--fab:menu_colorNormal="@color/app_primary_dark"-->
+      <!--fab:menu_colorPressed="@color/app_primary"-->
+      <!--fab:menu_colorRipple="@color/app_primary_dark">-->
+
+    <!--<com.github.clans.fab.FloatingActionButton-->
+        <!--android:id="@+id/addPost"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/fab_add"-->
+        <!--android:padding="4dp"-->
+        <!--fab:fab_size="mini"-->
+        <!--fab:fab_label="Add Joke"-->
+        <!--fab:fab_colorNormal="@color/app_primary_dark"-->
+        <!--fab:fab_colorPressed="@color/app_primary"-->
+        <!--fab:fab_colorRipple="@color/app_primary_dark"/>-->
+
+    <!--<com.github.clans.fab.FloatingActionButton-->
+        <!--android:id="@+id/addImage"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/fab_add"-->
+        <!--android:padding="4dp"-->
+        <!--fab:fab_size="mini"-->
+        <!--fab:fab_label="Add Image"-->
+        <!--fab:fab_colorNormal="@color/app_primary_dark"-->
+        <!--fab:fab_colorPressed="@color/app_primary"-->
+        <!--fab:fab_colorRipple="@color/app_primary_dark"/>-->
+
+    <!--<com.github.clans.fab.FloatingActionButton-->
+        <!--android:id="@+id/searchUser"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/search_icon"-->
+        <!--fab:fab_size="mini"-->
+        <!--fab:fab_label="Search Users"-->
+        <!--fab:fab_colorNormal="@color/app_primary_dark"-->
+        <!--fab:fab_colorPressed="@color/app_primary"-->
+        <!--fab:fab_colorRipple="@color/app_primary_dark"/>-->
+
+    <!--<com.github.clans.fab.FloatingActionButton-->
+        <!--android:id="@+id/viewProfile"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/ic_edit"-->
+        <!--fab:fab_size="mini"-->
+        <!--fab:fab_label="Edit Profile"-->
+        <!--fab:fab_colorNormal="@color/app_primary_dark"-->
+        <!--fab:fab_colorPressed="@color/app_primary"-->
+        <!--fab:fab_colorRipple="@color/app_primary_dark"/>-->
+  <!--</com.github.clans.fab.FloatingActionMenu>-->
+</RelativeLayout>

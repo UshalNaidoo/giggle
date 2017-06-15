@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/main_black"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:gravity="end">
+
+    <TextView
+        android:id="@+id/postText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Add Comment:"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="150dp"
+        android:textSize="18sp"
+        android:gravity="start"
+        android:textColor="#ffffff"
+        />
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/fab_add"
+        fab:fab_size="mini"
+        fab:fab_elevationCompat="4dp"
+        fab:fab_colorNormal="@color/app_primary_dark"
+        fab:fab_colorPressed="@color/app_primary"
+        fab:fab_colorRipple="@color/app_primary_dark"/>
+  </LinearLayout>
+  <ListView
+      android:background="@color/main_black"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:id="@+id/listView"/>
+</LinearLayout>

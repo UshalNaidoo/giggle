@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/8f0fb1506c632fba839694580e1bc411360b2470/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_51898dec6eda7c5c32969b9f1cedc320f91a6299/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/232d4b5278744a2b3502c2ecdf90cc5d25c65e6b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4426b83ece1ad8b6345c49b6a4974642216861ef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/49a8643ee4fd632821cee377d0010b70e2a97d67/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3c09642405cf58210247b45be4b955b5dedce6d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/1b84f786a12a3b8109b98cdf5258442640fc6b71/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_706203b2abbe54714e3d26cc0a104973c012a55b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/232d4b5278744a2b3502c2ecdf90cc5d25c65e6b/output/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_fc88cb0952c9fe7c107fa972b1aea85dda62e01f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/c3b4306a43c6ee591c4aa3738ee24d05f9546236/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e6970f0554f9508c041f1f6960af15cc888c9f35">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5af02157fa8d94ab24e8ed9aab08a9b5df6fdaf4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/e1603fec607f65551b1fa3732046a3a03e693af6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_299de1dd99bf7054de24f4c4cac510910fd3f37f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2badf4efeed42d6e8a392124e299373a5816a45a">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_1f654a2e0068316f661630e06fc2e4bf326427cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/.android/build-cache/b5b47498ab7873767f1d6440b3a7337f29489836/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cf16220db9128d91a215aedc739584181d5ca6a4">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_95f99a3923a39aeebec36d294fd8fec1eebb9de9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_04df2cfba4564aeabdca4aa8ca59017416514344/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/ushal/Desktop/Development/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/Users/ushal/Desktop/Development/Gigglebyte/Apps/Gigglebyte Android/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.0_4c97740eeeab90a549a33671468de88021d67b97/classes.dex" />
+    </item>
+
+</items>
