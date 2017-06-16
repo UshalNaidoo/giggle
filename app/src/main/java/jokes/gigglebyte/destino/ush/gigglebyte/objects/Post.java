@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -259,13 +261,11 @@ public class Post {
         try {
           URL url;
           if (this.imageId == -1) {
-            url = new URL(
-                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
+            url = new URL(_Server + "/Images/" + this.userId
                 + "/Profile_Pictures/profile.jpg");
           }
           else {
-            url = new URL(
-                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
+            url = new URL(_Server + "/Images/" + this.userId
                 + "/Image_Posts/post"+ this.imageId +".jpg");
           }
           InputStream inputStream = url.openConnection().getInputStream();

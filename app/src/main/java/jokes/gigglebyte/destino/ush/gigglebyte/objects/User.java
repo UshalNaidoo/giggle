@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -76,8 +78,7 @@ public class User {
         return ImageHelper.getProfilePicture(getId());
       } else {
         try {
-          URL url = new URL(
-              "http://creatureislandgame.com/Gigglebyte/Images/" + getId() + "/Profile_Pictures/profile.jpg");
+          URL url = new URL(_Server +"/Images/" + getId() + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
         } catch (MalformedURLException e) {

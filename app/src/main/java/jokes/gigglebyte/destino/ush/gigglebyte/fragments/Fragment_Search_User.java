@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -121,8 +123,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
         return ImageHelper.getProfilePicture(user.getId());
       } else {
         try {
-          URL url = new URL(
-              "http://creatureislandgame.com/Gigglebyte/Images/" + user.getId()
+          URL url = new URL(_Server + "/Images/" + user.getId()
               + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
