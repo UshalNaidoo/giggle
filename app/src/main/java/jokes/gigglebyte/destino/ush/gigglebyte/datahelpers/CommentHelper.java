@@ -39,7 +39,7 @@ public class CommentHelper {
     Set<String> likes = sharedPreferences.getStringSet("COMMENT_LIKES", new HashSet<String>());
     likes.remove(String.valueOf(comment.getCommentId()));
     commentLikesEditor.putStringSet("COMMENT_LIKES", likes);
-    commentLikesEditor.commit();
+    commentLikesEditor.apply();
   }
 
   public static void likeComment(Context context, ImageView likeImage, TextView likes,

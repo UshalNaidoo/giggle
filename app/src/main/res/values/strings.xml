@@ -7,4 +7,9 @@
   <string name="action_follow">Follow user</string>
   <string name="action_unfollow">Unfollow User</string>
 
+  <string name="following">Following</string>
+  <string name="unfollowing">Not following</string>
+  <string name="wait">Please wait…</string>
+  <string name="upvoted">Upvoted</string>
+  <string name="favourites">Added to favourites</string>
 </resources>

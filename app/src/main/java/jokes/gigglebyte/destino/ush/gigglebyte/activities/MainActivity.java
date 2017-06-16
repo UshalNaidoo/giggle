@@ -40,7 +40,7 @@ public class MainActivity extends FragmentActivity {
 
   private Activity activity;
   public static Post selectedPost;
-  public static Map<Integer, Bitmap> cachedProfilePictures = new HashMap<Integer, Bitmap>();
+  public static Map<Integer, Bitmap> cachedProfilePictures = new HashMap<>();
   private static FloatingActionMenu menuDown;
   private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;

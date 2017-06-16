@@ -174,7 +174,7 @@ public class CommentListAdapter extends BaseAdapter {
     if (comments.get(position).isUserLike()) {
       CommentHelper.unlikeComment(activity, holder.likeImage, holder.likes, comments.get(position));
     } else {
-      toastWithImage.show("Comment upvoted", R.drawable.star_like);
+      toastWithImage.show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
       CommentHelper.likeComment(activity, holder.likeImage, holder.likes, comments.get(position));
     }
   }

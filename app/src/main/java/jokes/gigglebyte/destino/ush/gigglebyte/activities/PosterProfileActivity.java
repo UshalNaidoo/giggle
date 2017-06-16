@@ -125,14 +125,14 @@ public class PosterProfileActivity extends Activity {
         this.finish();
         return true;
       case R.id.action_follow:
-        toastWithImage.show("Following " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.following) + " " + poster.getName(), R.drawable.star_like);
         menu.getItem(0).setVisible(false);
         menu.getItem(1).setVisible(true);
         followingUsers.add(String.valueOf(userId));
         SharedPrefHelper.saveUserFollows(this, followingUsers);
         return true;
       case R.id.action_unfollow:
-        toastWithImage.show("UnFollowed " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.unfollowing) + " " + poster.getName(), R.drawable.star_like);
         menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
         followingUsers.remove(String.valueOf(userId));

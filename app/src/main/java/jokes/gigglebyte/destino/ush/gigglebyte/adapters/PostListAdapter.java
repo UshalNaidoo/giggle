@@ -398,7 +398,7 @@ public class PostListAdapter extends BaseAdapter {
             if (!isDoubleClick) {
               if (!posts.get(position).isFinishLoadingProfilePicture()
                   || type == PostType.IMAGE_POST && posts.get(position).getPostPicture() == null) {
-                toastWithImage.show("Please wait for the post to load", R.drawable.clock);
+                toastWithImage.show(activity.getResources().getString(R.string.wait), R.drawable.clock);
                 return;
               }
               Intent myIntent = new Intent(activity, CommentActivity.class);
@@ -431,7 +431,7 @@ public class PostListAdapter extends BaseAdapter {
       holder.likes.setText(String.valueOf(likes));
       PostHelper.adjustPost(activity, holder.likeImage, PostHelper.PostAction.UNLIKE_POST, likes, post);
     } else {
-      toastWithImage.show("Post upvoted", R.drawable.star_like);
+      toastWithImage.show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
       int likes = post.getLikes() + 1;
       holder.likes.setText(String.valueOf(likes));
       PostHelper.adjustPost(activity, holder.likeImage, PostHelper.PostAction.LIKE_POST, likes, post);
@@ -443,7 +443,7 @@ public class PostListAdapter extends BaseAdapter {
     if (post.isUserFavorite()) {
       PostHelper.adjustPost(activity, holder.favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
     } else {
-      toastWithImage.show("Added to favorites", R.drawable.heart_like);
+      toastWithImage.show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
       PostHelper.adjustPost(activity, holder.favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
     }
   }

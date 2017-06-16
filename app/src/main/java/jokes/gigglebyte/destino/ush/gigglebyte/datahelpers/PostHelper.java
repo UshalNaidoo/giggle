@@ -26,12 +26,12 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class PostHelper implements onSubmitListener {
 
-  private static List<Post> hotPosts = new ArrayList<Post>();
-  private static List<Post> newPosts = new ArrayList<Post>();
-  private static List<Post> favoritePosts = new ArrayList<Post>();
-  private static List<Post> postsForUser = new ArrayList<Post>();
+  private static List<Post> hotPosts = new ArrayList<>();
+  private static List<Post> newPosts = new ArrayList<>();
+  private static List<Post> favoritePosts = new ArrayList<>();
+  private static List<Post> postsForUser = new ArrayList<>();
 
-  public static enum PostAction {
+  public enum PostAction {
     LIKE_POST,
     UNLIKE_POST,
     FAVORITE_POST,
@@ -293,7 +293,7 @@ public class PostHelper implements onSubmitListener {
   }
 
   public static void updatePosts(int userId, String userName, Bitmap bitmap) {
-    ArrayList<Post> posts = new ArrayList<Post>();
+    ArrayList<Post> posts = new ArrayList<>();
     posts.addAll(hotPosts);
     posts.addAll(newPosts);
     posts.addAll(favoritePosts);

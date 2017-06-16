@@ -19,7 +19,7 @@ public class SharedPrefHelper {
     SharedPreferences.Editor postFavoriteEditor = favoriteSharedPreferences.edit();
     postFavoriteEditor.clear();
     postFavoriteEditor.putStringSet("POST_FAVORITES", userFavorites);
-    postFavoriteEditor.commit();
+    postFavoriteEditor.apply();
   }
 
   public static Set<String> getUserLikes(Activity activity) {
@@ -32,7 +32,7 @@ public class SharedPrefHelper {
     SharedPreferences.Editor postLikesEditor = likesSharedPreferences.edit();
     postLikesEditor.clear();
     postLikesEditor.putStringSet("POST_LIKES", userLikes);
-    postLikesEditor.commit();
+    postLikesEditor.apply();
   }
 
   public static Set<String> getUserFollows(Activity activity) {
@@ -45,7 +45,7 @@ public class SharedPrefHelper {
     SharedPreferences.Editor followsEditor = followsPreferences.edit();
     followsEditor.clear();
     followsEditor.putStringSet("USER_FOLLOWS", userFollows);
-    followsEditor.commit();
+    followsEditor.apply();
   }
 
   public static Set<String> getPostFlags(Activity activity) {
@@ -58,7 +58,7 @@ public class SharedPrefHelper {
     SharedPreferences.Editor postFlagsEditor = flagsSharedPreferences.edit();
     postFlagsEditor.clear();
     postFlagsEditor.putStringSet("POST_FLAGS", postIds);
-    postFlagsEditor.commit();
+    postFlagsEditor.apply();
   }
 
   public static Set<String> getCommentFlags(Activity activity) {
@@ -71,6 +71,6 @@ public class SharedPrefHelper {
     SharedPreferences.Editor commentFlagEditor = commentSharedPreferences.edit();
     commentFlagEditor.clear();
     commentFlagEditor.putStringSet("COMMENT_FLAGS", userLikes);
-    commentFlagEditor.commit();
+    commentFlagEditor.apply();
   }
 }
