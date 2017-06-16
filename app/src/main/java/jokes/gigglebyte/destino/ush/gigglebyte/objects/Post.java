@@ -260,12 +260,12 @@ public class Post {
           URL url;
           if (this.imageId == -1) {
             url = new URL(
-                "http://app-mana.com/Gigglebyte/Images/" + this.userId
+                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
                 + "/Profile_Pictures/profile.jpg");
           }
           else {
             url = new URL(
-                "http://app-mana.com/Gigglebyte/Images/" + this.userId
+                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
                 + "/Image_Posts/post"+ this.imageId +".jpg");
           }
           InputStream inputStream = url.openConnection().getInputStream();

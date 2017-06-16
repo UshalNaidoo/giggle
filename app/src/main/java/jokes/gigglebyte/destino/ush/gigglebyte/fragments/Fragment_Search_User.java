@@ -122,7 +122,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
       } else {
         try {
           URL url = new URL(
-              "http://app-mana.com/Gigglebyte/Images/" + user.getId()
+              "http://creatureislandgame.com/Gigglebyte/Images/" + user.getId()
               + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);

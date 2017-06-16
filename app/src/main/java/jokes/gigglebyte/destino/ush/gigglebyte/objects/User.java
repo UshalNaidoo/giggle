@@ -77,7 +77,7 @@ public class User {
       } else {
         try {
           URL url = new URL(
-              "http://app-mana.com/Gigglebyte/Images/" + getId() + "/Profile_Pictures/profile.jpg");
+              "http://creatureislandgame.com/Gigglebyte/Images/" + getId() + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
         } catch (MalformedURLException e) {

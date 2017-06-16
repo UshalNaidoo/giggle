@@ -137,7 +137,7 @@ public class Comment {
       } else {
         try {
           URL url = new URL(
-              "http://app-mana.com/Gigglebyte/Images/" + userId + "/Profile_Pictures/profile.jpg");
+              "http://creatureislandgame.com/Gigglebyte/Images/" + userId + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
         } catch (MalformedURLException e) {
