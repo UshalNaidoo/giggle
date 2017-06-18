@@ -31,12 +31,12 @@ import com.github.clans.fab.FloatingActionButton;
 
 public class CommentActivity extends Activity implements onSubmitListener {
 
-  private static CommentListAdapter commentListAdapter;
+  private CommentListAdapter commentListAdapter;
   private Activity activity;
   private int postId;
   private int posterId;
-  private static FloatingActionButton floatingActionButton;
-  private static ListView listView;
+  private FloatingActionButton floatingActionButton;
+  private ListView listView;
   private static List<Comment> comments;
 
   @Override
@@ -53,7 +53,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
 
     new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-    UIHelper.setActionBar(this, "Comments", true);
+    UIHelper.setActionBar(this, getResources().getString(R.string.comments), true);
 
     floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
     floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
     });
   }
 
-  class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
+  private class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
 
     int postId;
 

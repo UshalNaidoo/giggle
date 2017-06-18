@@ -41,7 +41,7 @@ public class UploadImageActivity extends FragmentActivity {
     super.onCreate(savedInstanceState);
     activity = this;
     setContentView(R.layout.activity_uploadimage);
-    UIHelper.setActionBar(this, "Add Image", true);
+    UIHelper.setActionBar(this, getResources().getString(R.string.add_image), true);
 
     final ImageView image = (ImageView) findViewById(R.id.image);
     final EditText title = (EditText) findViewById(R.id.title);

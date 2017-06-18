@@ -84,7 +84,7 @@ public class PosterProfileActivity extends Activity {
       poster = JsonParser.GetUser(result);
       poster.setId(userId);
       UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
-          .isEmpty()) ? "Unknown" : poster.getName(), true);
+          .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
 
       postString = "{\"posts\":" + postString + "}";
       List<Post> posts = JsonParser.GetPosts(postString);

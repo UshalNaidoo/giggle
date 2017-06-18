@@ -28,7 +28,7 @@ public class SearchActivity extends FragmentActivity {
     pager.setAdapter(swipePagerAdapter);
     pager.setOnPageChangeListener(pageChangeListener);
 
-    UIHelper.setActionBar(this, "Search", true);
+    UIHelper.setActionBar(this, getResources().getString(R.string.search), true);
   }
 
   @Override
