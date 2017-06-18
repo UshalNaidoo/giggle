@@ -67,9 +67,6 @@ public class MainActivity extends FragmentActivity {
 
     UIHelper.setActionBar(this);
 
-    /**
-     * Show Tags posts as the landing page
-     */
     pager.setCurrentItem(1, true);
     pager.postDelayed(new Runnable() {
       @Override
@@ -170,9 +167,9 @@ public class MainActivity extends FragmentActivity {
     return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
   }
 
-  public class SwipePagerAdapter extends FragmentStatePagerAdapter {
+  private class SwipePagerAdapter extends FragmentStatePagerAdapter {
 
-    public SwipePagerAdapter(FragmentManager fm) {
+    SwipePagerAdapter(FragmentManager fm) {
       super(fm);
     }
 
@@ -241,7 +238,7 @@ public class MainActivity extends FragmentActivity {
       for (Post p : PostHelper.getNewPosts()) {
         p.cancelLoadingImages();
       }
-      cachedProfilePictures = new HashMap<Integer, Bitmap>();
+      cachedProfilePictures = new HashMap<>();
       MainActivity.super.onBackPressed();
     }
   }

@@ -141,7 +141,7 @@ public class PostListAdapter extends BaseAdapter {
       holder.menuImage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-          postOptions(position, holder.likeImage, holder.favoriteImage, holder.likes);
+          postOptions(position, holder.likeImage, holder.likes);
         }
       });
 
@@ -177,11 +177,11 @@ public class PostListAdapter extends BaseAdapter {
 
       holder.layout.setOnClickListener(doubleClickListener(position, holder, PostType.TEXT_POST));
 
-      holder.layout.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+      holder.layout.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
 
       holder.postText.setOnClickListener(doubleClickListener(position, holder, PostType.TEXT_POST));
 
-      holder.postText.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+      holder.postText.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
 
       holder.likes.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -308,7 +308,7 @@ public class PostListAdapter extends BaseAdapter {
       holder.menuImage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-          postOptions(position, holder.likeImage, holder.favoriteImage, holder.likes);
+          postOptions(position, holder.likeImage, holder.likes);
         }
       });
 
@@ -326,11 +326,11 @@ public class PostListAdapter extends BaseAdapter {
 
       holder.layout.setOnClickListener(doubleClickListener(position, holder, PostType.IMAGE_POST));
 
-      holder.layout.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+      holder.layout.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
 
       holder.postImage.setOnClickListener(doubleClickListener(position, holder, PostType.IMAGE_POST));
 
-      holder.postImage.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+      holder.postImage.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
 
       holder.likeImage.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -356,28 +356,24 @@ public class PostListAdapter extends BaseAdapter {
     return convertView;
   }
 
-  private View.OnLongClickListener longClickListener(final int position, final ImageView likeImage,
-                                                     final ImageView favoriteImage,
-                                                     final TextView likes, final int userId) {
+  private View.OnLongClickListener longClickListener(final int position, final ImageView likeImage, final TextView likes, final int userId) {
     return new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         if (userId != UserHelper.getUserDetails(activity).getId()) {
-          postOptions(position, likeImage, favoriteImage, likes);
+          postOptions(position, likeImage, likes);
         }
         return true;
       }
     };
   }
 
-  public void postOptions(int position, ImageView likeImage, ImageView favoriteImage,
-                          TextView likes) {
+  private void postOptions(int position, ImageView likeImage, TextView likes) {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(posts.get(position));
     optionsPostDialog.setFromAdapter("favorite");
     optionsPostDialog.setPosition(position);
     optionsPostDialog.setLikeImage(likeImage);
-    optionsPostDialog.setFavoriteImage(favoriteImage);
     optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");
   }
@@ -468,13 +464,14 @@ public class PostListAdapter extends BaseAdapter {
     };
   }
 
-  public static Integer[] getIndices(String s, char c) {
+  private static Integer[] getIndices(String s, char c) {
     int pos = s.indexOf(c, 0);
-    List<Integer> indices = new ArrayList<Integer>();
+    List<Integer> indices = new ArrayList<>();
     while (pos != -1) {
       indices.add(pos);
       pos = s.indexOf(c, pos + 1);
     }
     return indices.toArray(new Integer[indices.size()]);
   }
+
 }

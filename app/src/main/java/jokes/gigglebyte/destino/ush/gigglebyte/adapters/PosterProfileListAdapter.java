@@ -150,14 +150,14 @@ public class PosterProfileListAdapter extends BaseAdapter {
           holder.favoriteImage.setImageResource(R.drawable.heart_unlike);
         }
 
-        holder.layout.setOnClickListener(doubleClickListener(pos, holder, PostType.TEXT_POST));
+        holder.layout.setOnClickListener(doubleClickListener(pos, holder));
 
-        holder.layout.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.favoriteImage, holder.likes, poster
+        holder.layout.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, poster
             .getId()));
 
-        holder.postText.setOnClickListener(doubleClickListener(pos, holder, PostType.TEXT_POST));
+        holder.postText.setOnClickListener(doubleClickListener(pos, holder));
 
-        holder.postText.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.favoriteImage, holder.likes, poster
+        holder.postText.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, poster
             .getId()));
 
         holder.likeImage.setOnClickListener(new View.OnClickListener() {
@@ -233,13 +233,13 @@ public class PosterProfileListAdapter extends BaseAdapter {
           holder.favoriteImage.setImageResource(R.drawable.heart_unlike);
         }
 
-        holder.layout.setOnClickListener(doubleClickListener(pos, holder, PostType.IMAGE_POST));
+        holder.layout.setOnClickListener(doubleClickListener(pos, holder));
 
-        holder.layout.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+        holder.layout.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, userId));
 
-        holder.postImage.setOnClickListener(doubleClickListener(pos, holder, PostType.IMAGE_POST));
+        holder.postImage.setOnClickListener(doubleClickListener(pos, holder));
 
-        holder.postImage.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.favoriteImage, holder.likes, userId));
+        holder.postImage.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, userId));
 
         holder.likeImage.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -266,34 +266,29 @@ public class PosterProfileListAdapter extends BaseAdapter {
     return convertView;
   }
 
-  private View.OnLongClickListener longClickListener(final int position, final ImageView likeImage,
-                                                     final ImageView favoriteImage,
-                                                     final TextView likes, final int userId) {
+  private View.OnLongClickListener longClickListener(final int position, final ImageView likeImage, final TextView likes, final int userId) {
     return new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         if (userId != UserHelper.getUserDetails(activity).getId()) {
-          postOptions(position, likeImage, favoriteImage, likes);
+          postOptions(position, likeImage, likes);
         }
         return true;
       }
     };
   }
 
-  public void postOptions(int position, ImageView likeImage, ImageView favoriteImage,
-                          TextView likes) {
+  private void postOptions(int position, ImageView likeImage, TextView likes) {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(posts.get(position));
     optionsPostDialog.setFromAdapter("poster");
     optionsPostDialog.setPosition(position);
     optionsPostDialog.setLikeImage(likeImage);
-    optionsPostDialog.setFavoriteImage(favoriteImage);
     optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");
   }
 
-  private View.OnClickListener doubleClickListener(final int pos,
-                                                   final ViewHolder holder, final PostType type) {
+  private View.OnClickListener doubleClickListener(final int pos, final ViewHolder holder) {
     return new View.OnClickListener() {
       int i = 0;
 
@@ -353,29 +348,26 @@ public class PosterProfileListAdapter extends BaseAdapter {
     }
   }
 
-  static class UserViewHolder {
-
+  private static class UserViewHolder {
     private TextView description;
     private ImageView profileImage;
     private ProgressBar progressBar;
   }
 
   static class ViewHolder {
-
     protected LinearLayout layout;
-    protected TextView timeSince, likes, comments;
-    protected ImageView likeImage, favoriteImage, shareImage;
+    TextView timeSince, likes, comments;
+    ImageView likeImage, favoriteImage, shareImage;
   }
 
-  static class PostImageViewHolder extends ViewHolder {
-
-    protected ProgressBar imageProgressBar;
+  private static class PostImageViewHolder extends ViewHolder {
+    ProgressBar imageProgressBar;
     private ImageView postImage;
     private TextView title;
   }
 
-  static class PostTextViewHolder extends ViewHolder {
-
+  private static class PostTextViewHolder extends ViewHolder {
     private TextView postText;
   }
+
 }

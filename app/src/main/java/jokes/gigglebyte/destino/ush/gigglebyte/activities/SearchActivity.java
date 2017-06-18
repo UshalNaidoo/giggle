@@ -42,9 +42,9 @@ public class SearchActivity extends FragmentActivity {
     }
   }
 
-  public class SwipePagerAdapter extends FragmentStatePagerAdapter {
+  private class SwipePagerAdapter extends FragmentStatePagerAdapter {
 
-    public SwipePagerAdapter(FragmentManager fm) {
+    SwipePagerAdapter(FragmentManager fm) {
       super(fm);
     }
 

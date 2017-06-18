@@ -35,7 +35,7 @@ public class TagActivity extends Activity {
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
-  class GetTags extends AsyncTask<Integer, Integer, String> {
+  private class GetTags extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {

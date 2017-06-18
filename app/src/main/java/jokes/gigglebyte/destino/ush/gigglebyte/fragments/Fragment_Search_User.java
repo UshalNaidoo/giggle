@@ -20,7 +20,6 @@ import android.widget.GridView;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
 
   private Activity activity;
   private GridView gridView;
-  private UserGridAdapter gridAdapter;
+
   private EditText searchField;
 
   @Override
@@ -79,7 +78,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
   public void onResumeFragment() {
   }
 
-  class SearchForUsers extends AsyncTask<Integer, Integer, List<User>> {
+  private class SearchForUsers extends AsyncTask<Integer, Integer, List<User>> {
 
     String searchFor;
 
@@ -95,7 +94,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
 
     @Override
     protected void onPostExecute(List<User> users) {
-      gridAdapter = new UserGridAdapter(activity, users);
+      UserGridAdapter gridAdapter = new UserGridAdapter(activity, users);
       gridView.setAdapter(gridAdapter);
       for (User user : users) {
         new ImageLoadTask(user, gridAdapter).execute();
@@ -112,7 +111,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
     private User user;
     private BaseAdapter adapter;
 
-    public ImageLoadTask(User user, BaseAdapter adapter) {
+    ImageLoadTask(User user, BaseAdapter adapter) {
       this.user = user;
       this.adapter = adapter;
     }
@@ -127,9 +126,8 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
               + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
           e.printStackTrace();
         }
       }

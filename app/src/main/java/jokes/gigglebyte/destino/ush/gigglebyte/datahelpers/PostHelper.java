@@ -229,7 +229,7 @@ public class PostHelper implements onSubmitListener {
   }
 
   public static Post getPostStatus(Activity activity, Post post) {
-    List<Post> posts = new ArrayList<Post>();
+    List<Post> posts = new ArrayList<>();
     posts.add(post);
     return getPostStatus(activity, posts).get(0);
   }

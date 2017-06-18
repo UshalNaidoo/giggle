@@ -16,9 +16,9 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class CommentHelper {
-  private static List<Comment> allComments = new ArrayList<Comment>();
+  private static List<Comment> allComments = new ArrayList<>();
 
-  public static void likeComment(Context context, Comment comment) {
+  private static void likeComment(Context context, Comment comment) {
     //Store likes in shared Prefs
     comment.setUserLike(true);
     comment.setLikes(comment.getLikes() + 1);
@@ -27,14 +27,14 @@ public class CommentHelper {
     Set<String> likes = sharedPreferences.getStringSet("COMMENT_LIKES", new HashSet<String>());
     likes.add(String.valueOf(comment.getCommentId()));
     commentLikesEditor.putStringSet("COMMENT_LIKES", likes);
-    commentLikesEditor.commit();
+    commentLikesEditor.apply();
   }
 
-  public static void unlikeComment(Context context, Comment comment) {
+  private static void unlikeComment(Context context, Comment comment) {
     //Store likes in shared Prefs
     comment.setUserLike(false);
     comment.setLikes(comment.getLikes() - 1);
-    SharedPreferences sharedPreferences = context.getSharedPreferences("COMMENT_LIKES", context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences = context.getSharedPreferences("COMMENT_LIKES", Context.MODE_PRIVATE);
     SharedPreferences.Editor commentLikesEditor = sharedPreferences.edit();
     Set<String> likes = sharedPreferences.getStringSet("COMMENT_LIKES", new HashSet<String>());
     likes.remove(String.valueOf(comment.getCommentId()));
@@ -93,7 +93,6 @@ public class CommentHelper {
       //add to prefs
       commentFlags.add(String.valueOf(comment.getCommentId()));
       SharedPrefHelper.saveCommentFlags(activity, commentFlags);
-
       Thread thread = new Thread() {
         @Override
         public void run() {

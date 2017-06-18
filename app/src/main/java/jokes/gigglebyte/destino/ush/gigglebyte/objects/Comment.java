@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
@@ -23,7 +22,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 
 public class Comment {
 
-  private int postId;
   private boolean userLike;
   private int commentId;
   private String commentText;
@@ -80,14 +78,6 @@ public class Comment {
     this.commentText = commentText;
   }
 
-  public int getPostId() {
-    return postId;
-  }
-
-  public void setPostId(int postId) {
-    this.postId = postId;
-  }
-
   public boolean isUserLike() {
     return userLike;
   }
@@ -117,8 +107,8 @@ public class Comment {
     private ImageView imageView;
     private BaseAdapter adapter;
 
-    public ImageLoadTask(BaseAdapter adapter, Activity activity, ProgressBar progressBar,
-                         ImageView imageView) {
+    ImageLoadTask(BaseAdapter adapter, Activity activity, ProgressBar progressBar,
+        ImageView imageView) {
       this.progressBar = progressBar;
       this.activity = activity;
       this.imageView = imageView;
@@ -141,9 +131,8 @@ public class Comment {
           URL url = new URL(_Server + "/Images/" + userId + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
           e.printStackTrace();
         }
       }

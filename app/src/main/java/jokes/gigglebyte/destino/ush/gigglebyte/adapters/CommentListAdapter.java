@@ -132,7 +132,7 @@ public class CommentListAdapter extends BaseAdapter {
     return convertView;
   }
 
-  int i = 0;
+  private int i = 0;
 
   private OnClickListener doubleClickChecker(final int position,
                                              final CommentViewHolder holder) {

@@ -9,4 +9,5 @@ public class UserViewHolder {
   public ProgressBar progressBar;
   public TextView userName;
   public ImageView profileImage;
+
 }

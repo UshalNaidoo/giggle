@@ -64,7 +64,7 @@ public class OptionsProfilePictureDialog extends DialogFragment {
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == activity.RESULT_OK && (requestCode == CAMERA_REQUEST
+    if (resultCode == Activity.RESULT_OK && (requestCode == CAMERA_REQUEST
                                              || requestCode == GALLERY_PICTURE)) {
       Uri contentUri = data.getData();
       EditUserProfilePictureDialog editUserProfilePictureDialog = new EditUserProfilePictureDialog();

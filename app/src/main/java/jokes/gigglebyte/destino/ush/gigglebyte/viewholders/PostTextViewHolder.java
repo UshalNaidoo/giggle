@@ -6,4 +6,5 @@ import android.widget.TextView;
 public class PostTextViewHolder extends PostViewHolder {
 
   public TextView postText;
+
 }

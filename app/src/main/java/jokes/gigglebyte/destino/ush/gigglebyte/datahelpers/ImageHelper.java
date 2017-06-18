@@ -17,7 +17,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class ImageHelper implements onSubmitListener {
 
-  public void saveProfilePicture(Bitmap bitmap, int userId) {
+  private void saveProfilePicture(Bitmap bitmap, int userId) {
     try {
       String file_path =
           Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures";

@@ -66,7 +66,6 @@ public class AddCommentDialog extends DialogFragment {
           comment.setCommentText(commentText.getText().toString().trim());
           comment.setLikes(0);
           comment.setUserLike(false);
-          comment.setPostId(getPostId());
           comment.setUserId(getUserId());
           comment.setUserName(getUserName());
           comment.setUserPicture(null);
@@ -98,7 +97,9 @@ public class AddCommentDialog extends DialogFragment {
 
       @Override
       public void afterTextChanged(Editable s) {
-        countTextView.setText(160 - s.toString().length() + "/160");
+        int remaining = 160 - s.toString().length();
+        String text = remaining + "/160";
+        countTextView.setText(text);
       }
     });
     return dialog;
@@ -128,10 +129,6 @@ public class AddCommentDialog extends DialogFragment {
     this.posterId = posterId;
   }
 
-  public int getPosterId() {
-    return posterId;
-  }
-
   public void setPostId(int postId) {
     this.postId = postId;
   }
@@ -143,4 +140,5 @@ public class AddCommentDialog extends DialogFragment {
   public void setListener(onSubmitListener listener) {
     this.listener = listener;
   }
+
 }

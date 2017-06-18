@@ -14,4 +14,5 @@ public class CommentViewHolder {
   public TextView likes;
   public ImageView likeImage;
   public ImageView profileImage;
+
 }

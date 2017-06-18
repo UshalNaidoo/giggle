@@ -24,7 +24,7 @@ public class OptionsPostDialog extends DialogFragment {
   private Activity activity;
   private Post post;
 
-  public enum FromScreen {
+  private enum FromScreen {
     POSTER,
     NEW,
     HOT,
@@ -33,9 +33,9 @@ public class OptionsPostDialog extends DialogFragment {
 
   private TextView likes;
   private ImageView likeImage;
-  private ImageView favoriteImage;
+
   private FromScreen fromScreen;
-  private String fromAdapter;
+
   private int position;
 
   @Override
@@ -110,15 +110,19 @@ public class OptionsPostDialog extends DialogFragment {
   }
 
   public void setFromAdapter(String fromAdapter) {
-    this.fromAdapter = fromAdapter;
-    if (fromAdapter.equals("poster")) {
-      fromScreen = FromScreen.POSTER;
-    } else if (fromAdapter.equals("new")) {
-      fromScreen = FromScreen.NEW;
-    } else if (fromAdapter.equals("hot")) {
-      fromScreen = FromScreen.HOT;
-    } else if (fromAdapter.equals("byte")) {
-      fromScreen = FromScreen.BYTE;
+    switch (fromAdapter) {
+      case "poster":
+        fromScreen = FromScreen.POSTER;
+        break;
+      case "new":
+        fromScreen = FromScreen.NEW;
+        break;
+      case "hot":
+        fromScreen = FromScreen.HOT;
+        break;
+      case "byte":
+        fromScreen = FromScreen.BYTE;
+        break;
     }
   }
 
@@ -146,11 +150,4 @@ public class OptionsPostDialog extends DialogFragment {
     this.likeImage = likeImage;
   }
 
-  public ImageView getFavoriteImage() {
-    return favoriteImage;
-  }
-
-  public void setFavoriteImage(ImageView favoriteImage) {
-    this.favoriteImage = favoriteImage;
-  }
 }

@@ -19,7 +19,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserViewHolder;
 public class UserGridAdapter extends BaseAdapter {
 
   private Activity activity;
-  private List<User> users = new ArrayList();
+  private List<User> users = new ArrayList<>();
 
   public UserGridAdapter(Activity activity, List<User> results) {
     this.activity = activity;
@@ -66,4 +66,5 @@ public class UserGridAdapter extends BaseAdapter {
     }
     return row;
   }
+
 }

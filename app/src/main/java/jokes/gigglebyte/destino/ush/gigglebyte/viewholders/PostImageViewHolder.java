@@ -10,4 +10,5 @@ public class PostImageViewHolder extends PostViewHolder {
   public ProgressBar imageProgressBar;
   public ImageView postImage;
   public TextView title;
+
 }

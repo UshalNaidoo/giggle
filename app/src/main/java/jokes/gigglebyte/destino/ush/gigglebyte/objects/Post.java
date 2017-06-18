@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -176,9 +175,7 @@ public class Post {
     }
   }
 
-  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter,
-                               ProgressBar progressBar,
-                               ImageView imageView) {
+  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter, ProgressBar progressBar, ImageView imageView) {
     if (!loadingPostImage) {
       progressBar.setVisibility(View.VISIBLE);
       setPostLoadTask(new ImageLoadTask(activity, userId, adapter, progressBar, imageView, imageId));
@@ -187,19 +184,19 @@ public class Post {
     }
   }
 
-  public void setProfileLoadTask(ImageLoadTask loadTask) {
+  private void setProfileLoadTask(ImageLoadTask loadTask) {
     this.profileTask = loadTask;
   }
 
-  public ImageLoadTask getProfileLoadTask() {
+  private ImageLoadTask getProfileLoadTask() {
     return this.profileTask;
   }
 
-  public void setPostLoadTask(ImageLoadTask loadTask) {
+  private void setPostLoadTask(ImageLoadTask loadTask) {
     this.postTask = loadTask;
   }
 
-  public ImageLoadTask getPostLoadTask() {
+  private ImageLoadTask getPostLoadTask() {
     return this.postTask;
   }
 
@@ -235,9 +232,9 @@ public class Post {
     private ImageView imageView;
     private int imageId;
 
-    public ImageLoadTask(Activity activity, int userId, BaseAdapter adapter,
-                         ProgressBar progressBar,
-                         ImageView imageView, int imageId) {
+    ImageLoadTask(Activity activity, int userId, BaseAdapter adapter,
+        ProgressBar progressBar,
+        ImageView imageView, int imageId) {
       this.progressBar = progressBar;
       this.imageView = imageView;
       this.userId = userId;
@@ -270,9 +267,8 @@ public class Post {
           }
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
           e.printStackTrace();
         }
       }

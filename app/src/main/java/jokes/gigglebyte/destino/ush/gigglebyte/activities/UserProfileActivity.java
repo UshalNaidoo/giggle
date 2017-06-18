@@ -33,7 +33,7 @@ public class UserProfileActivity extends Activity {
 
   private static FloatingActionMenu menuDown;
   private static Activity activity;
-  private static ListView listView;
+  private ListView listView;
   private static TextView userName;
   private static User myProfile;
   private static PosterProfileListAdapter adapter;
@@ -105,7 +105,7 @@ public class UserProfileActivity extends Activity {
     });
   }
 
-  class GetProfile extends AsyncTask<Integer, Integer, String> {
+  private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {

@@ -92,7 +92,7 @@ public class UploadImageActivity extends FragmentActivity {
               String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
 
-              final Set<String> tags = new HashSet<String>();
+              final Set<String> tags = new HashSet<>();
               if (!tagText.getText().toString().isEmpty()) {
                 for (String s : tagText.getText().toString().split(" ")) {
                   tags.add(s.substring(1));
@@ -130,9 +130,9 @@ public class UploadImageActivity extends FragmentActivity {
           String[] tags = s.toString().trim().split(" ");
           for (String tag : tags) {
             if (!(tag.charAt(0) == '#')) {
-              sb.append("#" + tag + " ");
+              sb.append("#").append(tag).append(" ");
             } else {
-              sb.append(tag + " ");
+              sb.append(tag).append(" ");
             }
           }
           tagText.setText(sb);

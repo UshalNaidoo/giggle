@@ -25,29 +25,25 @@ public class LargeProfileImageActivity extends Activity {
     ImageView imageView = (ImageView) findViewById(R.id.profileImage);
     ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-    /**
-     * If user id matches the current user then get image from the device,
-     * otherwise get it from the server
-     */
     if (getIntent().getIntExtra("userId", 0) == UserHelper.getUserDetails(this).getId()) {
       progressBar.setVisibility(View.VISIBLE);
       imageView.setImageBitmap(ImageHelper.getProfilePicture(getIntent().getIntExtra("userId", 0)));
       progressBar.setVisibility(View.INVISIBLE);
     } else {
-      if (getIntent().getIntExtra("userId", 0) == -1) {
+//      if (getIntent().getIntExtra("userId", 0) == -1) {
         //TODO THINK ABOUT HOW TO DO LARGE IMAGES NOW
 //        if (ImagePostActivity.postBitmap != null) {
 //          progressBar.setVisibility(View.VISIBLE);
 //          imageView.setImageBitmap(ImagePostActivity.postBitmap);
 //          progressBar.setVisibility(View.INVISIBLE);
 //        }
-      } else {
+//      } else {
         if (PosterProfileActivity.poster != null) {
           progressBar.setVisibility(View.VISIBLE);
           imageView.setImageBitmap(PosterProfileActivity.poster.getProfile_pic());
           progressBar.setVisibility(View.INVISIBLE);
         }
-      }
+//      }
     }
 
     imageView.setOnClickListener(new View.OnClickListener() {

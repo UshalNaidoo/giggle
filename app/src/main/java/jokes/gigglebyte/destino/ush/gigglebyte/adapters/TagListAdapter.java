@@ -17,10 +17,8 @@ public class TagListAdapter extends BaseAdapter {
 
   private List<Tag> tags;
   private LayoutInflater mInflater;
-  private Activity activity;
 
   public TagListAdapter(Activity activity, List<Tag> results) {
-    this.activity = activity;
     tags = results;
     mInflater = LayoutInflater.from(activity);
   }
@@ -51,8 +49,10 @@ public class TagListAdapter extends BaseAdapter {
     Tag tag = tags.get(position);
 
     holder.tagName.setText(tag.getTagText());
-    holder.numberOfPosts.setText(tag.getNumberOfPosts() + " Posts");
 
+    String numberOfPostsText = tag.getNumberOfPosts() + " Posts";
+    holder.numberOfPosts.setText(numberOfPostsText);
     return convertView;
   }
+
 }

@@ -70,7 +70,7 @@ public class PosterProfileActivity extends Activity {
     });
   }
 
-  class GetProfile extends AsyncTask<Integer, Integer, String> {
+  private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {
