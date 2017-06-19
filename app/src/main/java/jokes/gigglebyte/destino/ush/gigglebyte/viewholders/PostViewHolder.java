@@ -4,7 +4,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class PostViewHolder extends UserViewHolder {
+public class PostViewHolder extends UserGridViewHolder {
 
   public LinearLayout layout;
   public TextView timeSince;

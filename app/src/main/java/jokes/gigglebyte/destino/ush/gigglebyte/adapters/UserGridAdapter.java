@@ -14,7 +14,7 @@ import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
-import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserGridViewHolder;
 
 public class UserGridAdapter extends BaseAdapter {
 
@@ -44,19 +44,19 @@ public class UserGridAdapter extends BaseAdapter {
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     View row = convertView;
-    UserViewHolder holder;
+    UserGridViewHolder holder;
 
     if (row == null) {
       LayoutInflater inflater = activity.getLayoutInflater();
       row = inflater.inflate(R.layout.grid_user_item, parent, false);
-      holder = new UserViewHolder();
+      holder = new UserGridViewHolder();
       holder.userName = (TextView) row.findViewById(R.id.userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
       row.setTag(holder);
     }
     else {
-      holder = (UserViewHolder) row.getTag();
+      holder = (UserGridViewHolder) row.getTag();
     }
     holder.setUserData(users.get(position));
 

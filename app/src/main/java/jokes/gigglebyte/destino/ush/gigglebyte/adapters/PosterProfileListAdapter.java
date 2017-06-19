@@ -16,7 +16,6 @@ import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.LargeProfileImageActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -24,6 +23,10 @@ import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostTextViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
 public class PosterProfileListAdapter extends BaseAdapter {
@@ -61,7 +64,6 @@ public class PosterProfileListAdapter extends BaseAdapter {
     return arg0;
   }
 
-
   public View getView(final int position, View convertView, ViewGroup parent) {
     if (position == 0) {
       UserViewHolder holder;
@@ -71,32 +73,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
       holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
       convertView.setTag(holder);
-
-      final int posterId = poster.getId();
-
-      holder.progressBar.setVisibility(View.VISIBLE);
-      holder.profileImage.setVisibility(View.INVISIBLE);
-      if (poster.getProfile_pic() == null) {
-        poster.loadImage(activity, holder.profileImage);
-      } else {
-        holder.profileImage.setImageBitmap(poster.getProfile_pic());
-      }
-      holder.profileImage.setVisibility(View.VISIBLE);
-      holder.progressBar.setVisibility(View.INVISIBLE);
-
-      holder.profileImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (poster.getProfile_pic() != null) {
-            Intent intent = new Intent(activity, LargeProfileImageActivity.class);
-            intent.putExtra("userId", posterId);
-            activity.startActivity(intent);
-          }
-        }
-      });
-
-      holder.description.setText((poster.getDescription() == null || poster.getDescription()
-          .isEmpty()) ? "I'm new to Gigglebyte" : poster.getDescription());
+      holder.setUserData(activity, poster);
     } else {
       final int pos = position - 1;
       final Post post = posts.get(pos);
@@ -288,7 +265,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
     optionsPostDialog.show(activity.getFragmentManager(), "");
   }
 
-  private View.OnClickListener doubleClickListener(final int pos, final ViewHolder holder) {
+  private View.OnClickListener doubleClickListener(final int pos, final PostViewHolder holder) {
     return new View.OnClickListener() {
       int i = 0;
 
@@ -324,7 +301,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
     };
   }
 
-  private void likePost(int position, ViewHolder holder) {
+  private void likePost(int position, PostViewHolder holder) {
     Post post = posts.get(position);
     if (post.isUserLike()) {
       int likes = post.getLikes() - 1;
@@ -338,7 +315,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
     }
   }
 
-  private void favoritePost(int position, ViewHolder holder) {
+  private void favoritePost(int position, PostViewHolder holder) {
     Post post = posts.get(position);
     if (post.isUserFavorite()) {
       PostHelper.adjustPost(activity, holder.favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
@@ -346,28 +323,6 @@ public class PosterProfileListAdapter extends BaseAdapter {
       toastWithImage.show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
       PostHelper.adjustPost(activity, holder.favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
     }
-  }
-
-  private static class UserViewHolder {
-    private TextView description;
-    private ImageView profileImage;
-    private ProgressBar progressBar;
-  }
-
-  static class ViewHolder {
-    protected LinearLayout layout;
-    TextView timeSince, likes, comments;
-    ImageView likeImage, favoriteImage, shareImage;
-  }
-
-  private static class PostImageViewHolder extends ViewHolder {
-    ProgressBar imageProgressBar;
-    private ImageView postImage;
-    private TextView title;
-  }
-
-  private static class PostTextViewHolder extends ViewHolder {
-    private TextView postText;
   }
 
 }
