@@ -71,15 +71,11 @@ public class UploadImageActivity extends FragmentActivity {
             try {
               User user = UserHelper.getUserDetails(activity);
               int userId = user.getId();
-              String userName = user.getName();
-
               post.setLikes(0);
               post.setUserLike(false);
               post.setPostText("Testing Image");
               post.setType(PostType.IMAGE_POST);
-              post.setUserPicture(ImageHelper.getProfilePicture(userId));
-              post.setUserId(userId);
-              post.setUserName(userName);
+              post.setUser(user);
               //TODO get id from server
               post.setImageId(1);
               post.setTimeSincePost("Just Now");

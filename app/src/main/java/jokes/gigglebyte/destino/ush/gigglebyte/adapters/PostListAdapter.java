@@ -86,9 +86,9 @@ public class PostListAdapter extends BaseAdapter {
 
       Post post = posts.get(position);
 
-      holder.userName.setText(post.getUserName() == null || post.getUserName().isEmpty()
+      holder.userName.setText(post.getUser().getName() == null || post.getUser().getName().isEmpty()
                               ? "Unknown"
-                              : post.getUserName());
+                              : post.getUser().getName());
       holder.timeSince.setText(post.getTimeSincePost());
 
       if (post.getTags() != null) {
@@ -121,13 +121,13 @@ public class PostListAdapter extends BaseAdapter {
       holder.progressBar.setVisibility(View.INVISIBLE);
       holder.comments.setText(String.valueOf(post.getCommentCount()));
 
-      final int userId = post.getUserId();
+      final int userId = post.getUser().getId();
 
-      if (post.getUserPicture() != null) {
+      if (post.getUser().getProfile_pic() != null) {
         holder.progressBar.setVisibility(View.INVISIBLE);
-        holder.profileImage.setImageBitmap(post.getUserPicture());
+        holder.profileImage.setImageBitmap(post.getUser().getProfile_pic());
       } else {
-        post.loadProfileImage(activity, post.getUserId(), this, holder.progressBar, holder.profileImage);
+        post.loadProfileImage(activity, post.getUser().getId(), this, holder.progressBar, holder.profileImage);
       }
 
       final View finalConvertView1 = convertView;
@@ -227,9 +227,9 @@ public class PostListAdapter extends BaseAdapter {
       Post post = posts.get(position);
       holder.title.setText(post.getPostTitle() == null ? "" : post.getPostTitle());
 
-      holder.userName.setText(post.getUserName() == null || post.getUserName().isEmpty()
+      holder.userName.setText(post.getUser().getName() == null || post.getUser().getName().isEmpty()
                               ? "Unknown"
-                              : post.getUserName());
+                              : post.getUser().getName());
       holder.comments.setText(String.valueOf(post.getCommentCount()));
       holder.title.setText(post.getPostTitle() == null ? "" : post.getPostTitle());
       holder.timeSince.setText(post.getTimeSincePost());
@@ -265,18 +265,18 @@ public class PostListAdapter extends BaseAdapter {
         holder.imageProgressBar.setVisibility(View.GONE);
         holder.postImage.setImageBitmap(post.getPostPicture());
       } else {
-        post.loadImagePost(activity, post.getUserId(), post.getImageId(), this, holder.imageProgressBar, holder.postImage);
+        post.loadImagePost(activity, post.getUser().getId(), post.getImageId(), this, holder.imageProgressBar, holder.postImage);
       }
 
       holder.likes.setText(String.valueOf(post.getLikes()));
       holder.progressBar.setVisibility(View.INVISIBLE);
 
-      final int userId = post.getUserId();
-      if (post.getUserPicture() != null) {
+      final int userId = post.getUser().getId();
+      if (post.getUser().getProfile_pic() != null) {
         holder.progressBar.setVisibility(View.INVISIBLE);
-        holder.profileImage.setImageBitmap(post.getUserPicture());
+        holder.profileImage.setImageBitmap(post.getUser().getProfile_pic());
       } else {
-        post.loadProfileImage(activity, post.getUserId(), this, holder.progressBar, holder.profileImage);
+        post.loadProfileImage(activity, post.getUser().getId(), this, holder.progressBar, holder.profileImage);
       }
 
       final View finalConvertView = convertView;
@@ -400,7 +400,7 @@ public class PostListAdapter extends BaseAdapter {
               Intent myIntent = new Intent(activity, CommentActivity.class);
               MainActivity.selectedPost = posts.get(position);
               myIntent.putExtra("postId", posts.get(position).getPostId());
-              myIntent.putExtra("posterId", posts.get(position).getUserId());
+              myIntent.putExtra("posterId", posts.get(position).getUser().getId());
               myIntent.putExtra("position", position);
               activity.startActivity(myIntent);
             }

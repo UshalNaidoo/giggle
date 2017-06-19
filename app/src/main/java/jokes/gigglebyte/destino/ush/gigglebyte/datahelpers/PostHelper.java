@@ -136,7 +136,7 @@ public class PostHelper implements onSubmitListener {
         Thread likeThread = new Thread() {
           @Override
           public void run() {
-            ConnectToServer.postLike(post.getPostId(), post.getUserId());
+            ConnectToServer.postLike(post.getPostId(), post.getUser().getId());
           }
         };
         likeThread.start();
@@ -298,12 +298,12 @@ public class PostHelper implements onSubmitListener {
     posts.addAll(newPosts);
     posts.addAll(favoritePosts);
     for (Post p : posts) {
-      if (p.getUserId() == userId) {
+      if (p.getUser().getId() == userId) {
         if (userName != null) {
-          p.setUserName(userName);
+          p.getUser().setName(userName);
         }
         if (bitmap != null) {
-          p.setUserPicture(bitmap);
+          p.getUser().setProfile_pic(bitmap);
         }
       }
     }

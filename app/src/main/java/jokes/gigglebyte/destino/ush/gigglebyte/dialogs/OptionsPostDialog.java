@@ -49,9 +49,9 @@ public class OptionsPostDialog extends DialogFragment {
     dialog.show();
 
     TextView postText = (TextView) dialog.findViewById(R.id.postText);
-    postText.setText(getPost().getPostText().isEmpty() ? getPost().getUserName() : getPost().getPostText());
+    postText.setText(getPost().getPostText().isEmpty() ? getPost().getUser().getName() : getPost().getPostText());
     ImageView profileImage = (ImageView) dialog.findViewById(R.id.profileImage);
-    profileImage.setImageBitmap(getPost().getUserPicture());
+    profileImage.setImageBitmap(getPost().getUser().getProfile_pic());
 
     Button buttonViewProfile = (Button) dialog.findViewById(R.id.buttonProfileView);
     buttonViewProfile.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +59,7 @@ public class OptionsPostDialog extends DialogFragment {
       public void onClick(View v) {
         if (fromScreen != FromScreen.POSTER) {
           Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-          myIntent.putExtra("userId", getPost().getUserId());
+          myIntent.putExtra("userId", getPost().getUser().getId());
           activity.startActivity(myIntent);
         }
 
@@ -74,7 +74,7 @@ public class OptionsPostDialog extends DialogFragment {
         if (fromScreen != FromScreen.BYTE) {
           Intent myIntent = new Intent(activity, CommentActivity.class);
           myIntent.putExtra("postId", getPost().getPostId());
-          myIntent.putExtra("posterId", getPost().getUserId());
+          myIntent.putExtra("posterId", getPost().getUser().getId());
           myIntent.putExtra("position", getPosition());
           activity.startActivity(myIntent);
         }

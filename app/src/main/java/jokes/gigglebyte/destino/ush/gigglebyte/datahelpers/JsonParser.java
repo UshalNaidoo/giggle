@@ -26,9 +26,9 @@ public class JsonParser {
           Post nextPost = new Post();
           nextPost.setLikes(jsonObject.getInt("likes"));
           nextPost.setPostText(jsonObject.getString("text"));
-          nextPost.setUserId(jsonObject.getInt("user_id"));
+          User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
+          nextPost.setUser(user);
           nextPost.setTimeSincePost(jsonObject.getString("time_since"));
-          nextPost.setUserName(jsonObject.getString("user_name"));
           nextPost.setPostId(jsonObject.getInt("_id"));
           nextPost.setPostTitle(jsonObject.getString("title"));
           nextPost.setCommentCount(jsonObject.getInt("comments"));

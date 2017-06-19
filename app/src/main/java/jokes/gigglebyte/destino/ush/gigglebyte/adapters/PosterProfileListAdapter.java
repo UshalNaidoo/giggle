@@ -132,7 +132,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
           public void onClick(View v) {
             Intent myIntent = new Intent(activity, CommentActivity.class);
             myIntent.putExtra("postId", post.getPostId());
-            myIntent.putExtra("posterId", post.getUserId());
+            myIntent.putExtra("posterId", post.getUser().getId());
             myIntent.putExtra("position", pos);
             activity.startActivity(myIntent);
           }
@@ -206,12 +206,12 @@ public class PosterProfileListAdapter extends BaseAdapter {
           holder.imageProgressBar.setVisibility(View.GONE);
           holder.postImage.setImageBitmap(post.getPostPicture());
         } else {
-          post.loadImagePost(activity, post.getUserId(), post.getImageId(), this, holder.imageProgressBar, holder.postImage);
+          post.loadImagePost(activity, post.getUser().getId(), post.getImageId(), this, holder.imageProgressBar, holder.postImage);
         }
 
         holder.likes.setText(String.valueOf(post.getLikes()));
 
-        final int userId = post.getUserId();
+        final int userId = post.getUser().getId();
 
         final View finalConvertView1 = convertView;
         holder.shareImage.setOnClickListener(new View.OnClickListener() {
@@ -304,7 +304,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
               MainActivity.selectedPost = posts.get(pos);
 
               myIntent.putExtra("postId", posts.get(pos).getPostId());
-              myIntent.putExtra("posterId", posts.get(pos).getUserId());
+              myIntent.putExtra("posterId", posts.get(pos).getUser().getId());
               myIntent.putExtra("position", pos);
               activity.startActivity(myIntent);
             }

@@ -25,6 +25,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class AddTextByteDialog extends DialogFragment {
@@ -110,9 +111,8 @@ public class AddTextByteDialog extends DialogFragment {
               post.setUserLike(false);
               post.setPostText(byteText.getText().toString().trim());
               post.setType(PostType.TEXT_POST);
-              post.setUserPicture(ImageHelper.getProfilePicture(userId));
-              post.setUserId(userId);
-              post.setUserName(userName);
+              User user = new User(userId, userName, null, ImageHelper.getProfilePicture(userId));
+              post.setUser(user);
               post.setTimeSincePost("Just Now");
               post.setPostTitle("");
 
