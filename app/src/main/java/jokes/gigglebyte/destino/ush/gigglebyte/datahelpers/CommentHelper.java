@@ -52,7 +52,7 @@ public class CommentHelper {
     Thread thread = new Thread() {
       @Override
       public void run() {
-        ConnectToServer.commentLike(comment.getCommentId(), comment.getUserId());
+        ConnectToServer.commentLike(comment.getCommentId(), comment.getUser().getId());
       }
     };
     thread.start();

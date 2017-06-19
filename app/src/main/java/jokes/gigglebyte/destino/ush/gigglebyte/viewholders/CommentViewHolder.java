@@ -42,7 +42,7 @@ public class CommentViewHolder {
       likeImage.setImageResource(R.drawable.star_unlike);
     }
     profileImage.setVisibility(View.INVISIBLE);
-    final int userId = comment.getUserId();
+    final int userId = comment.getUser().getId();
 
     commentText.setOnClickListener(doubleClickChecker());
     layout.setOnClickListener(doubleClickChecker());
@@ -69,9 +69,9 @@ public class CommentViewHolder {
       }
     });
 
-    if (comment.getUserPicture() != null) {
+    if (comment.getUser().getProfile_pic() != null) {
       progressBar.setVisibility(View.INVISIBLE);
-      profileImage.setImageBitmap(comment.getUserPicture());
+      profileImage.setImageBitmap(comment.getUser().getProfile_pic());
     } else {
       // MY DEFAULT IMAGE
       comment.loadImage(adapter, activity, progressBar, profileImage);

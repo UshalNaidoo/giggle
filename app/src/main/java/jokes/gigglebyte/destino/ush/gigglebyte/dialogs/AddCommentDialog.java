@@ -19,6 +19,7 @@ import java.util.Random;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class AddCommentDialog extends DialogFragment {
@@ -66,9 +67,8 @@ public class AddCommentDialog extends DialogFragment {
           comment.setCommentText(commentText.getText().toString().trim());
           comment.setLikes(0);
           comment.setUserLike(false);
-          comment.setUserId(getUserId());
-          comment.setUserName(getUserName());
-          comment.setUserPicture(null);
+          User user = new User(getUserId(), getUserName(), null, null);
+          comment.setUser(user);
           getListener().setOnSubmitListener(comment);
 
           Thread thread = new Thread() {

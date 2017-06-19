@@ -26,16 +26,14 @@ public class Comment {
   private int commentId;
   private String commentText;
   private int likes;
-  private int userId;
-  private String userName;
-  private Bitmap userPicture;
+  private User user;
 
-  public int getUserId() {
-    return userId;
+  public User getUser() {
+    return user;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public int getLikes() {
@@ -44,22 +42,6 @@ public class Comment {
 
   public void setLikes(int likes) {
     this.likes = likes;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-
-  public Bitmap getUserPicture() {
-    return userPicture;
-  }
-
-  public void setUserPicture(Bitmap userPicture) {
-    this.userPicture = userPicture;
   }
 
   public int getCommentId() {
@@ -88,15 +70,15 @@ public class Comment {
 
   public void loadImage(BaseAdapter adapter, Activity activity, ProgressBar progressBar,
                         ImageView imageView) {
-    if (getUserPicture() == null) {
-      if (MainActivity.cachedProfilePictures.containsKey(userId)) {
-        setUserPicture(MainActivity.cachedProfilePictures.get(userId));
+    if (user.getProfile_pic() == null) {
+      if (MainActivity.cachedProfilePictures.containsKey(user.getId())) {
+        user.setProfile_pic(MainActivity.cachedProfilePictures.get(user.getId()));
         adapter.notifyDataSetChanged();
       } else {
         new ImageLoadTask(adapter, activity, progressBar, imageView).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       }
     }else {
-      imageView.setImageBitmap(getUserPicture());
+      imageView.setImageBitmap(user.getProfile_pic());
     }
   }
 
@@ -124,11 +106,11 @@ public class Comment {
 
     protected Bitmap doInBackground(String... param) {
       Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-      if (userId == UserHelper.getUserDetails(activity).getId()) {
-        return ImageHelper.getProfilePicture(userId);
+      if (user.getId() == UserHelper.getUserDetails(activity).getId()) {
+        return ImageHelper.getProfilePicture(user.getId());
       } else {
         try {
-          URL url = new URL(_Server + "/Images/" + userId + "/Profile_Pictures/profile.jpg");
+          URL url = new URL(_Server + "/Images/" + user.getId() + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
         }
@@ -141,9 +123,9 @@ public class Comment {
 
     protected void onPostExecute(Bitmap ret) {
       if (ret != null) {
-        setUserPicture(ret);
+        user.setProfile_pic(ret);
         imageView.setImageBitmap(ret);
-        MainActivity.cachedProfilePictures.put(userId, ret);
+        MainActivity.cachedProfilePictures.put(user.getId(), ret);
       } else {
         imageView.setImageResource(R.drawable.nobody_m);
       }

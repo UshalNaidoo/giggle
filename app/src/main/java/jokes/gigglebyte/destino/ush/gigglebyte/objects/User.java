@@ -23,6 +23,17 @@ public class User {
   private String description;
   private Bitmap profile_pic;
 
+  public User() {
+
+  }
+
+  public User(int id, String name, String description, Bitmap bitmap) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.profile_pic = bitmap;
+  }
+
   public String getName() {
     return name;
   }

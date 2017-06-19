@@ -12,7 +12,7 @@ public class UserViewHolder {
   public TextView userName;
   public ImageView profileImage;
 
-  public void setData(User user) {
+  public void setUserData(User user) {
     userName.setText(user.getName());
     if (user.getProfile_pic() != null) {
       progressBar.setVisibility(View.INVISIBLE);

@@ -52,7 +52,7 @@ public class TagListAdapter extends BaseAdapter {
     else {
       holder = (TagViewHolder) row.getTag();
     }
-    holder.setData(tags.get(position));
+    holder.setTagData(tags.get(position));
     return row;
   }
 

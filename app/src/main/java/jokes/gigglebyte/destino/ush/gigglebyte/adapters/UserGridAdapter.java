@@ -58,7 +58,7 @@ public class UserGridAdapter extends BaseAdapter {
     else {
       holder = (UserViewHolder) row.getTag();
     }
-    holder.setData(users.get(position));
+    holder.setUserData(users.get(position));
 
     return row;
   }

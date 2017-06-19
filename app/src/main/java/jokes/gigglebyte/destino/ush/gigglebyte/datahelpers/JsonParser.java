@@ -68,8 +68,8 @@ public class JsonParser {
         comment.setLikes(jsonObject.getInt("likes"));
         comment.setCommentId(jsonObject.getInt("_id"));
         comment.setCommentText(jsonObject.getString("text"));
-        comment.setUserId(jsonObject.getInt("user_id"));
-        comment.setUserName(jsonObject.getString("user_name"));
+        User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
+        comment.setUser(user);
         comments.add(comment);
       }
     } catch (JSONException e) {

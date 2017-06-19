@@ -8,7 +8,7 @@ public class TagViewHolder {
   public TextView tagName;
   public TextView numberOfPosts;
 
-  public void setData(Tag tag) {
+  public void setTagData(Tag tag) {
     tagName.setText(tag.getTagText());
     String numberOfPostsText = tag.getNumberOfPosts() + " Posts";
     numberOfPosts.setText(numberOfPostsText);
