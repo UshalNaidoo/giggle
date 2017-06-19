@@ -46,7 +46,7 @@ public class UserGridAdapter extends BaseAdapter {
     View row = convertView;
     UserViewHolder holder;
 
-    if (convertView == null) {
+    if (row == null) {
       LayoutInflater inflater = activity.getLayoutInflater();
       row = inflater.inflate(R.layout.grid_user_item, parent, false);
       holder = new UserViewHolder();
