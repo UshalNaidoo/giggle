@@ -43,27 +43,23 @@ public class UserGridAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    View row;
+    View row = convertView;
     UserViewHolder holder;
 
-    LayoutInflater inflater = activity.getLayoutInflater();
-    row = inflater.inflate(R.layout.grid_user_item, null);
-    holder = new UserViewHolder();
-    holder.userName = (TextView) row.findViewById(R.id.userName);
-    holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
-    holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-    row.setTag(holder);
-
-    User user = users.get(position);
-    holder.userName.setText(user.getName());
-
-    if (user.getProfile_pic() != null) {
-      holder.progressBar.setVisibility(View.INVISIBLE);
-      holder.profileImage.setImageBitmap(user.getProfile_pic());
-    } else {
-      holder.progressBar.setVisibility(View.VISIBLE);
-      holder.profileImage.setImageBitmap(null);
+    if (convertView == null) {
+      LayoutInflater inflater = activity.getLayoutInflater();
+      row = inflater.inflate(R.layout.grid_user_item, parent, false);
+      holder = new UserViewHolder();
+      holder.userName = (TextView) row.findViewById(R.id.userName);
+      holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
+      holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
+      row.setTag(holder);
     }
+    else {
+      holder = (UserViewHolder) row.getTag();
+    }
+    holder.setData(users.get(position));
+
     return row;
   }
 
