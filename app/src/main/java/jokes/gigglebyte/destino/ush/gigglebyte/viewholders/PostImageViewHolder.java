@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
 public class PostImageViewHolder extends PostViewHolder {
@@ -17,8 +18,8 @@ public class PostImageViewHolder extends PostViewHolder {
   public TextView title;
 
 
-  public void setImagePostData(final Activity activity, BaseAdapter adapter, View convertView, final Post post) {
-    setPostData(activity, convertView, post);
+  public void setImagePostData(final Activity activity, BaseAdapter adapter, View convertView, final Post post, OptionsPostDialog.FromScreen from) {
+     setPostData(activity, convertView, post, from);
 
     title.setText(post.getPostTitle());
 

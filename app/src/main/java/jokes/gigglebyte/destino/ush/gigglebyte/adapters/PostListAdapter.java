@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
@@ -23,10 +24,12 @@ public class PostListAdapter extends BaseAdapter {
   private List<Post> posts;
   private LayoutInflater mInflater;
   private Activity activity;
+  private OptionsPostDialog.FromScreen fromScreen;
 
-  public PostListAdapter(Activity activity, List<Post> results) {
+  public PostListAdapter(Activity activity, List<Post> results, OptionsPostDialog.FromScreen fromScreen) {
     this.activity = activity;
     posts = results;
+    this.fromScreen = fromScreen;
     mInflater = LayoutInflater.from(activity);
   }
 
@@ -68,7 +71,7 @@ public class PostListAdapter extends BaseAdapter {
 
       Post post = posts.get(position);
       holder.setUserData(activity, post.getUser());
-      holder.setTextPostData(activity,convertView,post);
+      holder.setTextPostData(activity,convertView,post, fromScreen);
 
     } else if (posts.get(position).getType() == PostType.IMAGE_POST) {
       final PostImageViewHolder holder;
@@ -94,7 +97,7 @@ public class PostListAdapter extends BaseAdapter {
       Post post = posts.get(position);
 
       holder.setUserData(activity, post.getUser());
-      holder.setImagePostData(activity, this, convertView, post);
+      holder.setImagePostData(activity, this, convertView, post, fromScreen);
     }
     return convertView;
   }

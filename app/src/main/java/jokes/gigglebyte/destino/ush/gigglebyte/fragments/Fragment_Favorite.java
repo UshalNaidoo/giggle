@@ -12,6 +12,7 @@ import android.widget.ListView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
 public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
@@ -24,7 +25,7 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
     Activity activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_favorite_screen, container, false);
     ListView listView = (ListView) rootView.findViewById(R.id.listView);
-    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts());
+    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts(), OptionsPostDialog.FromScreen.FAVOURITE);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(AbsListView view, int scrollState) {

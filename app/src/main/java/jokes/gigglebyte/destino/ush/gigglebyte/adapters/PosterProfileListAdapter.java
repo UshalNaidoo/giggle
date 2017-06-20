@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
@@ -26,10 +27,12 @@ public class PosterProfileListAdapter extends BaseAdapter {
   private static User poster;
   private LayoutInflater mInflater;
   private Activity activity;
+  private OptionsPostDialog.FromScreen fromScreen;
 
-  public PosterProfileListAdapter(Activity activity, List<Post> results, User user) {
+  public PosterProfileListAdapter(Activity activity, List<Post> results, User user, OptionsPostDialog.FromScreen fromScreen) {
     posts = results;
     poster = user;
+    this.fromScreen = fromScreen;
     mInflater = LayoutInflater.from(activity);
     this.activity = activity;
   }
@@ -80,7 +83,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
         holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
         holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
         convertView.setTag(holder);
-        holder.setTextPostData(activity, convertView, post);
+        holder.setTextPostData(activity, convertView, post, fromScreen);
       } else if (post.getType() == PostType.IMAGE_POST) {
         final PostImageViewHolder holder;
         convertView = mInflater.inflate(R.layout.profile_image_item, parent, false);
@@ -97,7 +100,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
         holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
         holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
         convertView.setTag(holder);
-        holder.setImagePostData(activity, this, convertView, post);
+        holder.setImagePostData(activity, this, convertView, post, fromScreen);
        }
     }
     return convertView;

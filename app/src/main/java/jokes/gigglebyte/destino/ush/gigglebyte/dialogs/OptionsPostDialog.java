@@ -24,11 +24,14 @@ public class OptionsPostDialog extends DialogFragment {
   private Activity activity;
   private Post post;
 
-  private enum FromScreen {
+  public enum FromScreen {
+    USER,
     POSTER,
     NEW,
     HOT,
-    BYTE
+    FAVOURITE,
+    BYTE,
+    TAG
   }
 
   private TextView likes;
@@ -106,21 +109,8 @@ public class OptionsPostDialog extends DialogFragment {
     this.post = post;
   }
 
-  public void setFromAdapter(String fromAdapter) {
-    switch (fromAdapter) {
-      case "poster":
-        fromScreen = FromScreen.POSTER;
-        break;
-      case "new":
-        fromScreen = FromScreen.NEW;
-        break;
-      case "hot":
-        fromScreen = FromScreen.HOT;
-        break;
-      case "byte":
-        fromScreen = FromScreen.BYTE;
-        break;
-    }
+  public void setFromAdapter(FromScreen fromScreen) {
+    this.fromScreen = fromScreen;
   }
 
   public TextView getLikes() {

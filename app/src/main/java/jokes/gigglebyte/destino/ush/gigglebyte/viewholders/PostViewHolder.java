@@ -39,10 +39,12 @@ public class PostViewHolder extends UserGridViewHolder {
   private Post post;
   private Activity activity;
   private boolean isDoubleClick = false;
+  private OptionsPostDialog.FromScreen fromScreen;
 
-  void setPostData(final Activity activity, View convertView, final Post post) {
+  void setPostData(final Activity activity, View convertView, final Post post, OptionsPostDialog.FromScreen from) {
     this.activity = activity;
     this.post = post;
+    this.fromScreen = from;
     timeSince.setText(post.getTimeSincePost());
     comments.setText(String.valueOf(post.getCommentCount()));
     likes.setText(String.valueOf(post.getLikes()));
@@ -143,7 +145,7 @@ public class PostViewHolder extends UserGridViewHolder {
   private void postOptions() {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(post);
-    optionsPostDialog.setFromAdapter("poster");
+    optionsPostDialog.setFromAdapter(this.fromScreen);
     optionsPostDialog.setLikeImage(likeImage);
     optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");

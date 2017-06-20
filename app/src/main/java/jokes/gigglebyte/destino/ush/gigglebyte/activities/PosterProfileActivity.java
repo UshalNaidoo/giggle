@@ -18,6 +18,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -89,7 +90,7 @@ public class PosterProfileActivity extends Activity {
       postString = "{\"posts\":" + postString + "}";
       List<Post> posts = JsonParser.GetPosts(postString);
       posts = getPostStatus(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, poster);
+      adapter = new PosterProfileListAdapter(activity, posts, poster, OptionsPostDialog.FromScreen.POSTER);
       listView.setAdapter(adapter);
     }
   }

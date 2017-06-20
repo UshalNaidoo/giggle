@@ -12,6 +12,7 @@ import android.widget.ListView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
 public class Fragment_New extends Fragment implements FragmentLifecycle {
@@ -37,7 +38,7 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
                            int totalItemCount) {
       }
     });
-    adapter = new PostListAdapter(activity, PostHelper.getNewPosts());
+    adapter = new PostListAdapter(activity, PostHelper.getNewPosts(), OptionsPostDialog.FromScreen.NEW);
     listView.setAdapter(adapter);
     return rootView;
   }
