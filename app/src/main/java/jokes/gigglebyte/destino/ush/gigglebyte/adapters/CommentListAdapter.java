@@ -66,7 +66,7 @@ public class CommentListAdapter extends BaseAdapter {
     else {
       holder = (CommentViewHolder) row.getTag();
     }
-    holder.setData(activity, this, comments.get(position));
+    holder.setData(activity, comments.get(position));
     return row;
   }
 

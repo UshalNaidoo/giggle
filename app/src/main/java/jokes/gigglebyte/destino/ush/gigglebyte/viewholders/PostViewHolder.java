@@ -1,8 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
@@ -14,6 +11,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
@@ -39,7 +40,7 @@ public class PostViewHolder extends UserGridViewHolder {
   private Activity activity;
   private boolean isDoubleClick = false;
 
-  public void setPostData(final Activity activity, View convertView, final Post post) {
+  void setPostData(final Activity activity, View convertView, final Post post) {
     this.activity = activity;
     this.post = post;
     timeSince.setText(post.getTimeSincePost());

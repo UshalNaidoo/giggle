@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
@@ -27,7 +26,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
   private Comment comment;
   private Activity activity;
 
-  public void setData(final Activity activity, BaseAdapter adapter, Comment comment) {
+  public void setData(final Activity activity, Comment comment) {
     this.comment = comment;
     this.activity = activity;
     setUserProfile(activity, comment.getUser(), false);
