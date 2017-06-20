@@ -93,6 +93,7 @@ public class PostListAdapter extends BaseAdapter {
 
       Post post = posts.get(position);
 
+      holder.setUserData(activity, post.getUser());
       holder.setImagePostData(activity, this, convertView, post);
     }
     return convertView;
