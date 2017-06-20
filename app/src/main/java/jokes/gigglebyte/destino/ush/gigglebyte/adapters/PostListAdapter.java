@@ -70,139 +70,25 @@ public class PostListAdapter extends BaseAdapter {
       convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
       holder = new PostTextViewHolder();
       holder.userName = (TextView) convertView.findViewById(R.id.userName);
+      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
+      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+
       holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
       holder.tags =  (TextView) convertView.findViewById(R.id.tags);
       holder.postText = (TextView) convertView.findViewById(R.id.postText);
       holder.likes = (TextView) convertView.findViewById(R.id.likes);
+      holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
       holder.comments = (TextView) convertView.findViewById(R.id.comments);
       holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
       holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-      holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
       holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
       holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
       convertView.setTag(holder);
 
       Post post = posts.get(position);
+      holder.setUserData(activity, post.getUser());
+      holder.setTextPostData(activity,convertView,post);
 
-      holder.userName.setText(post.getUser().getName() == null || post.getUser().getName().isEmpty()
-                              ? "Unknown"
-                              : post.getUser().getName());
-      holder.timeSince.setText(post.getTimeSincePost());
-
-      if (post.getTags() != null) {
-        String definition = "";
-        for (String tag : post.getTags()) {
-          definition += " #" + tag;
-        }
-
-        holder.tags.setMovementMethod(LinkMovementMethod.getInstance());
-        holder.tags.setText(definition, TextView.BufferType.SPANNABLE);
-        holder.tags.setTextColor(activity.getResources().getColor(R.color.app_primary_dark));
-
-        Spannable spans = (Spannable) holder.tags.getText();
-        Integer[] indices = getIndices(holder.tags.getText().toString(), ' ');
-        int start = 0;
-        int end;
-
-        for (int i = 0; i <= indices.length; i++) {
-          ClickableSpan clickSpan = getClickableSpan();
-          end = (i < indices.length ? indices[i] : spans.length());
-          spans.setSpan(clickSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-          start = end + 1;
-        }
-      } else {
-        holder.tags.setVisibility(View.GONE);
-      }
-
-      holder.postText.setText(post.getPostText());
-      holder.likes.setText(String.valueOf(post.getLikes()));
-      holder.progressBar.setVisibility(View.INVISIBLE);
-      holder.comments.setText(String.valueOf(post.getCommentCount()));
-
-      final int userId = post.getUser().getId();
-
-      if (post.getUser().getProfile_pic() != null) {
-        holder.progressBar.setVisibility(View.INVISIBLE);
-        holder.profileImage.setImageBitmap(post.getUser().getProfile_pic());
-      } else {
-        post.loadProfileImage(activity, post.getUser().getId(), this, holder.progressBar, holder.profileImage);
-      }
-
-      final View finalConvertView1 = convertView;
-      holder.shareImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          PostHelper.shareBitmap(activity, finalConvertView1.findViewById(R.id.layoutView));
-        }
-      });
-
-      holder.menuImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          postOptions(position, holder.likeImage, holder.likes);
-        }
-      });
-
-      holder.profileImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-          myIntent.putExtra("userId", userId);
-          activity.startActivity(myIntent);
-        }
-      });
-
-      holder.userName.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-          myIntent.putExtra("userId", userId);
-          activity.startActivity(myIntent);
-        }
-      });
-
-      if (post.isUserLike()) {
-        holder.likeImage.setImageResource(R.drawable.star_like);
-      } else {
-        holder.likeImage.setImageResource(R.drawable.star_unlike);
-      }
-
-      if (post.isUserFavorite()) {
-        holder.favoriteImage.setImageResource(R.drawable.heart_like);
-      } else {
-        holder.favoriteImage.setImageResource(R.drawable.heart_unlike);
-      }
-
-      holder.layout.setOnClickListener(doubleClickListener(position, holder, PostType.TEXT_POST));
-
-      holder.layout.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
-
-      holder.postText.setOnClickListener(doubleClickListener(position, holder, PostType.TEXT_POST));
-
-      holder.postText.setOnLongClickListener(longClickListener(position, holder.likeImage, holder.likes, userId));
-
-      holder.likes.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          likePost(position, holder);
-        }
-      });
-
-      holder.likeImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          likePost(position, holder);
-        }
-      });
-
-      holder.favoriteImage.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          favoritePost(position, holder);
-        }
-      });
     } else if (posts.get(position).getType() == PostType.IMAGE_POST) {
       final PostImageViewHolder holder;
       convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
@@ -372,7 +258,6 @@ public class PostListAdapter extends BaseAdapter {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(posts.get(position));
     optionsPostDialog.setFromAdapter("favorite");
-    optionsPostDialog.setPosition(position);
     optionsPostDialog.setLikeImage(likeImage);
     optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");

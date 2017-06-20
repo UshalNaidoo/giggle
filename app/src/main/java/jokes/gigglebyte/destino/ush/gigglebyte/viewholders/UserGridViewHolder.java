@@ -10,7 +10,7 @@ public class UserGridViewHolder extends UserProfilePictureHolder{
 
   public void setUserData(Activity activity, User user) {
     setUserProfile(activity, user, false);
-    userName.setText(user.getName());
+    userName.setText(user.getName() == null || user.getName().isEmpty() ? "Unknown" : user.getName() );
   }
 
 }

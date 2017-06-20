@@ -82,6 +82,7 @@ public class PosterProfileListAdapter extends BaseAdapter {
         convertView = mInflater.inflate(R.layout.profile_text_item, parent, false);
         holder = new PostTextViewHolder();
         holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
+        holder.tags =  (TextView) convertView.findViewById(R.id.tags);
         holder.postText = (TextView) convertView.findViewById(R.id.postText);
         holder.likes = (TextView) convertView.findViewById(R.id.likes);
         holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
@@ -89,74 +90,9 @@ public class PosterProfileListAdapter extends BaseAdapter {
         holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
         holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
         holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-
+        holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
         convertView.setTag(holder);
-
-        holder.timeSince.setText(post.getTimeSincePost());
-        holder.comments.setText(String.valueOf(post.getCommentCount()));
-        holder.postText.setText(post.getPostText());
-        holder.likes.setText(String.valueOf(post.getLikes()));
-        final View finalConvertView = convertView;
-        holder.shareImage.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            PostHelper.shareBitmap(activity, finalConvertView.findViewById(R.id.layoutView));
-          }
-        });
-
-        holder.postText.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            Intent myIntent = new Intent(activity, CommentActivity.class);
-            myIntent.putExtra("postId", post.getPostId());
-            myIntent.putExtra("posterId", post.getUser().getId());
-            myIntent.putExtra("position", pos);
-            activity.startActivity(myIntent);
-          }
-        });
-
-        if (post.isUserLike()) {
-          holder.likeImage.setImageResource(R.drawable.star_like);
-        } else {
-          holder.likeImage.setImageResource(R.drawable.star_unlike);
-        }
-
-        if (post.isUserFavorite()) {
-          holder.favoriteImage.setImageResource(R.drawable.heart_like);
-        } else {
-          holder.favoriteImage.setImageResource(R.drawable.heart_unlike);
-        }
-
-        holder.layout.setOnClickListener(doubleClickListener(pos, holder));
-
-        holder.layout.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, poster
-            .getId()));
-
-        holder.postText.setOnClickListener(doubleClickListener(pos, holder));
-
-        holder.postText.setOnLongClickListener(longClickListener(pos, holder.likeImage, holder.likes, poster
-            .getId()));
-
-        holder.likeImage.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            likePost(pos, holder);
-          }
-        });
-
-        holder.likes.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            likePost(pos, holder);
-          }
-        });
-
-        holder.favoriteImage.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            favoritePost(pos, holder);
-          }
-        });
+        holder.setTextPostData(activity, convertView, post);
       } else if (post.getType() == PostType.IMAGE_POST) {
         final PostImageViewHolder holder;
         convertView = mInflater.inflate(R.layout.profile_image_item, parent, false);
@@ -259,7 +195,6 @@ public class PosterProfileListAdapter extends BaseAdapter {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(posts.get(position));
     optionsPostDialog.setFromAdapter("poster");
-    optionsPostDialog.setPosition(position);
     optionsPostDialog.setLikeImage(likeImage);
     optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");

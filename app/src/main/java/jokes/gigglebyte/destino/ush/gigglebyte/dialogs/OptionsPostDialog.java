@@ -36,8 +36,6 @@ public class OptionsPostDialog extends DialogFragment {
 
   private FromScreen fromScreen;
 
-  private int position;
-
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     activity = getActivity();
@@ -75,7 +73,6 @@ public class OptionsPostDialog extends DialogFragment {
           Intent myIntent = new Intent(activity, CommentActivity.class);
           myIntent.putExtra("postId", getPost().getPostId());
           myIntent.putExtra("posterId", getPost().getUser().getId());
-          myIntent.putExtra("position", getPosition());
           activity.startActivity(myIntent);
         }
         dismiss();
@@ -124,14 +121,6 @@ public class OptionsPostDialog extends DialogFragment {
         fromScreen = FromScreen.BYTE;
         break;
     }
-  }
-
-  public int getPosition() {
-    return position;
-  }
-
-  public void setPosition(int position) {
-    this.position = position;
   }
 
   public TextView getLikes() {
