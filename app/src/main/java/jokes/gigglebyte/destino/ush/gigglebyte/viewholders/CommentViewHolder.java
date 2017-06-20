@@ -17,15 +17,12 @@ import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsCommentDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
-public class CommentViewHolder {
-
-  public ProgressBar progressBar;
+public class CommentViewHolder extends UserProfilePictureHolder{
 
   public LinearLayout layout;
   public TextView commentText;
   public TextView likes;
   public ImageView likeImage;
-  public ImageView profileImage;
 
   private Comment comment;
   private Activity activity;
@@ -33,15 +30,9 @@ public class CommentViewHolder {
   public void setData(final Activity activity, BaseAdapter adapter, Comment comment) {
     this.comment = comment;
     this.activity = activity;
+    setUserProfile(activity, comment.getUser(), false);
     commentText.setText(comment.getCommentText());
     likes.setText(String.valueOf(comment.getLikes()));
-    profileImage.setVisibility(View.INVISIBLE);
-    if (comment.isUserLike()) {
-      likeImage.setImageResource(R.drawable.star_like);
-    } else {
-      likeImage.setImageResource(R.drawable.star_unlike);
-    }
-    profileImage.setVisibility(View.INVISIBLE);
     final int userId = comment.getUser().getId();
 
     commentText.setOnClickListener(doubleClickChecker());
@@ -68,16 +59,6 @@ public class CommentViewHolder {
         likeMethod();
       }
     });
-
-    if (comment.getUser().getProfile_pic() != null) {
-      progressBar.setVisibility(View.INVISIBLE);
-      profileImage.setImageBitmap(comment.getUser().getProfile_pic());
-    } else {
-      // MY DEFAULT IMAGE
-      comment.loadImage(adapter, activity, progressBar, profileImage);
-    }
-
-    profileImage.setVisibility(View.VISIBLE);
 
     profileImage.setOnClickListener(new View.OnClickListener() {
       @Override
