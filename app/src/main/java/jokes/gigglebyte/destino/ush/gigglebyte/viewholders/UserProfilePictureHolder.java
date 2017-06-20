@@ -5,19 +5,15 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.LargeProfileImageActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
-public class UserViewHolder {
+public class UserProfilePictureHolder {
 
   public ProgressBar progressBar;
-  public TextView description;
-  public TextView userName;
   public ImageView profileImage;
 
-  public void setUserData(final Activity activity, final User user) {
+  public void setUserProfile(final Activity activity, final User user, boolean isClickable) {
     progressBar.setVisibility(View.VISIBLE);
     profileImage.setVisibility(View.INVISIBLE);
     if (user.getProfile_pic() == null) {
@@ -28,19 +24,19 @@ public class UserViewHolder {
     profileImage.setVisibility(View.VISIBLE);
     progressBar.setVisibility(View.INVISIBLE);
 
-    profileImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (user.getProfile_pic() != null) {
-          Intent intent = new Intent(activity, LargeProfileImageActivity.class);
-          intent.putExtra("userId", user.getId());
-          activity.startActivity(intent);
+    if (isClickable) {
+      profileImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (user.getProfile_pic() != null) {
+            Intent intent = new Intent(activity, LargeProfileImageActivity.class);
+            intent.putExtra("userId", user.getId());
+            activity.startActivity(intent);
+          }
         }
-      }
-    });
+      });
+    }
 
-    description.setText((user.getDescription() == null || user.getDescription()
-        .isEmpty()) ? "I'm new to Gigglebyte" : user.getDescription());
   }
 
 }

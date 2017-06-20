@@ -26,7 +26,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostTextViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostViewHolder;
-import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserListViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
 public class PosterProfileListAdapter extends BaseAdapter {
@@ -66,9 +66,9 @@ public class PosterProfileListAdapter extends BaseAdapter {
 
   public View getView(final int position, View convertView, ViewGroup parent) {
     if (position == 0) {
-      UserViewHolder holder;
+      UserListViewHolder holder;
       convertView = mInflater.inflate(R.layout.poster_header, parent, false);
-      holder = new UserViewHolder();
+      holder = new UserListViewHolder();
       holder.description = (TextView) convertView.findViewById(R.id.description);
       holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
