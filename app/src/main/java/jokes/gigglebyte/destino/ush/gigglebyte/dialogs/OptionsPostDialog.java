@@ -17,22 +17,13 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
 public class OptionsPostDialog extends DialogFragment {
 
   private Activity activity;
   private Post post;
-
-  public enum FromScreen {
-    USER,
-    POSTER,
-    NEW,
-    HOT,
-    FAVOURITE,
-    BYTE,
-    TAG
-  }
 
   private TextView likes;
   private ImageView likeImage;

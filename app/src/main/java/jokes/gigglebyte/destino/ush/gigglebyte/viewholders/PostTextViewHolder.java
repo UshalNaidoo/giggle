@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
 public class PostTextViewHolder extends PostViewHolder {
 
   public TextView postText;
 
-  public void setTextPostData(final Activity activity, View convertView, final Post post, OptionsPostDialog.FromScreen from) {
+  public void setTextPostData(final Activity activity, View convertView, final Post post, FromScreen from) {
     setPostData(activity, convertView, post, from);
 
     postText.setText(post.getPostText());

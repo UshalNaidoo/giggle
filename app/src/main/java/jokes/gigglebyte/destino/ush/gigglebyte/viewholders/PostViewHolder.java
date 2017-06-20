@@ -22,6 +22,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.activities.TagActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
@@ -39,9 +40,9 @@ public class PostViewHolder extends UserGridViewHolder {
   private Post post;
   private Activity activity;
   private boolean isDoubleClick = false;
-  private OptionsPostDialog.FromScreen fromScreen;
+  private FromScreen fromScreen;
 
-  void setPostData(final Activity activity, View convertView, final Post post, OptionsPostDialog.FromScreen from) {
+  void setPostData(final Activity activity, View convertView, final Post post, FromScreen from) {
     this.activity = activity;
     this.post = post;
     this.fromScreen = from;

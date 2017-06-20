@@ -22,8 +22,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserDescriptionDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserNameDialog;
-import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsProfilePictureDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -120,7 +120,7 @@ public class UserProfileActivity extends Activity {
       List<Post> posts = JsonParser.GetPosts(result);
       posts = getPostStatus(activity, posts);
       PostHelper.setPostsForUser(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, myProfile, OptionsPostDialog.FromScreen.USER);
+      adapter = new PosterProfileListAdapter(activity, posts, myProfile, FromScreen.USER);
       listView.setAdapter(adapter);
     }
   }

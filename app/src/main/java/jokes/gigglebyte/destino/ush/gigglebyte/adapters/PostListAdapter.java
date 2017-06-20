@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
@@ -25,9 +25,9 @@ public class PostListAdapter extends BaseAdapter {
   private List<Post> posts;
   private LayoutInflater mInflater;
   private Activity activity;
-  private OptionsPostDialog.FromScreen fromScreen;
+  private FromScreen fromScreen;
 
-  public PostListAdapter(Activity activity, List<Post> results, OptionsPostDialog.FromScreen fromScreen) {
+  public PostListAdapter(Activity activity, List<Post> results, FromScreen fromScreen) {
     this.activity = activity;
     posts = results;
     this.fromScreen = fromScreen;

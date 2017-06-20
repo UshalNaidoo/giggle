@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
@@ -27,9 +27,9 @@ public class PosterProfileListAdapter extends BaseAdapter {
   private static User poster;
   private LayoutInflater mInflater;
   private Activity activity;
-  private OptionsPostDialog.FromScreen fromScreen;
+  private FromScreen fromScreen;
 
-  public PosterProfileListAdapter(Activity activity, List<Post> results, User user, OptionsPostDialog.FromScreen fromScreen) {
+  public PosterProfileListAdapter(Activity activity, List<Post> results, User user, FromScreen fromScreen) {
     posts = results;
     poster = user;
     this.fromScreen = fromScreen;
