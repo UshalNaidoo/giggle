@@ -14,6 +14,7 @@ import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
@@ -70,7 +71,7 @@ public class PostListAdapter extends BaseAdapter {
       convertView.setTag(holder);
 
       Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser());
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setTextPostData(activity,convertView,post, fromScreen);
 
     } else if (posts.get(position).getType() == PostType.IMAGE_POST) {
@@ -96,7 +97,7 @@ public class PostListAdapter extends BaseAdapter {
 
       Post post = posts.get(position);
 
-      holder.setUserData(activity, post.getUser());
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setImagePostData(activity, this, convertView, post, fromScreen);
     }
     return convertView;

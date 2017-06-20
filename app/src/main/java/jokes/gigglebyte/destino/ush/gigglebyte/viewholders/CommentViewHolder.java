@@ -13,6 +13,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsCommentDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
@@ -29,7 +30,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
   public void setData(final Activity activity, Comment comment) {
     this.comment = comment;
     this.activity = activity;
-    setUserProfile(activity, comment.getUser(), false);
+    setUserProfile(activity, comment.getUser(), OpenScreen.PROFILE);
     commentText.setText(comment.getCommentText());
     likes.setText(String.valueOf(comment.getLikes()));
     final int userId = comment.getUser().getId();
