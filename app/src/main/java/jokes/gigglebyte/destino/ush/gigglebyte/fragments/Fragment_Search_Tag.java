@@ -54,6 +54,7 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
         }
       }
     });
+
     listView = (ListView) rootView.findViewById(R.id.tag_list);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
@@ -90,7 +91,6 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   }
 
   private class SearchForTags extends AsyncTask<Integer, Integer, List<Tag>> {
-
     String searchFor;
 
     SearchForTags(String searchFor) {
@@ -113,4 +113,5 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
       searchField.setText("");
     }
   }
+
 }

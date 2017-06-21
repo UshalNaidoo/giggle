@@ -18,7 +18,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.CommentViewHolder;
 public class CommentListAdapter extends BaseAdapter {
 
   private static List<Comment> comments;
-
   private LayoutInflater mInflater;
   private Activity activity;
 

@@ -33,14 +33,11 @@ public class Post {
   private String postTitle;
   private User user;
   private Bitmap postImage;
-  private ImageLoadTask profileTask;
   private ImageLoadTask postTask;
-  private boolean loadingProfileImage = false;
   private boolean loadingPostImage = false;
   private int commentCount;
   private List<String> tags;
   private int imageId;
-  private boolean finishLoadingProfilePicture;
 
   public int getImageId() {
     return imageId;
@@ -130,33 +127,6 @@ public class Post {
     this.userFavorite = userFavorite;
   }
 
-  public void loadProfileImage(Activity activity, int userId, BaseAdapter adapter,
-                               ProgressBar progressBar,
-                               ImageView imageView) {
-    if (!loadingProfileImage) {
-      if (MainActivity.cachedProfilePictures.containsKey(userId)) {
-        finishLoadingProfilePicture = true;
-        user.setProfile_pic(MainActivity.cachedProfilePictures.get(userId));
-        if (adapter != null) {
-          adapter.notifyDataSetChanged();
-        }
-      }
-      else {
-        setProfileLoadTask(new ImageLoadTask(activity, userId, adapter, progressBar, imageView, -1));
-        getProfileLoadTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-      }
-      loadingProfileImage = true;
-    } else {
-      progressBar.setVisibility(View.GONE);
-      finishLoadingProfilePicture = true;
-      if (user.getProfile_pic() == null) {
-        imageView.setImageResource(R.drawable.nobody_m);
-      } else {
-        imageView.setImageBitmap(user.getProfile_pic());
-      }
-    }
-  }
-
   public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter, ProgressBar progressBar, ImageView imageView) {
     if (!loadingPostImage) {
       progressBar.setVisibility(View.VISIBLE);
@@ -164,14 +134,6 @@ public class Post {
       getPostLoadTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
       loadingPostImage = true;
     }
-  }
-
-  private void setProfileLoadTask(ImageLoadTask loadTask) {
-    this.profileTask = loadTask;
-  }
-
-  private ImageLoadTask getProfileLoadTask() {
-    return this.profileTask;
   }
 
   private void setPostLoadTask(ImageLoadTask loadTask) {
@@ -199,10 +161,6 @@ public class Post {
 
   public void setCommentCount(int commentCount) {
     this.commentCount = commentCount;
-  }
-
-  public boolean isFinishLoadingProfilePicture() {
-    return finishLoadingProfilePicture;
   }
 
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
@@ -238,15 +196,8 @@ public class Post {
         return ImageHelper.getProfilePicture(this.userId);
       } else {
         try {
-          URL url;
-          if (this.imageId == -1) {
-            url = new URL(_Server + "/Images/" + this.userId
-                + "/Profile_Pictures/profile.jpg");
-          }
-          else {
-            url = new URL(_Server + "/Images/" + this.userId
+          URL url = new URL(_Server + "/Images/" + this.userId
                 + "/Image_Posts/post"+ this.imageId +".jpg");
-          }
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
         }
@@ -270,11 +221,11 @@ public class Post {
       } else {
         imageView.setImageResource(R.drawable.nobody_m);
       }
-      finishLoadingProfilePicture = true;
       imageView.setVisibility(View.VISIBLE);
       if (adapter != null) {
         adapter.notifyDataSetChanged();
       }
     }
   }
+
 }
