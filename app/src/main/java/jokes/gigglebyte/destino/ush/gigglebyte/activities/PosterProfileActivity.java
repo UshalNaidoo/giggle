@@ -101,8 +101,6 @@ public class PosterProfileActivity extends Activity {
     getMenuInflater().inflate(R.menu.followbutton, menu);
     getMenuInflater().inflate(R.menu.unfollowbutton, menu);
 
-    //XXX This is just for the release 1.2
-
     menu.getItem(0).setVisible(false);
     menu.getItem(1).setVisible(false);
     if (UserHelper.getUserDetails(activity).getId() == userId) {
@@ -111,7 +109,9 @@ public class PosterProfileActivity extends Activity {
     }else {
       if (following) {
         menu.getItem(0).setVisible(false);
+        menu.getItem(1).setVisible(true);
       } else {
+        menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
       }
     }
@@ -143,4 +143,5 @@ public class PosterProfileActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
   }
+
 }
