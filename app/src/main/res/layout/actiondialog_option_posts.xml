@@ -9,33 +9,7 @@
     android:orientation="vertical">
 
   <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#9e9c9f"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:paddingBottom="2dp">
-    <TextView
-        android:layout_marginStart="2dip"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/main_black"
-        android:textSize="20sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_weight="1"/>
-    <ImageButton
-        android:id="@+id/buttonClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_gravity="end"
-        android:background="@drawable/button_close_selector"
-        android:src="@drawable/ic_close"/>
-  </LinearLayout>
-
-  <LinearLayout
-      android:layout_width="300dp"
+      android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:background="@color/main_black"
       android:gravity="center"
@@ -79,7 +53,6 @@
             android:id="@+id/postText"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:text="TextView"
             android:textSize="18sp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -104,7 +77,7 @@
         android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="View Profile"/>
+        android:text="@string/view_profile"/>
     <Button
         android:id="@+id/buttonCommentsView"
         android:layout_width="fill_parent"
@@ -116,7 +89,7 @@
         android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="View Comments"/>
+        android:text="@string/view_comments"/>
     <Button
         android:id="@+id/buttonFlag"
         android:layout_width="fill_parent"
@@ -128,6 +101,6 @@
         android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="Flag Byte"/>
+        android:text="@string/flag"/>
   </LinearLayout>
 </LinearLayout>

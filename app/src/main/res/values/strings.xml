@@ -16,5 +16,20 @@
   <string name="comments">Comments</string>
   <string name="unknown">Unknown</string>
   <string name="search">Search</string>
+  <string name="save">Save</string>
+  <string name="search_users">Search Users</string>
+  <string name="search_tags">Search Tags</string>
   <string name="add_image">Add Image</string>
+  <string name="add_comment">Add Comment</string>
+  <string name="post">Post</string>
+  <string name="change_picture">Change Picture</string>
+  <string name="gallery">Gallery</string>
+  <string name="take_a_photo">Take A Photo</string>
+  <string name="view_profile">View Profile</string>
+  <string name="view_comments">View Comments</string>
+  <string name="edit_username">Edit Username</string>
+  <string name="edit_description">Edit Description</string>
+  <string name="write_something">Write Something</string>
+  <string name="add_tags">Add Tags</string>
+  <string name="flag">Flag</string>
 </resources>

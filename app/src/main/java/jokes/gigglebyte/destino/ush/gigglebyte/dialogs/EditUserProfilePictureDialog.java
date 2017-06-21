@@ -44,13 +44,6 @@ public class EditUserProfilePictureDialog extends DialogFragment {
     dialog.setContentView(R.layout.actiondialog_edit_profile_picture);
     dialog.show();
 
-    ImageButton closeButton = (ImageButton) dialog.findViewById(R.id.buttonClose);
-    closeButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        dismiss();
-      }
-    });
     final ImageView image = (ImageView) dialog.findViewById(R.id.image);
 
     try {

@@ -44,14 +44,6 @@ public class AddCommentDialog extends DialogFragment {
     commentText = (EditText) dialog.findViewById(R.id.editText1);
     countTextView = (TextView) dialog.findViewById(R.id.countTextView);
 
-    ImageButton closeButton = (ImageButton) dialog.findViewById(R.id.buttonClose);
-    closeButton.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        dismiss();
-      }
-    });
-
     sendButton.setOnClickListener(new OnClickListener() {
 
       @Override
