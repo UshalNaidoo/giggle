@@ -1,14 +1,19 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 
+import android.graphics.Bitmap;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class UserHelper implements onSubmitListener {
   static User selectedUser;
+  public static Map<Integer, Bitmap> userImages = new HashMap<>();
 
   @Override
   public void setOnSubmitListener(Object arg) {

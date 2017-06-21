@@ -88,12 +88,18 @@ public class User {
         return ImageHelper.getProfilePicture(getId());
       } else {
         try {
-          URL url = new URL(_Server +"/Images/" + getId() + "/Profile_Pictures/profile.jpg");
-          InputStream inputStream = url.openConnection().getInputStream();
-          return BitmapFactory.decodeStream(inputStream);
+          if(UserHelper.userImages.containsKey(getId())) {
+            return UserHelper.userImages.get(getId());
+          }else {
+            URL url = new URL(_Server + "/Images/" + getId() + "/Profile_Pictures/profile.jpg");
+            InputStream inputStream = url.openConnection().getInputStream();
+            Bitmap image = BitmapFactory.decodeStream(inputStream);
+            UserHelper.userImages.put(getId(), image);
+            return image;
+          }
         }
         catch (IOException e) {
-          e.printStackTrace();
+          UserHelper.userImages.put(getId(), null);
         }
       }
       return null;
