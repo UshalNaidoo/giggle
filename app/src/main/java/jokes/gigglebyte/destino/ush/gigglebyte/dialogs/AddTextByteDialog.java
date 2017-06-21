@@ -25,13 +25,14 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class AddTextByteDialog extends DialogFragment {
 
   private int userId;
   private String userName;
-  private int postId;
+
   private onSubmitListener listener;
   private EditText byteText;
   private EditText tagText;
@@ -74,9 +75,9 @@ public class AddTextByteDialog extends DialogFragment {
           String[] tags = s.toString().trim().split(" ");
           for (String tag : tags) {
             if (!(tag.charAt(0) == '#')) {
-              sb.append("#" + tag + " ");
+              sb.append("#").append(tag).append(" ");
             } else {
-              sb.append(tag + " ");
+              sb.append(tag).append(" ");
             }
           }
           tagText.setText(sb);
@@ -110,13 +111,12 @@ public class AddTextByteDialog extends DialogFragment {
               post.setUserLike(false);
               post.setPostText(byteText.getText().toString().trim());
               post.setType(PostType.TEXT_POST);
-              post.setUserPicture(ImageHelper.getProfilePicture(userId));
-              post.setUserId(userId);
-              post.setUserName(userName);
+              User user = new User(userId, userName, null, ImageHelper.getProfilePicture(userId));
+              post.setUser(user);
               post.setTimeSincePost("Just Now");
               post.setPostTitle("");
 
-              final Set<String> tags = new HashSet<String>();
+              final Set<String> tags = new HashSet<>();
               if (!tagText.getText().toString().isEmpty()) {
                 for (String s : tagText.getText().toString().split(" ")) {
                   tags.add(s.substring(1));
@@ -152,7 +152,9 @@ public class AddTextByteDialog extends DialogFragment {
 
       @Override
       public void afterTextChanged(Editable s) {
-        countTextView.setText(300 - s.toString().length() + "/300");
+        int remaining = 300 - s.toString().length();
+        String text = remaining + "/300";
+        countTextView.setText(text);
         //TODO check for hashtags in byte
       }
     });
@@ -190,14 +192,6 @@ public class AddTextByteDialog extends DialogFragment {
 
   public void setUserName(String userName) {
     this.userName = userName;
-  }
-
-  public int getPostId() {
-    return postId;
-  }
-
-  public void setPostId(int postId) {
-    this.postId = postId;
   }
 
   public onSubmitListener getListener() {

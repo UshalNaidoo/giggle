@@ -7,12 +7,12 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Connect {
+class Connect {
 
   public Connect() {
   }
 
-  public static String connectToServer(String URLString, String params) {
+  static String connectToServer(String URLString, String params) {
     HttpURLConnection connection;
     OutputStreamWriter request;
     URL url;
@@ -36,7 +36,7 @@ public class Connect {
       StringBuilder sb = new StringBuilder();
 
       while ((line = reader.readLine()) != null) {
-        sb.append(line + "\n");
+        sb.append(line).append("\n");
       }
 
       response = sb.toString();

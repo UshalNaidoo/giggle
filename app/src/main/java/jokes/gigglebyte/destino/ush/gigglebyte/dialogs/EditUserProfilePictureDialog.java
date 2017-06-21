@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -23,7 +22,6 @@ import java.io.IOException;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
-import jokes.gigglebyte.destino.ush.gigglebyte.objects.ProfileImage;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
@@ -70,12 +68,9 @@ public class EditUserProfilePictureDialog extends DialogFragment {
     sendButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        ProfileImage profileImage = new ProfileImage();
         final User user = getUser();
         user.setProfile_pic(bitmap);
-        profileImage.setUser(user);
-        profileImage.setImage(bitmap);
-        getListener().setOnSubmitListener(activity, profileImage);
+        getListener().setOnSubmitListener(activity, user);
 
         Thread t = new Thread(new Runnable() {
 

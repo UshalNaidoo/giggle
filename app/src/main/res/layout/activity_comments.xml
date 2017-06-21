@@ -11,19 +11,8 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
+      android:background="@color/app_primary"
       android:gravity="end">
-
-    <TextView
-        android:id="@+id/postText"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Add Comment:"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="150dp"
-        android:textSize="18sp"
-        android:gravity="start"
-        android:textColor="#ffffff"
-        />
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fab"

@@ -4,7 +4,6 @@ public class Tag {
   private String tagText;
   private int numberOfPosts;
 
-
   public String getTagText() {
     return tagText;
   }
@@ -20,4 +19,5 @@ public class Tag {
   public void setNumberOfPosts(int numberOfPosts) {
     this.numberOfPosts = numberOfPosts;
   }
+
 }

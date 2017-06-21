@@ -14,12 +14,12 @@ import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
-import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserGridViewHolder;
 
 public class UserGridAdapter extends BaseAdapter {
 
   private Activity activity;
-  private List<User> users = new ArrayList();
+  private List<User> users = new ArrayList<>();
 
   public UserGridAdapter(Activity activity, List<User> results) {
     this.activity = activity;
@@ -43,27 +43,24 @@ public class UserGridAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    View row;
-    UserViewHolder holder;
+    View row = convertView;
+    UserGridViewHolder holder;
 
-    LayoutInflater inflater = activity.getLayoutInflater();
-    row = inflater.inflate(R.layout.grid_user_item, null);
-    holder = new UserViewHolder();
-    holder.userName = (TextView) row.findViewById(R.id.userName);
-    holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
-    holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-    row.setTag(holder);
-
-    User user = users.get(position);
-    holder.userName.setText(user.getName());
-
-    if (user.getProfile_pic() != null) {
-      holder.progressBar.setVisibility(View.INVISIBLE);
-      holder.profileImage.setImageBitmap(user.getProfile_pic());
-    } else {
-      holder.progressBar.setVisibility(View.VISIBLE);
-      holder.profileImage.setImageBitmap(null);
+    if (row == null) {
+      LayoutInflater inflater = activity.getLayoutInflater();
+      row = inflater.inflate(R.layout.grid_user_item, parent, false);
+      holder = new UserGridViewHolder();
+      holder.userName = (TextView) row.findViewById(R.id.userName);
+      holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
+      holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
+      row.setTag(holder);
     }
+    else {
+      holder = (UserGridViewHolder) row.getTag();
+    }
+    holder.setUserData(activity, users.get(position), null);
+
     return row;
   }
+
 }

@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,7 +10,6 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
@@ -21,6 +22,17 @@ public class User {
   private String name;
   private String description;
   private Bitmap profile_pic;
+
+  public User() {
+
+  }
+
+  public User(int id, String name, String description, Bitmap bitmap) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.profile_pic = bitmap;
+  }
 
   public String getName() {
     return name;
@@ -66,7 +78,7 @@ public class User {
     private Activity activity;
     private ImageView imageView;
 
-    public ImageLoadTask(Activity activity, ImageView view) {
+    ImageLoadTask(Activity activity, ImageView view) {
       this.activity = activity;
       this.imageView = view;
     }
@@ -76,13 +88,11 @@ public class User {
         return ImageHelper.getProfilePicture(getId());
       } else {
         try {
-          URL url = new URL(
-              "http://creatureislandgame.com/Gigglebyte/Images/" + getId() + "/Profile_Pictures/profile.jpg");
+          URL url = new URL(_Server +"/Images/" + getId() + "/Profile_Pictures/profile.jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
           e.printStackTrace();
         }
       }
@@ -99,4 +109,5 @@ public class User {
       }
     }
   }
+
 }

@@ -21,7 +21,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 
 public class UIHelper {
 
-  public static void imageViewClickAnimation(ImageView image) {
+  static void imageViewClickAnimation(ImageView image) {
     final float growTo = 1.2f;
     final long duration = 300;
     ScaleAnimation grow = new ScaleAnimation(1, growTo, 1, growTo,
@@ -73,7 +73,7 @@ public class UIHelper {
     return actionBar;
   }
 
-  public static void updateScreen() {
+  static void updateScreen() {
     Fragment_New.refreshList();
     Fragment_Hot.refreshList();
     Fragment_Favorite.refreshList();

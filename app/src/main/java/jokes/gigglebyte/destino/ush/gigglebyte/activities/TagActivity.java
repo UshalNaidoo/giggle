@@ -12,6 +12,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
@@ -35,7 +36,7 @@ public class TagActivity extends Activity {
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
-  class GetTags extends AsyncTask<Integer, Integer, String> {
+  private class GetTags extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {
@@ -54,7 +55,7 @@ public class TagActivity extends Activity {
         result = "{\"posts\":" + result + "}";
         List<Post> posts = JsonParser.GetPosts(result);
         posts = getPostStatus(activity, posts);
-        listView.setAdapter(new PostListAdapter(activity, posts));
+        listView.setAdapter(new PostListAdapter(activity, posts, FromScreen.TAG));
       }
     }
   }

@@ -13,11 +13,11 @@ import java.io.IOException;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
-import jokes.gigglebyte.destino.ush.gigglebyte.objects.ProfileImage;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class ImageHelper implements onSubmitListener {
 
-  public void saveProfilePicture(Bitmap bitmap, int userId) {
+  private void saveProfilePicture(Bitmap bitmap, int userId) {
     try {
       String file_path =
           Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures";
@@ -53,12 +53,11 @@ public class ImageHelper implements onSubmitListener {
 
   @Override
   public void setOnSubmitListener(Activity activity, Object arg) {
-    ProfileImage profileImage = (ProfileImage) arg;
-    saveProfilePicture(profileImage.getImage(), profileImage.getUser().getId());
-    PostHelper.updatePosts(profileImage.getUser().getId(), profileImage.getUser()
-        .getName(), ImageHelper.getProfilePicture(profileImage.getUser().getId()));
+    User user = (User) arg;
+    saveProfilePicture(user.getProfile_pic(), user.getId());
+    PostHelper.updatePosts(user.getId(), user.getName(), ImageHelper.getProfilePicture(user.getId()));
     UIHelper.updateScreen();
-    UserProfileActivity.refreshUser(profileImage.getUser());
+    UserProfileActivity.refreshUser(user);
   }
 
   @Override

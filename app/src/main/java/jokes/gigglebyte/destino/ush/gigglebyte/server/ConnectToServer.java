@@ -19,8 +19,8 @@ import java.util.Set;
 
 public class ConnectToServer {
 
-  static String response = null;
-  static JSONObject json = null;
+  private static String response = null;
+  private static JSONObject json = null;
 
   public static int registerNewUser() {
     String parameters = "key=AoD93128Jd73jKH31je3";
@@ -113,17 +113,6 @@ public class ConnectToServer {
     return "";
   }
 
-  public static String getPost(int postId) {
-    String parameters = "post_id=" + postId;
-    String UrlString = ServerSettings._Server + ServerSettings._getPost;
-    try {
-      return Connect.connectToServer(UrlString, parameters);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return "";
-  }
-
   public static String getUserDetails(int userId) {
     String parameters = "user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._getUserDetails;
@@ -202,7 +191,7 @@ public class ConnectToServer {
 
     String UrlString = ServerSettings._Server + ServerSettings._postImagePost;
 //    HashMap<String, Object>
-    ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+    ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
     nameValuePairs.add(new BasicNameValuePair("user_id", String.valueOf(id)));
     nameValuePairs.add(new BasicNameValuePair("image", image));
     nameValuePairs.add(new BasicNameValuePair("title", title));
@@ -318,7 +307,7 @@ public class ConnectToServer {
 
   public static void changeUserProfilePicture(int userId,String image) {
     String UrlString = ServerSettings._Server + ServerSettings._changeUserProfilePicture;
-    ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+    ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
     nameValuePairs.add(new BasicNameValuePair("user_id", String.valueOf(userId)));
     nameValuePairs.add(new BasicNameValuePair("image", image));
     HttpClient httpclient = new DefaultHttpClient();
@@ -345,4 +334,5 @@ public class ConnectToServer {
       Log.e("Giggle", e.toString());
     }
   }
+
 }

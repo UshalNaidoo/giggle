@@ -26,12 +26,12 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class PostHelper implements onSubmitListener {
 
-  private static List<Post> hotPosts = new ArrayList<Post>();
-  private static List<Post> newPosts = new ArrayList<Post>();
-  private static List<Post> favoritePosts = new ArrayList<Post>();
-  private static List<Post> postsForUser = new ArrayList<Post>();
+  private static List<Post> hotPosts = new ArrayList<>();
+  private static List<Post> newPosts = new ArrayList<>();
+  private static List<Post> favoritePosts = new ArrayList<>();
+  private static List<Post> postsForUser = new ArrayList<>();
 
-  public static enum PostAction {
+  public enum PostAction {
     LIKE_POST,
     UNLIKE_POST,
     FAVORITE_POST,
@@ -136,7 +136,7 @@ public class PostHelper implements onSubmitListener {
         Thread likeThread = new Thread() {
           @Override
           public void run() {
-            ConnectToServer.postLike(post.getPostId(), post.getUserId());
+            ConnectToServer.postLike(post.getPostId(), post.getUser().getId());
           }
         };
         likeThread.start();
@@ -229,7 +229,7 @@ public class PostHelper implements onSubmitListener {
   }
 
   public static Post getPostStatus(Activity activity, Post post) {
-    List<Post> posts = new ArrayList<Post>();
+    List<Post> posts = new ArrayList<>();
     posts.add(post);
     return getPostStatus(activity, posts).get(0);
   }
@@ -293,17 +293,17 @@ public class PostHelper implements onSubmitListener {
   }
 
   public static void updatePosts(int userId, String userName, Bitmap bitmap) {
-    ArrayList<Post> posts = new ArrayList<Post>();
+    ArrayList<Post> posts = new ArrayList<>();
     posts.addAll(hotPosts);
     posts.addAll(newPosts);
     posts.addAll(favoritePosts);
     for (Post p : posts) {
-      if (p.getUserId() == userId) {
+      if (p.getUser().getId() == userId) {
         if (userName != null) {
-          p.setUserName(userName);
+          p.getUser().setName(userName);
         }
         if (bitmap != null) {
-          p.setUserPicture(bitmap);
+          p.getUser().setProfile_pic(bitmap);
         }
       }
     }

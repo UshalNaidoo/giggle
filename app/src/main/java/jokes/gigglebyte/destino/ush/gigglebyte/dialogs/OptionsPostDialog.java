@@ -17,6 +17,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
 public class OptionsPostDialog extends DialogFragment {
@@ -24,19 +25,10 @@ public class OptionsPostDialog extends DialogFragment {
   private Activity activity;
   private Post post;
 
-  public enum FromScreen {
-    POSTER,
-    NEW,
-    HOT,
-    BYTE
-  }
-
   private TextView likes;
   private ImageView likeImage;
-  private ImageView favoriteImage;
+
   private FromScreen fromScreen;
-  private String fromAdapter;
-  private int position;
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -49,9 +41,9 @@ public class OptionsPostDialog extends DialogFragment {
     dialog.show();
 
     TextView postText = (TextView) dialog.findViewById(R.id.postText);
-    postText.setText(getPost().getPostText().isEmpty() ? getPost().getUserName() : getPost().getPostText());
+    postText.setText(getPost().getPostText().isEmpty() ? getPost().getUser().getName() : getPost().getPostText());
     ImageView profileImage = (ImageView) dialog.findViewById(R.id.profileImage);
-    profileImage.setImageBitmap(getPost().getUserPicture());
+    profileImage.setImageBitmap(getPost().getUser().getProfile_pic());
 
     Button buttonViewProfile = (Button) dialog.findViewById(R.id.buttonProfileView);
     buttonViewProfile.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +51,7 @@ public class OptionsPostDialog extends DialogFragment {
       public void onClick(View v) {
         if (fromScreen != FromScreen.POSTER) {
           Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-          myIntent.putExtra("userId", getPost().getUserId());
+          myIntent.putExtra("userId", getPost().getUser().getId());
           activity.startActivity(myIntent);
         }
 
@@ -74,8 +66,7 @@ public class OptionsPostDialog extends DialogFragment {
         if (fromScreen != FromScreen.BYTE) {
           Intent myIntent = new Intent(activity, CommentActivity.class);
           myIntent.putExtra("postId", getPost().getPostId());
-          myIntent.putExtra("posterId", getPost().getUserId());
-          myIntent.putExtra("position", getPosition());
+          myIntent.putExtra("posterId", getPost().getUser().getId());
           activity.startActivity(myIntent);
         }
         dismiss();
@@ -109,25 +100,8 @@ public class OptionsPostDialog extends DialogFragment {
     this.post = post;
   }
 
-  public void setFromAdapter(String fromAdapter) {
-    this.fromAdapter = fromAdapter;
-    if (fromAdapter.equals("poster")) {
-      fromScreen = FromScreen.POSTER;
-    } else if (fromAdapter.equals("new")) {
-      fromScreen = FromScreen.NEW;
-    } else if (fromAdapter.equals("hot")) {
-      fromScreen = FromScreen.HOT;
-    } else if (fromAdapter.equals("byte")) {
-      fromScreen = FromScreen.BYTE;
-    }
-  }
-
-  public int getPosition() {
-    return position;
-  }
-
-  public void setPosition(int position) {
-    this.position = position;
+  public void setFromAdapter(FromScreen fromScreen) {
+    this.fromScreen = fromScreen;
   }
 
   public TextView getLikes() {
@@ -146,11 +120,4 @@ public class OptionsPostDialog extends DialogFragment {
     this.likeImage = likeImage;
   }
 
-  public ImageView getFavoriteImage() {
-    return favoriteImage;
-  }
-
-  public void setFavoriteImage(ImageView favoriteImage) {
-    this.favoriteImage = favoriteImage;
-  }
 }

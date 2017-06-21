@@ -17,10 +17,8 @@ public class TagListAdapter extends BaseAdapter {
 
   private List<Tag> tags;
   private LayoutInflater mInflater;
-  private Activity activity;
 
   public TagListAdapter(Activity activity, List<Tag> results) {
-    this.activity = activity;
     tags = results;
     mInflater = LayoutInflater.from(activity);
   }
@@ -41,18 +39,21 @@ public class TagListAdapter extends BaseAdapter {
   }
 
   public View getView(final int position, View convertView, ViewGroup parent) {
+    View row = convertView;
     final TagViewHolder holder;
-    convertView = mInflater.inflate(R.layout.tag_item, parent, false);
-    holder = new TagViewHolder();
-    holder.tagName = (TextView) convertView.findViewById(R.id.tag);
-    holder.numberOfPosts = (TextView) convertView.findViewById(R.id.numberOfPosts);
-    convertView.setTag(holder);
 
-    Tag tag = tags.get(position);
-
-    holder.tagName.setText(tag.getTagText());
-    holder.numberOfPosts.setText(tag.getNumberOfPosts() + " Posts");
-
-    return convertView;
+    if (row == null) {
+      row = mInflater.inflate(R.layout.tag_item, parent, false);
+      holder = new TagViewHolder();
+      holder.tagName = (TextView) row.findViewById(R.id.tag);
+      holder.numberOfPosts = (TextView) row.findViewById(R.id.numberOfPosts);
+      row.setTag(holder);
+    }
+    else {
+      holder = (TagViewHolder) row.getTag();
+    }
+    holder.setTagData(tags.get(position));
+    return row;
   }
+
 }

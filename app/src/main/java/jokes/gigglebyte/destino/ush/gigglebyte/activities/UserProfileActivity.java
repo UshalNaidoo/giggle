@@ -23,6 +23,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserDescriptionDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserNameDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsProfilePictureDialog;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -33,7 +34,7 @@ public class UserProfileActivity extends Activity {
 
   private static FloatingActionMenu menuDown;
   private static Activity activity;
-  private static ListView listView;
+  private ListView listView;
   private static TextView userName;
   private static User myProfile;
   private static PosterProfileListAdapter adapter;
@@ -105,7 +106,7 @@ public class UserProfileActivity extends Activity {
     });
   }
 
-  class GetProfile extends AsyncTask<Integer, Integer, String> {
+  private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {
@@ -119,7 +120,7 @@ public class UserProfileActivity extends Activity {
       List<Post> posts = JsonParser.GetPosts(result);
       posts = getPostStatus(activity, posts);
       PostHelper.setPostsForUser(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, myProfile);
+      adapter = new PosterProfileListAdapter(activity, posts, myProfile, FromScreen.USER);
       listView.setAdapter(adapter);
     }
   }

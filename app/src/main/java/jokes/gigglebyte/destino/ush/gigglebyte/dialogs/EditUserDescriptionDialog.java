@@ -84,7 +84,9 @@ public class EditUserDescriptionDialog extends DialogFragment {
 
       @Override
       public void afterTextChanged(Editable s) {
-        countTextView.setText(65 - s.toString().length() + "/65");
+        int remaining = 65 - s.toString().length();
+        String text = remaining + "/65";
+        countTextView.setText(text);
       }
     });
     return dialog;

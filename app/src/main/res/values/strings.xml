@@ -7,4 +7,14 @@
   <string name="action_follow">Follow user</string>
   <string name="action_unfollow">Unfollow User</string>
 
+  <string name="following">Following</string>
+  <string name="unfollowing">Not following</string>
+  <string name="wait">Please wait…</string>
+  <string name="upvoted">Upvoted</string>
+  <string name="favourites">Added to favourites</string>
+
+  <string name="comments">Comments</string>
+  <string name="unknown">Unknown</string>
+  <string name="search">Search</string>
+  <string name="add_image">Add Image</string>
 </resources>

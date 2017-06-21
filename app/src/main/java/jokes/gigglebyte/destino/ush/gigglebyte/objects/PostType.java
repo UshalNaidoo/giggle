@@ -1,14 +1,13 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
 public enum PostType {
-  TEXT_POST("TextPost", 0),
-  IMAGE_POST("ImagePost", 1);
+  TEXT_POST("TextPost"),
+  IMAGE_POST("ImagePost");
 
   private String stringValue;
-  private int intValue;
-  private PostType(String toString, int value) {
+
+  PostType(String toString) {
     stringValue = toString;
-    intValue = value;
   }
 
   @Override
@@ -16,7 +15,4 @@ public enum PostType {
     return stringValue;
   }
 
-  public int getIntValue() {
-    return intValue;
-  }
 }

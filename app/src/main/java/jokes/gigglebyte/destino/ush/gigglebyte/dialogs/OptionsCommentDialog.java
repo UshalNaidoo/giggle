@@ -36,14 +36,14 @@ public class OptionsCommentDialog extends DialogFragment {
     TextView commentText = (TextView) dialog.findViewById(R.id.commentText);
     commentText.setText(getComment().getCommentText());
     ImageView profileImage = (ImageView) dialog.findViewById(R.id.profileImage);
-    profileImage.setImageBitmap(getComment().getUserPicture());
+    profileImage.setImageBitmap(getComment().getUser().getProfile_pic());
 
     Button buttonViewProfile = (Button) dialog.findViewById(R.id.buttonProfileView);
     buttonViewProfile.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-        myIntent.putExtra("userId", getComment().getUserId());
+        myIntent.putExtra("userId", getComment().getUser().getId());
         activity.startActivity(myIntent);
         dismiss();
       }

@@ -61,7 +61,7 @@ public class ImageByteOptionsDialog extends DialogFragment {
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == activity.RESULT_OK && (requestCode == CAMERA_REQUEST
+    if (resultCode == Activity.RESULT_OK && (requestCode == CAMERA_REQUEST
                                              || requestCode == GALLERY_PICTURE)) {
       Intent intent = new Intent(activity, UploadImageActivity.class);
       intent.putExtra("uri", data.getData().toString());

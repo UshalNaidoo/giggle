@@ -16,21 +16,19 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 public class JsonParser {
 
   public static List<Post> GetPosts(String response) {
-    List<Post> posts = new ArrayList<Post>();
+    List<Post> posts = new ArrayList<>();
     try {
       JSONObject json = new JSONObject(response);
-      // Getting JSON Array node
       JSONArray jsonPosts = json.getJSONArray("posts");
       if (jsonPosts != null) {
-        // looping through All jsonPosts
         for (int i = 0; i < jsonPosts.length(); i++) {
           JSONObject jsonObject = jsonPosts.getJSONObject(i);
           Post nextPost = new Post();
           nextPost.setLikes(jsonObject.getInt("likes"));
           nextPost.setPostText(jsonObject.getString("text"));
-          nextPost.setUserId(jsonObject.getInt("user_id"));
+          User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
+          nextPost.setUser(user);
           nextPost.setTimeSincePost(jsonObject.getString("time_since"));
-          nextPost.setUserName(jsonObject.getString("user_name"));
           nextPost.setPostId(jsonObject.getInt("_id"));
           nextPost.setPostTitle(jsonObject.getString("title"));
           nextPost.setCommentCount(jsonObject.getInt("comments"));
@@ -43,7 +41,7 @@ public class JsonParser {
 
           JSONArray jsonTags = jsonObject.getJSONArray("tag");
           if (jsonTags != null) {
-            List<String> tags = new ArrayList<String>();
+            List<String> tags = new ArrayList<>();
             for (int j = 0; j < jsonTags.length(); j++) {
               JSONObject tag = jsonTags.getJSONObject(j);
               tags.add(tag.getString("tag"));
@@ -60,21 +58,18 @@ public class JsonParser {
   }
 
   public static List<Comment> GetComments(String response) {
-    List<Comment> comments = new ArrayList<Comment>();
+    List<Comment> comments = new ArrayList<>();
     try {
       JSONObject json = new JSONObject(response);
-      // Getting JSON Array node
       JSONArray jsonPosts = json.getJSONArray("comments");
-
-      // looping through All jsonPosts
       for (int i = 0; i < jsonPosts.length(); i++) {
         JSONObject jsonObject = jsonPosts.getJSONObject(i);
         Comment comment = new Comment();
         comment.setLikes(jsonObject.getInt("likes"));
         comment.setCommentId(jsonObject.getInt("_id"));
         comment.setCommentText(jsonObject.getString("text"));
-        comment.setUserId(jsonObject.getInt("user_id"));
-        comment.setUserName(jsonObject.getString("user_name"));
+        User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
+        comment.setUser(user);
         comments.add(comment);
       }
     } catch (JSONException e) {
@@ -97,12 +92,10 @@ public class JsonParser {
   }
 
   public static List<User> GetUsers(String response) {
-    List<User> users = new ArrayList<User>();
+    List<User> users = new ArrayList<>();
     try {
       JSONObject json = new JSONObject(response);
-      // Getting JSON Array node
       JSONArray jsonPosts = json.getJSONArray("users");
-      // looping through All jsonPosts
       for (int i = 0; i < jsonPosts.length(); i++) {
         JSONObject jsonObject = jsonPosts.getJSONObject(i);
         User user = new User();
@@ -118,12 +111,10 @@ public class JsonParser {
   }
 
   public static List<Tag> GetTagsFromSearch(String response) {
-    List<Tag> tags = new ArrayList<Tag>();
+    List<Tag> tags = new ArrayList<>();
     try {
       JSONObject json = new JSONObject(response);
-      // Getting JSON Array node
       JSONArray jsonPosts = json.getJSONArray("tags");
-      // looping through All jsonPosts
       for (int i = 0; i < jsonPosts.length(); i++) {
         JSONObject jsonObject = jsonPosts.getJSONObject(i);
         Tag tag = new Tag();

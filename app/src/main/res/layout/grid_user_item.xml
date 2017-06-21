@@ -14,6 +14,8 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="5dp"
+      android:paddingLeft="4dp"
+      android:paddingRight="4dp"
       android:gravity="center"
       android:textColor="@color/white"
       android:textSize="20sp"/>
@@ -25,8 +27,8 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
         android:src="@drawable/nobody_m"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"/>

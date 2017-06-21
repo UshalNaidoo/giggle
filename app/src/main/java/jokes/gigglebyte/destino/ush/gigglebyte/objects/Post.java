@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +13,6 @@ import android.widget.ProgressBar;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -30,18 +31,13 @@ public class Post {
   private boolean userFavorite;
   private PostType type;
   private String postTitle;
-  private int userId;
-  private String userName;
-  private Bitmap userPicture;
+  private User user;
   private Bitmap postImage;
-  private ImageLoadTask profileTask;
   private ImageLoadTask postTask;
-  private boolean loadingProfileImage = false;
   private boolean loadingPostImage = false;
   private int commentCount;
   private List<String> tags;
   private int imageId;
-  private boolean finishLoadingProfilePicture;
 
   public int getImageId() {
     return imageId;
@@ -59,12 +55,12 @@ public class Post {
     this.postId = postId;
   }
 
-  public int getUserId() {
-    return userId;
+  public User getUser() {
+    return user;
   }
 
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setUser(User user) {
+    this.user = user;
   }
 
   public String getPostText() {
@@ -107,28 +103,12 @@ public class Post {
     this.postTitle = postTitle;
   }
 
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-
   public Bitmap getPostPicture() {
     return postImage;
   }
 
   public void setPostPicture(Bitmap postImage) {
     this.postImage = postImage;
-  }
-
-  public Bitmap getUserPicture() {
-    return userPicture;
-  }
-
-  public void setUserPicture(Bitmap userPicture) {
-    this.userPicture = userPicture;
   }
 
   public boolean isUserLike() {
@@ -147,36 +127,7 @@ public class Post {
     this.userFavorite = userFavorite;
   }
 
-  public void loadProfileImage(Activity activity, int userId, BaseAdapter adapter,
-                               ProgressBar progressBar,
-                               ImageView imageView) {
-    if (!loadingProfileImage) {
-      if (MainActivity.cachedProfilePictures.containsKey(userId)) {
-        finishLoadingProfilePicture = true;
-        setUserPicture(MainActivity.cachedProfilePictures.get(userId));
-        if (adapter != null) {
-          adapter.notifyDataSetChanged();
-        }
-      }
-      else {
-        setProfileLoadTask(new ImageLoadTask(activity, userId, adapter, progressBar, imageView, -1));
-        getProfileLoadTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-      }
-      loadingProfileImage = true;
-    } else {
-      progressBar.setVisibility(View.GONE);
-      finishLoadingProfilePicture = true;
-      if (getUserPicture() == null) {
-        imageView.setImageResource(R.drawable.nobody_m);
-      } else {
-        imageView.setImageBitmap(getUserPicture());
-      }
-    }
-  }
-
-  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter,
-                               ProgressBar progressBar,
-                               ImageView imageView) {
+  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter, ProgressBar progressBar, ImageView imageView) {
     if (!loadingPostImage) {
       progressBar.setVisibility(View.VISIBLE);
       setPostLoadTask(new ImageLoadTask(activity, userId, adapter, progressBar, imageView, imageId));
@@ -185,19 +136,11 @@ public class Post {
     }
   }
 
-  public void setProfileLoadTask(ImageLoadTask loadTask) {
-    this.profileTask = loadTask;
-  }
-
-  public ImageLoadTask getProfileLoadTask() {
-    return this.profileTask;
-  }
-
-  public void setPostLoadTask(ImageLoadTask loadTask) {
+  private void setPostLoadTask(ImageLoadTask loadTask) {
     this.postTask = loadTask;
   }
 
-  public ImageLoadTask getPostLoadTask() {
+  private ImageLoadTask getPostLoadTask() {
     return this.postTask;
   }
 
@@ -220,10 +163,6 @@ public class Post {
     this.commentCount = commentCount;
   }
 
-  public boolean isFinishLoadingProfilePicture() {
-    return finishLoadingProfilePicture;
-  }
-
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
 
     private int userId;
@@ -233,9 +172,9 @@ public class Post {
     private ImageView imageView;
     private int imageId;
 
-    public ImageLoadTask(Activity activity, int userId, BaseAdapter adapter,
-                         ProgressBar progressBar,
-                         ImageView imageView, int imageId) {
+    ImageLoadTask(Activity activity, int userId, BaseAdapter adapter,
+        ProgressBar progressBar,
+        ImageView imageView, int imageId) {
       this.progressBar = progressBar;
       this.imageView = imageView;
       this.userId = userId;
@@ -257,22 +196,12 @@ public class Post {
         return ImageHelper.getProfilePicture(this.userId);
       } else {
         try {
-          URL url;
-          if (this.imageId == -1) {
-            url = new URL(
-                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
-                + "/Profile_Pictures/profile.jpg");
-          }
-          else {
-            url = new URL(
-                "http://creatureislandgame.com/Gigglebyte/Images/" + this.userId
+          URL url = new URL(_Server + "/Images/" + this.userId
                 + "/Image_Posts/post"+ this.imageId +".jpg");
-          }
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        } catch (MalformedURLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
           e.printStackTrace();
         }
       }
@@ -283,7 +212,7 @@ public class Post {
       if (ret != null) {
         imageView.setImageBitmap(ret);
         if (this.imageId == -1) {
-          setUserPicture(ret);
+          user.setProfile_pic(ret);
           MainActivity.cachedProfilePictures.put(userId, ret);
         }
         else {
@@ -292,11 +221,11 @@ public class Post {
       } else {
         imageView.setImageResource(R.drawable.nobody_m);
       }
-      finishLoadingProfilePicture = true;
       imageView.setVisibility(View.VISIBLE);
       if (adapter != null) {
         adapter.notifyDataSetChanged();
       }
     }
   }
+
 }

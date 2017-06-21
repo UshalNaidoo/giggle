@@ -19,6 +19,7 @@ import java.util.Random;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class AddCommentDialog extends DialogFragment {
@@ -66,10 +67,8 @@ public class AddCommentDialog extends DialogFragment {
           comment.setCommentText(commentText.getText().toString().trim());
           comment.setLikes(0);
           comment.setUserLike(false);
-          comment.setPostId(getPostId());
-          comment.setUserId(getUserId());
-          comment.setUserName(getUserName());
-          comment.setUserPicture(null);
+          User user = new User(getUserId(), getUserName(), null, null);
+          comment.setUser(user);
           getListener().setOnSubmitListener(comment);
 
           Thread thread = new Thread() {
@@ -98,7 +97,9 @@ public class AddCommentDialog extends DialogFragment {
 
       @Override
       public void afterTextChanged(Editable s) {
-        countTextView.setText(160 - s.toString().length() + "/160");
+        int remaining = 160 - s.toString().length();
+        String text = remaining + "/160";
+        countTextView.setText(text);
       }
     });
     return dialog;
@@ -128,10 +129,6 @@ public class AddCommentDialog extends DialogFragment {
     this.posterId = posterId;
   }
 
-  public int getPosterId() {
-    return posterId;
-  }
-
   public void setPostId(int postId) {
     this.postId = postId;
   }
@@ -143,4 +140,5 @@ public class AddCommentDialog extends DialogFragment {
   public void setListener(onSubmitListener listener) {
     this.listener = listener;
   }
+
 }

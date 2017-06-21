@@ -18,6 +18,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -70,7 +71,7 @@ public class PosterProfileActivity extends Activity {
     });
   }
 
-  class GetProfile extends AsyncTask<Integer, Integer, String> {
+  private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
     @Override
     protected String doInBackground(Integer... params) {
@@ -84,12 +85,12 @@ public class PosterProfileActivity extends Activity {
       poster = JsonParser.GetUser(result);
       poster.setId(userId);
       UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
-          .isEmpty()) ? "Unknown" : poster.getName(), true);
+          .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
 
       postString = "{\"posts\":" + postString + "}";
       List<Post> posts = JsonParser.GetPosts(postString);
       posts = getPostStatus(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, poster);
+      adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
       listView.setAdapter(adapter);
     }
   }
@@ -125,14 +126,14 @@ public class PosterProfileActivity extends Activity {
         this.finish();
         return true;
       case R.id.action_follow:
-        toastWithImage.show("Following " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.following) + " " + poster.getName(), R.drawable.star_like);
         menu.getItem(0).setVisible(false);
         menu.getItem(1).setVisible(true);
         followingUsers.add(String.valueOf(userId));
         SharedPrefHelper.saveUserFollows(this, followingUsers);
         return true;
       case R.id.action_unfollow:
-        toastWithImage.show("UnFollowed " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.unfollowing) + " " + poster.getName(), R.drawable.star_like);
         menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
         followingUsers.remove(String.valueOf(userId));
