@@ -46,7 +46,6 @@ public class ImageHelper implements onSubmitListener {
     try {
       bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
     }
     return bitmap;
   }
