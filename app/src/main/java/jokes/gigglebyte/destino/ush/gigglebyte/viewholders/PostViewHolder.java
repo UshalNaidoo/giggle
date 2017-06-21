@@ -88,7 +88,7 @@ public class PostViewHolder extends UserGridViewHolder {
       likeImage.setImageResource(R.drawable.star_unlike);
     }
 
-    if (post.isUserFavorite()) {
+    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
       favoriteImage.setImageResource(R.drawable.heart_like);
     } else {
       favoriteImage.setImageResource(R.drawable.heart_unlike);
@@ -199,7 +199,7 @@ public class PostViewHolder extends UserGridViewHolder {
   }
 
   private void favoritePost() {
-    if (post.isUserFavorite()) {
+    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
       PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
     } else {
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
