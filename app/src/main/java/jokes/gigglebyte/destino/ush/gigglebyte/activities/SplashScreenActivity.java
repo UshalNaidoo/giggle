@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -40,7 +41,7 @@ public class SplashScreenActivity extends Activity {
     protected String doInBackground(Integer... params) {
 
       int i = 0;
-      while (running && i < 6) {
+      while (running && i < 7) {
         i++;
         final User user = UserHelper.getUserDetails(activity);
         switch (i) {
@@ -65,19 +66,23 @@ public class SplashScreenActivity extends Activity {
                 super.onFailure(ex);
               }
             });
-            publishProgress(40);
+            publishProgress(30);
             break;
           case 3:
             PostHelper.initialiseHotPosts(activity, ConnectToServer.getHotPosts());
-            publishProgress(60);
+            publishProgress(40);
             break;
           case 4:
             PostHelper.initialiseNewPosts(activity, ConnectToServer.getNewPosts());
-            publishProgress(80);
+            publishProgress(50);
             break;
           case 5:
             PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper
                                                                                               .getUserFavorites(activity)));
+            publishProgress(80);
+            break;
+          case 6:
+            FollowHelper.initialiseUserFollows(ConnectToServer.getUserFollowing(user.getId()));
             publishProgress(100);
             break;
         }
