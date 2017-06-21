@@ -58,13 +58,6 @@ public class OptionsCommentDialog extends DialogFragment {
       }
     });
 
-    ImageButton closeButton = (ImageButton) dialog.findViewById(R.id.buttonClose);
-    closeButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        dismiss();
-      }
-    });
     return dialog;
   }
 

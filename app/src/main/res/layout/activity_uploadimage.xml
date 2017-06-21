@@ -10,7 +10,7 @@
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       android:background="@color/main_black"
       android:gravity="center"
       android:orientation="vertical"
@@ -23,7 +23,6 @@
         android:textColor="@color/white"
         android:textColorHint="@color/silver"
         android:gravity="top"
-        android:hint="Add Title"
         android:ems="10" >
       <requestFocus/>
     </EditText>
@@ -44,7 +43,6 @@
         android:textColor="@color/white"
         android:textColorHint="@color/silver"
         android:gravity="top"
-        android:hint="Add Tags"
         android:ems="10" >
     </EditText>
 
@@ -65,7 +63,7 @@
           android:textColor="@color/white"
           android:layout_height="wrap_content"
           android:background="@drawable/button_selector"
-          android:text="Post"/>
+          android:text="@string/post"/>
     </LinearLayout>
   </LinearLayout>
 </ScrollView>

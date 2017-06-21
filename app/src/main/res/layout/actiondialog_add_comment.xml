@@ -1,40 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#9e9c9f"
     android:gravity="center"
     android:padding="4dp"
     android:orientation="vertical">
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="#9e9c9f"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:paddingBottom="2dp">
-
-  <TextView
-      android:layout_marginStart="2dip"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      android:text="Add Comment:"
-      android:textColor="@color/main_black"
-      android:textSize="20sp"
-      android:textAppearance="?android:attr/textAppearanceLarge"
-      android:layout_weight="1"/>
-
-  <ImageButton
-      android:id="@+id/buttonClose"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_gravity="center"
-      android:background="@drawable/button_close_selector"
-      android:src="@drawable/ic_close"/>
-   </LinearLayout>
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -52,7 +24,7 @@
       android:textColorHint="@color/silver"
       android:maxLength="160"
       android:maxLines="4"
-      android:hint="Add Comment"
+      android:hint="@string/add_comment"
       android:ems="10" >
     <requestFocus/>
   </EditText>
@@ -72,7 +44,7 @@
           android:layout_height="wrap_content"
           android:text="160/160"
           android:textColor="@color/white"
-          android:textSize="20sp"
+          android:textSize="18sp"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
 
@@ -82,9 +54,9 @@
       android:layout_marginEnd="8dp"
       android:layout_gravity="end"
       android:textColor="@color/white"
-      android:layout_height="wrap_content"
+      android:layout_height="30dp"
       android:background="@drawable/button_selector"
-      android:text="Post"/>
+      android:text="@string/post"/>
     </LinearLayout>
   </LinearLayout>
 </LinearLayout>  
