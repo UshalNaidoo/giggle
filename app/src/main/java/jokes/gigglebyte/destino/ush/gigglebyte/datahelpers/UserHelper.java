@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 
 import android.graphics.Bitmap;
+import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
@@ -32,9 +33,9 @@ public class UserHelper implements onSubmitListener {
     SharedPreferences prefs = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
     int id = prefs.getInt("user_id", -1);
     User myProfile = new User();
-    myProfile.setName(prefs.getString("user_name", "Unknown"));
+    myProfile.setName(prefs.getString("user_name", activity.getResources().getString(R.string.unknown)));
     myProfile.setId(id);
-    myProfile.setDescription(prefs.getString("user_description", "I'm new to Gigglebyte"));
+    myProfile.setDescription(prefs.getString("user_description",activity.getResources().getString(R.string.newUserDescription)));
     myProfile.setProfile_pic(ImageHelper.getProfilePicture(id));
     return myProfile;
   }

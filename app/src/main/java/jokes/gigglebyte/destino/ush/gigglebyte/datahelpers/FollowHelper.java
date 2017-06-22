@@ -14,10 +14,16 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 public class FollowHelper {
 
   private static List<User> following;
+  private static List<User> followers;
 
-  public static void initialiseUserFollows(String users) {
+  public static void initialiseUserFollowing(String users) {
     users = "{\"users\":" + users + "}";
     following = JsonParser.GetUsers(users);
+  }
+
+  public static void initialiseUserFollowers(String users) {
+    users = "{\"users\":" + users + "}";
+    followers = JsonParser.GetUsers(users);
   }
 
   public static boolean isFollowingUser(int userId) {
@@ -65,6 +71,14 @@ public class FollowHelper {
     }
     PostHelper.setFeedPosts(activity, posts);
     Fragment_Feed.refreshList();
+  }
+
+  public static List<User> getFollowing() {
+    return following;
+  }
+
+  public static List<User> getFollowers() {
+    return followers;
   }
 
 }

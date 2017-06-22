@@ -2,6 +2,7 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,8 +22,8 @@ public class UserListViewHolder extends UserProfilePictureHolder{
     setUserProfile(activity, user, OpenScreen.LARGE_IMAGE);
     description.setText((user.getDescription() == null || user.getDescription()
         .isEmpty()) ? activity.getResources().getString(R.string.newUserDescription): user.getDescription());
-
     viewFollowers.setText(user.getFollowers().size() + " " + activity.getResources().getString(R.string.followers));
+
     viewFollowing.setText(user.getFollowing().size() + " " + activity.getResources().getString(R.string.following));
 
     viewFollowers.setOnClickListener(new View.OnClickListener() {

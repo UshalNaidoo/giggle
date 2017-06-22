@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -16,6 +17,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
@@ -48,7 +50,9 @@ public class UserProfileActivity extends Activity {
     userName = (TextView) findViewById(R.id.userName);
     listView = (ListView) findViewById(R.id.listView);
     myProfile = UserHelper.getUserDetails(activity);
-    userName.setText(myProfile.getName().isEmpty() ? "Unknown" : myProfile.getName());
+    myProfile.setFollowers(FollowHelper.getFollowers());
+    myProfile.setFollowing(FollowHelper.getFollowing());
+    userName.setText(myProfile.getName().isEmpty() ? getResources().getString(R.string.unknown) : myProfile.getName());
     userName.setOnClickListener(new View.OnClickListener() {
       int i = 0;
 
