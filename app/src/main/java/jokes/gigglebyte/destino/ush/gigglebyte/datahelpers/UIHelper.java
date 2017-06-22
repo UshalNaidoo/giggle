@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Favorite;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 
@@ -74,6 +75,7 @@ public class UIHelper {
   }
 
   static void updateScreen() {
+    Fragment_Feed.refreshList();
     Fragment_New.refreshList();
     Fragment_Hot.refreshList();
     Fragment_Favorite.refreshList();

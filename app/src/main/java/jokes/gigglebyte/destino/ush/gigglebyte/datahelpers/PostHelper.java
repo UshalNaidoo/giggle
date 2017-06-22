@@ -28,6 +28,7 @@ public class PostHelper implements onSubmitListener {
 
   private static List<Post> hotPosts = new ArrayList<>();
   private static List<Post> newPosts = new ArrayList<>();
+  private static List<Post> feedPosts = new ArrayList<>();
   private static List<Post> favoritePosts = new ArrayList<>();
   private static List<Post> postsForUser = new ArrayList<>();
 
@@ -60,6 +61,20 @@ public class PostHelper implements onSubmitListener {
   public static void setHotPosts(Activity activity, List<Post> posts) {
     posts = getPostStatus(activity, posts);
     hotPosts = posts;
+  }
+
+  public static void initialiseFeedPosts(Activity activity, String posts) {
+    posts = "{\"posts\":" + posts + "}";
+    setFeedPosts(activity, JsonParser.GetPosts(posts));
+  }
+
+  public static void setFeedPosts(Activity activity, List<Post> posts) {
+    posts = getPostStatus(activity, posts);
+    feedPosts = posts;
+  }
+
+  public static List<Post> getFeedPosts() {
+    return feedPosts;
   }
 
   public static List<Post> getNewPosts() {
@@ -122,6 +137,13 @@ public class PostHelper implements onSubmitListener {
             break;
           }
         }
+        for (Post thisPost : getFeedPosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserLike(true);
+            thisPost.setLikes(likes);
+            break;
+          }
+        }
         for (Post thisPost : getHotPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserLike(true);
@@ -154,6 +176,13 @@ public class PostHelper implements onSubmitListener {
           }
         }
         for (Post thisPost : getNewPosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserLike(false);
+            thisPost.setLikes(likes);
+            break;
+          }
+        }
+        for (Post thisPost : getFeedPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserLike(false);
             thisPost.setLikes(likes);
@@ -196,6 +225,24 @@ public class PostHelper implements onSubmitListener {
             break;
           }
         }
+        for (Post thisPost : getFavoritePosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserFavorite(true);
+            break;
+          }
+        }
+        for (Post thisPost : getHotPosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserFavorite(true);
+            break;
+          }
+        }
+        for (Post thisPost : getFeedPosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserFavorite(true);
+            break;
+          }
+        }
         Set<String> user_favorites = SharedPrefHelper.getUserFavorites(activity);
         user_favorites.add(String.valueOf(post.getPostId()));
         addFavoritePost(post);
@@ -212,6 +259,18 @@ public class PostHelper implements onSubmitListener {
           }
         }
         for (Post thisPost : getHotPosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserFavorite(false);
+            break;
+          }
+        }
+        for (Post thisPost : getFavoritePosts()) {
+          if (thisPost.getPostId() == post.getPostId()) {
+            thisPost.setUserFavorite(false);
+            break;
+          }
+        }
+        for (Post thisPost : getFeedPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserFavorite(false);
             break;

@@ -23,7 +23,7 @@ public class Fragment_Hot extends Fragment implements FragmentLifecycle {
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
     Activity activity = this.getActivity();
-    View rootView = inflater.inflate(R.layout.fragment_hot_screen, container, false);
+    View rootView = inflater.inflate(R.layout.fragment_post_list, container, false);
     ListView listView = (ListView) rootView.findViewById(R.id.listView);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
