@@ -52,6 +52,7 @@ public class UserProfileActivity extends Activity {
     myProfile = UserHelper.getUserDetails(activity);
     myProfile.setFollowers(FollowHelper.getFollowers());
     myProfile.setFollowing(FollowHelper.getFollowing());
+    UserHelper.selectedUser = myProfile;
     userName.setText(myProfile.getName().isEmpty() ? getResources().getString(R.string.unknown) : myProfile.getName());
     userName.setOnClickListener(new View.OnClickListener() {
       int i = 0;

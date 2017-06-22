@@ -23,7 +23,6 @@ public class UserListViewHolder extends UserProfilePictureHolder{
     description.setText((user.getDescription() == null || user.getDescription()
         .isEmpty()) ? activity.getResources().getString(R.string.newUserDescription): user.getDescription());
     viewFollowers.setText(user.getFollowers().size() + " " + activity.getResources().getString(R.string.followers));
-
     viewFollowing.setText(user.getFollowing().size() + " " + activity.getResources().getString(R.string.following));
 
     viewFollowers.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +34,7 @@ public class UserListViewHolder extends UserProfilePictureHolder{
         activity.startActivity(intent);
       }
     });
+
     viewFollowing.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
