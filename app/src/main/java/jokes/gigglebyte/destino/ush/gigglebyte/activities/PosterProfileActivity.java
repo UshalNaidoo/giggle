@@ -83,7 +83,8 @@ public class PosterProfileActivity extends Activity {
       poster = JsonParser.GetUser(result);
       poster.setId(userId);
       poster.setFollowing(following);
-      poster.setFollowers(following);
+      poster.setFollowers(followers);
+      UserHelper.selectedUser = poster;
       UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
           .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
 

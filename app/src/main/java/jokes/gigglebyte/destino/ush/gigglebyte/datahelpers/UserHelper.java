@@ -12,7 +12,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class UserHelper implements onSubmitListener {
-  static User selectedUser;
+  public static User selectedUser;
   public static Map<Integer, Bitmap> userImages = new HashMap<>();
 
   @Override

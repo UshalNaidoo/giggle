@@ -142,8 +142,9 @@ public class MainActivity extends FragmentActivity {
           imageByteOptionsDialog.show(getFragmentManager(), "");
           break;
         case R.id.searchUser:
-          Intent searchIntent = new Intent(activity, SearchActivity.class);
-          startActivity(searchIntent);
+          Intent intent = new Intent(activity, SearchActivity.class);
+          intent.putExtra("useSearchBar", true);
+          startActivity(intent);
           break;
         case R.id.viewProfile:
           viewProfile(activity);
