@@ -27,7 +27,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/gallery"/>
     <Button
@@ -39,7 +39,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/take_a_photo"/>
   </LinearLayout>

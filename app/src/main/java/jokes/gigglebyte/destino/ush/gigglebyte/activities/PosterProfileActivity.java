@@ -29,13 +29,13 @@ public class PosterProfileActivity extends Activity {
 
   private int userId;
   private Activity activity;
-//  private boolean following;
   private ListView listView;
   public static User poster;
   private Menu menu;
-  private String postString;
   private ToastWithImage toastWithImage;
-//  private Set<String> followingUsers;
+  private List<Post> posts;
+  private List<User> following;
+  private List<User> followers;
   private BaseAdapter adapter;
 
   @Override
@@ -46,9 +46,6 @@ public class PosterProfileActivity extends Activity {
     listView = (ListView) findViewById(R.id.listView);
 
     userId = getIntent().getIntExtra("userId", 0);
-
-//    followingUsers = SharedPrefHelper.getUserFollows(this);
-//    following = followingUsers.contains(String.valueOf(userId));
 
     toastWithImage = new ToastWithImage(this);
 
@@ -75,7 +72,9 @@ public class PosterProfileActivity extends Activity {
     @Override
     protected String doInBackground(Integer... params) {
       Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-      postString = ConnectToServer.getUsersPosts(userId);
+      posts = JsonParser.GetPosts("{\"posts\":" + ConnectToServer.getUsersPosts(userId)+ "}");
+      following = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowing(userId) + "}");
+      followers = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowers(userId) + "}");
       return ConnectToServer.getUserDetails(userId);
     }
 
@@ -83,11 +82,11 @@ public class PosterProfileActivity extends Activity {
     protected void onPostExecute(String result) {
       poster = JsonParser.GetUser(result);
       poster.setId(userId);
+      poster.setFollowing(following);
+      poster.setFollowers(following);
       UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
           .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
 
-      postString = "{\"posts\":" + postString + "}";
-      List<Post> posts = JsonParser.GetPosts(postString);
       posts = getPostStatus(activity, posts);
       adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
       listView.setAdapter(adapter);
@@ -102,7 +101,7 @@ public class PosterProfileActivity extends Activity {
 
     menu.getItem(0).setVisible(false);
     menu.getItem(1).setVisible(false);
-    if (UserHelper.getUserDetails(activity).getId() == userId) {
+    if (UserHelper.getUsersId(activity) == userId) {
       menu.getItem(0).setVisible(false);
       menu.getItem(1).setVisible(false);
     }else {

@@ -135,7 +135,7 @@ public class PostViewHolder extends UserGridViewHolder {
     return new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        if (userId != UserHelper.getUserDetails(activity).getId()) {
+        if (userId != UserHelper.getUsersId(activity)) {
           postOptions();
         }
         return true;

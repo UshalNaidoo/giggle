@@ -274,6 +274,17 @@ public class ConnectToServer {
     return "";
   }
 
+  public static String getUserFollowers(int userId) {
+    String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._getFollowers;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static String followUser(int userId, int followingId) {
     String parameters = "user_id=" + userId +"&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._follow;

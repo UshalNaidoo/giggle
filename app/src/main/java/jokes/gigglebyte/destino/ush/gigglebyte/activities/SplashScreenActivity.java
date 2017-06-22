@@ -83,6 +83,7 @@ public class SplashScreenActivity extends Activity {
             break;
           case 6:
             FollowHelper.initialiseUserFollows(ConnectToServer.getUserFollowing(user.getId()));
+            FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
             publishProgress(100);
             break;
         }

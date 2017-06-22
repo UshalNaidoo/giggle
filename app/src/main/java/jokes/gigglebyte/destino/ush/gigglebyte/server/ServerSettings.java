@@ -26,6 +26,7 @@ public class ServerSettings {
   static String _getTagPosts = "/get_tag_posts.php";
 
   static String _getFollowing = "/get_following.php";
+  static String _getFollowers = "/get_followers.php";
   static String _follow = "/user_follow.php";
   static String _unfollow = "/user_unfollow.php";
 

@@ -10,11 +10,18 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class FollowHelper {
 
-  static List<User> following;
+  private static List<User> following;
+  private static List<User> followers;
 
   public static void initialiseUserFollows(String users) {
     users = "{\"users\":" + users + "}";
     following = JsonParser.GetUsers(users);
+  }
+
+  //TODO check if this is needed
+  public static void initialiseUserFollowers(String users) {
+    users = "{\"users\":" + users + "}";
+    followers = JsonParser.GetUsers(users);
   }
 
   public static boolean isFollowingUser(int userId) {

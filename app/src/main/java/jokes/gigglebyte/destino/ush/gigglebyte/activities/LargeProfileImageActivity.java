@@ -25,7 +25,7 @@ public class LargeProfileImageActivity extends Activity {
     ImageView imageView = (ImageView) findViewById(R.id.profileImage);
     ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-    if (getIntent().getIntExtra("userId", 0) == UserHelper.getUserDetails(this).getId()) {
+    if (getIntent().getIntExtra("userId", 0) == UserHelper.getUsersId(this)) {
       progressBar.setVisibility(View.VISIBLE);
       imageView.setImageBitmap(ImageHelper.getProfilePicture(getIntent().getIntExtra("userId", 0)));
       progressBar.setVisibility(View.INVISIBLE);

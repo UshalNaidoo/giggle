@@ -39,6 +39,11 @@ public class UserHelper implements onSubmitListener {
     return myProfile;
   }
 
+  public static int getUsersId(Activity activity) {
+    SharedPreferences prefs = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
+    return prefs.getInt("user_id", -1);
+  }
+
   public static void saveUserDetails(Activity activity, final User user) {
     SharedPreferences userPreferences = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
     SharedPreferences.Editor userDetailsEditor = userPreferences.edit();
