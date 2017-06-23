@@ -125,13 +125,13 @@ public class PosterProfileActivity extends Activity {
         this.finish();
         return true;
       case R.id.action_follow:
-        toastWithImage.show(getResources().getString(R.string.following) + " " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.following) + " " + poster.getName(), R.drawable.following);
         menu.getItem(0).setVisible(false);
         menu.getItem(1).setVisible(true);
         FollowHelper.followUser(activity, poster);
         return true;
       case R.id.action_unfollow:
-        toastWithImage.show(getResources().getString(R.string.unfollowing) + " " + poster.getName(), R.drawable.star_like);
+        toastWithImage.show(getResources().getString(R.string.unfollowing) + " " + poster.getName(), R.drawable.follow);
         menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
         FollowHelper.unfollowUser(activity, poster);

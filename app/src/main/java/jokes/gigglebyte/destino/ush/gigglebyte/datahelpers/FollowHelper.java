@@ -54,14 +54,6 @@ public class FollowHelper {
     SharedPreferences prefs = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
     final int id = prefs.getInt("user_id", -1);
 
-    Thread thread = new Thread() {
-      @Override
-      public void run() {
-        ConnectToServer.unfollowUser(id, unfollowUser.getId());
-      }
-    };
-    thread.start();
-
     List<Post> posts = PostHelper.getFeedPosts();
     for (Iterator<Post> iterator = posts.listIterator(); iterator.hasNext(); ) {
       Post post = iterator.next();
@@ -71,6 +63,15 @@ public class FollowHelper {
     }
     PostHelper.setFeedPosts(activity, posts);
     Fragment_Feed.refreshList();
+
+    Thread thread = new Thread() {
+      @Override
+      public void run() {
+        ConnectToServer.unfollowUser(id, unfollowUser.getId());
+      }
+    };
+    thread.start();
+
   }
 
   public static List<User> getFollowing() {
