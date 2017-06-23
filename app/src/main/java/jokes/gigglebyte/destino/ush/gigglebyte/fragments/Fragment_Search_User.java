@@ -66,8 +66,8 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
     } else {
       UserGridAdapter gridAdapter = new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers());
       gridView.setAdapter(gridAdapter);
-      buttonSearch.setVisibility(View.INVISIBLE);
-      searchField.setVisibility(View.INVISIBLE);
+      buttonSearch.setVisibility(View.GONE);
+      searchField.setVisibility(View.GONE);
     }
 
     return rootView;

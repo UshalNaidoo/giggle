@@ -31,7 +31,7 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:padding="5dp"
-      android:background="#26272d">
+      android:background="@color/secondary_black">
   <TextView
       android:id="@+id/postText"
       android:layout_width="fill_parent"
@@ -41,9 +41,9 @@
       android:layout_marginRight="8dp"
       android:gravity="start"
       android:layout_weight="1"
-      android:textColor="#ffffff"
+      android:textColor="@color/white"
       android:padding="5dp"
-      android:background="#26272d"
+      android:background="@color/secondary_black"
       />
     <TextView
       android:id="@+id/tags"
