@@ -1,6 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.adapters;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class PostListAdapter extends BaseAdapter {
       holder.userName = (TextView) convertView.findViewById(R.id.userName);
       holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
 
       holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
       holder.tags =  (TextView) convertView.findViewById(R.id.tags);
@@ -78,19 +80,21 @@ public class PostListAdapter extends BaseAdapter {
       final PostImageViewHolder holder;
       convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
       holder = new PostImageViewHolder();
-      holder.title = (TextView) convertView.findViewById(R.id.title);
       holder.userName = (TextView) convertView.findViewById(R.id.userName);
+      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
+      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+
+      holder.title = (TextView) convertView.findViewById(R.id.title);
+      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
       holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
       holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
       holder.likes = (TextView) convertView.findViewById(R.id.likes);
       holder.comments = (TextView) convertView.findViewById(R.id.comments);
       holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
       holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
       holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
       holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.imageProgressBar);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
       holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
       holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
       convertView.setTag(holder);

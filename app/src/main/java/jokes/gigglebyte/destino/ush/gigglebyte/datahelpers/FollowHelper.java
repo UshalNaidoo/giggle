@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import java.util.Iterator;
 import java.util.List;
 
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -35,8 +34,7 @@ public class FollowHelper {
 
   public static void followUser(final Activity activity, final User followUser) {
     following.add(followUser);
-    SharedPreferences prefs = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
-    final int id = prefs.getInt("user_id", -1);
+    final int id = UserHelper.getUsersId(activity);
 
     Thread thread = new Thread() {
       @Override
@@ -46,13 +44,13 @@ public class FollowHelper {
       }
     };
     thread.start();
-    Fragment_Feed.refreshList();
+
+    UIHelper.updateScreen();
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
     following.remove(unfollowUser);
-    SharedPreferences prefs = activity.getSharedPreferences("USER_DETAILS", Activity.MODE_PRIVATE);
-    final int id = prefs.getInt("user_id", -1);
+    final int id = UserHelper.getUsersId(activity);
 
     List<Post> posts = PostHelper.getFeedPosts();
     for (Iterator<Post> iterator = posts.listIterator(); iterator.hasNext(); ) {
@@ -62,8 +60,8 @@ public class FollowHelper {
       }
     }
     PostHelper.setFeedPosts(activity, posts);
-    Fragment_Feed.refreshList();
 
+    UIHelper.updateScreen();
     Thread thread = new Thread() {
       @Override
       public void run() {

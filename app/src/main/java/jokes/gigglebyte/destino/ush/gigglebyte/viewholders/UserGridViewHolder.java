@@ -1,11 +1,13 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
@@ -21,6 +23,9 @@ public class UserGridViewHolder extends UserProfilePictureHolder{
 
     if(followButton != null) {
       followButton.setImageResource(FollowHelper.isFollowingUser(user.getId()) ? R.drawable.following : R.drawable.follow);
+      if ( user.getId() == UserHelper.getUsersId(activity)) {
+        followButton.setVisibility(View.INVISIBLE);
+      }
 
       followButton.setOnClickListener(new View.OnClickListener() {
         @Override
