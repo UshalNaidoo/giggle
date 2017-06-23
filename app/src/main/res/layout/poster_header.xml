@@ -71,7 +71,7 @@
         android:layout_marginTop="16dp"
         android:layout_height="2dp"
         android:layout_width="fill_parent"
-        android:background="#551A8B"
+        android:background="@color/app_primary_dark"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>
 </LinearLayout>

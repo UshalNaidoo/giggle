@@ -16,7 +16,7 @@
     <EditText
         android:id="@+id/search"
         android:hint="@string/search_users"
-        android:textColorHint="#9e9c9f"
+        android:textColorHint="@color/app_grey"
         android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
