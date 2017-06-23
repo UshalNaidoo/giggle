@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -22,16 +21,12 @@ import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 
 public class UIHelper {
 
-  static void imageViewClickAnimation(ImageView image) {
-    final float growTo = 1.2f;
-    final long duration = 300;
-    ScaleAnimation grow = new ScaleAnimation(1, growTo, 1, growTo,
-                                             Animation.RELATIVE_TO_SELF, 0.5f,
-                                             Animation.RELATIVE_TO_SELF, 0.5f);
+  public static void imageViewClickAnimation(ImageView image) {
+    final float growTo = 1.1f;
+    final long duration = 400;
+    ScaleAnimation grow = new ScaleAnimation(1, growTo, 1, growTo , 1, 0.5f, 1, 0.5f);
     grow.setDuration(duration / 2);
-    ScaleAnimation shrink = new ScaleAnimation(growTo, 1, growTo, 1,
-                                               Animation.RELATIVE_TO_SELF, 0.5f,
-                                               Animation.RELATIVE_TO_SELF, 0.5f);
+    ScaleAnimation shrink = new ScaleAnimation(growTo, 1, growTo, 1, 2, 0.6f,2, 0.6f);
     shrink.setDuration(duration / 2);
     shrink.setStartOffset(duration / 2);
     AnimationSet growAndShrink = new AnimationSet(true);
