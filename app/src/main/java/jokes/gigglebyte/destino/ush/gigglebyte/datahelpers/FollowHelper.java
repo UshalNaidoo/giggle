@@ -27,6 +27,7 @@ public class FollowHelper {
   public static boolean isFollowingUser(int userId) {
     for (User user : following) {
       if (userId == user.getId()) {
+        return true;
       }
     }
     return false;
@@ -49,6 +50,13 @@ public class FollowHelper {
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
+    for (Iterator<User> iterator = following.listIterator(); iterator.hasNext(); ) {
+      User user = iterator.next();
+      if (unfollowUser.getId() == user.getId()) {
+        iterator.remove();
+      }
+    }
+
     final int id = UserHelper.getUsersId(activity);
 
     List<Post> posts = PostHelper.getFeedPosts();
