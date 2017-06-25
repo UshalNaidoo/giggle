@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
@@ -19,9 +18,6 @@ public class PushNotificationService extends GcmListenerService {
   @Override
   public void onMessageReceived(String from, Bundle data) {
     String message = data.getString("message");
-
-    Log.e("Gigglebyte", "Message received : " + message);
-
     sendNotification(message);
   }
 

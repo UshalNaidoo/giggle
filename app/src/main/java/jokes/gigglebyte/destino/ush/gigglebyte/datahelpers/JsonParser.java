@@ -87,7 +87,6 @@ public class JsonParser {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    UserHelper.selectedUser = user;
     return user;
   }
 

@@ -72,15 +72,6 @@ public class ConnectToServer {
   }
 
   public static String getFavoritePosts(Set<String> post_ids) {
- /*   JSONObject JSONposts = new JSONObject();
-    for (String s : post_ids){
-      try {
-        JSONposts.put("post_ids", s);
-      } catch (JSONException e) {
-        e.printStackTrace();
-      }
-    } */
-
     String parameters = "key=AoD93128Jd73jKH31je3&post_ids="+post_ids.toString().replace("[", "").replace("]", "");
     String UrlString = ServerSettings._Server + ServerSettings._getFavoritePosts;
     try {
@@ -127,6 +118,17 @@ public class ConnectToServer {
   public static String getUsersPosts(int userId) {
     String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._getUsersPosts;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  public static String getFeed(int userId) {
+    String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._getFeed;
     try {
       return Connect.connectToServer(UrlString, parameters);
     } catch (Exception e) {
@@ -190,7 +192,6 @@ public class ConnectToServer {
     }
 
     String UrlString = ServerSettings._Server + ServerSettings._postImagePost;
-//    HashMap<String, Object>
     ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
     nameValuePairs.add(new BasicNameValuePair("user_id", String.valueOf(id)));
     nameValuePairs.add(new BasicNameValuePair("image", image));
@@ -265,6 +266,50 @@ public class ConnectToServer {
   public static String searchUser(String text) {
     String parameters = "text=" + text;
     String UrlString = ServerSettings._Server + ServerSettings._searchUser;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  public static String getUserFollowing(int userId) {
+    String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._getFollowing;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  public static String getUserFollowers(int userId) {
+    String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._getFollowers;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  public static String followUser(int userId, int followingId) {
+    String parameters = "user_id=" + userId +"&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._follow;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
+  public static String unfollowUser(int userId, int followingId) {
+    String parameters = "user_id=" + userId +"&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._unfollow;
     try {
       return Connect.connectToServer(UrlString, parameters);
     } catch (Exception e) {

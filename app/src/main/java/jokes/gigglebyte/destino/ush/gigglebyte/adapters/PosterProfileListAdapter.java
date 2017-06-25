@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -63,6 +64,8 @@ public class PosterProfileListAdapter extends BaseAdapter {
       holder.description = (TextView) convertView.findViewById(R.id.description);
       holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+      holder.viewFollowers = (Button) convertView.findViewById(R.id.button_followers);
+      holder.viewFollowing = (Button) convertView.findViewById(R.id.button_following);
       convertView.setTag(holder);
       holder.setUserData(activity, poster);
     } else {

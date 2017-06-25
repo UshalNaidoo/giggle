@@ -192,7 +192,7 @@ public class Post {
 
     protected Bitmap doInBackground(String... param) {
       Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-      if (this.userId == UserHelper.getUserDetails(activity).getId() && this.imageId == -1) {
+      if (this.userId == UserHelper.getUsersId(activity) && this.imageId == -1) {
         return ImageHelper.getProfilePicture(this.userId);
       } else {
         try {

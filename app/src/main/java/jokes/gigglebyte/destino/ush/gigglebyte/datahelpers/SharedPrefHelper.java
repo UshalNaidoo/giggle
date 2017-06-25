@@ -35,19 +35,6 @@ public class SharedPrefHelper {
     postLikesEditor.apply();
   }
 
-  public static Set<String> getUserFollows(Activity activity) {
-    SharedPreferences likesSharedPreferences = activity.getSharedPreferences("USER_FOLLOWS", Context.MODE_PRIVATE);
-    return likesSharedPreferences.getStringSet("USER_FOLLOWS", new HashSet<String>());
-  }
-
-  public static void saveUserFollows(Activity activity, Set<String> userFollows) {
-    SharedPreferences followsPreferences = activity.getSharedPreferences("USER_FOLLOWS", Context.MODE_PRIVATE);
-    SharedPreferences.Editor followsEditor = followsPreferences.edit();
-    followsEditor.clear();
-    followsEditor.putStringSet("USER_FOLLOWS", userFollows);
-    followsEditor.apply();
-  }
-
   static Set<String> getPostFlags(Activity activity) {
     SharedPreferences flagsSharedPreferences = activity.getSharedPreferences("POST_FLAGS", Context.MODE_PRIVATE);
     return flagsSharedPreferences.getStringSet("POST_FLAGS", new HashSet<String>());

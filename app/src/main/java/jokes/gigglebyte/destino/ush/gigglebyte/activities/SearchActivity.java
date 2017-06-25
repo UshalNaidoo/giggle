@@ -1,5 +1,6 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,11 +17,24 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 public class SearchActivity extends FragmentActivity {
   private SwipePagerAdapter swipePagerAdapter;
   private Fragment_Search_User search_user;
+  private boolean useSearchBar;
+  private boolean showFollowing;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     search_user = new Fragment_Search_User();
+
+    Intent intent = getIntent();
+    useSearchBar = intent.getBooleanExtra("useSearchBar", true);
+    showFollowing = intent.getBooleanExtra("showFollowing", true);
+
+    Bundle bundle = new Bundle(2);
+    bundle.putBoolean("useSearchBar", useSearchBar);
+    //false for following, true for followers
+    bundle.putBoolean("showFollowing", showFollowing );
+    search_user.setArguments(bundle);
+
     setContentView(R.layout.activity_search);
 
     ViewPager pager = (ViewPager) findViewById(R.id.pager);
@@ -28,7 +42,7 @@ public class SearchActivity extends FragmentActivity {
     pager.setAdapter(swipePagerAdapter);
     pager.setOnPageChangeListener(pageChangeListener);
 
-    UIHelper.setActionBar(this, getResources().getString(R.string.search), true);
+    UIHelper.setActionBar(this, useSearchBar ? getResources().getString(R.string.search_users) : showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
   }
 
   @Override
@@ -67,7 +81,7 @@ public class SearchActivity extends FragmentActivity {
     public CharSequence getPageTitle(int position) {
       switch (position) {
         case 0:
-          return "Users";
+          return useSearchBar ? getResources().getString(R.string.search_users) : showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers);
         default:
           return "";
       }

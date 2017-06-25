@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
@@ -21,6 +22,8 @@ public class User {
   private int id;
   private String name;
   private String description;
+  private List<User> following;
+  private List<User> followers;
   private Bitmap profile_pic;
 
   public User() {
@@ -73,6 +76,22 @@ public class User {
     }
   }
 
+  public void setFollowing(List<User> following) {
+    this.following = following;
+  }
+
+  public List<User> getFollowing() {
+    return following;
+  }
+
+  public void setFollowers(List<User> followers) {
+    this.followers = followers;
+  }
+
+  public List<User> getFollowers() {
+    return followers;
+  }
+
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
 
     private Activity activity;
@@ -84,7 +103,7 @@ public class User {
     }
 
     protected Bitmap doInBackground(String... param) {
-      if (getId() == UserHelper.getUserDetails(activity).getId()) {
+      if (getId() == UserHelper.getUsersId(activity)) {
         return ImageHelper.getProfilePicture(getId());
       } else {
         try {

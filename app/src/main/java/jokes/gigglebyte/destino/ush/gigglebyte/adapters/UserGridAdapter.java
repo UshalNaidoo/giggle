@@ -53,6 +53,7 @@ public class UserGridAdapter extends BaseAdapter {
       holder.userName = (TextView) row.findViewById(R.id.userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
+      holder.followButton = (ImageView) row.findViewById(R.id.followButton);
       row.setTag(holder);
     }
     else {

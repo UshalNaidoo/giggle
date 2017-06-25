@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,15 +29,13 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddTextByteDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.ImageByteOptionsDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Favorite;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
-
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 
 public class MainActivity extends FragmentActivity {
 
@@ -44,6 +45,7 @@ public class MainActivity extends FragmentActivity {
   private static FloatingActionMenu menuDown;
   private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;
+  private Fragment_Feed fragment_feed;
   private Fragment_New fragment_new;
   private Fragment_Hot fragment_hot;
   private Fragment_Favorite fragment_favorite;
@@ -53,6 +55,7 @@ public class MainActivity extends FragmentActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     activity = this;
+    fragment_feed = new Fragment_Feed();
     fragment_new = new Fragment_New();
     fragment_hot = new Fragment_Hot();
     fragment_favorite = new Fragment_Favorite();
@@ -142,8 +145,9 @@ public class MainActivity extends FragmentActivity {
           imageByteOptionsDialog.show(getFragmentManager(), "");
           break;
         case R.id.searchUser:
-          Intent searchIntent = new Intent(activity, SearchActivity.class);
-          startActivity(searchIntent);
+          Intent intent = new Intent(activity, SearchActivity.class);
+          intent.putExtra("useSearchBar", true);
+          startActivity(intent);
           break;
         case R.id.viewProfile:
           viewProfile(activity);
@@ -177,12 +181,14 @@ public class MainActivity extends FragmentActivity {
     public Fragment getItem(int i) {
       switch (i) {
         case 0:
-          return fragment_tags;
+          return fragment_feed;
         case 1:
-          return fragment_hot;
+          return fragment_tags;
         case 2:
-          return fragment_new;
+          return fragment_hot;
         case 3:
+          return fragment_new;
+        case 4:
           return fragment_favorite;
         default:
           return null;
@@ -191,20 +197,22 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public int getCount() {
-      return 4;
+      return 5;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
       switch (position) {
         case 0:
-          return "TAGS";
+          return activity.getResources().getString(R.string.tab_feed);
         case 1:
-          return "HOT";
+          return activity.getResources().getString(R.string.tab_tags);
         case 2:
-          return "NEW";
+          return activity.getResources().getString(R.string.tab_hot);
         case 3:
-          return "FAVORITE";
+          return activity.getResources().getString(R.string.tab_new);
+        case 4:
+          return activity.getResources().getString(R.string.tab_favourite);
         default:
           return "";
       }
@@ -235,9 +243,12 @@ public class MainActivity extends FragmentActivity {
       for (Post p : PostHelper.getHotPosts()) {
         p.cancelLoadingImages();
       }
-      for (Post p : PostHelper.getNewPosts()) {
-        p.cancelLoadingImages();
-      }
+        for (Post p : PostHelper.getNewPosts()) {
+          p.cancelLoadingImages();
+        }
+        for (Post p : PostHelper.getFeedPosts()) {
+          p.cancelLoadingImages();
+        }
       cachedProfilePictures = new HashMap<>();
       MainActivity.super.onBackPressed();
     }

@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#9e9c9f"
     android:gravity="center"
     android:padding="4dp"
     android:orientation="vertical">
@@ -58,7 +57,7 @@
             android:layout_marginRight="8dp"
             android:gravity="start"
             android:layout_weight="1"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:background="@color/main_black"
             android:maxLines="4"
             android:minLines="1"
@@ -75,7 +74,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/view_profile"/>
     <Button
@@ -87,7 +86,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/view_comments"/>
     <Button
@@ -99,7 +98,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/flag"/>
   </LinearLayout>

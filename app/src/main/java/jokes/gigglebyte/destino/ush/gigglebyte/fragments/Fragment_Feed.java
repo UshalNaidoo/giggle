@@ -3,7 +3,6 @@ package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
-public class Fragment_New extends Fragment implements FragmentLifecycle {
+public class Fragment_Feed extends Fragment implements FragmentLifecycle {
 
   private static PostListAdapter adapter;
 
@@ -39,7 +38,7 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
                            int totalItemCount) {
       }
     });
-    adapter = new PostListAdapter(activity, PostHelper.getNewPosts(), FromScreen.NEW);
+    adapter = new PostListAdapter(activity, PostHelper.getFeedPosts(), FromScreen.FEED);
     listView.setAdapter(adapter);
     return rootView;
   }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 
 public class ToastWithImage {
 
@@ -31,9 +32,10 @@ public class ToastWithImage {
     text.setText(textToDisplay);
 
     Toast toast = new Toast(this.activity);
-    toast.setGravity(Gravity.BOTTOM, 0, 0);
+    toast.setGravity(Gravity.CENTER, 0, 40);
     toast.setDuration(Toast.LENGTH_LONG);
     toast.setView(layout);
     toast.show();
+    UIHelper.imageViewClickAnimation(image);
   }
 }

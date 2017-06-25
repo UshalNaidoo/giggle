@@ -22,8 +22,14 @@ public class ServerSettings {
   static String _getComments = "/get_comments_for_post.php";
   static String _getUserDetails = "/user_view_profile.php";
   static String _getUsersPosts = "/get_users_posts.php";
+  static String _getFeed = "/get_feed.php";
 
   static String _getTagPosts = "/get_tag_posts.php";
+
+  static String _getFollowing = "/get_following.php";
+  static String _getFollowers = "/get_followers.php";
+  static String _follow = "/user_follow.php";
+  static String _unfollow = "/user_unfollow.php";
 
   /* Post Data */
   static String _postImagePost = "/post_image_post.php";

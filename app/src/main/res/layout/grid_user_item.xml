@@ -3,22 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#26272d"
-    android:paddingLeft="4dp"
-    android:paddingRight="4dp"
-    android:orientation="vertical"
-    android:padding="2dp">
-
-  <TextView
-      android:id="@+id/userName"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="5dp"
-      android:paddingLeft="4dp"
-      android:paddingRight="4dp"
-      android:gravity="center"
-      android:textColor="@color/white"
-      android:textSize="20sp"/>
+    android:background="@color/secondary_black"
+    android:orientation="vertical">
 
   <RelativeLayout
       android:layout_width="wrap_content"
@@ -27,11 +13,26 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="106dp"
-        android:layout_height="106dp"
-        android:src="@drawable/nobody_m"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"/>
+        android:background="@color/main_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/nobody_m"/>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#CC000000"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/followButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/follow"
+        android:layout_alignParentEnd="true"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

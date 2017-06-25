@@ -63,7 +63,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     profileImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (userId != UserHelper.getUserDetails(activity).getId()) {
+        if (userId != UserHelper.getUsersId(activity)) {
           Intent myIntent = new Intent(activity, PosterProfileActivity.class);
           myIntent.putExtra("userId", userId);
           activity.startActivity(myIntent);

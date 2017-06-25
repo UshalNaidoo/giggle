@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.LargeProfileImageActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
