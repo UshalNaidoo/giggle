@@ -24,7 +24,7 @@ public class GCMClientManager {
   private static final String PROPERTY_APP_VERSION = "appVersion";
   private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
   // Member variables
-//  private GoogleCloudMessaging gcm;
+  private GoogleCloudMessaging gcm;
   private String regid;
   private String projectNumber;
   private Activity activity;
@@ -32,7 +32,7 @@ public class GCMClientManager {
   public GCMClientManager(Activity activity, String projectNumber) {
     this.activity = activity;
     this.projectNumber = projectNumber;
-//    this.gcm = GoogleCloudMessaging.getInstance(activity);
+    this.gcm = GoogleCloudMessaging.getInstance(activity);
   }
 
   /**
@@ -73,9 +73,9 @@ public class GCMClientManager {
       @Override
       protected String doInBackground(Void... params) {
         try {
-//          if (gcm == null) {
-//            gcm = GoogleCloudMessaging.getInstance(getContext());
-//          }
+          if (gcm == null) {
+            gcm = GoogleCloudMessaging.getInstance(getContext());
+          }
           InstanceID instanceID = InstanceID.getInstance(getContext());
           regid = instanceID.getToken(projectNumber, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
           Log.i(TAG, regid);
@@ -137,7 +137,7 @@ public class GCMClientManager {
     SharedPreferences.Editor editor = prefs.edit();
     editor.putString(PROPERTY_REG_ID, regId);
     editor.putInt(PROPERTY_APP_VERSION, appVersion);
-    editor.commit();
+    editor.apply();
   }
 
   private SharedPreferences getGCMPreferences(Context context) {
