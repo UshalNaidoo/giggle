@@ -1,7 +1,6 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 
 import java.util.Iterator;
 import java.util.List;
@@ -27,7 +26,8 @@ public class FollowHelper {
 
   public static boolean isFollowingUser(int userId) {
     for (User user : following) {
-      if (userId == user.getId()) return true;
+      if (userId == user.getId()) {
+      }
     }
     return false;
   }
@@ -49,7 +49,6 @@ public class FollowHelper {
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
-    following.remove(unfollowUser);
     final int id = UserHelper.getUsersId(activity);
 
     List<Post> posts = PostHelper.getFeedPosts();
