@@ -4,17 +4,17 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
@@ -134,6 +134,9 @@ public class UserProfileActivity extends Activity {
   protected void onResume() {
     super.onResume();
     refreshFragment();
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
   }
 
   public static void refreshFragment() {

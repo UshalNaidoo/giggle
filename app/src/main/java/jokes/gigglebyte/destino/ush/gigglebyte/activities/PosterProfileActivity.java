@@ -67,6 +67,14 @@ public class PosterProfileActivity extends Activity {
     });
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
+  }
+
   private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
     @Override
