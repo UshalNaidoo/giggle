@@ -117,7 +117,7 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-      String[] messages = getLoadingMessages();
+      String[] messages = getLoadingMessages(activity);
       switch (values[0]) {
         case 20:
           loadingText.setText(messages[0]);
