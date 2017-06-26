@@ -16,10 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.UserGridAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -29,12 +29,10 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
   private Activity activity;
   private GridView gridView;
   private EditText searchField;
-  private boolean useSearch;
-  private boolean showFollowing;
 
   @Override
   public View onCreateView(LayoutInflater inflater,
-                           ViewGroup container, Bundle savedInstanceState) {
+      ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_search_user, container, false);
     Button buttonSearch = (Button) rootView.findViewById(R.id.buttonSearch);
@@ -51,25 +49,14 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
       }
     });
 
-    useSearch = getArguments().getBoolean("useSearchBar");
-    showFollowing = getArguments().getBoolean("showFollowing");
+    new SearchForUsers("", false).execute();
 
-    if(useSearch) {
-      new SearchForUsers("").execute();
-      buttonSearch.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          if (!searchField.getText().toString().trim().isEmpty()) {
-            new SearchForUsers(searchField.getText().toString()).execute();
-          }
-        }
-      });
-    } else {
-      UserGridAdapter gridAdapter = new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers());
-      gridView.setAdapter(gridAdapter);
-      buttonSearch.setVisibility(View.GONE);
-      searchField.setVisibility(View.GONE);
-    }
+    buttonSearch.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        new SearchForUsers(searchField.getText().toString(), true).execute();
+      }
+    });
 
     return rootView;
   }
@@ -85,20 +72,28 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
   private class SearchForUsers extends AsyncTask<Integer, Integer, List<User>> {
 
     String searchFor;
+    boolean buttonClicked;
 
-    SearchForUsers(String searchFor) {
+    SearchForUsers(String searchFor, boolean buttonClicked) {
       this.searchFor = searchFor;
+      this.buttonClicked = buttonClicked;
     }
 
     @Override
     protected List<User> doInBackground(Integer... params) {
-      String usersString = ConnectToServer.searchUser(searchFor);
-      return JsonParser.GetUsers("{\"users\":" + usersString + "}");
+      if (!this.buttonClicked && !MainActivity.loadedUsers.isEmpty()) {
+        return MainActivity.loadedUsers;
+      }
+      else {
+        String usersString = ConnectToServer.searchUser(searchFor);
+        return JsonParser.GetUsers("{\"users\":" + usersString + "}");
+      }
     }
 
     @Override
     protected void onPostExecute(List<User> users) {
       UserGridAdapter gridAdapter = new UserGridAdapter(activity, users);
+      MainActivity.loadedUsers = users;
       gridView.setAdapter(gridAdapter);
     }
 

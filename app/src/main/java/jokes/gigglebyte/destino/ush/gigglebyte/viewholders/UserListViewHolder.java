@@ -2,13 +2,12 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.SearchActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.FollowersActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
@@ -28,8 +27,7 @@ public class UserListViewHolder extends UserProfilePictureHolder{
     viewFollowers.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(activity, SearchActivity.class);
-        intent.putExtra("useSearchBar", false);
+        Intent intent = new Intent(activity, FollowersActivity.class);
         intent.putExtra("showFollowing", false);
         activity.startActivity(intent);
       }
@@ -38,8 +36,7 @@ public class UserListViewHolder extends UserProfilePictureHolder{
     viewFollowing.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(activity, SearchActivity.class);
-        intent.putExtra("useSearchBar", false);
+        Intent intent = new Intent(activity, FollowersActivity.class);
         intent.putExtra("showFollowing", true);
         activity.startActivity(intent);
       }

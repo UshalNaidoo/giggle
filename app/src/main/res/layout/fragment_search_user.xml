@@ -45,7 +45,7 @@
       android:numColumns="2"
       android:gravity="center"
       android:stretchMode="columnWidth"
-      android:verticalSpacing="5dp"
+      android:verticalSpacing="15dp"
       android:horizontalSpacing="5dp"
       android:focusable="true"
       android:clickable="true"/>

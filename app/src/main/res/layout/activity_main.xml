@@ -51,7 +51,7 @@
         android:src="@drawable/fab_add"
         android:padding="4dp"
         fab:fab_size="mini"
-        fab:fab_label="Add Joke"
+        fab:fab_label="@string/menu_add_post"
         fab:fab_colorNormal="@color/app_primary_dark"
         fab:fab_colorPressed="@color/app_primary"
         fab:fab_colorRipple="@color/app_primary_dark"/>
@@ -63,18 +63,7 @@
         android:src="@drawable/fab_add"
         android:padding="4dp"
         fab:fab_size="mini"
-        fab:fab_label="Add Image"
-        fab:fab_colorNormal="@color/app_primary_dark"
-        fab:fab_colorPressed="@color/app_primary"
-        fab:fab_colorRipple="@color/app_primary_dark"/>
-
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/searchUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/search_icon"
-        fab:fab_size="mini"
-        fab:fab_label="Search Users"
+        fab:fab_label="@string/menu_add_image"
         fab:fab_colorNormal="@color/app_primary_dark"
         fab:fab_colorPressed="@color/app_primary"
         fab:fab_colorRipple="@color/app_primary_dark"/>
@@ -85,7 +74,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit"
         fab:fab_size="mini"
-        fab:fab_label="Edit Profile"
+        fab:fab_label="@string/menu_edit_profile"
         fab:fab_colorNormal="@color/app_primary_dark"
         fab:fab_colorPressed="@color/app_primary"
         fab:fab_colorRipple="@color/app_primary_dark"/>

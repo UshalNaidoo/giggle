@@ -60,7 +60,7 @@
         android:name=".activities.UserProfileActivity">
     </activity>
     <activity
-        android:name=".activities.SearchActivity">
+        android:name=".activities.FollowersActivity">
     </activity>
     <activity
         android:name=".activities.UploadImageActivity">

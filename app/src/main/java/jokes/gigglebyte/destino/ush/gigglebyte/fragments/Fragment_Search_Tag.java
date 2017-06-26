@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.TagActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.TagListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
@@ -32,26 +34,23 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   private ListView listView;
   @Override
   public View onCreateView(LayoutInflater inflater,
-                           ViewGroup container, Bundle savedInstanceState) {
+      ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_search_tag, container, false);
 
     Button buttonSearch = (Button) rootView.findViewById(R.id.buttonSearch);
     searchField = (EditText) rootView.findViewById(R.id.search);
 
-    //best tags list
-    new SearchForTags("").execute();
+    new SearchForTags("", false).execute();
 
     buttonSearch.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (!searchField.getText().toString().trim().isEmpty()) {
-          String searchFor = searchField.getText().toString().trim();
-          if (searchFor.startsWith("#")) {
-            searchFor = searchFor.substring(1);
-          }
-          new SearchForTags(searchFor).execute();
+        String searchFor = searchField.getText().toString().trim();
+        if (searchFor.startsWith("#")) {
+          searchFor = searchFor.substring(1);
         }
+        new SearchForTags(searchFor, true).execute();
       }
     });
 
@@ -66,13 +65,13 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
 
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-                           int totalItemCount) {
+          int totalItemCount) {
       }
     });
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parent, View v,
-                              int position, long id) {
+          int position, long id) {
         Tag tag = (Tag)parent.getItemAtPosition(position);
         Intent intent = new Intent(activity, TagActivity.class);
         intent.putExtra("tag", tag.getTagText());
@@ -92,20 +91,28 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
 
   private class SearchForTags extends AsyncTask<Integer, Integer, List<Tag>> {
     String searchFor;
+    boolean buttonClicked;
 
-    SearchForTags(String searchFor) {
+    SearchForTags(String searchFor, boolean buttonClicked) {
       this.searchFor = searchFor;
+      this.buttonClicked = buttonClicked;
     }
 
     @Override
     protected List<Tag> doInBackground(Integer... params) {
-      return JsonParser.GetTagsFromSearch("{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
+      if (!this.buttonClicked && !MainActivity.loadedTags.isEmpty()) {
+        return MainActivity.loadedTags;
+      }
+      else {
+        return JsonParser.GetTagsFromSearch("{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
+      }
     }
 
     @Override
     protected void onPostExecute(final List<Tag> result) {
       adapter = new TagListAdapter(activity, result);
       listView.setAdapter(adapter);
+      MainActivity.loadedTags = result;
     }
 
     @Override
