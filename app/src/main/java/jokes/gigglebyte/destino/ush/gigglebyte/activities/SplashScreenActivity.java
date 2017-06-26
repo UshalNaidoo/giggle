@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
@@ -20,6 +21,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 public class SplashScreenActivity extends Activity {
   private Activity activity;
   private ProgressBar progressBar;
+  private TextView loadingText;
   public static RegisterWithServer serverCall;
   private String PROJECT_NUMBER="974166531337";
 
@@ -29,6 +31,7 @@ public class SplashScreenActivity extends Activity {
     activity = this;
     setContentView(R.layout.activity_splash);
     progressBar = (ProgressBar) findViewById(R.id.progressBar);
+    loadingText = (TextView) findViewById(R.id.loadingText);
     serverCall = new RegisterWithServer();
     serverCall.execute();
   }
@@ -106,6 +109,26 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... values) {
+      switch (values[0]) {
+        case 20:
+          loadingText.setText("Collecting funny jokes");
+          break;
+        case 30:
+          loadingText.setText("Insert random message");
+          break;
+        case 40:
+          loadingText.setText("Walk into a room and forget what I was looking for");
+          break;
+        case 50:
+          loadingText.setText("Remember! It was my keys");
+          break;
+        case 80:
+          loadingText.setText("Let the dog out");
+          break;
+        case 100:
+          loadingText.setText("Finally");
+          break;
+      }
       progressBar.setProgress(values[0]);
     }
   }
