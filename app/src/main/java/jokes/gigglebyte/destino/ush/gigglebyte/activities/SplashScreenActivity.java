@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SplashHelper.getLoadingMessages;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -42,9 +44,8 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     protected String doInBackground(Integer... params) {
-
       int i = 0;
-      while (running && i < 7) {
+      while (running && i < 9) {
         i++;
         final User user = UserHelper.getUserDetails(activity);
         switch (i) {
@@ -60,8 +61,6 @@ public class SplashScreenActivity extends Activity {
             pushClientManager.registerIfNeeded(new GCMClientManager.RegistrationCompletedHandler() {
               @Override
               public void onSuccess(String registrationId, boolean isNewRegistration) {
-
-                Log.d("Registration id", registrationId);
                 ConnectToServer.addDeviceId(user.getId(), registrationId);
               }
               @Override
@@ -80,13 +79,22 @@ public class SplashScreenActivity extends Activity {
             publishProgress(50);
             break;
           case 5:
-            PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper
-                                                                                              .getUserFavorites(activity)));
-            publishProgress(80);
+            PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper.getUserFavorites(activity)));
+            publishProgress(60);
             break;
           case 6:
             PostHelper.initialiseFeedPosts(activity, ConnectToServer.getFeed(user.getId()));
+            publishProgress(70);
+            break;
+          case 7:
             FollowHelper.initialiseUserFollowing(ConnectToServer.getUserFollowing(user.getId()));
+            publishProgress(80);
+            break;
+          case 8:
+            FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
+            publishProgress(90);
+            break;
+          case 9:
             FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
             publishProgress(100);
             break;
@@ -109,24 +117,34 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     protected void onProgressUpdate(Integer... values) {
+      String[] messages = getLoadingMessages();
       switch (values[0]) {
         case 20:
-          loadingText.setText("Collecting funny jokes");
+          loadingText.setText(messages[0]);
           break;
         case 30:
-          loadingText.setText("Insert random message");
+          loadingText.setText(messages[1]);
           break;
         case 40:
-          loadingText.setText("Walk into a room and forget what I was looking for");
+          loadingText.setText(messages[2]);
           break;
         case 50:
-          loadingText.setText("Remember! It was my keys");
+          loadingText.setText(messages[3]);
+          break;
+        case 60:
+          loadingText.setText(messages[4]);
+          break;
+        case 70:
+          loadingText.setText(messages[5]);
           break;
         case 80:
-          loadingText.setText("Let the dog out");
+          loadingText.setText(messages[6]);
+          break;
+        case 90:
+          loadingText.setText(messages[7]);
           break;
         case 100:
-          loadingText.setText("Finally");
+          loadingText.setText(messages[8]);
           break;
       }
       progressBar.setProgress(values[0]);
