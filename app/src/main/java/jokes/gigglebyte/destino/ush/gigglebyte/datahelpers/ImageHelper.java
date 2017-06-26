@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
@@ -56,7 +56,7 @@ public class ImageHelper implements onSubmitListener {
     saveProfilePicture(user.getProfile_pic(), user.getId());
     PostHelper.updatePosts(user.getId(), user.getName(), ImageHelper.getProfilePicture(user.getId()));
     UIHelper.updateScreen();
-    UserProfileActivity.refreshUser(user);
+    Fragment_Profile.refreshUser(user);
   }
 
   @Override

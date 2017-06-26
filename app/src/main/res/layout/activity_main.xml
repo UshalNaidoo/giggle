@@ -68,15 +68,5 @@
         fab:fab_colorPressed="@color/app_primary"
         fab:fab_colorRipple="@color/app_primary_dark"/>
 
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/viewProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_edit"
-        fab:fab_size="mini"
-        fab:fab_label="@string/menu_edit_profile"
-        fab:fab_colorNormal="@color/app_primary_dark"
-        fab:fab_colorPressed="@color/app_primary"
-        fab:fab_colorRipple="@color/app_primary_dark"/>
   </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

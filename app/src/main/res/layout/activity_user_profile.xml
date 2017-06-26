@@ -46,6 +46,7 @@
       fab:menu_labels_singleLine="true"
       fab:menu_fab_size="mini"
       fab:menu_openDirection="down"
+      fab:menu_icon="@drawable/ic_edit"
       fab:menu_colorNormal="@color/app_primary_dark"
       fab:menu_colorPressed="@color/app_primary"
       fab:menu_colorRipple="@color/app_primary_dark">
