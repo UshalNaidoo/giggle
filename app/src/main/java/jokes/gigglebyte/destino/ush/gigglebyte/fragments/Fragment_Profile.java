@@ -1,9 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
-import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.getPostStatus;
-
-import java.util.List;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,14 +11,17 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserDescriptionDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserNameDialog;
@@ -32,6 +31,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
+
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.getPostStatus;
 
 public class Fragment_Profile extends Fragment implements FragmentLifecycle {
 
@@ -113,8 +114,6 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
       }
     });
 
-
-
     return rootView;
   }
 
@@ -125,7 +124,6 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
   @Override
   public void onResumeFragment() {
   }
-
 
   private class GetProfile extends AsyncTask<Integer, Integer, String> {
 
@@ -203,6 +201,5 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
     adapter.notifyDataSetChanged();
     userName.setText(user.getName());
   }
-
 
 }

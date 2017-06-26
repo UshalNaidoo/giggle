@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
-import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.getFollowing;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -43,6 +41,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
+
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.getFollowing;
 
 public class MainActivity extends FragmentActivity {
 
@@ -245,7 +245,7 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
-    else if (getFollowing().size() >0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 3) {
+    else if (getFollowing().size() > 0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 4) {
         pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
     }
     else {
@@ -300,5 +300,6 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
+
   }
 }
