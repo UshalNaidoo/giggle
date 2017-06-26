@@ -55,6 +55,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
     showFollowing = getArguments().getBoolean("showFollowing");
 
     if(useSearch) {
+      new SearchForUsers("").execute();
       buttonSearch.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
