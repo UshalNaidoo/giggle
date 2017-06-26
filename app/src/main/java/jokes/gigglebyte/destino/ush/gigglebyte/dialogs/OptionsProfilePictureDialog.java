@@ -11,12 +11,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
 
 public class OptionsProfilePictureDialog extends DialogFragment {
 
@@ -67,7 +66,7 @@ public class OptionsProfilePictureDialog extends DialogFragment {
       editUserProfilePictureDialog.setUri(contentUri);
       editUserProfilePictureDialog.show(activity.getFragmentManager(), "");
       dismiss();
-      UserProfileActivity.refreshFragment();
+      Fragment_Profile.refreshFragment();
     }
   }
 }

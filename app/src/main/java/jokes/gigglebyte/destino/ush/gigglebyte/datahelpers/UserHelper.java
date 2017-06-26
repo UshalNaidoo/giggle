@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 
 import android.graphics.Bitmap;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.UserProfileActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
@@ -25,7 +25,7 @@ public class UserHelper implements onSubmitListener {
     User user = (User) arg;
     saveUserDetails(activity, user);
     PostHelper.updatePosts(user.getId(), user.getName(), ImageHelper.getProfilePicture(user.getId()));
-    UserProfileActivity.refreshUser(user);
+    Fragment_Profile.refreshUser(user);
     UIHelper.updateScreen();
   }
 

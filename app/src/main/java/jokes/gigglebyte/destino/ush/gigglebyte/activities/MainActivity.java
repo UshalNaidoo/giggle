@@ -36,6 +36,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Favorite;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_User;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
@@ -51,6 +52,7 @@ public class MainActivity extends FragmentActivity {
   private static FloatingActionMenu menuDown;
   private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;
+  private Fragment_Profile fragment_profile;
   private Fragment_Feed fragment_feed;
   private Fragment_New fragment_new;
   private Fragment_Hot fragment_hot;
@@ -64,6 +66,7 @@ public class MainActivity extends FragmentActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     activity = this;
+    fragment_profile = new Fragment_Profile();
     fragment_feed = new Fragment_Feed();
     fragment_new = new Fragment_New();
     fragment_hot = new Fragment_Hot();
@@ -84,17 +87,15 @@ public class MainActivity extends FragmentActivity {
     pager.postDelayed(new Runnable() {
       @Override
       public void run() {
-        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 3, true);
+        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
       }
     },100);
 
     FloatingActionButton addPost = (FloatingActionButton) findViewById(R.id.addPost);
     FloatingActionButton addImage = (FloatingActionButton) findViewById(R.id.addImage);
-    FloatingActionButton viewProfile = (FloatingActionButton) findViewById(R.id.viewProfile);
 
     addPost.setOnClickListener(clickListener);
     addImage.setOnClickListener(clickListener);
-    viewProfile.setOnClickListener(clickListener);
 
     // Get intent, action and MIME type
     Intent intent = getIntent();
@@ -152,17 +153,9 @@ public class MainActivity extends FragmentActivity {
           ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
           imageByteOptionsDialog.show(getFragmentManager(), "");
           break;
-        case R.id.viewProfile:
-          viewProfile(activity);
-          break;
       }
     }
   };
-
-  public static void viewProfile(Activity activity) {
-    Intent profileIntent = new Intent(activity, UserProfileActivity.class);
-    activity.startActivity(profileIntent);
-  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -184,16 +177,18 @@ public class MainActivity extends FragmentActivity {
     public Fragment getItem(int i) {
       switch (i) {
         case 0:
-          return fragment_feed;
+          return fragment_profile;
         case 1:
-          return fragment_user;
+          return fragment_feed;
         case 2:
-          return fragment_tags;
+          return fragment_user;
         case 3:
-          return fragment_hot;
+          return fragment_tags;
         case 4:
-          return fragment_new;
+          return fragment_hot;
         case 5:
+          return fragment_new;
+        case 6:
           return fragment_favorite;
         default:
           return null;
@@ -202,23 +197,25 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public int getCount() {
-      return 6;
+      return 7;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
       switch (position) {
         case 0:
-          return activity.getResources().getString(R.string.tab_feed);
+          return activity.getResources().getString(R.string.tab_profile);
         case 1:
-          return activity.getResources().getString(R.string.tab_users);
+          return activity.getResources().getString(R.string.tab_feed);
         case 2:
-          return activity.getResources().getString(R.string.tab_tags);
+          return activity.getResources().getString(R.string.tab_users);
         case 3:
-          return activity.getResources().getString(R.string.tab_hot);
+          return activity.getResources().getString(R.string.tab_tags);
         case 4:
-          return activity.getResources().getString(R.string.tab_new);
+          return activity.getResources().getString(R.string.tab_hot);
         case 5:
+          return activity.getResources().getString(R.string.tab_new);
+        case 6:
           return activity.getResources().getString(R.string.tab_favourite);
         default:
           return "";
@@ -238,7 +235,7 @@ public class MainActivity extends FragmentActivity {
       }, 300);
     }
     else if (getFollowing().size() >0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 3) {
-        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 3, true);
+        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
     }
     else {
       if (SplashScreenActivity.serverCall != null) {
