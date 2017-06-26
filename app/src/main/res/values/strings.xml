@@ -24,7 +24,6 @@
   <string name="add_image">Add Image</string>
   <string name="add_comment">Add Comment</string>
   <string name="post">Post</string>
-  <string name="change_picture">Change Picture</string>
   <string name="gallery">Gallery</string>
   <string name="take_a_photo">Take A Photo</string>
   <string name="view_profile">View Profile</string>
@@ -35,9 +34,17 @@
   <string name="add_tags">Add Tags</string>
   <string name="flag">Flag</string>
 
-  <string name="tab_feed">Joke Feed</string>
+  <string name="tab_feed">Feed</string>
   <string name="tab_tags">Tags</string>
+  <string name="tab_users">Users</string>
   <string name="tab_new">New</string>
   <string name="tab_hot">Hot</string>
   <string name="tab_favourite">Favourite</string>
+
+  <string name="menu_change_picture">Change Picture</string>
+  <string name="menu_add_post">Add Post</string>
+  <string name="menu_add_image">Add Image</string>
+  <string name="menu_edit_profile">Edit Profile</string>
+  <string name="menu_edit_username">Edit Username</string>
+  <string name="menu_edit_description">Edit Description</string>
 </resources>
