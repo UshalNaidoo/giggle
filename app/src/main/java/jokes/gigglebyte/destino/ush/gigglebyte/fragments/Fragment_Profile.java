@@ -37,7 +37,7 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
 
   private static Activity activity;
 
-  private static FloatingActionMenu menuDown;
+  public static FloatingActionMenu menuDown;
   private ListView listView;
   private static TextView userName;
   private static User myProfile;
@@ -89,8 +89,6 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
       userName.setText(myProfile.getName());
       new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-
-    UIHelper.setActionBar(activity, "", true);
 
     FloatingActionButton changeNameFab = (FloatingActionButton) rootView.findViewById(R.id.changeNameFab);
     FloatingActionButton changeDescriptionFab = (FloatingActionButton) rootView.findViewById(R.id.changeDescriptionFab);

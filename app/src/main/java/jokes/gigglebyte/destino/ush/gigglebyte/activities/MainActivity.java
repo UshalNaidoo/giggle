@@ -59,6 +59,7 @@ public class MainActivity extends FragmentActivity {
   private Fragment_Favorite fragment_favorite;
   private Fragment_Search_Tag fragment_tags;
   private Fragment_Search_User fragment_user;
+  private int currentPosition = 0;
   public static List<Tag> loadedTags = new ArrayList<>();
   public static List<User> loadedUsers = new ArrayList<>();
 
@@ -87,7 +88,8 @@ public class MainActivity extends FragmentActivity {
     pager.postDelayed(new Runnable() {
       @Override
       public void run() {
-        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
+        currentPosition = getFollowing().size() > 0 ? 0 : 4;
+        pager.setCurrentItem(currentPosition, true);
       }
     },100);
 
@@ -234,6 +236,15 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
+    else if (currentPosition==0 && Fragment_Profile.menuDown.isOpened()) {
+      Fragment_Profile.menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          Fragment_Profile.menuDown.showMenuButton(true);
+        }
+      }, 300);
+    }
     else if (getFollowing().size() >0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 3) {
         pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
     }
@@ -259,7 +270,6 @@ public class MainActivity extends FragmentActivity {
   }
 
   private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
-    int currentPosition = 0;
 
     @Override
     public void onPageSelected(int newPosition) {
