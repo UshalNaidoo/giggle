@@ -232,10 +232,10 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
-    else
-      if (pager.getCurrentItem() != 0) {
-      pager.setCurrentItem(0, true);
-    } else {
+    else if (getFollowing().size() >0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 2) {
+        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 2, true);
+    }
+    else {
       if (SplashScreenActivity.serverCall != null) {
         SplashScreenActivity.serverCall.cancel(true);
       }
