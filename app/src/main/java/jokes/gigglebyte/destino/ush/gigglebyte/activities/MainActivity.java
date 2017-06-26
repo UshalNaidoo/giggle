@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.getFollowing;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -74,7 +76,7 @@ public class MainActivity extends FragmentActivity {
     pager.postDelayed(new Runnable() {
       @Override
       public void run() {
-        pager.setCurrentItem(0);
+        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 2, true);
       }
     },100);
 
