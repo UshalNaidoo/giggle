@@ -3,7 +3,6 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,13 +31,10 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddTextByteDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.ImageByteOptionsDialog;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Favorite;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Posts;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_Tag;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_User;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
@@ -56,11 +52,8 @@ public class MainActivity extends FragmentActivity {
   private static ViewPager pager;
   private Fragment_Profile fragment_profile;
   private Fragment_Feed fragment_feed;
-  private Fragment_New fragment_new;
-  private Fragment_Hot fragment_hot;
-  private Fragment_Favorite fragment_favorite;
-  private Fragment_Search_Tag fragment_tags;
-  private Fragment_Search_User fragment_user;
+  private Fragment_Posts fragment_posts;
+  private Fragment_Search fragment_search;
   private int currentPosition = 0;
   public static List<Tag> loadedTags = new ArrayList<>();
   public static List<User> loadedUsers = new ArrayList<>();
@@ -71,11 +64,8 @@ public class MainActivity extends FragmentActivity {
     activity = this;
     fragment_profile = new Fragment_Profile();
     fragment_feed = new Fragment_Feed();
-    fragment_new = new Fragment_New();
-    fragment_hot = new Fragment_Hot();
-    fragment_favorite = new Fragment_Favorite();
-    fragment_tags = new Fragment_Search_Tag();
-    fragment_user = new Fragment_Search_User();
+    fragment_posts = new Fragment_Posts();
+    fragment_search = new Fragment_Search();
 
     setContentView(R.layout.activity_main);
 
@@ -94,7 +84,7 @@ public class MainActivity extends FragmentActivity {
     pager.postDelayed(new Runnable() {
       @Override
       public void run() {
-        currentPosition = getFollowing().size() > 0 ? 0 : 4;
+        currentPosition = getFollowing().size() > 0 ? 0 : 2;
         pager.setCurrentItem(currentPosition, true);
       }
     },100);
@@ -189,15 +179,9 @@ public class MainActivity extends FragmentActivity {
         case 1:
           return fragment_feed;
         case 2:
-          return fragment_user;
+          return fragment_posts;
         case 3:
-          return fragment_tags;
-        case 4:
-          return fragment_hot;
-        case 5:
-          return fragment_new;
-        case 6:
-          return fragment_favorite;
+          return fragment_search;
         default:
           return null;
       }
@@ -205,7 +189,7 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public int getCount() {
-      return 7;
+      return 4;
     }
 
     @Override
@@ -216,15 +200,9 @@ public class MainActivity extends FragmentActivity {
         case 1:
           return activity.getResources().getString(R.string.tab_feed);
         case 2:
-          return activity.getResources().getString(R.string.tab_users);
+          return activity.getResources().getString(R.string.tab_posts);
         case 3:
-          return activity.getResources().getString(R.string.tab_tags);
-        case 4:
-          return activity.getResources().getString(R.string.tab_hot);
-        case 5:
-          return activity.getResources().getString(R.string.tab_new);
-        case 6:
-          return activity.getResources().getString(R.string.tab_favourite);
+          return activity.getResources().getString(R.string.tab_search);
         default:
           return "";
       }
@@ -251,8 +229,8 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
-    else if (getFollowing().size() > 0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 4) {
-        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 4, true);
+    else if (getFollowing().size() > 0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 2) {
+        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 2, true);
     }
     else {
       if (SplashScreenActivity.serverCall != null) {
@@ -306,6 +284,6 @@ public class MainActivity extends FragmentActivity {
         }
       }, 300);
     }
-
   }
+
 }
