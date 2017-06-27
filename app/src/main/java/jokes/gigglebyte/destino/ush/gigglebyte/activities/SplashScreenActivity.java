@@ -25,6 +25,7 @@ public class SplashScreenActivity extends Activity {
   private TextView loadingText;
   public static RegisterWithServer serverCall;
   private String PROJECT_NUMBER="974166531337";
+  private volatile boolean running = true;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,13 @@ public class SplashScreenActivity extends Activity {
     serverCall.execute();
   }
 
+  @Override
+  public void onBackPressed() {
+    running = false;
+  }
+
   class RegisterWithServer extends AsyncTask<Integer, Integer, String> {
 
-    private volatile boolean running = true;
 
     @Override
     protected String doInBackground(Integer... params) {
@@ -105,7 +110,9 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onPostExecute(String result) {
       progressBar.setVisibility(View.GONE);
-      startActivity(new Intent(activity, MainActivity.class));
+      if (running) {
+        startActivity(new Intent(activity, MainActivity.class));
+      }
       finish();
     }
 
@@ -113,6 +120,7 @@ public class SplashScreenActivity extends Activity {
     protected void onCancelled() {
       running = false;
     }
+
 
     @Override
     protected void onProgressUpdate(Integer... values) {
