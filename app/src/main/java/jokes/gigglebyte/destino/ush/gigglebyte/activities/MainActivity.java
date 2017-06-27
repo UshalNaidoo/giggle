@@ -37,6 +37,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_User;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
@@ -59,8 +60,9 @@ public class MainActivity extends FragmentActivity {
   private Fragment_New fragment_new;
   private Fragment_Hot fragment_hot;
   private Fragment_Favorite fragment_favorite;
-  private Fragment_Search_Tag fragment_tags;
-  private Fragment_Search_User fragment_user;
+  private Fragment_Search fragment_search;
+//  private Fragment_Search_Tag fragment_tags;
+//  private Fragment_Search_User fragment_user;
   private int currentPosition = 0;
   public static List<Tag> loadedTags = new ArrayList<>();
   public static List<User> loadedUsers = new ArrayList<>();
@@ -74,8 +76,9 @@ public class MainActivity extends FragmentActivity {
     fragment_new = new Fragment_New();
     fragment_hot = new Fragment_Hot();
     fragment_favorite = new Fragment_Favorite();
-    fragment_tags = new Fragment_Search_Tag();
-    fragment_user = new Fragment_Search_User();
+    fragment_search = new Fragment_Search();
+//    fragment_tags = new Fragment_Search_Tag();
+//    fragment_user = new Fragment_Search_User();
 
     setContentView(R.layout.activity_main);
 
@@ -189,14 +192,14 @@ public class MainActivity extends FragmentActivity {
         case 1:
           return fragment_feed;
         case 2:
-          return fragment_user;
+          return fragment_search;
+//        case 3:
+//          return fragment_tags;
         case 3:
-          return fragment_tags;
-        case 4:
           return fragment_hot;
-        case 5:
+        case 4:
           return fragment_new;
-        case 6:
+        case 5:
           return fragment_favorite;
         default:
           return null;
@@ -205,7 +208,7 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public int getCount() {
-      return 7;
+      return 6;
     }
 
     @Override
@@ -223,8 +226,8 @@ public class MainActivity extends FragmentActivity {
           return activity.getResources().getString(R.string.tab_hot);
         case 5:
           return activity.getResources().getString(R.string.tab_new);
-        case 6:
-          return activity.getResources().getString(R.string.tab_favourite);
+//        case 6:
+//          return activity.getResources().getString(R.string.tab_favourite);
         default:
           return "";
       }
