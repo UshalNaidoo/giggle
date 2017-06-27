@@ -2,7 +2,9 @@ package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
+import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class Fragment_Hot extends Fragment implements FragmentLifecycle {
 
@@ -22,8 +25,30 @@ public class Fragment_Hot extends Fragment implements FragmentLifecycle {
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
-    Activity activity = this.getActivity();
+    final Activity activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_post_list, container, false);
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            Thread thread = new Thread() {
+              @Override
+              public void run() {
+                PostHelper.initialiseHotPosts(activity, ConnectToServer.getHotPosts());
+              }
+            };
+            thread.start();
+          }
+        }, 200);
+        refreshList();
+      }
+    });
+
     ListView listView = (ListView) rootView.findViewById(R.id.listView);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override

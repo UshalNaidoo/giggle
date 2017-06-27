@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,29 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
     activity = this.getActivity();
 
     View rootView = inflater.inflate(R.layout.activity_user_profile, container, false);
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            Thread thread = new Thread() {
+              @Override
+              public void run() {
+                FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(myProfile.getId()));
+                myProfile.setFollowers(FollowHelper.getFollowers());
+                new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+              }
+            };
+            thread.start();
+          }
+        }, 200);
+      }
+    });
+
 
     menuDown = (FloatingActionMenu) rootView.findViewById(R.id.menu_down);
     userName = (TextView) rootView.findViewById(R.id.userName);
