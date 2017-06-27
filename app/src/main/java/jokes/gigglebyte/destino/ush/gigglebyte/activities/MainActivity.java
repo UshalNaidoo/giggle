@@ -3,6 +3,7 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -76,6 +78,10 @@ public class MainActivity extends FragmentActivity {
     fragment_user = new Fragment_Search_User();
 
     setContentView(R.layout.activity_main);
+
+    PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
+    pagerTabStrip.setTabIndicatorColor(activity.getResources().getColor(R.color.app_primary_dark));
+
     pager = (ViewPager) findViewById(R.id.pager);
     swipePagerAdapter = new SwipePagerAdapter(getSupportFragmentManager());
     pager.setAdapter(swipePagerAdapter);
