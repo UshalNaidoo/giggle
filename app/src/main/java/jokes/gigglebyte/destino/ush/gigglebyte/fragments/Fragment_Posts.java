@@ -12,10 +12,10 @@ import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
-public class Fragment_Search extends Fragment  implements FragmentLifecycle {
+public class Fragment_Posts extends Fragment implements FragmentLifecycle {
   private FragmentTabHost tabHost;
 
-  public Fragment_Search() {
+  public Fragment_Posts() {
   }
 
   public void onCreate(Bundle savedInstanceState) {
@@ -29,14 +29,18 @@ public class Fragment_Search extends Fragment  implements FragmentLifecycle {
     tabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
     tabHost.setup(getActivity(), getChildFragmentManager(), R.id.content);
 
-    tabHost.addTab(tabHost.newTabSpec("users").setIndicator(getActivity().getResources().getString(R.string.tab_users)),Fragment_Search_User.class, null);
-    tabHost.addTab(tabHost.newTabSpec("tags").setIndicator(getActivity().getResources().getString(R.string.tab_tags)),Fragment_Search_Tag.class, null);
+    tabHost.addTab(tabHost.newTabSpec("hot").setIndicator(getActivity().getResources().getString(R.string.tab_hot)), Fragment_Hot.class, null);
+    tabHost.addTab(tabHost.newTabSpec("new").setIndicator(getActivity().getResources().getString(R.string.tab_new)), Fragment_New.class, null);
+    tabHost.addTab(tabHost.newTabSpec("favourite").setIndicator(getActivity().getResources().getString(R.string.tab_favourite)), Fragment_Favorite.class, null);
     tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
+    tabHost.getTabWidget().getChildAt(2).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     TextView selectedTabText = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
     selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.white));
-    TextView unSelectedTabText = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
-    unSelectedTabText.setTextColor(getActivity().getResources().getColor(R.color.gray));
+    TextView unSelectedTabText1 = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
+    unSelectedTabText1.setTextColor(getActivity().getResources().getColor(R.color.gray));
+    TextView unSelectedTabText2 = (TextView) tabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title);
+    unSelectedTabText2.setTextColor(getActivity().getResources().getColor(R.color.gray));
     tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
       @Override
       public void onTabChanged(String tabId) {

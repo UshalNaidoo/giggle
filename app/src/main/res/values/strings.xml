@@ -42,6 +42,7 @@
   <string name="tab_hot">Hot</string>
   <string name="tab_favourite">Favourite</string>
   <string name="tab_search">Search</string>
+  <string name="tab_posts">Posts</string>
 
   <string name="menu_change_picture">Change Picture</string>
   <string name="menu_add_post">Add Post</string>
