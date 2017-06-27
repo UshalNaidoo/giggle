@@ -1,12 +1,9 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
-import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SplashHelper.getLoadingMessages;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +16,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.notifications.GCMClientManager;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
+
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SplashHelper.getLoadingMessages;
 
 public class SplashScreenActivity extends Activity {
   private Activity activity;

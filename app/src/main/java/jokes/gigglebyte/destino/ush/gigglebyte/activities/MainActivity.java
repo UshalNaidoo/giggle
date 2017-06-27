@@ -3,7 +3,6 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,8 +37,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Hot;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_Tag;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_User;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
@@ -219,13 +216,13 @@ public class MainActivity extends FragmentActivity {
         case 1:
           return activity.getResources().getString(R.string.tab_feed);
         case 2:
-          return activity.getResources().getString(R.string.tab_users);
+          return activity.getResources().getString(R.string.tab_search);
         case 3:
-          return activity.getResources().getString(R.string.tab_tags);
-        case 4:
           return activity.getResources().getString(R.string.tab_hot);
-        case 5:
+        case 4:
           return activity.getResources().getString(R.string.tab_new);
+        case 5:
+          return activity.getResources().getString(R.string.tab_favourite);
 //        case 6:
 //          return activity.getResources().getString(R.string.tab_favourite);
         default:
