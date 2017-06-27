@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="app_name">Gigglebyte</string>newUserDescription
+  <string name="app_name">Gigglebyte</string>
   <string name="hello_world">Hello world!</string>
   <string name="action_settings">Settings</string>
   <string name="newUserDescription">I\'m new to Gigglebyte</string>
@@ -48,4 +48,47 @@
   <string name="menu_edit_profile">Edit Profile</string>
   <string name="menu_edit_username">Edit Username</string>
   <string name="menu_edit_description">Edit Description</string>
+
+  <string name="loadMessage0">Collecting funny jokes</string>
+  <string name="loadMessage1">Lifting weights</string>
+  <string name="loadMessage2">Looking for my keys</string>
+  <string name="loadMessage3">Misspelling random words in your posts</string>
+  <string name="loadMessage4">Making you wait</string>
+  <string name="loadMessage5">Don\'t Panic</string>
+  <string name="loadMessage6">Removing zeros, keeping ones</string>
+  <string name="loadMessage7">Talking smack</string>
+  <string name="loadMessage8">Stay a while and listen</string>
+  <string name="loadMessage9">Lok Tar</string>
+  <string name="loadMessage10">Eating your ice cream</string>
+  <string name="loadMessage11">Your momma…is nice</string>
+  <string name="loadMessage12">Need a hug?</string>
+  <string name="loadMessage13">Have you lost weight?</string>
+  <string name="loadMessage14">Flipping tables</string>
+  <string name="loadMessage15">Twiddling thumbs</string>
+  <string name="loadMessage16">Browsing the web</string>
+  <string name="loadMessage17">Look, I am your father</string>
+  <string name="loadMessage18">Spinning spinners</string>
+  <string name="loadMessage19">Deleting the internet</string>
+  <string name="loadMessage20">Ctrl Alt Del! Ctrl Alt Delete!</string>
+  <string name="loadMessage21">Switching off and on again</string>
+  <string name="loadMessage22">Delete * from Google</string>
+  <string name="loadMessage23">Generic loading message</string>
+  <string name="loadMessage24">Letting the dogs out</string>
+  <string name="loadMessage25">Unfollowing friends</string>
+  <string name="loadMessage26">Stretching</string>
+  <string name="loadMessage27">Brushing teeth</string>
+  <string name="loadMessage28">Does Anyone Actually Read This?</string>
+  <string name="loadMessage29">You\'re looking great today</string>
+  <string name="loadMessage30">Have you lost weight?</string>
+  <string name="loadMessage31">Generating typos</string>
+  <string name="loadMessage32">Banana for scale</string>
+  <string name="loadMessage33">The cake is lying</string>
+  <string name="loadMessage34">Fly you fools</string>
+  <string name="loadMessage35">Barrens chat: LFG WC</string>
+  <string name="loadMessage36">Tap two lands</string>
+  <string name="loadMessage37">Quick Scope</string>
+  <string name="loadMessage38">The first rule of Fight club is… mmffurrg</string>
+  <string name="loadMessage39">Reposting generic post</string>
+  <string name="loadMessage40">GG ez</string>
+  <string name="loadMessage41">Pushing my luck</string>
 </resources>
