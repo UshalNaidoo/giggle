@@ -15,17 +15,24 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsCommentDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
 public class CommentViewHolder extends UserProfilePictureHolder{
 
   public LinearLayout layout;
+  public TextView userName;
   public TextView commentText;
   public TextView likes;
   public ImageView likeImage;
 
   private Comment comment;
   private Activity activity;
+
+  public void setUserData(final Activity activity, final User user, OpenScreen screenToOpen) {
+    setUserProfile(activity, user, screenToOpen);
+    userName.setText(user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName() );
+  }
 
   public void setData(final Activity activity, Comment comment) {
     this.comment = comment;

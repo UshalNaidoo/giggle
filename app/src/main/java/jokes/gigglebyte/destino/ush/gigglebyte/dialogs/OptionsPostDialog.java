@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
@@ -63,7 +64,8 @@ public class OptionsPostDialog extends DialogFragment {
     buttonCommentsView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (fromScreen != FromScreen.BYTE) {
+        if (fromScreen != FromScreen.BYTE && fromScreen != FromScreen.COMMENTS) {
+          MainActivity.selectedPost = post;
           Intent myIntent = new Intent(activity, CommentActivity.class);
           myIntent.putExtra("postId", getPost().getPostId());
           myIntent.putExtra("posterId", getPost().getUser().getId());

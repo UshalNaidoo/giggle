@@ -163,10 +163,9 @@ public class PostViewHolder extends UserGridViewHolder {
         Runnable singleClick = new Runnable() {
           @Override
           public void run() {
-            if (!isDoubleClick) {
+            if (!isDoubleClick && fromScreen != FromScreen.COMMENTS) {
               Intent myIntent = new Intent(activity, CommentActivity.class);
               MainActivity.selectedPost = post;
-
               myIntent.putExtra("postId", post.getPostId());
               myIntent.putExtra("posterId", post.getUser().getId());
               activity.startActivity(myIntent);

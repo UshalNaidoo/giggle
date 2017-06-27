@@ -48,6 +48,7 @@
   <string name="menu_edit_profile">Edit Profile</string>
   <string name="menu_edit_username">Edit Username</string>
   <string name="menu_edit_description">Edit Description</string>
+  <string name="menu_add_comment">Add Comment</string>
 
   <string name="loadMessage0">Collecting funny jokes</string>
   <string name="loadMessage1">Lifting weights</string>

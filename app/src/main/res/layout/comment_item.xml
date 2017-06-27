@@ -9,12 +9,6 @@
     android:gravity="center_vertical"
     android:background="@color/main_black">
 
-  <View android:id="@+id/primerdivisor"
-        android:layout_height="2dp"
-        android:layout_width="fill_parent"
-        android:background="@color/app_primary_dark"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"/>
 
   <LinearLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,28 +48,39 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginStart="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
       <TextView
-          android:id="@+id/commentText"
+          android:id="@+id/userName"
           android:layout_width="fill_parent"
           android:layout_height="0dp"
           android:textSize="18sp"
+          android:gravity="start"
+          android:layout_weight="1"
+          android:textColor="@color/app_grey"
+          android:background="@color/main_black"/>
+      <TextView
+          android:id="@+id/commentText"
+          android:layout_width="fill_parent"
+          android:layout_height="0dp"
+          android:textSize="16sp"
           android:layout_marginLeft="8dp"
           android:layout_marginRight="8dp"
           android:gravity="start"
           android:layout_weight="1"
           android:textColor="@color/white"
-          android:background="@color/main_black"/>
+          android:background="@color/main_black"
+          android:layout_marginTop="8dp"/>
 
       <LinearLayout
           xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_marginTop="8dp"
           android:layout_width="fill_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:gravity="end">
+          android:orientation="horizontal">
         <ImageView
             android:id="@+id/likeImage"
             android:layout_marginEnd="5dip"
@@ -93,6 +98,13 @@
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
       </LinearLayout>
+      <View android:id="@+id/primerdivisor"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_width="fill_parent"
+            android:background="@color/app_grey"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"/>
     </LinearLayout>
   </LinearLayout>
 </LinearLayout>

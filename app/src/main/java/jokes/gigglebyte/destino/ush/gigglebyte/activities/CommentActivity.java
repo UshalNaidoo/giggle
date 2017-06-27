@@ -102,7 +102,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
 
     @Override
     protected void onPostExecute(List<Comment> comm) {
-      commentListAdapter = new CommentListAdapter(activity, comm);
+      commentListAdapter = new CommentListAdapter(activity, comm, MainActivity.selectedPost);
       listView.setAdapter(commentListAdapter);
 
       SharedPreferences sharedPreferences = activity.getSharedPreferences("COMMENT_LIKES", MODE_PRIVATE);
