@@ -6,8 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,20 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
     View rootView = inflater.inflate(R.layout.fragment_search_user, container, false);
     Button buttonSearch = (Button) rootView.findViewById(R.id.buttonSearch);
     searchField = (EditText) rootView.findViewById(R.id.search);
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            new SearchForUsers("", false).execute();
+          }
+        }, 200);
+      }
+    });
 
     gridView = (GridView) rootView.findViewById(R.id.gridView);
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
