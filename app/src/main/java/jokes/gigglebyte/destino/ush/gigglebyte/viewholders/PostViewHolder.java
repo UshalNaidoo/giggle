@@ -30,8 +30,7 @@ public class PostViewHolder extends UserGridViewHolder {
 
   public LinearLayout layout;
   public TextView timeSince;
-  public TextView likes;
-  public TextView comments;
+  public TextView postInfo;
   public TextView tags;
   public ImageView likeImage;
   public ImageView favoriteImage;
@@ -46,9 +45,12 @@ public class PostViewHolder extends UserGridViewHolder {
     this.activity = activity;
     this.post = post;
     this.fromScreen = from;
-    timeSince.setText(post.getTimeSincePost());
-    comments.setText(String.valueOf(post.getCommentCount()));
-    likes.setText(String.valueOf(post.getLikes()));
+
+    if (timeSince != null) {
+      timeSince.setText(post.getTimeSincePost());
+    }
+
+    postInfo.setText(getPostInfoText(activity, post.getLikes(), post.getCommentCount()));
     final View finalConvertView = convertView;
     shareImage.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -106,13 +108,6 @@ public class PostViewHolder extends UserGridViewHolder {
       }
     });
 
-    likes.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        likePost();
-      }
-    });
-
     favoriteImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -129,6 +124,12 @@ public class PostViewHolder extends UserGridViewHolder {
       });
     }
 
+  }
+
+  private String getPostInfoText(Activity activity, int likes, int comments) {
+    String numberOfLikes = String.valueOf(likes) + " " + (likes == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
+    String numberOfComments = String.valueOf(comments) + " " + (comments == 1 ? activity.getResources().getString(R.string.comment) :  activity.getResources().getString(R.string.comments));
+    return numberOfLikes + " . " + numberOfComments;
   }
 
   View.OnLongClickListener longClickListener(final int userId) {
@@ -148,7 +149,7 @@ public class PostViewHolder extends UserGridViewHolder {
     optionsPostDialog.setPost(post);
     optionsPostDialog.setFromAdapter(this.fromScreen);
     optionsPostDialog.setLikeImage(likeImage);
-    optionsPostDialog.setLikes(likes);
+//    optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");
   }
 
@@ -187,14 +188,18 @@ public class PostViewHolder extends UserGridViewHolder {
   }
 
   private void likePost() {
+    int likes;
+    PostHelper.PostAction action;
     if (post.isUserLike()) {
-      likes.setText(String.valueOf(post.getLikes() - 1));
-      PostHelper.adjustPost(activity, likeImage, PostHelper.PostAction.UNLIKE_POST, post.getLikes() - 1, post);
+      likes = post.getLikes() - 1;
+      action = PostHelper.PostAction.UNLIKE_POST;
     } else {
+      likes = post.getLikes() + 1;
+      action = PostHelper.PostAction.LIKE_POST;
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
-      likes.setText(String.valueOf(post.getLikes() + 1));
-      PostHelper.adjustPost(activity, likeImage, PostHelper.PostAction.LIKE_POST, post.getLikes() + 1, post);
     }
+    postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
+    PostHelper.adjustPost(activity, likeImage, action , likes, post);
   }
 
   private void favoritePost() {

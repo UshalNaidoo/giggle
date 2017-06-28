@@ -39,7 +39,8 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     this.activity = activity;
     setUserProfile(activity, comment.getUser(), OpenScreen.PROFILE);
     commentText.setText(comment.getCommentText());
-    likes.setText(String.valueOf(comment.getLikes()));
+    String likeAmount = String.valueOf(comment.getLikes()) + " " + (comment.getLikes() == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
+    likes.setText(likeAmount);
     final int userId = comment.getUser().getId();
 
     commentText.setOnClickListener(doubleClickChecker());
@@ -52,6 +53,12 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     //    else {
     //
     //    }
+
+    if(comment.isUserLike()) {
+      likeImage.setImageResource(R.drawable.star_like);
+    }else {
+      likeImage.setImageResource(R.drawable.star_unlike);
+    }
 
     likeImage.setOnClickListener(new View.OnClickListener() {
       @Override

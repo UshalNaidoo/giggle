@@ -1,7 +1,6 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.adapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,12 +60,10 @@ public class PostListAdapter extends BaseAdapter {
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
       holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
 
-      holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
+      holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
       holder.tags =  (TextView) convertView.findViewById(R.id.tags);
       holder.postText = (TextView) convertView.findViewById(R.id.postText);
-      holder.likes = (TextView) convertView.findViewById(R.id.likes);
       holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-      holder.comments = (TextView) convertView.findViewById(R.id.comments);
       holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
       holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
       holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
@@ -88,10 +85,8 @@ public class PostListAdapter extends BaseAdapter {
 
       holder.title = (TextView) convertView.findViewById(R.id.title);
       holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
-      holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
+      holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
       holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-      holder.likes = (TextView) convertView.findViewById(R.id.likes);
-      holder.comments = (TextView) convertView.findViewById(R.id.comments);
       holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
       holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
       holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);

@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.adapters;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
@@ -70,12 +71,10 @@ public class CommentListAdapter extends BaseAdapter {
         holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
         holder.followButton = (ImageView) row.findViewById(R.id.followButton);
 
-        holder.timeSince = (TextView) row.findViewById(R.id.timeSince);
         holder.tags =  (TextView) row.findViewById(R.id.tags);
         holder.postText = (TextView) row.findViewById(R.id.postText);
-        holder.likes = (TextView) row.findViewById(R.id.likes);
+        holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
         holder.layout = (LinearLayout) row.findViewById(R.id.layout);
-        holder.comments = (TextView) row.findViewById(R.id.comments);
         holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
         holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
         holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
@@ -96,10 +95,8 @@ public class CommentListAdapter extends BaseAdapter {
 
         holder.title = (TextView) row.findViewById(R.id.title);
         holder.postImage = (ImageView) row.findViewById(R.id.postImage);
-        holder.timeSince = (TextView) row.findViewById(R.id.timeSince);
+        holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
         holder.tags =  (TextView) row.findViewById(R.id.tags);
-        holder.likes = (TextView) row.findViewById(R.id.likes);
-        holder.comments = (TextView) row.findViewById(R.id.comments);
         holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
         holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
         holder.layout = (LinearLayout) row.findViewById(R.id.layout);
