@@ -19,6 +19,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostInfoViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostTextViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserListViewHolder;
 
@@ -102,7 +103,16 @@ public class PosterProfileListAdapter extends BaseAdapter {
         holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
         convertView.setTag(holder);
         holder.setImagePostData(activity, this, convertView, post, fromScreen);
-       }
+      } else if (post.getType() == PostType.INFO_POST) {
+        final PostInfoViewHolder holder;
+        convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
+        holder = new PostInfoViewHolder();
+
+        holder.title = (TextView) convertView.findViewById(R.id.title);
+        holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
+        convertView.setTag(holder);
+        holder.setPostData(activity, post, fromScreen);
+      }
     }
     return convertView;
   }

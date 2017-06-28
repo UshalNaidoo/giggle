@@ -13,26 +13,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostInfoViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserGridViewHolder;
 
 public class UserGridAdapter extends BaseAdapter {
 
   private Activity activity;
   private List<User> users = new ArrayList<>();
+  private boolean userList;
+  private Post infoPost;
+  private FromScreen fromScreen;
 
-  public UserGridAdapter(Activity activity, List<User> results) {
+  public UserGridAdapter(Activity activity, List<User> results, boolean userList, Post infoPost, FromScreen fromScreen) {
     this.activity = activity;
     this.users = results;
+    this.fromScreen = fromScreen;
+    this.userList = userList;
+    this.infoPost = infoPost;
   }
 
   @Override
   public int getCount() {
+    if (userList && users.size() == 0) {
+      return 1;
+    }
     return users.size();
   }
 
   @Override
   public Object getItem(int arg0) {
+    if (userList && users.size() == 0) {
+      return null;
+    }
     return users.get(arg0);
   }
 
@@ -43,27 +58,40 @@ public class UserGridAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    UserGridViewHolder holder;
 
     LayoutInflater inflater = activity.getLayoutInflater();
-    convertView = inflater.inflate(R.layout.grid_user_item, parent, false);
-    holder = new UserGridViewHolder();
-    holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
-    holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-    TextView numberOfFollowing = (TextView) convertView.findViewById(R.id.numberOfFollowing);
-    TextView numberOfPosts = (TextView) convertView.findViewById(R.id.numberOfPosts);
-    convertView.setTag(holder);
+    if (userList && users.size() == 0) {
+      final PostInfoViewHolder holder;
+      convertView = inflater.inflate(R.layout.post_info_item, parent, false);
+      holder = new PostInfoViewHolder();
+      holder.title = (TextView) convertView.findViewById(R.id.title);
+      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
+      convertView.setTag(holder);
+      holder.setPostData(activity, infoPost, fromScreen);
+    }
+    else {
+      UserGridViewHolder holder;
 
-    User user = users.get(position);
-    holder.setUserData(activity, user, null);
+      convertView = inflater.inflate(R.layout.grid_user_item, parent, false);
+      holder = new UserGridViewHolder();
+      holder.userName = (TextView) convertView.findViewById(R.id.userName);
+      holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
+      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+      TextView numberOfFollowing = (TextView) convertView.findViewById(R.id.numberOfFollowing);
+      TextView numberOfPosts = (TextView) convertView.findViewById(R.id.numberOfPosts);
+      convertView.setTag(holder);
 
-    String numberOfFollowingSuffix = user.getNumberOfFollowers() == 1 ? activity.getResources().getString(R.string.follower) : activity.getResources().getString(R.string.followers);
-    String numberOfPostsSuffix = user.getNumberOfPosts() == 1 ? activity.getResources().getString(R.string.post) : activity.getResources().getString(R.string.posts);
-    numberOfFollowing.setText(user.getNumberOfFollowers() + " " + numberOfFollowingSuffix);
-    numberOfPosts.setText(user.getNumberOfPosts() + " " + numberOfPostsSuffix);
+      User user = users.get(position);
+      holder.setUserData(activity, user, null);
 
+      String numberOfFollowingSuffix = user.getNumberOfFollowers() == 1 ? activity.getResources().getString(R.string.follower) :
+                                       activity.getResources().getString(R.string.followers);
+      String numberOfPostsSuffix =
+          user.getNumberOfPosts() == 1 ? activity.getResources().getString(R.string.post) : activity.getResources().getString(R.string.posts);
+      numberOfFollowing.setText(user.getNumberOfFollowers() + " " + numberOfFollowingSuffix);
+      numberOfPosts.setText(user.getNumberOfPosts() + " " + numberOfPostsSuffix);
+    }
     return convertView;
   }
 

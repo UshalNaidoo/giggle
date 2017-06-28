@@ -1,8 +1,10 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.FollowersActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Posts;
@@ -15,7 +17,7 @@ public class PostInfoViewHolder extends PostViewHolder {
   public TextView title;
 
 
-  public void setPostData(final Post post, final FromScreen from) {
+  public void setPostData(final Activity activity, final Post post, final FromScreen from) {
     title.setText(post.getPostTitle());
     postImage.setImageBitmap(post.getPostPicture());
     title.setText(post.getPostTitle());
@@ -29,6 +31,17 @@ public class PostInfoViewHolder extends PostViewHolder {
         }
         if (FromScreen.FAVOURITE.equals(from)) {
           Fragment_Posts.switchTab(0);
+        }
+        if (FromScreen.USER.equals(from)) {
+          MainActivity.popUpAddText(activity);
+        }
+        if (FromScreen.FOLLOWING.equals(from)) {
+          FollowersActivity.closeActivity();
+          MainActivity.changeTab(3);
+          Fragment_Search.switchTab(0);
+        }
+        if (FromScreen.FOLLOWERS.equals(from)) {
+          MainActivity.popUpAddText(activity);
         }
       }
     });

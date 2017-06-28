@@ -44,7 +44,7 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.g
 
 public class MainActivity extends FragmentActivity {
 
-  private Activity activity;
+  private static Activity activity;
   public static Post selectedPost;
   public static Map<Integer, Bitmap> cachedProfilePictures = new HashMap<>();
   private static FloatingActionMenu menuDown;
@@ -138,14 +138,9 @@ public class MainActivity extends FragmentActivity {
   private View.OnClickListener clickListener = new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-      User user = UserHelper.getUserDetails(activity);
       switch (v.getId()) {
         case R.id.addPost:
-          AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
-          addTextByteDialog.setListener(new PostHelper());
-          addTextByteDialog.setUserId(user.getId());
-          addTextByteDialog.setUserName(user.getName());
-          addTextByteDialog.show(getFragmentManager(), "");
+          popUpAddText(activity);
           break;
         case R.id.addImage:
           ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
@@ -154,6 +149,15 @@ public class MainActivity extends FragmentActivity {
       }
     }
   };
+
+  public static void popUpAddText(Activity activity) {
+    User user = UserHelper.getUserDetails(activity);
+    AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
+    addTextByteDialog.setListener(new PostHelper());
+    addTextByteDialog.setUserId(user.getId());
+    addTextByteDialog.setUserName(user.getName());
+    addTextByteDialog.show(activity.getFragmentManager(), "");
+  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {

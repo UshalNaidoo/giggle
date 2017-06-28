@@ -1,6 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
@@ -30,6 +32,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsProfilePictureDial
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
@@ -161,9 +164,13 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
     protected void onPostExecute(String result) {
       result = "{\"posts\":" + result + "}";
       List<Post> posts = JsonParser.GetPosts(result);
+
       posts = getPostStatus(activity, posts);
       PostHelper.setPostsForUser(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, myProfile, FromScreen.USER);
+
+      List<Post> infoPost = new ArrayList<>();
+      infoPost.add(new Post(activity.getResources().getString(R.string.info_add_post), BitmapFactory.decodeResource(activity.getResources(), R.drawable.plus), PostType.INFO_POST));
+      adapter = new PosterProfileListAdapter(activity, posts.size() > 0 ? posts : infoPost, myProfile, FromScreen.USER);
       listView.setAdapter(adapter);
     }
   }

@@ -1,7 +1,11 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,11 +18,14 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.UserGridAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class FollowersActivity extends Activity {
 
-  private Activity activity;
+  private static Activity activity;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class FollowersActivity extends Activity {
 
     Intent intent = getIntent();
     final boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
+    final boolean userList = intent.getBooleanExtra("userList", false);
 
     UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
 
@@ -36,17 +44,34 @@ public class FollowersActivity extends Activity {
       public void onItemClick(AdapterView<?> parent, View v,
           int position, long id) {
         User selectedUser = (User) parent.getItemAtPosition(position);
-        Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-        myIntent.putExtra("userId", selectedUser.getId());
-        activity.startActivity(myIntent);
+        if (selectedUser != null) {
+          Intent myIntent = new Intent(activity, PosterProfileActivity.class);
+          myIntent.putExtra("userId", selectedUser.getId());
+          activity.startActivity(myIntent);
+        }
       }
     });
 
+    Post infoPost = new Post();
+    if(userList) {
+      if (showFollowing) {
+        infoPost = new Post(activity.getResources().getString(R.string.info_follow),
+                              BitmapFactory.decodeResource(activity.getResources(), R.drawable.follow), PostType.INFO_POST);
+      }
+      else {
+        infoPost = new Post(activity.getResources().getString(R.string.info_add_post),
+                              BitmapFactory.decodeResource(activity.getResources(), R.drawable.plus), PostType.INFO_POST);
+      }
+    }
+
+    final FromScreen fromScreen = !userList ? null : showFollowing ? FromScreen.FOLLOWING : FromScreen.FOLLOWERS;
+    List<User> users = showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers();
     final UserGridAdapter[] gridAdapter =
-        { new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers()) };
+        { new UserGridAdapter(activity, users, userList, infoPost, fromScreen) };
     gridView.setAdapter(gridAdapter[0]);
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+    final Post finalInfoPost = infoPost;
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override
       public void onRefresh() {
@@ -59,7 +84,8 @@ public class FollowersActivity extends Activity {
             Thread thread = new Thread() {
               @Override
               public void run() {
-                gridAdapter[0] = new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers());
+                List<User> users = showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers();
+                gridAdapter[0] = new UserGridAdapter(activity, users, userList, finalInfoPost, fromScreen);
               }
             };
             thread.start();
@@ -69,6 +95,10 @@ public class FollowersActivity extends Activity {
       }
     });
 
+  }
+
+  public static void closeActivity() {
+    activity.finish();
   }
 
   @Override
