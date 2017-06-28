@@ -3,6 +3,8 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.widget.ListView;
 
@@ -27,12 +29,28 @@ public class TagActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_tags);
+    setContentView(R.layout.fragment_post_list);
     activity = this;
     listView = (ListView) findViewById(R.id.listView);
 
     tag = getIntent().getStringExtra("tag");
     UIHelper.setActionBar(activity);
+
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          }
+        }, 200);
+      }
+    });
+
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 

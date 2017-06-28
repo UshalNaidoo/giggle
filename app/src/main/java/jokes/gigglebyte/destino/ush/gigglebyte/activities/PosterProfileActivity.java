@@ -3,6 +3,8 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
@@ -48,6 +50,21 @@ public class PosterProfileActivity extends Activity {
     userId = getIntent().getIntExtra("userId", 0);
 
     toastWithImage = new ToastWithImage(this);
+
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          }
+        }, 200);
+      }
+    });
 
     UIHelper.setActionBar(activity);
     new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

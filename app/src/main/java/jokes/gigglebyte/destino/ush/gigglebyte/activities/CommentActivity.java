@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -19,6 +20,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.CommentListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddCommentDialog;
@@ -52,6 +54,21 @@ public class CommentActivity extends Activity implements onSubmitListener {
     posterId = intent.getIntExtra("posterId", 0);
 
     new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+            new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+          }
+        }, 200);
+      }
+    });
 
     UIHelper.setActionBar(this, getResources().getString(R.string.comments), true);
 

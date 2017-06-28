@@ -14,6 +14,7 @@ import android.widget.ListView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -39,7 +40,7 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
             Thread thread = new Thread() {
               @Override
               public void run() {
-                PostHelper.initialiseFeedPosts(activity, ConnectToServer.getFeed(22));
+                PostHelper.initialiseFeedPosts(activity, ConnectToServer.getFeed(UserHelper.getUsersId(activity)));
               }
             };
             thread.start();
