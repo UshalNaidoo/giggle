@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.FollowersActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
@@ -29,6 +30,7 @@ public class UserListViewHolder extends UserProfilePictureHolder{
       public void onClick(View view) {
         Intent intent = new Intent(activity, FollowersActivity.class);
         intent.putExtra("showFollowing", false);
+        intent.putExtra("userList", user.getId() == UserHelper.getUsersId(activity));
         activity.startActivity(intent);
       }
     });
@@ -38,6 +40,7 @@ public class UserListViewHolder extends UserProfilePictureHolder{
       public void onClick(View view) {
         Intent intent = new Intent(activity, FollowersActivity.class);
         intent.putExtra("showFollowing", true);
+        intent.putExtra("userList", user.getId() == UserHelper.getUsersId(activity));
         activity.startActivity(intent);
       }
     });

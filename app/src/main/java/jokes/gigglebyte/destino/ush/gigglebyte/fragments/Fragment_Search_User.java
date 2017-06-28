@@ -94,7 +94,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
 
     @Override
     protected void onPostExecute(List<User> users) {
-      UserGridAdapter gridAdapter = new UserGridAdapter(activity, users);
+      UserGridAdapter gridAdapter = new UserGridAdapter(activity, users, false, null, null);
       MainActivity.loadedUsers = users;
       gridView.setAdapter(gridAdapter);
     }
