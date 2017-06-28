@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/main_black">
+    android:background="@color/activity_color">
 
   <ImageView
       android:id="@+id/actionBarLogo"
@@ -17,7 +17,6 @@
       android:longClickable="false"
       android:src="@drawable/logo"/>
 
-
   <TextView
       android:id="@+id/loadingText"
       android:layout_below="@+id/actionBarLogo"
@@ -25,7 +24,7 @@
       android:layout_centerInParent="true"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textColor="@color/white"
+      android:textColor="@color/text_color"
       android:textSize="18sp"
       android:gravity="center"
       android:textAppearance="?android:attr/textAppearanceLarge"/>

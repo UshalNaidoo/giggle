@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe"
-    android:background="@color/main_black">
+    android:background="@color/activity_color">
   <RelativeLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:fab="http://schemas.android.com/apk/res-auto"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:orientation="vertical"
-      android:padding="2dp"
-      android:background="@color/main_black">
+      android:padding="2dp">
 
     <RelativeLayout
         android:id="@+id/topPanel"
@@ -27,7 +26,7 @@
           android:layout_marginStart="2dip"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:textColor="@color/white"
+          android:textColor="@color/text_color"
           android:textSize="20sp"
           android:textAppearance="?android:attr/textAppearanceLarge"
       />
@@ -53,9 +52,9 @@
         fab:menu_fab_size="mini"
         fab:menu_openDirection="down"
         fab:menu_icon="@drawable/ic_edit"
-        fab:menu_colorNormal="@color/app_primary_dark"
-        fab:menu_colorPressed="@color/app_primary"
-        fab:menu_colorRipple="@color/app_primary_dark">
+        fab:menu_colorNormal="@color/button_color"
+        fab:menu_colorPressed="@color/button_selected_color"
+        fab:menu_colorRipple="@color/app_primary">
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changePictureFab"
@@ -64,9 +63,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_change_picture"
-          fab:fab_colorNormal="@color/app_primary_dark"
-          fab:fab_colorPressed="@color/app_primary"
-          fab:fab_colorRipple="@color/app_primary_dark"/>
+          fab:menu_colorNormal="@color/button_color"
+          fab:menu_colorPressed="@color/button_selected_color"
+          fab:menu_colorRipple="@color/app_primary"/>
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changeDescriptionFab"
@@ -75,9 +74,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_edit_description"
-          fab:fab_colorNormal="@color/app_primary_dark"
-          fab:fab_colorPressed="@color/app_primary"
-          fab:fab_colorRipple="@color/app_primary_dark"/>
+          fab:menu_colorNormal="@color/button_color"
+          fab:menu_colorPressed="@color/button_selected_color"
+          fab:menu_colorRipple="@color/app_primary"/>
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changeNameFab"
@@ -86,9 +85,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_edit_username"
-          fab:fab_colorNormal="@color/app_primary_dark"
-          fab:fab_colorPressed="@color/app_primary"
-          fab:fab_colorRipple="@color/app_primary_dark"/>
+          fab:menu_colorNormal="@color/button_color"
+          fab:menu_colorPressed="@color/button_selected_color"
+          fab:menu_colorRipple="@color/app_primary"/>
     </com.github.clans.fab.FloatingActionMenu>
   </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

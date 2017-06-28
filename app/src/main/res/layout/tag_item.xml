@@ -20,7 +20,7 @@
       android:layout_height="wrap_content"
       android:textSize="20sp"
       android:layout_weight="1"
-      android:textColor="@color/white"/>
+      android:textColor="@color/text_color"/>
 
   <TextView
       android:id="@+id/numberOfPosts"
@@ -29,13 +29,13 @@
       android:textSize="16sp"
       android:gravity="end"
       android:layout_weight="1"
-      android:textColor="@color/app_grey"/>
+      android:textColor="@color/text_hint_color"/>
   </LinearLayout>
 
   <View android:id="@+id/primerdivisor"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_width="fill_parent"
-        android:background="@color/app_primary_dark"
+        android:background="@color/divisor_color"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 </LinearLayout>

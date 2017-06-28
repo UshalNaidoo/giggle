@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/main_black">
+    android:background="@color/activity_color">
 
   <ImageView
       android:id="@+id/profileImage"

@@ -10,7 +10,7 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/main_black"
+      android:background="@color/popup_color"
       android:gravity="center"
       android:orientation="vertical"
       android:paddingBottom="10dp">
@@ -20,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:inputType="textMultiLine"
-        android:textColor="@color/white"
-        android:textColorHint="@color/silver"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_hint_color"
         android:maxLength="300"
         android:gravity="top"
         android:hint="@string/write_something"
@@ -33,8 +33,8 @@
         android:id="@+id/tagText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/silver"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_hint_color"
         android:gravity="top"
         android:hint="@string/add_tags"
         android:ems="10" >
@@ -43,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_black"
+        android:background="@color/panel_color"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="10dp">
@@ -54,7 +54,7 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:text="300/300"
-          android:textColor="@color/white"
+          android:textColor="@color/text_color"
           android:textSize="20sp"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
@@ -64,7 +64,7 @@
       android:layout_width="90dp"
       android:layout_marginEnd="8dp"
       android:layout_gravity="end"
-      android:textColor="@color/white"
+      android:textColor="@color/text_color"
       android:layout_height="30dp"
       android:background="@drawable/button_selector"
       android:text="@string/post"/>

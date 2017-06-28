@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="2dp"
-    android:background="@color/main_black">
+    android:background="@color/activity_color">
   <android.support.v4.view.ViewPager
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:fab="http://schemas.android.com/apk/res-auto"
@@ -20,7 +20,7 @@
         android:layout_height="30dp"
         android:layout_gravity="top"
         android:background="@color/tab_strip"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         style="@android:style/TextAppearance.Medium"
         android:paddingBottom="4dp"/>
   </android.support.v4.view.ViewPager>
@@ -40,9 +40,9 @@
       fab:menu_labels_singleLine="true"
       fab:menu_fab_size="mini"
       fab:menu_openDirection="up"
-      fab:menu_colorNormal="@color/app_primary_dark"
-      fab:menu_colorPressed="@color/app_primary"
-      fab:menu_colorRipple="@color/app_primary_dark">
+      fab:menu_colorNormal="@color/button_color"
+      fab:menu_colorPressed="@color/button_selected_color"
+      fab:menu_colorRipple="@color/app_primary">
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/addPost"
@@ -52,9 +52,9 @@
         android:padding="4dp"
         fab:fab_size="mini"
         fab:fab_label="@string/menu_add_post"
-        fab:fab_colorNormal="@color/app_primary_dark"
-        fab:fab_colorPressed="@color/app_primary"
-        fab:fab_colorRipple="@color/app_primary_dark"/>
+        fab:menu_colorNormal="@color/button_color"
+        fab:menu_colorPressed="@color/button_selected_color"
+        fab:menu_colorRipple="@color/app_primary"/>
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/addImage"
@@ -64,9 +64,9 @@
         android:padding="4dp"
         fab:fab_size="mini"
         fab:fab_label="@string/menu_add_image"
-        fab:fab_colorNormal="@color/app_primary_dark"
-        fab:fab_colorPressed="@color/app_primary"
-        fab:fab_colorRipple="@color/app_primary_dark"/>
+        fab:menu_colorNormal="@color/button_color"
+        fab:menu_colorPressed="@color/button_selected_color"
+        fab:menu_colorRipple="@color/app_primary"/>
 
   </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

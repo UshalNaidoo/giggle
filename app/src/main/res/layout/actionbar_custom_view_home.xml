@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/main_black">
+    android:background="@color/action_bar_color">
 
   <ImageView
       android:id="@+id/actionBarLogo"

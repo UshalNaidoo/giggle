@@ -10,7 +10,7 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/main_black"
+      android:background="@color/popup_color"
       android:gravity="center"
       android:orientation="vertical"
       android:paddingBottom="10dp">
@@ -19,8 +19,8 @@
       android:id="@+id/editText1"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:textColor="@color/white"
-      android:textColorHint="@color/silver"
+      android:textColor="@color/text_color"
+      android:textColorHint="@color/text_hint_color"
       android:maxLength="160"
       android:maxLines="4"
       android:hint="@string/add_comment"
@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_black"
+        android:background="@color/panel_color"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="10dp">
@@ -42,7 +42,7 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:text="160/160"
-          android:textColor="@color/white"
+          android:textColor="@color/text_hint_color"
           android:textSize="18sp"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
@@ -52,7 +52,7 @@
       android:layout_width="80dp"
       android:layout_marginEnd="8dp"
       android:layout_gravity="end"
-      android:textColor="@color/white"
+      android:textColor="@color/text_color"
       android:layout_height="30dp"
       android:background="@drawable/button_selector"
       android:text="@string/post"/>

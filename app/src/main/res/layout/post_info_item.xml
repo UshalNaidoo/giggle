@@ -14,14 +14,14 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:padding="5dp"
-      android:background="@color/secondary_black">
+      android:background="@color/item_background_color">
 
     <TextView
         android:id="@+id/title"
         android:layout_marginStart="8dp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         android:textSize="16sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>

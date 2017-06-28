@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe"
-    android:background="@color/main_black">
+    android:id="@+id/swipe">
   <RelativeLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:fab="http://schemas.android.com/apk/res-auto"
@@ -12,10 +11,9 @@
       android:layout_height="fill_parent"
       android:orientation="vertical"
       android:padding="2dp"
-      android:background="@color/main_black">
+      android:background="@color/activity_color">
 
     <ListView
-        android:background="@color/main_black"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/listView"/>
@@ -36,8 +34,8 @@
         android:src="@drawable/fab_add"
         fab:fab_size="mini"
         fab:fab_elevationCompat="4dp"
-        fab:fab_colorNormal="@color/app_primary_dark"
-        fab:fab_colorPressed="@color/app_primary"
-        fab:fab_colorRipple="@color/app_primary_dark"/>
+        fab:fab_colorNormal="@color/button_color"
+        fab:fab_colorPressed="@color/button_selected_color"
+        fab:fab_colorRipple="@color/app_primary"/>
   </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

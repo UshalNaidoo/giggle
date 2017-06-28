@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="white">#FFFFFF</color>
-  <color name="yellow">#FFFF00</color>
-  <color name="fuchsia">#FF00FF</color>
-  <color name="red">#FF0000</color>
-  <color name="silver">#C0C0C0</color>
-  <color name="gray">#808080</color>
-  <color name="olive">#808000</color>
-  <color name="purple">#800080</color>
-  <color name="maroon">#800000</color>
-  <color name="aqua">#00FFFF</color>
-  <color name="lime">#00FF00</color>
-  <color name="teal">#008080</color>
-  <color name="green">#008000</color>
-  <color name="blue">#0000FF</color>
-  <color name="navy">#000080</color>
-  <color name="black">#000000</color>
-
   <color name="main_black">#1c1b20</color>
+  <color name="action_bar_color">#1c1b20</color>
   <color name="secondary_black">#26272d</color>
   <color name="app_primary">#455A64</color>
   <color name="app_primary_dark">#551A8B</color>
   <color name="app_grey">#9e9c9f</color>
   <color name="tab_strip">#1f2025</color>
+
+  <color name="text_color">#ffffff</color>
+  <color name="text_hint_color">#C0C0C0</color>
+  <color name="comment_text_color">#C0C0C0</color>
+  <color name="tab_text_selected">#FFFFFF</color>
+  <color name="tab_text_unselected">#808080</color>
+
+  <color name="button_color">#551A8B</color>
+  <color name="button_selected_color">#58857e</color>
+
+  <color name="popup_color">#1c1b20</color>
+
+  <color name="activity_color">#1c1b20</color>
+  <color name="panel_color">#1c1b20</color>
+
+  <color name="progress_start_color">#551A8B</color>
+  <color name="progress_end_color">#455A64</color>
+
+  <color name="item_background_color">#1c1b20</color>
+  <color name="item_panel_color">#1c1b20</color>
+  <color name="item_secondary_color">#26272d</color>
+
+  <color name="divisor_color">#551A8B</color>
+  <color name="divisor_grey">#9e9c9f</color>
+
+  <color name="transparent_black">#CC000000</color>
+
+  <color name="back_button_color">#ffffff</color>
+
 </resources>

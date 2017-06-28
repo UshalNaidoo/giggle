@@ -34,18 +34,18 @@ public class Fragment_Search extends Fragment  implements FragmentLifecycle {
     tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     TextView selectedTabText = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
-    selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.white));
+    selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_selected));
     TextView unSelectedTabText = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
-    unSelectedTabText.setTextColor(getActivity().getResources().getColor(R.color.gray));
+    unSelectedTabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_unselected));
     tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
       @Override
       public void onTabChanged(String tabId) {
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
           TextView tabText = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title); //Unselected Tabs
-          tabText.setTextColor(getActivity().getResources().getColor(R.color.gray));
+          tabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_unselected));
         }
         TextView tabText = (TextView) tabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
-        tabText.setTextColor(getActivity().getResources().getColor(R.color.white));
+        tabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_selected));
       }
     });
 

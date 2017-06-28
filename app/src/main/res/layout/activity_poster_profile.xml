@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe"
-    android:background="@color/main_black">
+    android:background="@color/activity_color">
 
   <ListView
       android:layout_width="fill_parent"

@@ -10,7 +10,7 @@
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="@color/main_black"
+      android:background="@color/popup_color"
       android:gravity="center"
       android:orientation="vertical"
       android:paddingBottom="10dp">
@@ -19,7 +19,7 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:src="@drawable/nobody_m"
-        android:background="@color/main_black"
+        android:background="@color/popup_color"
         android:layout_gravity="center"
         android:id="@+id/image"
         android:adjustViewBounds="true"
@@ -29,7 +29,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_black"
+        android:background="@color/panel_color"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="10dp"
@@ -40,7 +40,7 @@
           android:layout_width="90dp"
           android:layout_marginEnd="8dp"
           android:layout_gravity="end"
-          android:textColor="@color/white"
+          android:textColor="@color/text_color"
           android:layout_height="30dp"
           android:background="@drawable/button_selector"
           android:text="@string/save"/>

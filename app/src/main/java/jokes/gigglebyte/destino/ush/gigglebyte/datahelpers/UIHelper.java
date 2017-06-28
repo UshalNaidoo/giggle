@@ -62,7 +62,7 @@ public class UIHelper {
       final Drawable upArrow = activity.getResources()
           .getDrawable(R.drawable.ic_keyboard_arrow_left);
       upArrow.setColorFilter(activity.getResources()
-                                 .getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+                                 .getColor(R.color.back_button_color), PorterDuff.Mode.SRC_ATOP);
       actionBar.setHomeAsUpIndicator(upArrow);
       actionBar.setDisplayHomeAsUpEnabled(true);
     }
