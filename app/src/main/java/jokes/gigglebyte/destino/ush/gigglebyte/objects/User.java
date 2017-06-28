@@ -25,6 +25,8 @@ public class User {
   private List<User> following;
   private List<User> followers;
   private Bitmap profile_pic;
+  private int numberOfFollowers;
+  private int numberOfPosts;
 
   public User() {
 
@@ -90,6 +92,22 @@ public class User {
 
   public List<User> getFollowers() {
     return followers;
+  }
+
+  public void setNumberOfFollowers(int numberOfFollowers) {
+    this.numberOfFollowers = numberOfFollowers;
+  }
+
+  public int getNumberOfFollowers() {
+    return numberOfFollowers;
+  }
+
+  public void setNumberOfPosts(int numberOfPosts) {
+    this.numberOfPosts = numberOfPosts;
+  }
+
+  public int getNumberOfPosts() {
+    return numberOfPosts;
   }
 
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
