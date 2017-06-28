@@ -48,21 +48,17 @@ public class UserGridAdapter extends BaseAdapter {
     View row = convertView;
     UserGridViewHolder holder;
 
-    if (row == null) {
-      LayoutInflater inflater = activity.getLayoutInflater();
-      row = inflater.inflate(R.layout.grid_user_item, parent, false);
-      holder = new UserGridViewHolder();
-      holder.userName = (TextView) row.findViewById(R.id.userName);
-      holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
-      holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-      holder.followButton = (ImageView) row.findViewById(R.id.followButton);
-      numberOfFollowing = (TextView) row.findViewById(R.id.numberOfFollowing);
-      numberOfPosts = (TextView) row.findViewById(R.id.numberOfPosts);
-      row.setTag(holder);
-    }
-    else {
-      holder = (UserGridViewHolder) row.getTag();
-    }
+    LayoutInflater inflater = activity.getLayoutInflater();
+    row = inflater.inflate(R.layout.grid_user_item, parent, false);
+    holder = new UserGridViewHolder();
+    holder.userName = (TextView) row.findViewById(R.id.userName);
+    holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
+    holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
+    holder.followButton = (ImageView) row.findViewById(R.id.followButton);
+    numberOfFollowing = (TextView) row.findViewById(R.id.numberOfFollowing);
+    numberOfPosts = (TextView) row.findViewById(R.id.numberOfPosts);
+    row.setTag(holder);
+
     User user = users.get(position);
     holder.setUserData(activity, user, null);
 
