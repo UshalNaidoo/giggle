@@ -13,7 +13,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
 public class Fragment_Search extends Fragment  implements FragmentLifecycle {
-  private FragmentTabHost tabHost;
+  private static FragmentTabHost tabHost;
 
   public Fragment_Search() {
   }
@@ -61,4 +61,9 @@ public class Fragment_Search extends Fragment  implements FragmentLifecycle {
   public void onResumeFragment() {
 
   }
+
+  public static void switchTab(int tab){
+    tabHost.setCurrentTab(tab);
+  }
+
 }

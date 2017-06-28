@@ -19,6 +19,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostInfoViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostTextViewHolder;
 
 public class PostListAdapter extends BaseAdapter {
@@ -103,6 +104,18 @@ public class PostListAdapter extends BaseAdapter {
 
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setImagePostData(activity, this, convertView, post, fromScreen);
+    } else if (posts.get(position).getType() == PostType.INFO_POST) {
+      final PostInfoViewHolder holder;
+      convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
+      holder = new PostInfoViewHolder();
+
+      holder.title = (TextView) convertView.findViewById(R.id.title);
+      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
+      convertView.setTag(holder);
+
+      Post post = posts.get(position);
+
+      holder.setPostData(post, fromScreen);
     }
     return convertView;
   }

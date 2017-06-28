@@ -70,7 +70,6 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
   }
 
   public static void refreshList() {
-    Log.e("BLAH", "REFRESHING");
     if (adapter != null) {
       adapter.notifyDataSetChanged();
     }

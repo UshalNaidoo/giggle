@@ -52,6 +52,10 @@
   <string name="menu_edit_description">Edit Description</string>
   <string name="menu_add_comment">Add Comment</string>
 
+  <string name="info_follow">Your feed is empty. Follow users by tapping on the following icon on their profile. Tap it now to see the most popular users</string>
+  <string name="info_like">Clicking on the star on a post or a comment will rate it. With a high enough rating it could feature on the Hot list.</string>
+  <string name="info_favourite">Clicking on the heart on a post will save it in this list for you to view later. Nobody else can see this list.</string>
+
   <string name="loadMessage0">Collecting funny jokes</string>
   <string name="loadMessage1">Lifting weights</string>
   <string name="loadMessage2">Looking for my keys</string>
