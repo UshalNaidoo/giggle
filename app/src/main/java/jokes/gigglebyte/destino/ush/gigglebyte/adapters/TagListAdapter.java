@@ -17,8 +17,10 @@ public class TagListAdapter extends BaseAdapter {
 
   private List<Tag> tags;
   private LayoutInflater mInflater;
+  private Activity activity;
 
   public TagListAdapter(Activity activity, List<Tag> results) {
+    this.activity = activity;
     tags = results;
     mInflater = LayoutInflater.from(activity);
   }
@@ -52,7 +54,7 @@ public class TagListAdapter extends BaseAdapter {
     else {
       holder = (TagViewHolder) row.getTag();
     }
-    holder.setTagData(tags.get(position));
+    holder.setTagData(activity, tags.get(position));
     return row;
   }
 
