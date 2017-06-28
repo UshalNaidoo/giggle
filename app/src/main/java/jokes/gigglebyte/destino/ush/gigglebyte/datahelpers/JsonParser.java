@@ -101,6 +101,8 @@ public class JsonParser {
         user.setId(jsonObject.getInt("_id"));
         user.setName(jsonObject.getString("name"));
         user.setDescription(jsonObject.getString("description"));
+        user.setNumberOfFollowers(jsonObject.getInt("numberOfFollowers"));
+        user.setNumberOfPosts(jsonObject.getInt("numberOfPosts"));
         users.add(user);
       }
     } catch (JSONException e) {

@@ -10,6 +10,7 @@
 
   <string name="following">Following</string>
   <string name="followers">Followers</string>
+  <string name="follower">Follower</string>
   <string name="unfollowing">Not following</string>
   <string name="wait">Please wait…</string>
   <string name="upvoted">Upvoted</string>
@@ -23,6 +24,7 @@
   <string name="search_tags">Search Tags</string>
   <string name="add_image">Add Image</string>
   <string name="add_comment">Add Comment</string>
+  <string name="posts">Posts</string>
   <string name="post">Post</string>
   <string name="gallery">Gallery</string>
   <string name="take_a_photo">Take A Photo</string>

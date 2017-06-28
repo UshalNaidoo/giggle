@@ -38,20 +38,6 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
       ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_search_tag, container, false);
-    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
-    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-      @Override
-      public void onRefresh() {
-        swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
-          @Override
-          public void run() {
-            swipeView.setRefreshing(false);
-            new SearchForTags("", false).execute();
-          }
-        }, 200);
-      }
-    });
 
     Button buttonSearch = (Button) rootView.findViewById(R.id.buttonSearch);
     searchField = (EditText) rootView.findViewById(R.id.search);
