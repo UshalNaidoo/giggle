@@ -3,6 +3,8 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 
 import android.view.View;
@@ -21,15 +23,15 @@ public class FollowersActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.fragment_followers);
+    setContentView(R.layout.activity_followers);
     activity = this;
 
     Intent intent = getIntent();
-    boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
+    final boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
 
     UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
 
-    GridView gridView = (GridView) findViewById(R.id.gridView);
+    final GridView gridView = (GridView) findViewById(R.id.gridView);
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parent, View v,
           int position, long id) {
@@ -40,8 +42,32 @@ public class FollowersActivity extends Activity {
       }
     });
 
-    UserGridAdapter gridAdapter = new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers());
-    gridView.setAdapter(gridAdapter);
+    final UserGridAdapter[] gridAdapter =
+        { new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers()) };
+    gridView.setAdapter(gridAdapter[0]);
+
+    final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+    swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      public void onRefresh() {
+        swipeView.setRefreshing(true);
+        ( new Handler()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            swipeView.setRefreshing(false);
+
+            Thread thread = new Thread() {
+              @Override
+              public void run() {
+                gridAdapter[0] = new UserGridAdapter(activity, showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers());
+              }
+            };
+            thread.start();
+          }
+        }, 200);
+        gridView.setAdapter(gridAdapter[0]);
+      }
+    });
 
   }
 

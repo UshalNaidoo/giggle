@@ -50,7 +50,7 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
       ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
 
-    View rootView = inflater.inflate(R.layout.activity_user_profile, container, false);
+    View rootView = inflater.inflate(R.layout.fragment_user_profile, container, false);
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override
