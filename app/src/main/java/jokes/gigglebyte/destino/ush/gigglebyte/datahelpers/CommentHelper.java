@@ -45,7 +45,9 @@ public class CommentHelper {
   public static void likeComment(Context context, ImageView likeImage, TextView likes,
                                  final Comment comment) {
     likeImage.setImageResource(R.drawable.star_like);
-    likes.setText(String.valueOf(comment.getLikes() + 1));
+    int likesInt = comment.getLikes() + 1;
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? context.getResources().getString(R.string.like) : context.getResources().getString(R.string.likes));
+    likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
     likeComment(context, comment);
 
@@ -61,7 +63,10 @@ public class CommentHelper {
   public static void unlikeComment(Context context, ImageView likeImage, TextView likes,
                                    final Comment comment) {
     likeImage.setImageResource(R.drawable.star_unlike);
-    likes.setText(String.valueOf(comment.getLikes() - 1));
+
+    int likesInt = comment.getLikes() - 1;
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? context.getResources().getString(R.string.like) : context.getResources().getString(R.string.likes));
+    likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
     unlikeComment(context, comment);
 

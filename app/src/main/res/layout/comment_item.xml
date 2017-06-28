@@ -20,7 +20,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_vertical">
       <FrameLayout
           android:id="@+id/frame"
           android:layout_width="40dp"
@@ -67,12 +67,9 @@
           android:layout_width="fill_parent"
           android:layout_height="0dp"
           android:textSize="16sp"
-          android:layout_marginLeft="8dp"
-          android:layout_marginRight="8dp"
           android:gravity="start"
           android:layout_weight="1"
           android:textColor="@color/white"
-          android:background="@color/main_black"
           android:layout_marginTop="8dp"/>
 
       <LinearLayout
