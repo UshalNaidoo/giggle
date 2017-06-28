@@ -34,7 +34,7 @@
   <string name="edit_description">Edit Description</string>
   <string name="write_something">Write Something</string>
   <string name="add_tags">Add Tags</string>
-  <string name="flag">Flag</string>
+  <string name="flag">Flag Inappropriate</string>
 
   <string name="tab_profile">Profile</string>
   <string name="tab_feed">Feed</string>
