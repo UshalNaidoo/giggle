@@ -39,6 +39,16 @@ public class Post {
   private List<String> tags;
   private int imageId;
 
+  public Post() {
+
+  }
+
+  public Post(String postTitle, Bitmap postImage, PostType type) {
+    this.postTitle = postTitle;
+    this.postImage = postImage;
+    this.type = type;
+  }
+
   public int getImageId() {
     return imageId;
   }

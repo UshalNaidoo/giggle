@@ -13,7 +13,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 
 public class Fragment_Posts extends Fragment implements FragmentLifecycle {
-  private FragmentTabHost tabHost;
+  private static FragmentTabHost tabHost;
 
   public Fragment_Posts() {
   }
@@ -54,6 +54,10 @@ public class Fragment_Posts extends Fragment implements FragmentLifecycle {
     });
 
     return rootView;
+  }
+
+  public static void switchTab(int tab){
+    tabHost.setCurrentTab(tab);
   }
 
   @Override

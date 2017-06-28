@@ -1,6 +1,10 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -17,6 +21,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
+import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
@@ -51,7 +57,10 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
       }
     });
 
-    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts(), FromScreen.FAVOURITE);
+    List<Post> infoPost = new ArrayList<>();
+    infoPost.add(new Post(activity.getResources().getString(R.string.info_favourite), BitmapFactory.decodeResource(activity.getResources(), R.drawable.heart_like), PostType.INFO_POST));
+
+    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts().size() > 0 ? PostHelper.getFavoritePosts() : infoPost, FromScreen.FAVOURITE);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(AbsListView view, int scrollState) {

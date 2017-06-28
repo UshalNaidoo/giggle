@@ -272,6 +272,10 @@ public class MainActivity extends FragmentActivity {
     }
   };
 
+  public static void changeTab(int position) {
+    pager.setCurrentItem(position, true);
+  }
+
   @Override
   protected void onResume() {
     super.onResume();
