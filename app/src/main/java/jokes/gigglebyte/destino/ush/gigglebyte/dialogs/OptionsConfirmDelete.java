@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.dialogs;
 
-import java.util.Set;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -11,11 +9,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
+import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
 public class OptionsConfirmDelete extends DialogFragment {
 
@@ -25,7 +26,7 @@ public class OptionsConfirmDelete extends DialogFragment {
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    Activity activity = getActivity();
+    final Activity activity = getActivity();
     final Dialog dialog = new Dialog(activity);
     dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -49,18 +50,47 @@ public class OptionsConfirmDelete extends DialogFragment {
     buttonYes.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // Show a toast, reset screens and lists.
-        Thread thread = new Thread() {
+        Thread thread = new Thread(new Runnable() {
           @Override
           public void run() {
-            if (isDeletePost) {
-              ConnectToServer.deletePost(post.getPostId());
-            } else {
-              ConnectToServer.deleteComment(comment.getCommentId());
+            try  {
+              if (isDeletePost) {
+                ConnectToServer.deletePost(post.getPostId());
+              } else {
+                ConnectToServer.deleteComment(comment.getCommentId());
+              }
+            } catch (Exception e) {
+              e.printStackTrace();
             }
           }
-        };
+        });
+
         thread.start();
+
+        Thread uiThread = new Thread() {
+          @Override
+          public void run() {
+            new Thread() {
+              public void run() {
+                activity.runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                    final String message;
+                    if (isDeletePost) {
+                      message = activity.getResources().getString(R.string.post_deleted);
+                      PostHelper.adjustPost(activity, null, PostHelper.PostAction.DELETE_POST , 0, post);
+                    } else {
+                      message = activity.getResources().getString(R.string.comment_deleted);
+                      CommentActivity.reload();
+                    }
+                    new ToastWithImage(activity).show(message, null);
+                  }
+                });
+              }
+            }.start();
+          }
+        };
+        uiThread.start();
         dismiss();
       }
     });

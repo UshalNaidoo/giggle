@@ -24,6 +24,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.DELETE_POST;
+
 public class PostHelper implements onSubmitListener {
 
   private static List<Post> hotPosts = new ArrayList<>();
@@ -36,7 +38,8 @@ public class PostHelper implements onSubmitListener {
     LIKE_POST,
     UNLIKE_POST,
     FAVORITE_POST,
-    UNFAVORITE_POST
+    UNFAVORITE_POST,
+    DELETE_POST
   }
 
   public static List<Post> getHotPosts() {
@@ -281,9 +284,42 @@ public class PostHelper implements onSubmitListener {
         removeFavoritePost(post);
         SharedPrefHelper.saveUserFavorites(activity, user_favorites);
         break;
+
+      case DELETE_POST:
+        for (int i = 0 ; i < getNewPosts().size(); i++) {
+          if (getNewPosts().get(i).getPostId() == post.getPostId()) {
+            getNewPosts().remove(i);
+            break;
+          }
+        }
+        for (int i = 0 ; i < getHotPosts().size(); i++) {
+          if (getHotPosts().get(i).getPostId() == post.getPostId()) {
+            getHotPosts().remove(i);
+            break;
+          }
+        }
+        for (int i = 0 ; i < getFavoritePosts().size(); i++) {
+          if (getFavoritePosts().get(i).getPostId() == post.getPostId()) {
+            getFavoritePosts().remove(i);
+            break;
+          }
+        }
+        for (int i = 0 ; i < getFeedPosts().size(); i++) {
+          if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
+            getFeedPosts().remove(i);
+            break;
+          }
+        }
+        user_favorites = SharedPrefHelper.getUserFavorites(activity);
+        user_favorites.remove(String.valueOf(post.getPostId()));
+        removeFavoritePost(post);
+        SharedPrefHelper.saveUserFavorites(activity, user_favorites);
+        break;
     }
 
-    UIHelper.imageViewClickAnimation(image);
+    if(action != DELETE_POST) {
+      UIHelper.imageViewClickAnimation(image);
+    }
     UIHelper.updateScreen();
   }
 
