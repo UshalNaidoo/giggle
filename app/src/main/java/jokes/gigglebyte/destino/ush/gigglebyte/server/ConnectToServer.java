@@ -349,9 +349,30 @@ public class ConnectToServer {
     }
   }
 
+  public static void deleteComment(int commentId) {
+    String parameters = "comment_id=" + commentId;
+    String UrlString = ServerSettings._Server + ServerSettings._deleteComment;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public static void flagPost(int postId) {
     String parameters = "post_id=" + postId;
     String UrlString = ServerSettings._Server + ServerSettings._flagPost;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Log.e("Giggle", e.toString());
+    }
+  }
+
+  public static void deletePost(int postId) {
+    String parameters = "post_id=" + postId;
+    String UrlString = ServerSettings._Server + ServerSettings._deletePost;
     try {
       response = Connect.connectToServer(UrlString, parameters);
     } catch (Exception e) {

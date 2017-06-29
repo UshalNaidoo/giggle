@@ -44,6 +44,8 @@ public class ServerSettings {
   /* Flagging and deleting */
   static String _flagComment = "/comment_flag.php";
   static String _flagPost = "/post_flag.php";
+  static String _deleteComment = "/comment_delete.php";
+  static String _deletePost = "/post_delete.php";
 
   /* Push Notifications */
   static String _addDeviceId ="/user_add_device_id.php";

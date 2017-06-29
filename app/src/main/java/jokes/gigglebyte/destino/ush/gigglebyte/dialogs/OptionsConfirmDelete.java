@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.dialogs;
 
+import java.util.Set;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -10,8 +12,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
+import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class OptionsConfirmDelete extends DialogFragment {
 
@@ -45,6 +49,18 @@ public class OptionsConfirmDelete extends DialogFragment {
     buttonYes.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        // Show a toast, reset screens and lists.
+        Thread thread = new Thread() {
+          @Override
+          public void run() {
+            if (isDeletePost) {
+              ConnectToServer.deletePost(post.getPostId());
+            } else {
+              ConnectToServer.deleteComment(comment.getCommentId());
+            }
+          }
+        };
+        thread.start();
         dismiss();
       }
     });
