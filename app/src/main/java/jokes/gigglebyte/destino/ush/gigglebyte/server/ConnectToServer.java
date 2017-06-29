@@ -329,6 +329,16 @@ public class ConnectToServer {
     return "";
   }
 
+  public static String getAllTags() {
+    String UrlString = ServerSettings._Server + ServerSettings._getAllTags;
+    try {
+      return Connect.connectToServer(UrlString, "");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static void flagComment(int commentId) {
     String parameters = "comment_id=" + commentId;
     String UrlString = ServerSettings._Server + ServerSettings._flagComment;

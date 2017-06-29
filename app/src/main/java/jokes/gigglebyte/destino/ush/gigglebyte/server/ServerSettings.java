@@ -24,6 +24,7 @@ public class ServerSettings {
   static String _getUsersPosts = "/get_users_posts.php";
   static String _getFeed = "/get_feed.php";
 
+  static String _getAllTags = "/get_all_tags.php";
   static String _getTagPosts = "/get_tag_posts.php";
 
   static String _getFollowing = "/get_following.php";

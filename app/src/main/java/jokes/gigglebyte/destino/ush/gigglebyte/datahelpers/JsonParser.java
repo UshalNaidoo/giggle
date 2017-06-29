@@ -128,4 +128,20 @@ public class JsonParser {
     }
     return tags;
   }
+
+  public static List<String> GetAllTagsList(String response) {
+    List<String> tags = new ArrayList<>();
+    try {
+      JSONObject json = new JSONObject("{\"tags\":" + response + "}");
+      JSONArray jsonPosts = json.getJSONArray("tags");
+      for (int i = 0; i < jsonPosts.length(); i++) {
+        JSONObject jsonObject = jsonPosts.getJSONObject(i);
+        tags.add("#" + jsonObject.getString("tag"));
+        tags.add(jsonObject.getString("tag"));
+      }
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return tags;
+  }
 }

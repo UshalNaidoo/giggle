@@ -5,14 +5,18 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.HashSet;
@@ -21,6 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -35,8 +40,9 @@ public class AddTextByteDialog extends DialogFragment {
 
   private onSubmitListener listener;
   private EditText byteText;
-  private EditText tagText;
   private TextView countTextView;
+
+  private MultiAutoCompleteTextView tagText;
 
   String regexPattern = "(#\\w+)";
 
@@ -50,12 +56,63 @@ public class AddTextByteDialog extends DialogFragment {
     dialog.show();
     Button sendButton = (Button) dialog.findViewById(R.id.button1);
     byteText = (EditText) dialog.findViewById(R.id.postText);
-    tagText = (EditText) dialog.findViewById(R.id.tagText);
+    tagText = (MultiAutoCompleteTextView) dialog.findViewById(R.id.tagText);
     tagText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
+    tagText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer(){
+      public int findTokenStart(CharSequence text, int cursor) {
+        int i = cursor;
+        while (i > 0 && text.charAt(i - 1) != ' ') {
+          i--;
+        }
+        while (i < cursor && text.charAt(i) == ' ' || i >0 && text.charAt(i - 1) == '\n') {
+          i++;
+        }
+        return i;
+      }
+
+      public int findTokenEnd(CharSequence text, int cursor) {
+        int i = cursor;
+        int len = text.length();
+
+        while (i < len) {
+          if (text.charAt(i) == ' ' || text.charAt(i - 1) == '\n') {
+            return i;
+          } else {
+            i++;
+          }
+        }
+
+        return len;
+      }
+
+      public CharSequence terminateToken(CharSequence text) {
+        int i = text.length();
+        while (i > 0 && text.charAt(i - 1) == ' ' || text.charAt(i - 1) == '\n') {
+          i--;
+        }
+
+        if (i > 0 && text.charAt(i - 1) == ' ' || text.charAt(i - 1) == '\n') {
+          return text;
+        } else {
+          if (text instanceof Spanned) {
+            SpannableString sp = new SpannableString(text + " ");
+            TextUtils.copySpansFrom((Spanned) text, 0, text.length(), Object.class, sp, 0);
+            return sp;
+          }
+          else {
+            return text + " ";
+          }
+        }
+      }
+    });
+
+    ArrayAdapter<String> adp= new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, MainActivity.allTags);
+    tagText.setThreshold(1);
+    tagText.setAdapter(adp);
+
     if (getArguments() != null && getArguments().getString("text") != null) {
-      byteText.setText(
-          getArguments().getString("text") == null ? "" : getArguments().getString("text"));
+      byteText.setText( getArguments().getString("text") == null ? "" : getArguments().getString("text"));
     }
 
     final TextWatcher watcher = new TextWatcher() {
@@ -111,12 +168,17 @@ public class AddTextByteDialog extends DialogFragment {
               final Set<String> tags = new HashSet<>();
               if (!tagText.getText().toString().isEmpty()) {
                 for (String s : tagText.getText().toString().split(" ")) {
-                  tags.add(s.substring(1));
+                  if (!(s.charAt(0) == '#')) {
+                    tags.add(s);
+                  }
+                  else {
+                    tags.add(s.substring(1));
+                  }
                 }
               }
               post.setPostId(ConnectToServer.postTextPost(userId, byteText.getText()
-                  .toString()
-                  .trim(), tags));
+                                                                          .toString()
+                                                                          .trim(), tags));
 
               getActivity().runOnUiThread(new Runnable() {
                 @Override

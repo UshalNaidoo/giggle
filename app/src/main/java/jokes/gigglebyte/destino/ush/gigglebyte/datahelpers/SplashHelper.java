@@ -53,8 +53,8 @@ public class SplashHelper {
     messages.put(40, activity.getResources().getString(R.string.loadMessage40));
     messages.put(41, activity.getResources().getString(R.string.loadMessage41));
 
-    String[] strings = new String[9];
-    for (int i = 0; i < 9; i ++) {
+    String[] strings = new String[6];
+    for (int i = 0; i < 6; i ++) {
       int j = (int) Math.floor(Math.random() * messages.size() + 1);
       strings[i] = messages.get(j);
     }
