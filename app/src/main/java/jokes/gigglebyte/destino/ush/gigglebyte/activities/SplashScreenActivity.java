@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -49,7 +51,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected String doInBackground(Integer... params) {
       int i = 0;
-      while (running && i < 9) {
+      while (running && i < 10) {
         i++;
         final User user = UserHelper.getUserDetails(activity);
         switch (i) {
@@ -58,7 +60,7 @@ public class SplashScreenActivity extends Activity {
               user.setId(ConnectToServer.registerNewUser());
               UserHelper.saveUserDetails(activity, user);
             }
-            publishProgress(20);
+            publishProgress(10);
             break;
           case 2:
             GCMClientManager pushClientManager = new GCMClientManager(activity, PROJECT_NUMBER);
@@ -72,34 +74,38 @@ public class SplashScreenActivity extends Activity {
                 super.onFailure(ex);
               }
             });
-            publishProgress(30);
+            publishProgress(20);
             break;
           case 3:
             PostHelper.initialiseHotPosts(activity, ConnectToServer.getHotPosts());
-            publishProgress(40);
+            publishProgress(30);
             break;
           case 4:
             PostHelper.initialiseNewPosts(activity, ConnectToServer.getNewPosts());
-            publishProgress(50);
+            publishProgress(40);
             break;
           case 5:
             PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper.getUserFavorites(activity)));
-            publishProgress(60);
+            publishProgress(50);
             break;
           case 6:
             PostHelper.initialiseFeedPosts(activity, ConnectToServer.getFeed(user.getId()));
-            publishProgress(70);
+            publishProgress(60);
             break;
           case 7:
             FollowHelper.initialiseUserFollowing(ConnectToServer.getUserFollowing(user.getId()));
-            publishProgress(80);
+            publishProgress(70);
             break;
           case 8:
             FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
-            publishProgress(90);
+            publishProgress(80);
             break;
           case 9:
             FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
+            publishProgress(90);
+            break;
+          case 10:
+            MainActivity.allTags = JsonParser.GetAllTagsList(ConnectToServer.getAllTags());
             publishProgress(100);
             break;
         }
@@ -121,37 +127,27 @@ public class SplashScreenActivity extends Activity {
       running = false;
     }
 
-
     @Override
     protected void onProgressUpdate(Integer... values) {
       String[] messages = getLoadingMessages(activity);
       switch (values[0]) {
-        case 20:
+        case 10:
           loadingText.setText(messages[0]);
           break;
         case 30:
           loadingText.setText(messages[1]);
           break;
-        case 40:
+        case 50:
           loadingText.setText(messages[2]);
           break;
-        case 50:
+        case 70:
           loadingText.setText(messages[3]);
           break;
         case 60:
           loadingText.setText(messages[4]);
           break;
-        case 70:
-          loadingText.setText(messages[5]);
-          break;
         case 80:
-          loadingText.setText(messages[6]);
-          break;
-        case 90:
-          loadingText.setText(messages[7]);
-          break;
-        case 100:
-          loadingText.setText(messages[8]);
+          loadingText.setText(messages[5]);
           break;
       }
       progressBar.setProgress(values[0]);
