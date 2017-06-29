@@ -180,8 +180,10 @@ public class CommentActivity extends Activity implements onSubmitListener {
   public void setOnSubmitListener(Object arg) {
     Comment comment = (Comment) arg;
     getComments().add(comment);
+    MainActivity.selectedPost.setCommentCount(MainActivity.selectedPost.getCommentCount() + 1);
     commentListAdapter.updateAdapter(getComments());
     CommentHelper.addComment(comment);
+    commentListAdapter.notifyDataSetChanged();
   }
 
   @Override
