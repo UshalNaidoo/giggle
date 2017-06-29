@@ -9,15 +9,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
@@ -25,9 +23,6 @@ public class OptionsPostDialog extends DialogFragment {
 
   private Activity activity;
   private Post post;
-
-  private TextView likes;
-  private ImageView likeImage;
 
   private FromScreen fromScreen;
 
@@ -41,45 +36,72 @@ public class OptionsPostDialog extends DialogFragment {
     dialog.setContentView(R.layout.actiondialog_option_posts);
     dialog.show();
 
-    TextView postText = (TextView) dialog.findViewById(R.id.postText);
-    postText.setText(getPost().getPostText().isEmpty() ? getPost().getUser().getName() : getPost().getPostText());
-    ImageView profileImage = (ImageView) dialog.findViewById(R.id.profileImage);
-    profileImage.setImageBitmap(getPost().getUser().getProfile_pic());
-
     Button buttonViewProfile = (Button) dialog.findViewById(R.id.buttonProfileView);
-    buttonViewProfile.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        if (fromScreen != FromScreen.POSTER) {
-          Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-          myIntent.putExtra("userId", getPost().getUser().getId());
-          activity.startActivity(myIntent);
+    Button buttonViewComments = (Button) dialog.findViewById(R.id.buttonCommentsView);
+    Button buttonFlag = (Button) dialog.findViewById(R.id.buttonFlag);
+    Button buttonEdit = (Button) dialog.findViewById(R.id.buttonEdit);
+    Button buttonDelete = (Button) dialog.findViewById(R.id.buttonDelete);
+
+    if (getPost().getUser().getId() == UserHelper.getUsersId(activity)) {
+      buttonDelete.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          OptionsConfirmDelete optionsConfirmDelete = new OptionsConfirmDelete();
+          optionsConfirmDelete.setDeletePost(true);
+          optionsConfirmDelete.setPost(getPost());
+          optionsConfirmDelete.show(activity.getFragmentManager(), "");
+          dismiss();
         }
+      });
 
-        dismiss();
-      }
-    });
+      buttonEdit.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          OptionsEdit optionsEdit = new OptionsEdit();
+          optionsEdit.setEditPost(true);
+          optionsEdit.setPost(getPost());
+          optionsEdit.show(activity.getFragmentManager(), "");
+          dismiss();
+        }
+      });
+      buttonViewProfile.setVisibility(View.GONE);
+      buttonFlag.setVisibility(View.GONE);
+    }
+    else {
+      buttonViewProfile.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (fromScreen != FromScreen.POSTER) {
+            Intent myIntent = new Intent(activity, PosterProfileActivity.class);
+            myIntent.putExtra("userId", getPost().getUser().getId());
+            activity.startActivity(myIntent);
+          }
 
-    Button buttonCommentsView = (Button) dialog.findViewById(R.id.buttonCommentsView);
-    buttonCommentsView.setOnClickListener(new View.OnClickListener() {
+          dismiss();
+        }
+      });
+
+      buttonFlag.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          PostHelper.flagPost(activity, getPost());
+          dismiss();
+        }
+      });
+
+      buttonEdit.setVisibility(View.GONE);
+      buttonDelete.setVisibility(View.GONE);
+    }
+    buttonViewComments.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (fromScreen != FromScreen.BYTE && fromScreen != FromScreen.COMMENTS) {
+        if (fromScreen != FromScreen.COMMENTS) {
           MainActivity.selectedPost = post;
           Intent myIntent = new Intent(activity, CommentActivity.class);
           myIntent.putExtra("postId", getPost().getPostId());
           myIntent.putExtra("posterId", getPost().getUser().getId());
           activity.startActivity(myIntent);
         }
-        dismiss();
-      }
-    });
-
-    Button buttonFlag = (Button) dialog.findViewById(R.id.buttonFlag);
-    buttonFlag.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        PostHelper.flagPost(activity, getPost());
         dismiss();
       }
     });
@@ -97,22 +119,6 @@ public class OptionsPostDialog extends DialogFragment {
 
   public void setFromAdapter(FromScreen fromScreen) {
     this.fromScreen = fromScreen;
-  }
-
-  public TextView getLikes() {
-    return likes;
-  }
-
-  public void setLikes(TextView likes) {
-    this.likes = likes;
-  }
-
-  public ImageView getLikeImage() {
-    return likeImage;
-  }
-
-  public void setLikeImage(ImageView likeImage) {
-    this.likeImage = likeImage;
   }
 
 }

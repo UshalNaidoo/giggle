@@ -16,55 +16,20 @@
       android:padding="10dp"
       android:paddingLeft="40dp"
       android:paddingRight="40dp">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <Button
+        android:id="@+id/buttonEdit"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="top">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/text_color"
+        android:layout_height="30dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/edit_post"/>
 
-      <FrameLayout
-          android:id="@+id/frame"
-          android:layout_width="40dp"
-          android:layout_height="40dp">
-
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:src="@drawable/nobody_m"/>
-
-        <ImageView
-            android:id="@+id/circle_crop"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/circle_crop"/>
-
-      </FrameLayout>
-
-      <LinearLayout
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/commentText"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:textSize="18sp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="start"
-            android:layout_weight="1"
-            android:textColor="@color/text_color"
-            android:background="@color/popup_color"
-            android:maxLines="4"
-            android:minLines="1"
-            android:ellipsize="end"/>
-
-      </LinearLayout>
-    </LinearLayout>
     <Button
         android:id="@+id/buttonProfileView"
         android:layout_width="fill_parent"
@@ -77,6 +42,7 @@
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/view_profile"/>
+
     <Button
         android:id="@+id/buttonFlag"
         android:layout_width="fill_parent"
@@ -89,5 +55,18 @@
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/flag"/>
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/text_color"
+        android:layout_height="30dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/delete_post"/>
   </LinearLayout>
 </LinearLayout>

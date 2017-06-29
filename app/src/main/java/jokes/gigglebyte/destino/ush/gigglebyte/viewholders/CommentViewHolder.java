@@ -25,6 +25,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
   public TextView commentText;
   public TextView likes;
   public ImageView likeImage;
+  public ImageView menuImage;
 
   private Comment comment;
   private Activity activity;
@@ -46,13 +47,17 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     commentText.setOnClickListener(doubleClickChecker());
     layout.setOnClickListener(doubleClickChecker());
 
-    //    if (userId != UserHelper.getUserDetails(activity).getId()) {
     commentText.setOnLongClickListener(longClickListener());
     layout.setOnLongClickListener(longClickListener());
-    //    }
-    //    else {
-    //
-    //    }
+
+    if (menuImage != null ) {
+      menuImage.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          commentOptions();
+        }
+      });
+    }
 
     if(comment.isUserLike()) {
       likeImage.setImageResource(R.drawable.star_like);
@@ -115,12 +120,16 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     return new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        OptionsCommentDialog optionsCommentDialog = new OptionsCommentDialog();
-        optionsCommentDialog.setComment(comment);
-        optionsCommentDialog.show(activity.getFragmentManager(), "");
+        commentOptions();
         return true;
       }
     };
+  }
+
+  private void commentOptions() {
+    OptionsCommentDialog optionsCommentDialog = new OptionsCommentDialog();
+    optionsCommentDialog.setComment(comment);
+    optionsCommentDialog.show(activity.getFragmentManager(), "");
   }
 
   private void likeMethod() {

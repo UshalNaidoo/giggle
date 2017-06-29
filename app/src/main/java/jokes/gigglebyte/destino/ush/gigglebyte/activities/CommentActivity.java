@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
+import com.github.clans.fab.FloatingActionButton;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +22,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.CommentListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddCommentDialog;
@@ -29,16 +30,14 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
-import com.github.clans.fab.FloatingActionButton;
-
 public class CommentActivity extends Activity implements onSubmitListener {
 
-  private CommentListAdapter commentListAdapter;
-  private Activity activity;
-  private int postId;
+  private static CommentListAdapter commentListAdapter;
+  private static Activity activity;
+  private static int postId;
   private int posterId;
   private FloatingActionButton floatingActionButton;
-  private ListView listView;
+  private static ListView listView;
   private static List<Comment> comments;
 
   @Override
@@ -53,7 +52,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
     postId = intent.getIntExtra("postId", 0);
     posterId = intent.getIntExtra("posterId", 0);
 
-    new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    reload();
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -64,7 +63,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
-            new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            reload();
           }
         }, 200);
       }
@@ -103,7 +102,11 @@ public class CommentActivity extends Activity implements onSubmitListener {
     });
   }
 
-  private class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
+  public static void reload() {
+
+    new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+  private static class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
 
     int postId;
 
