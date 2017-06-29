@@ -5,6 +5,9 @@ import android.app.Activity;
 import java.util.Iterator;
 import java.util.List;
 
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.FollowersActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search_User;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -37,6 +40,13 @@ public class FollowHelper {
     following.add(followUser);
     final int id = UserHelper.getUsersId(activity);
 
+    for (User user : MainActivity.loadedUsers) {
+      if (user.getId() == followUser.getId()) {
+        user.setNumberOfFollowers(user.getNumberOfFollowers() + 1);
+        break;
+      }
+    }
+
     Thread thread = new Thread() {
       @Override
       public void run() {
@@ -47,6 +57,8 @@ public class FollowHelper {
     thread.start();
 
     UIHelper.updateScreen();
+    FollowersActivity.refresh();
+    Fragment_Search_User.refresh();
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
@@ -66,9 +78,19 @@ public class FollowHelper {
         iterator.remove();
       }
     }
+
+    for (User user : MainActivity.loadedUsers) {
+      if (user.getId() == unfollowUser.getId()) {
+        user.setNumberOfFollowers(user.getNumberOfFollowers() - 1);
+        break;
+      }
+    }
+
     PostHelper.setFeedPosts(activity, posts);
 
     UIHelper.updateScreen();
+    FollowersActivity.refresh();
+    Fragment_Search_User.refresh();
     Thread thread = new Thread() {
       @Override
       public void run() {

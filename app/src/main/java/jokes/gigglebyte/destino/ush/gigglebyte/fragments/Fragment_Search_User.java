@@ -31,6 +31,7 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
   private Activity activity;
   private GridView gridView;
   private EditText searchField;
+  private static UserGridAdapter adapter;
 
   @Override
   public View onCreateView(LayoutInflater inflater,
@@ -94,14 +95,20 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
 
     @Override
     protected void onPostExecute(List<User> users) {
-      UserGridAdapter gridAdapter = new UserGridAdapter(activity, users, false, null, null);
+      adapter = new UserGridAdapter(activity, users, false, null, null);
       MainActivity.loadedUsers = users;
-      gridView.setAdapter(gridAdapter);
+      gridView.setAdapter(adapter);
     }
 
     @Override
     protected void onPreExecute() {
       searchField.setText("");
+    }
+  }
+
+  public static void refresh() {
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
     }
   }
 

@@ -26,6 +26,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 public class FollowersActivity extends Activity {
 
   private static Activity activity;
+  private static UserGridAdapter[] gridAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,8 @@ public class FollowersActivity extends Activity {
 
     final FromScreen fromScreen = !userList ? null : showFollowing ? FromScreen.FOLLOWING : FromScreen.FOLLOWERS;
     List<User> users = showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers();
-    final UserGridAdapter[] gridAdapter =
-        { new UserGridAdapter(activity, users, userList, infoPost, fromScreen) };
+    gridAdapter =
+        new UserGridAdapter[] { new UserGridAdapter(activity, users, userList, infoPost, fromScreen) };
     gridView.setAdapter(gridAdapter[0]);
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
@@ -95,6 +96,12 @@ public class FollowersActivity extends Activity {
       }
     });
 
+  }
+
+  public static void refresh() {
+    if (gridAdapter != null && gridAdapter[0] != null) {
+      gridAdapter[0].notifyDataSetChanged();
+    }
   }
 
   public static void closeActivity() {
