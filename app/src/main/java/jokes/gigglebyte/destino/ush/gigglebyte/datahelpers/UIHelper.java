@@ -69,7 +69,7 @@ public class UIHelper {
     return actionBar;
   }
 
-  static void updateScreen() {
+  public static void updateScreen() {
     Fragment_Feed.refreshList();
     Fragment_New.refreshList();
     Fragment_Hot.refreshList();

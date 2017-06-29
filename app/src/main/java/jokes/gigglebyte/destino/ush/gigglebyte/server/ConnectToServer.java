@@ -359,6 +359,16 @@ public class ConnectToServer {
     }
   }
 
+  public static void editComment(int commentId, String newComment) {
+    String parameters = "comment_id=" + commentId+ "&comment_text=" + newComment;
+    String UrlString = ServerSettings._Server + ServerSettings._editComment;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public static void flagPost(int postId) {
     String parameters = "post_id=" + postId;
     String UrlString = ServerSettings._Server + ServerSettings._flagPost;
@@ -378,6 +388,26 @@ public class ConnectToServer {
     } catch (Exception e) {
       e.printStackTrace();
       Log.e("Giggle", e.toString());
+    }
+  }
+
+  public static void editTextPost(int post_id, String newPost) {
+    String parameters = "post_id=" + post_id+ "&post_text=" + newPost;
+    String UrlString = ServerSettings._Server + ServerSettings._editTextPost;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void editTitlePost(int post_id, String newTitle) {
+    String parameters = "post_id=" + post_id+ "&post_title=" + newTitle;
+    String UrlString = ServerSettings._Server + ServerSettings._editTitlePost;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 

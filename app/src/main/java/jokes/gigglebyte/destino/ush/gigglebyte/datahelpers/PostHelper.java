@@ -25,6 +25,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.DELETE_POST;
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.EDIT_POST;
 
 public class PostHelper implements onSubmitListener {
 
@@ -39,7 +40,8 @@ public class PostHelper implements onSubmitListener {
     UNLIKE_POST,
     FAVORITE_POST,
     UNFAVORITE_POST,
-    DELETE_POST
+    DELETE_POST,
+    EDIT_POST
   }
 
   public static List<Post> getHotPosts() {
@@ -315,9 +317,40 @@ public class PostHelper implements onSubmitListener {
         removeFavoritePost(post);
         SharedPrefHelper.saveUserFavorites(activity, user_favorites);
         break;
+
+      case EDIT_POST:
+        for (int i = 0 ; i < getNewPosts().size(); i++) {
+          if (getNewPosts().get(i).getPostId() == post.getPostId()) {
+            getNewPosts().get(i).setPostTitle(post.getPostTitle());
+            getNewPosts().get(i).setPostText(post.getPostText());
+            break;
+          }
+        }
+        for (int i = 0 ; i < getHotPosts().size(); i++) {
+          if (getHotPosts().get(i).getPostId() == post.getPostId()) {
+            getHotPosts().get(i).setPostTitle(post.getPostTitle());
+            getHotPosts().get(i).setPostText(post.getPostText());
+            break;
+          }
+        }
+        for (int i = 0 ; i < getFavoritePosts().size(); i++) {
+          if (getFavoritePosts().get(i).getPostId() == post.getPostId()) {
+            getFavoritePosts().get(i).setPostTitle(post.getPostTitle());
+            getFavoritePosts().get(i).setPostText(post.getPostText());
+            break;
+          }
+        }
+        for (int i = 0 ; i < getFeedPosts().size(); i++) {
+          if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
+            getFeedPosts().get(i).setPostTitle(post.getPostTitle());
+            getFeedPosts().get(i).setPostText(post.getPostText());
+            break;
+          }
+        }
+        break;
     }
 
-    if(action != DELETE_POST) {
+    if(action != DELETE_POST && action != EDIT_POST) {
       UIHelper.imageViewClickAnimation(image);
     }
     UIHelper.updateScreen();
