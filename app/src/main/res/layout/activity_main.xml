@@ -42,7 +42,7 @@
       fab:menu_openDirection="up"
       fab:menu_colorNormal="@color/button_color"
       fab:menu_colorPressed="@color/button_selected_color"
-      fab:menu_colorRipple="@color/app_primary">
+      fab:menu_colorRipple="@color/button_ripple">
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/addPost"
@@ -52,9 +52,9 @@
         android:padding="4dp"
         fab:fab_size="mini"
         fab:fab_label="@string/menu_add_post"
-        fab:menu_colorNormal="@color/button_color"
-        fab:menu_colorPressed="@color/button_selected_color"
-        fab:menu_colorRipple="@color/app_primary"/>
+        fab:fab_colorNormal="@color/button_color"
+        fab:fab_colorPressed="@color/button_selected_color"
+        fab:fab_colorRipple="@color/button_ripple"/>
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/addImage"
@@ -64,9 +64,9 @@
         android:padding="4dp"
         fab:fab_size="mini"
         fab:fab_label="@string/menu_add_image"
-        fab:menu_colorNormal="@color/button_color"
-        fab:menu_colorPressed="@color/button_selected_color"
-        fab:menu_colorRipple="@color/app_primary"/>
+        fab:fab_colorNormal="@color/button_color"
+        fab:fab_colorPressed="@color/button_selected_color"
+        fab:fab_colorRipple="@color/button_ripple"/>
 
   </com.github.clans.fab.FloatingActionMenu>
 </RelativeLayout>

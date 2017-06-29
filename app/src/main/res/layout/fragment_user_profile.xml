@@ -54,7 +54,7 @@
         fab:menu_icon="@drawable/ic_edit"
         fab:menu_colorNormal="@color/button_color"
         fab:menu_colorPressed="@color/button_selected_color"
-        fab:menu_colorRipple="@color/app_primary">
+        fab:menu_colorRipple="@color/button_ripple">
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changePictureFab"
@@ -63,9 +63,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_change_picture"
-          fab:menu_colorNormal="@color/button_color"
-          fab:menu_colorPressed="@color/button_selected_color"
-          fab:menu_colorRipple="@color/app_primary"/>
+          fab:fab_colorNormal="@color/button_color"
+          fab:fab_colorPressed="@color/button_selected_color"
+          fab:fab_colorRipple="@color/button_ripple"/>
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changeDescriptionFab"
@@ -74,9 +74,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_edit_description"
-          fab:menu_colorNormal="@color/button_color"
-          fab:menu_colorPressed="@color/button_selected_color"
-          fab:menu_colorRipple="@color/app_primary"/>
+          fab:fab_colorNormal="@color/button_color"
+          fab:fab_colorPressed="@color/button_selected_color"
+          fab:fab_colorRipple="@color/button_ripple"/>
 
       <com.github.clans.fab.FloatingActionButton
           android:id="@+id/changeNameFab"
@@ -85,9 +85,9 @@
           android:src="@drawable/ic_edit"
           fab:fab_size="mini"
           fab:fab_label="@string/menu_edit_username"
-          fab:menu_colorNormal="@color/button_color"
-          fab:menu_colorPressed="@color/button_selected_color"
-          fab:menu_colorRipple="@color/app_primary"/>
+          fab:fab_colorNormal="@color/button_color"
+          fab:fab_colorPressed="@color/button_selected_color"
+          fab:fab_colorRipple="@color/button_ripple"/>
     </com.github.clans.fab.FloatingActionMenu>
   </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

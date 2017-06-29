@@ -16,6 +16,7 @@
 
   <color name="button_color">#551A8B</color>
   <color name="button_selected_color">#58857e</color>
+  <color name="button_ripple">#2d80c4</color>
 
   <color name="popup_color">#1c1b20</color>
 
