@@ -117,6 +117,7 @@ public class CommentListAdapter extends BaseAdapter {
       holder.commentText = (TextView) row.findViewById(R.id.commentText);
       holder.userName = (TextView) row.findViewById(R.id.userName);
       holder.likes = (TextView) row.findViewById(R.id.likes);
+      holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
       holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
       holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);

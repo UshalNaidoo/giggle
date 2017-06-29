@@ -20,7 +20,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.TagActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsPostDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -98,7 +97,7 @@ public class PostViewHolder extends UserGridViewHolder {
 
     layout.setOnClickListener(doubleClickListener());
 
-    layout.setOnLongClickListener(longClickListener(post.getUser().getId()));
+    layout.setOnLongClickListener(longClickListener());
 
 
     likeImage.setOnClickListener(new View.OnClickListener() {
@@ -132,13 +131,11 @@ public class PostViewHolder extends UserGridViewHolder {
     return numberOfLikes + " . " + numberOfComments;
   }
 
-  View.OnLongClickListener longClickListener(final int userId) {
+  View.OnLongClickListener longClickListener() {
     return new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        if (userId != UserHelper.getUsersId(activity)) {
-          postOptions();
-        }
+        postOptions();
         return true;
       }
     };
@@ -148,8 +145,6 @@ public class PostViewHolder extends UserGridViewHolder {
     OptionsPostDialog optionsPostDialog = new OptionsPostDialog();
     optionsPostDialog.setPost(post);
     optionsPostDialog.setFromAdapter(this.fromScreen);
-    optionsPostDialog.setLikeImage(likeImage);
-//    optionsPostDialog.setLikes(likes);
     optionsPostDialog.show(activity.getFragmentManager(), "");
   }
 

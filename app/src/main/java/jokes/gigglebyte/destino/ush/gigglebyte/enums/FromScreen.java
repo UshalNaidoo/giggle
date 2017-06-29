@@ -7,7 +7,6 @@ public enum FromScreen {
   NEW,
   HOT,
   FAVOURITE,
-  BYTE,
   TAG,
   COMMENTS,
   FOLLOWING,

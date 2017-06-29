@@ -34,7 +34,7 @@ public class PostTextViewHolder extends PostViewHolder {
 
     postText.setOnClickListener(doubleClickListener());
 
-    postText.setOnLongClickListener(longClickListener(post.getUser().getId()));
+    postText.setOnLongClickListener(longClickListener());
   }
 
 }
