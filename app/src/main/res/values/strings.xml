@@ -74,7 +74,11 @@
   <string name="confirm_comment_delete">Are you sure you want to delete your comment?</string>
   <string name="comment_deleted">Comment Deleted</string>
   <string name="post_deleted">Post Deleted</string>
+  <string name="comment_flagged">Comment Flagged</string>
+  <string name="post_flagged">Post Flagged</string>
   <string name="changed">Changed</string>
+  <string name="confirm_post_flag">Thank you for maintaining the quality of Gigglebyte. Are you sure you want to flag this post?</string>
+  <string name="confirm_comment_flag">Thank you for maintaining the quality of Gigglebyte. Are you sure you want to flag this comment?</string>
 
   <string name="loadMessage0">Collecting funny jokes</string>
   <string name="loadMessage1">Lifting weights</string>

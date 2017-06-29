@@ -15,6 +15,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -81,13 +82,21 @@ public class OptionsPostDialog extends DialogFragment {
         }
       });
 
-      buttonFlag.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          PostHelper.flagPost(activity, getPost());
-          dismiss();
-        }
-      });
+      if (!SharedPrefHelper.getPostFlags(activity).contains(String.valueOf(getPost().getPostId()))) {
+        buttonFlag.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            OptionsConfirmFlag optionsConfirmFlag = new OptionsConfirmFlag();
+            optionsConfirmFlag.setFlagPost(true);
+            optionsConfirmFlag.setPost(getPost());
+            optionsConfirmFlag.show(activity.getFragmentManager(), "");
+            dismiss();
+          }
+        });
+      }
+      else {
+        buttonFlag.setVisibility(View.GONE);
+      }
 
       buttonEdit.setVisibility(View.GONE);
       buttonDelete.setVisibility(View.GONE);

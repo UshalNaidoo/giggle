@@ -35,12 +35,12 @@ public class SharedPrefHelper {
     postLikesEditor.apply();
   }
 
-  static Set<String> getPostFlags(Activity activity) {
+  public static Set<String> getPostFlags(Activity activity) {
     SharedPreferences flagsSharedPreferences = activity.getSharedPreferences("POST_FLAGS", Context.MODE_PRIVATE);
     return flagsSharedPreferences.getStringSet("POST_FLAGS", new HashSet<String>());
   }
 
-  static void savePostFlags(Activity activity, Set<String> postIds) {
+  public static void savePostFlags(Activity activity, Set<String> postIds) {
     SharedPreferences flagsSharedPreferences = activity.getSharedPreferences("POST_FLAGS", Context.MODE_PRIVATE);
     SharedPreferences.Editor postFlagsEditor = flagsSharedPreferences.edit();
     postFlagsEditor.clear();
@@ -48,12 +48,12 @@ public class SharedPrefHelper {
     postFlagsEditor.apply();
   }
 
-  static Set<String> getCommentFlags(Activity activity) {
+  public static Set<String> getCommentFlags(Activity activity) {
     SharedPreferences commentSharedPreferences = activity.getSharedPreferences("COMMENT_FLAGS", Context.MODE_PRIVATE);
     return commentSharedPreferences.getStringSet("COMMENT_FLAGS", new HashSet<String>());
   }
 
-  static void saveCommentFlags(Activity activity, Set<String> userLikes) {
+  public static void saveCommentFlags(Activity activity, Set<String> userLikes) {
     SharedPreferences commentSharedPreferences = activity.getSharedPreferences("COMMENT_FLAGS", Context.MODE_PRIVATE);
     SharedPreferences.Editor commentFlagEditor = commentSharedPreferences.edit();
     commentFlagEditor.clear();

@@ -1,5 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.dialogs;
 
+import java.util.Set;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 
@@ -72,13 +75,22 @@ public class OptionsCommentDialog extends DialogFragment {
         }
       });
 
-      buttonFlag.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          CommentHelper.flagComment(activity, getComment());
-          dismiss();
-        }
-      });
+      if (!SharedPrefHelper.getCommentFlags(activity).contains(String.valueOf(comment.getCommentId()))) {
+        buttonFlag.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            OptionsConfirmFlag optionsConfirmFlag = new OptionsConfirmFlag();
+            optionsConfirmFlag.setFlagPost(false);
+            optionsConfirmFlag.setComment(getComment());
+            optionsConfirmFlag.show(activity.getFragmentManager(), "");
+            dismiss();
+          }
+        });
+      }
+      else {
+        buttonFlag.setVisibility(View.GONE);
+      }
+
       buttonEdit.setVisibility(View.GONE);
       buttonDelete.setVisibility(View.GONE);
     }
