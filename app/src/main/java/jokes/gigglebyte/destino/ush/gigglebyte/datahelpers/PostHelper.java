@@ -149,6 +149,11 @@ public class PostHelper implements onSubmitListener {
             thisPost.setLikes(likes);
             break;
           }
+          if (thisPost.getInnerPost().getPostId() == post.getPostId()) {
+            thisPost.getInnerPost().setUserLike(true);
+            thisPost.getInnerPost().setLikes(likes);
+            break;
+          }
         }
         for (Post thisPost : getHotPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
@@ -192,6 +197,11 @@ public class PostHelper implements onSubmitListener {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserLike(false);
             thisPost.setLikes(likes);
+            break;
+          }
+          if (thisPost.getInnerPost().getPostId() == post.getPostId()) {
+            thisPost.getInnerPost().setUserLike(false);
+            thisPost.getInnerPost().setLikes(likes);
             break;
           }
         }
@@ -248,6 +258,10 @@ public class PostHelper implements onSubmitListener {
             thisPost.setUserFavorite(true);
             break;
           }
+          if (thisPost.getInnerPost().getPostId() == post.getPostId()) {
+            thisPost.getInnerPost().setUserFavorite(true);
+            break;
+          }
         }
         Set<String> user_favorites = SharedPrefHelper.getUserFavorites(activity);
         user_favorites.add(String.valueOf(post.getPostId()));
@@ -281,6 +295,10 @@ public class PostHelper implements onSubmitListener {
             thisPost.setUserFavorite(false);
             break;
           }
+          if (thisPost.getInnerPost().getPostId() == post.getPostId()) {
+            thisPost.getInnerPost().setUserFavorite(false);
+            break;
+          }
         }
         user_favorites = SharedPrefHelper.getUserFavorites(activity);
         user_favorites.remove(String.valueOf(post.getPostId()));
@@ -309,6 +327,10 @@ public class PostHelper implements onSubmitListener {
         }
         for (int i = 0 ; i < getFeedPosts().size(); i++) {
           if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
+            getFeedPosts().remove(i);
+            break;
+          }
+          if (getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
             getFeedPosts().remove(i);
             break;
           }
@@ -345,6 +367,11 @@ public class PostHelper implements onSubmitListener {
           if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
             getFeedPosts().get(i).setPostTitle(post.getPostTitle());
             getFeedPosts().get(i).setPostText(post.getPostText());
+            break;
+          }
+          if (getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
+            getFeedPosts().get(i).getInnerPost().setPostTitle(post.getPostTitle());
+            getFeedPosts().get(i).getInnerPost().setPostText(post.getPostText());
             break;
           }
         }

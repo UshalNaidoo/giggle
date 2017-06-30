@@ -16,6 +16,7 @@ public class ServerSettings {
   static String _searchTag = "/search_tag.php";
 
   /* Read Data */
+  static String _getPostForId = "/get_post.php";
   static String _getNewPosts = "/get_new_posts.php";
   static String _getHotPosts = "/get_hot_posts.php";
   static String _getFavoritePosts = "/get_favorite_posts.php";

@@ -18,6 +18,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationFollowViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationImagePostViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationTextPostViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostImageViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostInfoViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.PostTextViewHolder;
@@ -130,6 +132,40 @@ public class PostListAdapter extends BaseAdapter {
 
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, convertView, post, OpenScreen.PROFILE);
+    }else if (posts.get(position).getType() == PostType.LIKE_TEXT_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_TEXT_POST_NOTIFICATION) {
+      final NotificationTextPostViewHolder holder;
+      convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
+      holder = new NotificationTextPostViewHolder();
+
+      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
+      holder.userName = (TextView) convertView.findViewById(R.id.userName);
+      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
+
+      convertView.setTag(holder);
+
+      Post post = posts.get(position);
+
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
+    }else if (posts.get(position).getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_IMAGE_POST_NOTIFICATION) {
+      final NotificationImagePostViewHolder holder;
+      convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
+      holder = new NotificationImagePostViewHolder();
+
+      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
+      holder.userName = (TextView) convertView.findViewById(R.id.userName);
+      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
+      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
+
+      convertView.setTag(holder);
+
+      Post post = posts.get(position);
+
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+      holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
     }
     return convertView;
   }

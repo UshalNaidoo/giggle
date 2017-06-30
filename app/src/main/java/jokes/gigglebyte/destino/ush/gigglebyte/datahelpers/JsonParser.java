@@ -1,6 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
 import android.support.annotation.NonNull;
+import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,15 +67,31 @@ public class JsonParser {
 
   @NonNull
   private static Post getFollowingNotification(JSONObject jsonObject) throws JSONException {
-    Post Post = new Post();
-    Post.setPostId(jsonObject.getInt("_id"));
+    Post post = new Post();
+    post.setPostId(jsonObject.getInt("_id"));
     User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
-    Post.setUser(user);
+    post.setUser(user);
     User followingUser = new User(jsonObject.getInt("text"), jsonObject.getString("title"), null, null);
-    Post.setFollowingUser(followingUser);
-    Post.setTimeSincePost(jsonObject.getString("time_since"));
-    Post.setType(PostType.FOLLOWING_NOTIFICATION);
-    return Post;
+    post.setFollowingUser(followingUser);
+    post.setTimeSincePost(jsonObject.getString("time_since"));
+    post.setType(PostType.FOLLOWING_NOTIFICATION);
+    return post;
+  }
+
+  @NonNull
+  private static Post getPostNotification(JSONObject jsonObject, PostType type) throws JSONException {
+    Post post = new Post();
+
+    User user = new User(jsonObject.getInt("user_id"), jsonObject.getString("user_name"), null, null);
+    post.setUser(user);
+
+    JSONObject json = new JSONObject(ConnectToServer.getPostForId(jsonObject.getInt("text")));
+    User innerUser = new User(json.getInt("user_id"), json.getString("user_name"), null, null);
+    Post innerPost = PostType.LIKE_TEXT_POST_NOTIFICATION.equals(type) || PostType.COMMENT_TEXT_POST_NOTIFICATION.equals(type) ?  getTextPost(json) : getImagePost(json);
+    innerPost.setUser(innerUser);
+    post.setInnerPost(innerPost);
+    post.setType(type);
+    return post;
   }
 
   public static List<Post> GetFeed(String response) {
@@ -94,6 +111,20 @@ public class JsonParser {
               break;
             case 2 :
               posts.add(getFollowingNotification(jsonObject));
+              break;
+            case 3 :
+              if (jsonObject.getInt("title") == 0) {
+                posts.add(getPostNotification(jsonObject, PostType.LIKE_TEXT_POST_NOTIFICATION));
+              } else {
+                posts.add(getPostNotification(jsonObject, PostType.LIKE_IMAGE_POST_NOTIFICATION));
+              }
+              break;
+            case 4 :
+              if (jsonObject.getInt("title") == 0) {
+                posts.add(getPostNotification(jsonObject, PostType.COMMENT_TEXT_POST_NOTIFICATION));
+              } else {
+                posts.add(getPostNotification(jsonObject, PostType.COMMENT_IMAGE_POST_NOTIFICATION));
+              }
               break;
           }
         }

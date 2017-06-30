@@ -93,6 +93,17 @@ public class ConnectToServer {
     return "";
   }
 
+  public static String getPostForId(int postId) {
+    String parameters = "post_id=" + postId;
+    String UrlString = ServerSettings._Server + ServerSettings._getPostForId;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static String getComments(int postId) {
     String parameters = "post_id=" + postId;
     String UrlString = ServerSettings._Server + ServerSettings._getComments;
