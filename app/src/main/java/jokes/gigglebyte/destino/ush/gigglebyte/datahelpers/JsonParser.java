@@ -167,12 +167,25 @@ public class JsonParser {
     return comments;
   }
 
+
   public static User GetUser(String response) {
+    try {
+      return GetUser(new JSONObject(response));
+    }
+    catch (JSONException e) {
+      e.printStackTrace();
+    }
+    return new User();
+  }
+
+  private static User GetUser(JSONObject json) {
     User user = new User();
     try {
-      JSONObject json = new JSONObject(response);
+      user.setId(json.getInt("_id"));
       user.setName(json.getString("name"));
       user.setDescription(json.getString("description"));
+      user.setNumberOfFollowers(json.getInt("numberOfFollowers"));
+      user.setNumberOfPosts(json.getInt("numberOfPosts"));
     } catch (JSONException e) {
       e.printStackTrace();
     }
@@ -185,14 +198,7 @@ public class JsonParser {
       JSONObject json = new JSONObject(response);
       JSONArray jsonPosts = json.getJSONArray("users");
       for (int i = 0; i < jsonPosts.length(); i++) {
-        JSONObject jsonObject = jsonPosts.getJSONObject(i);
-        User user = new User();
-        user.setId(jsonObject.getInt("_id"));
-        user.setName(jsonObject.getString("name"));
-        user.setDescription(jsonObject.getString("description"));
-        user.setNumberOfFollowers(jsonObject.getInt("numberOfFollowers"));
-        user.setNumberOfPosts(jsonObject.getInt("numberOfPosts"));
-        users.add(user);
+        users.add(GetUser(jsonPosts.getJSONObject(i)));
       }
     } catch (JSONException e) {
       e.printStackTrace();
