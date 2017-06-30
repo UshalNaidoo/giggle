@@ -32,9 +32,10 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddTextByteDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.ImageByteOptionsDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Posts;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Profile;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Tabs_Posts;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Tabs_Profile;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Tabs_Search;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
@@ -51,10 +52,10 @@ public class MainActivity extends FragmentActivity {
   private static FloatingActionMenu menuDown;
   private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;
-  private Fragment_Profile fragment_profile;
+  private Tabs_Profile tabs_profile;
   private Fragment_Feed fragment_feed;
-  private Fragment_Posts fragment_posts;
-  private Fragment_Search fragment_search;
+  private Tabs_Posts tabs_posts;
+  private Tabs_Search tabs_search;
   private int currentPosition = 0;
   public static List<Tag> loadedTags = new ArrayList<>();
   public static List<User> loadedUsers = new ArrayList<>();
@@ -63,10 +64,10 @@ public class MainActivity extends FragmentActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     activity = this;
-    fragment_profile = new Fragment_Profile();
+    tabs_profile = new Tabs_Profile();
     fragment_feed = new Fragment_Feed();
-    fragment_posts = new Fragment_Posts();
-    fragment_search = new Fragment_Search();
+    tabs_posts = new Tabs_Posts();
+    tabs_search = new Tabs_Search();
 
     setContentView(R.layout.activity_main);
 
@@ -180,13 +181,13 @@ public class MainActivity extends FragmentActivity {
     public Fragment getItem(int i) {
       switch (i) {
         case 0:
-          return fragment_profile;
+          return tabs_profile;
         case 1:
           return fragment_feed;
         case 2:
-          return fragment_posts;
+          return tabs_posts;
         case 3:
-          return fragment_search;
+          return tabs_search;
         default:
           return null;
       }
