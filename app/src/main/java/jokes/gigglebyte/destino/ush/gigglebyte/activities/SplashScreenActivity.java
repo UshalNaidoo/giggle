@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -90,6 +89,7 @@ public class SplashScreenActivity extends Activity {
             break;
           case 6:
             PostHelper.initialiseFeedPosts(activity, ConnectToServer.getFeed(user.getId()));
+            PostHelper.initialiseNotifications(activity, ConnectToServer.getNotifications(user.getId()));
             publishProgress(60);
             break;
           case 7:

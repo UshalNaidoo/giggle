@@ -97,7 +97,7 @@ public class PosterProfileActivity extends Activity {
     @Override
     protected String doInBackground(Integer... params) {
       Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-      posts = JsonParser.GetPosts("{\"posts\":" + ConnectToServer.getUsersPosts(userId)+ "}");
+      posts = JsonParser.GetPosts("{\"posts\":" + ConnectToServer.getUsersPosts(userId) + "}");
       following = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowing(userId) + "}");
       followers = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowers(userId) + "}");
       return ConnectToServer.getUserDetails(userId);

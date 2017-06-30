@@ -1,7 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
 import android.support.annotation.NonNull;
-import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,25 +14,9 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
+import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class JsonParser {
-
-  public static List<Post> GetPosts(String response) {
-    List<Post> posts = new ArrayList<>();
-    try {
-      JSONObject json = new JSONObject(response);
-      JSONArray jsonPosts = json.getJSONArray("posts");
-      if (jsonPosts != null) {
-        for (int i = 0; i < jsonPosts.length(); i++) {
-          JSONObject jsonObject = jsonPosts.getJSONObject(i);
-          posts.add((jsonObject.getInt("type") == 0) ? getTextPost(jsonObject) : getImagePost(jsonObject));
-        }
-      }
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-    return posts;
-  }
 
   @NonNull
   private static Post getTextPost(JSONObject jsonObject) throws JSONException {
@@ -94,7 +78,7 @@ public class JsonParser {
     return post;
   }
 
-  public static List<Post> GetFeed(String response) {
+  public static List<Post> GetPosts(String response) {
     List<Post> posts = new ArrayList<>();
     try {
       JSONObject json = new JSONObject(response);

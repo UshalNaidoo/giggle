@@ -148,6 +148,17 @@ public class ConnectToServer {
     return "";
   }
 
+  public static String getNotifications(int userId) {
+    String parameters = "user_id=" + userId + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._getNotifications;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static String getTagPosts(String tag) {
     String parameters = "tag=" + tag + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._getTagPosts;

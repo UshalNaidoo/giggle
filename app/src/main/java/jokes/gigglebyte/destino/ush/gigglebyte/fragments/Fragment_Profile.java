@@ -24,7 +24,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserDescriptionDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.EditUserNameDialog;
@@ -166,7 +165,6 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
       List<Post> posts = JsonParser.GetPosts(result);
 
       posts = getPostStatus(activity, posts);
-      PostHelper.setPostsForUser(activity, posts);
 
       List<Post> infoPost = new ArrayList<>();
       infoPost.add(new Post(activity.getResources().getString(R.string.info_add_post), BitmapFactory.decodeResource(activity.getResources(), R.drawable.plus), PostType.INFO_POST));
