@@ -10,5 +10,6 @@ public enum FromScreen {
   TAG,
   COMMENTS,
   FOLLOWING,
-  FOLLOWERS
+  FOLLOWERS,
+  NOTIFICATIONS
 }

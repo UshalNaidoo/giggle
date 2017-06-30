@@ -19,6 +19,7 @@
   <string name="upvoted">Upvoted</string>
   <string name="favourites">Added to favourites</string>
   <string name="started_following">started following</string>
+  <string name="started_following_you">started following you</string>
   <string name="liked_post">liked this</string>
   <string name="commented_on">commented on</string>
 
@@ -51,6 +52,7 @@
   <string name="delete_comment">Delete</string>
 
   <string name="tab_profile">Profile</string>
+  <string name="tab_notifications">Notifications</string>
   <string name="tab_feed">Feed</string>
   <string name="tab_tags">Tags</string>
   <string name="tab_users">Users</string>

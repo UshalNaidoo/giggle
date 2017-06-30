@@ -33,7 +33,7 @@ public class PostHelper implements onSubmitListener {
   private static List<Post> newPosts = new ArrayList<>();
   private static List<Post> feedPosts = new ArrayList<>();
   private static List<Post> favoritePosts = new ArrayList<>();
-  private static List<Post> postsForUser = new ArrayList<>();
+  private static List<Post> notifications = new ArrayList<>();
 
   public enum PostAction {
     LIKE_POST,
@@ -68,14 +68,28 @@ public class PostHelper implements onSubmitListener {
     hotPosts = posts;
   }
 
+  public static void initialiseNotifications(Activity activity, String posts) {
+    posts = "{\"posts\":" + posts + "}";
+    setNotifications(activity, JsonParser.GetPosts(posts));
+  }
+
+  private static void setNotifications(Activity activity, List<Post> posts) {
+    posts = getPostStatus(activity, posts);
+    notifications = posts;
+  }
+
   public static void initialiseFeedPosts(Activity activity, String posts) {
     posts = "{\"posts\":" + posts + "}";
-    setFeedPosts(activity, JsonParser.GetFeed(posts));
+    setFeedPosts(activity, JsonParser.GetPosts(posts));
   }
 
   public static void setFeedPosts(Activity activity, List<Post> posts) {
     posts = getPostStatus(activity, posts);
     feedPosts = posts;
+  }
+
+  public static List<Post> getNotifications() {
+    return notifications;
   }
 
   public static List<Post> getFeedPosts() {
@@ -95,10 +109,6 @@ public class PostHelper implements onSubmitListener {
     newPosts = posts;
   }
 
-  public static void setPostsForUser(Activity activity, List<Post> posts) {
-    posts = getPostStatus(activity, posts);
-    postsForUser = posts;
-  }
 
   public static void setFavoritePosts(Activity activity, List<Post> posts) {
     posts = getPostStatus(activity, posts);

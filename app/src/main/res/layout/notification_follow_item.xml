@@ -58,6 +58,7 @@
         android:src="@drawable/follow"/>
   </LinearLayout>
   <LinearLayout
+      android:id="@+id/userFollowingPanel"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:padding="5dp"

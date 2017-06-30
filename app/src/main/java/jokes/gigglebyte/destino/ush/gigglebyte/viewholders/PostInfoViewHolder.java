@@ -7,8 +7,8 @@ import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.FollowersActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Posts;
-import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Search;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Tabs_Posts;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Tabs_Search;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 
 public class PostInfoViewHolder extends PostViewHolder {
@@ -27,10 +27,10 @@ public class PostInfoViewHolder extends PostViewHolder {
       public void onClick(View view) {
         if (FromScreen.FEED.equals(from)) {
           MainActivity.changeTab(3);
-          Fragment_Search.switchTab(0);
+          Tabs_Search.switchTab(0);
         }
         if (FromScreen.FAVOURITE.equals(from)) {
-          Fragment_Posts.switchTab(0);
+          Tabs_Posts.switchTab(0);
         }
         if (FromScreen.USER.equals(from)) {
           MainActivity.popUpAddText(activity);
@@ -38,7 +38,7 @@ public class PostInfoViewHolder extends PostViewHolder {
         if (FromScreen.FOLLOWING.equals(from)) {
           FollowersActivity.closeActivity();
           MainActivity.changeTab(3);
-          Fragment_Search.switchTab(0);
+          Tabs_Search.switchTab(0);
         }
         if (FromScreen.FOLLOWERS.equals(from)) {
           MainActivity.popUpAddText(activity);
