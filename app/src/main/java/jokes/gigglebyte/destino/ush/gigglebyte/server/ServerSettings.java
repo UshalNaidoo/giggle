@@ -16,13 +16,14 @@ public class ServerSettings {
   static String _searchTag = "/search_tag.php";
 
   /* Read Data */
+  static String _getPostForId = "/get_post.php";
   static String _getNewPosts = "/get_new_posts.php";
   static String _getHotPosts = "/get_hot_posts.php";
   static String _getFavoritePosts = "/get_favorite_posts.php";
   static String _getComments = "/get_comments_for_post.php";
   static String _getUserDetails = "/user_view_profile.php";
   static String _getUsersPosts = "/get_users_posts.php";
-  static String _getFeed = "/get_feed.php";
+  static String _getFeed = "/get_feed_v2.php";
 
   static String _getAllTags = "/get_all_tags.php";
   static String _getTagPosts = "/get_tag_posts.php";

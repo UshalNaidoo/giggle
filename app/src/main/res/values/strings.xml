@@ -18,6 +18,9 @@
   <string name="wait">Please wait…</string>
   <string name="upvoted">Upvoted</string>
   <string name="favourites">Added to favourites</string>
+  <string name="started_following">started following</string>
+  <string name="liked_post">liked this</string>
+  <string name="commented_on">commented on</string>
 
   <string name="comment">Comment</string>
   <string name="comments">Comments</string>

@@ -32,6 +32,10 @@ public class Post {
   private PostType type;
   private String postTitle;
   private User user;
+  // This is a bad design - move this to it's own object pattern
+  private User followingUser;
+  // This is a bad design - move this to it's own object pattern
+  private Post innerPost;
   private Bitmap postImage;
   private ImageLoadTask postTask;
   private boolean loadingPostImage = false;
@@ -171,6 +175,34 @@ public class Post {
 
   public void setCommentCount(int commentCount) {
     this.commentCount = commentCount;
+  }
+
+  /**
+   * @return the {@link #followingUser}
+   */
+  public User getFollowingUser() {
+    return followingUser;
+  }
+
+  /**
+   * @param followingUser the value to set to the {@link #followingUser}
+   */
+  public void setFollowingUser(User followingUser) {
+    this.followingUser = followingUser;
+  }
+
+  /**
+   * @return the {@link #innerPost}
+   */
+  public Post getInnerPost() {
+    return innerPost;
+  }
+
+  /**
+   * @param innerPost the value to set to the {@link #innerPost}
+   */
+  public void setInnerPost(Post innerPost) {
+    this.innerPost = innerPost;
   }
 
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {

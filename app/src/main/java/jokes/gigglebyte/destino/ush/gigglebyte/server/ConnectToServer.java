@@ -93,6 +93,17 @@ public class ConnectToServer {
     return "";
   }
 
+  public static String getPostForId(int postId) {
+    String parameters = "post_id=" + postId;
+    String UrlString = ServerSettings._Server + ServerSettings._getPostForId;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static String getComments(int postId) {
     String parameters = "post_id=" + postId;
     String UrlString = ServerSettings._Server + ServerSettings._getComments;
@@ -223,8 +234,8 @@ public class ConnectToServer {
     }
   }
 
-  public static void postLike(int postId, int posterId) {
-    String parameters = "post_id=" + postId + "&notify_id=" + posterId;
+  public static void postLike(int postId, int posterId, int userId) {
+    String parameters = "post_id=" + postId + "&notify_id=" + posterId+ "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._postLike;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -233,8 +244,8 @@ public class ConnectToServer {
     }
   }
 
-  public static void postUnlike(int postId) {
-    String parameters = "post_id=" + postId;
+  public static void postUnlike(int postId, int userId) {
+    String parameters = "post_id=" + postId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._postUnlike;
     try {
       response = Connect.connectToServer(UrlString, parameters);

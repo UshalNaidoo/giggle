@@ -29,6 +29,7 @@
   <color name="item_background_color">#1c1b20</color>
   <color name="item_panel_color">#1c1b20</color>
   <color name="item_secondary_color">#26272d</color>
+  <color name="item_third_color">#565f94</color>
 
   <color name="divisor_color">#551A8B</color>
   <color name="divisor_grey">#9e9c9f</color>
