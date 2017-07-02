@@ -42,11 +42,11 @@
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:drawSelectorOnTop="true"
-      android:numColumns="2"
+      android:numColumns="3"
       android:gravity="center"
       android:stretchMode="columnWidth"
       android:verticalSpacing="15dp"
-      android:horizontalSpacing="5dp"
+      android:horizontalSpacing="15dp"
       android:focusable="true"
       android:clickable="true"/>
 </LinearLayout>

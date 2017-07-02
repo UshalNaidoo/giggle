@@ -90,31 +90,21 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         style="@android:style/Widget.ProgressBar.Large"/>
-    <TextView
-        android:id="@+id/tags"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/app_grey"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-    <ImageView
-        android:id="@+id/gbLogo"
-        android:layout_marginTop="4dp"
-        android:layout_width="fill_parent"
-        android:layout_height="10dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/gigglebyte_banner"
-        android:scaleType="fitCenter"/>
   </LinearLayout>
-
+  <TextView
+      android:id="@+id/tags"
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:text=""
+      android:textColor="@color/app_grey"
+      android:textSize="16sp"
+      android:layout_weight="1"
+      android:textAppearance="?android:attr/textAppearanceLarge"/>
   <TextView
       android:id="@+id/postInfo"
       android:layout_width="wrap_content"
       android:layout_height="0dp"
       android:textSize="16sp"
-      android:gravity="end"
       android:layout_weight="1"
       android:textColor="@color/text_hint_color"/>
 
