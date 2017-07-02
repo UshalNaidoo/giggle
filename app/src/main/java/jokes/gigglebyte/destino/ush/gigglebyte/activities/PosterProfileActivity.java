@@ -160,6 +160,11 @@ public class PosterProfileActivity extends Activity {
         menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
         FollowHelper.unfollowUser(activity, poster);
+
+//        OptionsConfirmUnfollow optionsConfirmUnfollow = new OptionsConfirmUnfollow();
+//        optionsConfirmUnfollow.setUser(poster);
+//        optionsConfirmUnfollow.setMenu(menu);
+//        optionsConfirmUnfollow.show(activity.getFragmentManager(), "");
         return true;
       default:
         return super.onOptionsItemSelected(item);

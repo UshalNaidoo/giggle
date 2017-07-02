@@ -77,6 +77,7 @@
 
   <string name="confirm_post_delete">Are you sure you want to delete your post?</string>
   <string name="confirm_comment_delete">Are you sure you want to delete your comment?</string>
+  <string name="confirm_unfollow">Are you sure you want to stop following </string>
   <string name="comment_deleted">Comment Deleted</string>
   <string name="post_deleted">Post Deleted</string>
   <string name="comment_flagged">Comment Flagged</string>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -32,6 +33,10 @@ public class UserGridViewHolder extends UserProfilePictureHolder{
           if (FollowHelper.isFollowingUser(user.getId())) {
             FollowHelper.unfollowUser(activity, user);
             new ToastWithImage(activity).show(activity.getResources().getString(R.string.unfollowing) + " " + user.getName(), R.drawable.follow);
+
+//            OptionsConfirmUnfollow optionsConfirmUnfollow = new OptionsConfirmUnfollow();
+//            optionsConfirmUnfollow.setUser(user);
+//            optionsConfirmUnfollow.show(activity.getFragmentManager(), "");
           }
           else {
             FollowHelper.followUser(activity, user);
