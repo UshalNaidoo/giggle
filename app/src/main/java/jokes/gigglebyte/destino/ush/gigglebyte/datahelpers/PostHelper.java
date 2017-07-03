@@ -410,10 +410,16 @@ public class PostHelper implements onSubmitListener {
           if (p.getPostId() == Integer.parseInt(s)) {
             p.setUserLike(true);
           }
+          if(p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)){
+            p.getInnerPost().setUserLike(true);
+          }
         }
         for (String s : favorites) {
           if (p.getPostId() == Integer.parseInt(s)) {
             p.setUserFavorite(true);
+          }
+          if(p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)){
+            p.getInnerPost().setUserFavorite(true);
           }
         }
       }
