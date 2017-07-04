@@ -175,9 +175,11 @@ public class ConnectToServer {
     JSONArray JSONposts = new JSONArray();
     for (String s : tags) {
       try {
-        JSONObject JSONpost = new JSONObject();
-        JSONpost.put("tags", s);
-        JSONposts.put(JSONpost);
+        if(!s.equals("oneLiner") && !s.equals("shortJoke")) {
+          JSONObject JSONpost = new JSONObject();
+          JSONpost.put("tags", s);
+          JSONposts.put(JSONpost);
+        }
       } catch (JSONException e) {
         e.printStackTrace();
       }
@@ -205,9 +207,11 @@ public class ConnectToServer {
     JSONArray JSONposts = new JSONArray();
     for (String s : tags) {
       try {
-        JSONObject JSONpost = new JSONObject();
-        JSONpost.put("tags", s);
-        JSONposts.put(JSONpost);
+        if(!s.equals("image")) {
+          JSONObject JSONpost = new JSONObject();
+          JSONpost.put("tags", s);
+          JSONposts.put(JSONpost);
+        }
       } catch (JSONException e) {
         e.printStackTrace();
       }
