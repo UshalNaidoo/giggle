@@ -73,7 +73,7 @@
   <string name="info_follow">Your feed is empty. Follow users by tapping on the following icon on their profile. Tap it now to see the most popular users</string>
   <string name="info_like">Clicking on the star on a post or a comment will rate it. With a high enough rating it could feature on the Hot list.</string>
   <string name="info_favourite">Clicking on the heart on a post will save it in this list for you to view later. Nobody else can see this list.</string>
-  <string name="info_add_post">You didn\'t post anything as yet. Post often to get more followers. Click on the plus below, or the menu on the right to post something.</string>
+  <string name="info_add_post">Post often to get more followers. Click on the plus below, or the menu on the right to post something.</string>
 
   <string name="confirm_post_delete">Are you sure you want to delete your post?</string>
   <string name="confirm_comment_delete">Are you sure you want to delete your comment?</string>
