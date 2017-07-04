@@ -19,13 +19,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.MultiAutoCompleteTextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import android.widget.MultiAutoCompleteTextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
@@ -129,7 +130,6 @@ public class UploadImageActivity extends FragmentActivity {
               int userId = user.getId();
               post.setLikes(0);
               post.setUserLike(false);
-              post.setPostText("Testing Image");
               post.setType(PostType.IMAGE_POST);
               post.setUser(user);
               //TODO get id from server
@@ -156,6 +156,7 @@ public class UploadImageActivity extends FragmentActivity {
                 }
               }
 
+              post.setTags((List<String>) tags);
               ConnectToServer.postImagePost(userId, image_str, tags, title.getText().toString());
             } catch (Exception e) {
               e.printStackTrace();

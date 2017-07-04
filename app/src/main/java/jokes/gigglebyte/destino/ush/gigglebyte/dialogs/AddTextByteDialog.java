@@ -19,7 +19,9 @@ import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,6 +43,7 @@ public class AddTextByteDialog extends DialogFragment {
   private onSubmitListener listener;
   private EditText byteText;
   private TextView countTextView;
+  private List<String> tagsAssigned;
 
   private MultiAutoCompleteTextView tagText;
 
@@ -130,8 +133,10 @@ public class AddTextByteDialog extends DialogFragment {
           StringBuilder sb = new StringBuilder();
           tagText.removeTextChangedListener(this);
           String[] tags = s.toString().trim().split(" ");
+          tagsAssigned = new ArrayList<>();
           for (String tag : tags) {
             if (!(tag.charAt(0) == '#')) {
+              tagsAssigned.add(tag);
               sb.append("#").append(tag).append(" ");
             } else {
               sb.append(tag).append(" ");
@@ -160,6 +165,7 @@ public class AddTextByteDialog extends DialogFragment {
               post.setUserLike(false);
               post.setPostText(byteText.getText().toString().trim());
               post.setType(PostType.TEXT_POST);
+              post.setTags(tagsAssigned);
               User user = new User(userId, userName, null, ImageHelper.getProfilePicture(userId));
               post.setUser(user);
               post.setTimeSincePost("Just Now");
