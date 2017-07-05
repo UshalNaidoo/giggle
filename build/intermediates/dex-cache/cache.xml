@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/ushal/Desktop/Development/OpenSource/gigglebyte/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/ushal.naidoo/triage/giggle/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="aa2671d631d88a1db85450c959f612134c08936d">
-        <dex dex="/Users/ushal/Desktop/Development/OpenSource/gigglebyte/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c0415b29d54c97e1266881ef9f3f1330dcb031e9/classes.dex" />
+        sha1="eac45f3d7fce2de9c846589de374af75dc085710">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04601f540849f8cdeac74c57882e584481c2bc7a/classes.dex" />
     </item>
 
 </items>
