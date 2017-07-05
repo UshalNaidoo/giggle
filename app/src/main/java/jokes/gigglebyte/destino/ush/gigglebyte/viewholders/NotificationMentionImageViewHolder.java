@@ -2,28 +2,28 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
-import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
-public class NotificationTextPostViewHolder extends UserGridViewHolder {
+public class NotificationMentionImageViewHolder extends UserGridViewHolder {
 
   public TextView informationTextView;
 
-  public void setData(final Activity activity, View convertView,  final Post post, OpenScreen screenToOpen) {
+  public void setData(final Activity activity,BaseAdapter adapter, View convertView,  final Post post, OpenScreen screenToOpen) {
     User user = post.getUser();
     setUserProfile(activity, user, screenToOpen);
-    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + (PostType.LIKE_TEXT_POST_NOTIFICATION.equals(post.getType()) ?
-                                                                                                                                                           activity.getResources().getString(R.string.liked_post) : activity.getResources().getString(R.string.commented_on));
+    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + activity.getResources().getString(R.string.mentioned_on);
 
-    PostTextViewHolder holder = new PostTextViewHolder();
+    final PostImageViewHolder holder = new PostImageViewHolder();
     holder.userName = (TextView) convertView.findViewById(R.id.content_userName);
     holder.profileImage = (ImageView) convertView.findViewById(R.id.content_pic);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.content_progressBar);
@@ -31,16 +31,18 @@ public class NotificationTextPostViewHolder extends UserGridViewHolder {
 
     holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
     holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-    holder.postText = (TextView) convertView.findViewById(R.id.postText);
+    holder.title = (TextView) convertView.findViewById(R.id.title);
+    holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
     holder.layout = (LinearLayout) convertView.findViewById(R.id.layoutView);
     holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
     holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
     holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
     holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
+    holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.imageProgressBar);
     convertView.setTag(holder);
 
     holder.setUserData(activity, post.getInnerPost().getUser(), OpenScreen.PROFILE);
-    holder.setTextPostData(activity, convertView, post.getInnerPost(), FromScreen.NOTIFICATIONS);
+    holder.setImagePostData(activity, adapter, convertView, post.getInnerPost(), FromScreen.NOTIFICATIONS);
 
     informationTextView.setText(infoText);
   }

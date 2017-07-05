@@ -15,16 +15,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
@@ -153,6 +149,14 @@ public class AddCommentDialog extends DialogFragment {
               ConnectToServer.postComment(userId, getPostId(), commentText.getText()
                   .toString()
                   .trim(), posterId);
+
+              String[] mentions = commentText.getText().toString().trim().split(" ");
+              for (String mention : mentions) {
+                if (mention.startsWith("@") && FollowHelper.getFollowerByName(mention.substring(1)) != null) {
+                  User mentioned = FollowHelper.getFollowerByName(mention.substring(1));
+                  ConnectToServer.commentMention(userId, mentioned.getId(), 0, postId);
+                }
+              }
             }
           };
           thread.start();

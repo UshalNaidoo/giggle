@@ -121,7 +121,7 @@ public class FollowHelper {
   }
 
   public static User getFollowerByName(String name) {
-    for (User user : followers) {
+    for (User user : MainActivity.loadedUsers) {
       if (user.getName() != null && !user.getName().isEmpty() && user.getName().equals(name)) {
         return user;
       }

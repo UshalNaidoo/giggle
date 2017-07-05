@@ -1,8 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
@@ -17,7 +14,6 @@ import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.TagActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -50,9 +46,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     setUserProfile(activity, comment.getUser(), OpenScreen.PROFILE);
 
     commentText.setMovementMethod(LinkMovementMethod.getInstance());
-    comment.setCommentText("Hey @EggsAndBenny @Randyfreak whatsaup");
     commentText.setText(comment.getCommentText(), TextView.BufferType.SPANNABLE);
-
 
     String[] mentions = comment.getCommentText().trim().split(" ");
     int start = 0;
@@ -60,7 +54,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
       if (mention.startsWith("@") && FollowHelper.getFollowerByName(mention.substring(1))!= null) {
         Spannable spans = (Spannable) commentText.getText();
         ClickableSpan clickSpan = getClickableSpan(FollowHelper.getFollowerByName(mention.substring(1)));
-        spans.setSpan(clickSpan, start + 1, start + mention.length() + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spans.setSpan(clickSpan, start, comment.getCommentText().trim().length() > start + mention.length() + 1? start + mention.length() + 1 : comment.getCommentText().trim().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
       start += mention.length() + 1;
     }
