@@ -101,7 +101,7 @@ public class SplashScreenActivity extends Activity {
             publishProgress(80);
             break;
           case 9:
-            FollowHelper.initialiseUserFollowers(ConnectToServer.getUserFollowers(user.getId()));
+            MainActivity.loadedUsers = JsonParser.GetUsers("{\"users\":" + ConnectToServer.searchUser("") + "}");
             publishProgress(90);
             break;
           case 10:

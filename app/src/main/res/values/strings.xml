@@ -22,6 +22,7 @@
   <string name="started_following_you">started following you</string>
   <string name="liked_post">liked this</string>
   <string name="commented_on">commented on</string>
+  <string name="mentioned_on">mentioned you in a comment on this post</string>
 
   <string name="comment">Comment</string>
   <string name="comments">Comments</string>

@@ -6,22 +6,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
-import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
-public class NotificationTextPostViewHolder extends UserGridViewHolder {
+public class NotificationMentionTextViewHolder extends UserGridViewHolder {
 
   public TextView informationTextView;
 
   public void setData(final Activity activity, View convertView,  final Post post, OpenScreen screenToOpen) {
     User user = post.getUser();
     setUserProfile(activity, user, screenToOpen);
-    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + (PostType.LIKE_TEXT_POST_NOTIFICATION.equals(post.getType()) ?
-                                                                                                                                                           activity.getResources().getString(R.string.liked_post) : activity.getResources().getString(R.string.commented_on));
+    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + activity.getResources().getString(R.string.mentioned_on);
 
     PostTextViewHolder holder = new PostTextViewHolder();
     holder.userName = (TextView) convertView.findViewById(R.id.content_userName);

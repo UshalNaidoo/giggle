@@ -66,7 +66,6 @@ public class PostViewHolder extends UserGridViewHolder {
 
       tags.setMovementMethod(LinkMovementMethod.getInstance());
       tags.setText(definition, TextView.BufferType.SPANNABLE);
-      tags.setTextColor(activity.getResources().getColor(R.color.app_primary_dark));
 
       Spannable spans = (Spannable) tags.getText();
       Integer[] indices = getIndices(tags.getText().toString(), ' ');

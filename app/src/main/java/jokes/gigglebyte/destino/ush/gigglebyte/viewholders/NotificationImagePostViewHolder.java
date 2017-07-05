@@ -21,7 +21,7 @@ public class NotificationImagePostViewHolder extends UserGridViewHolder {
   public void setData(final Activity activity,BaseAdapter adapter, View convertView,  final Post post, OpenScreen screenToOpen) {
     User user = post.getUser();
     setUserProfile(activity, user, screenToOpen);
-    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + (post.getType() == PostType.LIKE_TEXT_POST_NOTIFICATION || post.getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION ?
+    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + (post.getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION ?
                                                                                                                                                            activity.getResources().getString(R.string.liked_post)  : activity.getResources().getString(R.string.commented_on));
 
     final PostImageViewHolder holder = new PostImageViewHolder();
@@ -43,7 +43,7 @@ public class NotificationImagePostViewHolder extends UserGridViewHolder {
     convertView.setTag(holder);
 
     holder.setUserData(activity, post.getInnerPost().getUser(), OpenScreen.PROFILE);
-    holder.setImagePostData(activity, adapter, convertView, post.getInnerPost(), FromScreen.FEED);
+    holder.setImagePostData(activity, adapter, convertView, post.getInnerPost(), FromScreen.NOTIFICATIONS);
 
     informationTextView.setText(infoText);
   }

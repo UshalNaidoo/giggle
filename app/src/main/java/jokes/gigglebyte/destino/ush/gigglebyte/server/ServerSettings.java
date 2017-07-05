@@ -42,6 +42,7 @@ public class ServerSettings {
   static String _postUnlike = "/post_unlike.php";
   static String _commentLike = "/comment_like.php";
   static String _commentUnlike = "/comment_unlike.php";
+  static String _commentMention = "/comment_mention.php";
 
   /* Flagging and deleting */
   static String _flagComment = "/comment_flag.php";

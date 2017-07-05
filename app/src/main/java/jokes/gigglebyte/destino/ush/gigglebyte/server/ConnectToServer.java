@@ -289,6 +289,17 @@ public class ConnectToServer {
     }
   }
 
+  public static String commentMention(int userId, int mentioned, int comment_id, int post_id) {
+    String parameters = "user_id=" + userId +"&mentioned=" + mentioned +"&comment_id=" + comment_id +"&post_id=" + post_id + "&key=AoD93128Jd73jKH31je3";
+    String UrlString = ServerSettings._Server + ServerSettings._commentMention;
+    try {
+      return Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return "";
+  }
+
   public static String searchUser(String text) {
     String parameters = "text=" + text;
     String UrlString = ServerSettings._Server + ServerSettings._searchUser;

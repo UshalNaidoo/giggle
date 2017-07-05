@@ -8,6 +8,8 @@ public enum PostType {
   LIKE_IMAGE_POST_NOTIFICATION("LikeImagePostNotification"),
   COMMENT_TEXT_POST_NOTIFICATION("CommentTextPostNotification"),
   COMMENT_IMAGE_POST_NOTIFICATION("CommentImagePostNotification"),
+  MENTION_IMAGE_POST_NOTIFICATION("MentionImagePostNotification"),
+  MENTION_TEXT_POST_NOTIFICATION("MentionTextPostNotification"),
   INFO_POST("InfoPost");
 
   private String stringValue;

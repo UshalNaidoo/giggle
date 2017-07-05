@@ -71,7 +71,7 @@ public class JsonParser {
 
     JSONObject json = new JSONObject(ConnectToServer.getPostForId(jsonObject.getInt("text")));
     User innerUser = new User(json.getInt("user_id"), json.getString("user_name"), null, null);
-    Post innerPost = PostType.LIKE_TEXT_POST_NOTIFICATION.equals(type) || PostType.COMMENT_TEXT_POST_NOTIFICATION.equals(type) ?  getTextPost(json) : getImagePost(json);
+    Post innerPost = PostType.LIKE_TEXT_POST_NOTIFICATION.equals(type) || PostType.COMMENT_TEXT_POST_NOTIFICATION.equals(type) || PostType.MENTION_TEXT_POST_NOTIFICATION.equals(type) ?  getTextPost(json) : getImagePost(json);
     innerPost.setUser(innerUser);
     post.setInnerPost(innerPost);
     post.setType(type);
@@ -108,6 +108,13 @@ public class JsonParser {
                 posts.add(getPostNotification(jsonObject, PostType.COMMENT_TEXT_POST_NOTIFICATION));
               } else {
                 posts.add(getPostNotification(jsonObject, PostType.COMMENT_IMAGE_POST_NOTIFICATION));
+              }
+              break;
+            case 5 :
+              if (jsonObject.getInt("title") == 0) {
+                posts.add(getPostNotification(jsonObject, PostType.MENTION_TEXT_POST_NOTIFICATION));
+              } else {
+                posts.add(getPostNotification(jsonObject, PostType.MENTION_IMAGE_POST_NOTIFICATION));
               }
               break;
           }

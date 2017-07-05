@@ -3,6 +3,10 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +15,7 @@ import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.OptionsCommentDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
@@ -39,7 +44,21 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     this.comment = comment;
     this.activity = activity;
     setUserProfile(activity, comment.getUser(), OpenScreen.PROFILE);
-    commentText.setText(comment.getCommentText());
+
+    commentText.setMovementMethod(LinkMovementMethod.getInstance());
+    commentText.setText(comment.getCommentText(), TextView.BufferType.SPANNABLE);
+
+    String[] mentions = comment.getCommentText().trim().split(" ");
+    int start = 0;
+    for (String mention : mentions) {
+      if (mention.startsWith("@") && FollowHelper.getFollowerByName(mention.substring(1))!= null) {
+        Spannable spans = (Spannable) commentText.getText();
+        ClickableSpan clickSpan = getClickableSpan(FollowHelper.getFollowerByName(mention.substring(1)));
+        spans.setSpan(clickSpan, start, comment.getCommentText().trim().length() > start + mention.length() + 1? start + mention.length() + 1 : comment.getCommentText().trim().length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      }
+      start += mention.length() + 1;
+    }
+
     String likeAmount = String.valueOf(comment.getLikes()) + " " + (comment.getLikes() == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
     likes.setText(likeAmount);
     final int userId = comment.getUser().getId();
@@ -139,6 +158,21 @@ public class CommentViewHolder extends UserProfilePictureHolder{
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
       CommentHelper.likeComment(activity, likeImage, likes, comment);
     }
+  }
+
+  private ClickableSpan getClickableSpan(final User user) {
+    return new ClickableSpan() {
+      @Override
+      public void onClick(View widget) {
+        Intent myIntent = new Intent(activity, PosterProfileActivity.class);
+        myIntent.putExtra("userId", user.getId());
+        activity.startActivity(myIntent);
+      }
+
+      public void updateDrawState(TextPaint ds) {
+        super.updateDrawState(ds);
+      }
+    };
   }
 
 }
