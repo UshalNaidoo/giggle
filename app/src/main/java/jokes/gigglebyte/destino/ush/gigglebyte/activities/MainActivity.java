@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
@@ -45,6 +49,7 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.g
 
 public class MainActivity extends FragmentActivity {
 
+  private AdView mAdView;
   private static Activity activity;
   public static Post selectedPost;
   public static List<String> allTags;
@@ -70,6 +75,41 @@ public class MainActivity extends FragmentActivity {
     tabs_search = new Tabs_Search();
 
     setContentView(R.layout.activity_main);
+
+    mAdView = (AdView) findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    adRequest.isTestDevice(this);
+    mAdView.loadAd(adRequest);
+
+    mAdView.setAdListener(new AdListener() {
+      @Override
+      public void onAdClosed() {
+        Log.e("Blah", "onAdClosed");
+      }
+
+      @Override
+      public void onAdFailedToLoad(int var1) {
+        mAdView.setVisibility(View.GONE);
+        Log.e("Blah", "onAdFailedToLoad");
+      }
+
+      @Override
+      public void onAdLeftApplication() {
+        Log.e("Blah", "onAdLeftApplication");
+      }
+
+      @Override
+      public void onAdOpened() {
+        Log.e("Blah", "onAdOpened");
+      }
+
+      @Override
+      public void onAdLoaded() {
+        Log.e("Blah", "onAdLoaded");
+        mAdView.setVisibility(View.VISIBLE);
+      }
+    });
+
 
     PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
     pagerTabStrip.setTabIndicatorColor(activity.getResources().getColor(R.color.app_primary_dark));
