@@ -3,57 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/home/ushal.naidoo/.android/build-cache/119b31ceb4910839d25cf5c0aa1a64393bdd57b5/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3611679d740588e6d83c0483bb2f91f7e44bd9a5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ushal.naidoo/.android/build-cache/a7af3b559a3e386e45e8cb5bbd56bd4e12767560/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
-        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_71b23aaf6312a24355fa1bed895e56fa0af0cde2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/ushal.naidoo/triage/giggle/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="974780de06e0b82a3e53604ab33f12f124cb2a61">
+        sha1="2ee2085c04877c188cc876833ccb39009786b072">
         <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04601f540849f8cdeac74c57882e584481c2bc7a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ushal.naidoo/.android/build-cache/1f390d9c2afde963a8ed9fcdd06b67d899d98b7b/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
-        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c22b8a20b0b8474b2300922e72766cf2578a4b41/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ushal.naidoo/.android/build-cache/169ae8e6224737ce5420a0e74660cafe9fa6e776/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ba2445d0536c3a939b4c7c4e3a74333d97de00fc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/ushal.naidoo/.android/build-cache/b0fa656cffed7223f7df0eb5ad2e9bb34c95f56c/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
-        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e02a2c30990d4c4296a22bd0c628cb72fad2e7d8/classes.dex" />
     </item>
     <item
         is-multidex="true"

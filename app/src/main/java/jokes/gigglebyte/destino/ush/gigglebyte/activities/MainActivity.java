@@ -3,6 +3,7 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,7 +79,7 @@ public class MainActivity extends FragmentActivity {
 
     mAdView = (AdView) findViewById(R.id.adView);
     AdRequest adRequest = new AdRequest.Builder().build();
-    adRequest.isTestDevice(this);
+    mAdView.setBackgroundColor(Color.TRANSPARENT);
     mAdView.loadAd(adRequest);
 
     mAdView.setAdListener(new AdListener() {
