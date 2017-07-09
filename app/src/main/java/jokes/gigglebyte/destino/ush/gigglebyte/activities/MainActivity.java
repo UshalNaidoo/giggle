@@ -3,6 +3,7 @@ package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -51,6 +52,8 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.g
 public class MainActivity extends FragmentActivity {
 
   private AdView adView;
+  private InterstitialAd interstitialAd;
+
   private static Activity activity;
   public static Post selectedPost;
   public static List<String> allTags;
@@ -105,6 +108,10 @@ public class MainActivity extends FragmentActivity {
         adView.setVisibility(View.VISIBLE);
       }
     });
+
+    interstitialAd = new InterstitialAd(this);
+    interstitialAd.setAdUnitId("ca-app-pub-8178977353276350/7496991820");
+    interstitialAd.loadAd(new AdRequest.Builder().build());
 
 
     PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
@@ -275,23 +282,35 @@ public class MainActivity extends FragmentActivity {
         pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 2, true);
     }
     else {
-      if (SplashScreenActivity.serverCall != null) {
-        SplashScreenActivity.serverCall.cancel(true);
-      }
-      for (Post p : PostHelper.getFavoritePosts()) {
-        p.cancelLoadingImages();
-      }
-      for (Post p : PostHelper.getHotPosts()) {
-        p.cancelLoadingImages();
-      }
+      //Show Full screen ad
+      if (interstitialAd.isLoaded()) {
+        interstitialAd.show();
+        interstitialAd.setAdListener(new AdListener() {
+          @Override
+          public void onAdClosed() {
+            super.onAdClosed();
+            finish();
+          }
+        });
+      } else {
+        if (SplashScreenActivity.serverCall != null) {
+          SplashScreenActivity.serverCall.cancel(true);
+        }
+        for (Post p : PostHelper.getFavoritePosts()) {
+          p.cancelLoadingImages();
+        }
+        for (Post p : PostHelper.getHotPosts()) {
+          p.cancelLoadingImages();
+        }
         for (Post p : PostHelper.getNewPosts()) {
           p.cancelLoadingImages();
         }
         for (Post p : PostHelper.getFeedPosts()) {
           p.cancelLoadingImages();
         }
-      cachedProfilePictures = new HashMap<>();
-      MainActivity.super.onBackPressed();
+        cachedProfilePictures = new HashMap<>();
+        MainActivity.super.onBackPressed();
+      }
     }
   }
 
