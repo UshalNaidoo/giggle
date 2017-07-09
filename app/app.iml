@@ -107,8 +107,10 @@
     <orderEntry type="library" exported="" name="play-services-basement-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-base-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-iid-9.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-ads-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-tasks-9.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-ads-lite-9.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="firebase-common-9.0.2" level="project" />
   </component>

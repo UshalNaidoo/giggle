@@ -5,14 +5,13 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="2dp"
     android:background="@color/activity_color">
   <android.support.v4.view.ViewPager
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:fab="http://schemas.android.com/apk/res-auto"
       android:id="@+id/pager"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent" android:layout_above="@+id/adView">
 
     <android.support.v4.view.PagerTabStrip
         android:id="@+id/pager_title_strip"
@@ -34,6 +33,7 @@
       android:layout_gravity="bottom"
       android:paddingRight="10dp"
       android:paddingBottom="10dp"
+      android:layout_marginBottom="55dp"
       android:paddingLeft="10dp"
       android:elevation="6dp"
       fab:menu_labels_ellipsize="end"
@@ -69,4 +69,15 @@
         fab:fab_colorRipple="@color/button_ripple"/>
 
   </com.github.clans.fab.FloatingActionMenu>
+
+  <com.google.android.gms.ads.AdView
+      xmlns:ads="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/adView"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentBottom="true"
+      ads:adSize="BANNER"
+      ads:adUnitId="ca-app-pub-8178977353276350/8363766228">
+  </com.google.android.gms.ads.AdView>
 </RelativeLayout>

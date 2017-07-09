@@ -7,8 +7,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="eac45f3d7fce2de9c846589de374af75dc085710">
+        sha1="2ee2085c04877c188cc876833ccb39009786b072">
         <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04601f540849f8cdeac74c57882e584481c2bc7a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/ushal.naidoo/triage/giggle/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ccf5069dc405e039abc201dd38625c1cea8ac0b6/classes.dex" />
     </item>
 
 </items>
