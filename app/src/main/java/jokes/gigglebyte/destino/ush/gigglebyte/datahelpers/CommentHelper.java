@@ -42,38 +42,38 @@ public class CommentHelper {
     commentLikesEditor.apply();
   }
 
-  public static void likeComment(Context context, ImageView likeImage, TextView likes,
+  public static void likeComment(final Activity activity, ImageView likeImage, TextView likes,
                                  final Comment comment) {
     likeImage.setImageResource(R.drawable.star_like);
     int likesInt = comment.getLikes() + 1;
-    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? context.getResources().getString(R.string.like) : context.getResources().getString(R.string.likes));
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
     likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
-    likeComment(context, comment);
+    likeComment(activity, comment);
 
     Thread thread = new Thread() {
       @Override
       public void run() {
-        ConnectToServer.commentLike(comment.getCommentId(), comment.getUser().getId());
+        ConnectToServer.commentLike(comment.getCommentId(), UserHelper.getUsersId(activity), comment.getUser().getId());
       }
     };
     thread.start();
   }
 
-  public static void unlikeComment(Context context, ImageView likeImage, TextView likes,
+  public static void unlikeComment(final Activity activity, ImageView likeImage, TextView likes,
                                    final Comment comment) {
     likeImage.setImageResource(R.drawable.star_unlike);
 
     int likesInt = comment.getLikes() - 1;
-    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? context.getResources().getString(R.string.like) : context.getResources().getString(R.string.likes));
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
     likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
-    unlikeComment(context, comment);
+    unlikeComment(activity, comment);
 
     Thread thread = new Thread() {
       @Override
       public void run() {
-        ConnectToServer.commentUnlike(comment.getCommentId());
+        ConnectToServer.commentUnlike(comment.getCommentId(), UserHelper.getUsersId(activity));
       }
     };
     thread.start();

@@ -269,8 +269,8 @@ public class ConnectToServer {
     }
   }
 
-  public static void commentLike(int commentId, int commenterId) {
-    String parameters = "comment_id=" + commentId + "&notify_id=" + commenterId;
+  public static void commentLike(int commentId, int userId, int commenterId) {
+    String parameters = "comment_id=" + commentId + "&user_id=" + userId + "&notify_id=" + commenterId;
     String UrlString = ServerSettings._Server + ServerSettings._commentLike;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -279,8 +279,8 @@ public class ConnectToServer {
     }
   }
 
-  public static void commentUnlike(int commentId) {
-    String parameters = "comment_id=" + commentId;
+  public static void commentUnlike(int commentId, int userId) {
+    String parameters = "comment_id=" + commentId + "&user_id=" + userId ;
     String UrlString = ServerSettings._Server + ServerSettings._commentUnlike;
     try {
       response = Connect.connectToServer(UrlString, parameters);

@@ -129,7 +129,7 @@ public class MainActivity extends FragmentActivity {
     pager.postDelayed(new Runnable() {
       @Override
       public void run() {
-        currentPosition = getFollowing().size() > 0 ? 0 : 2;
+        currentPosition = (getFollowing() != null && getFollowing().size() > 0) ? 0 : 2;
         pager.setCurrentItem(currentPosition, true);
       }
     },100);
