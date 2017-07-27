@@ -276,6 +276,14 @@ public class PostHelper implements onSubmitListener {
         user_favorites.add(String.valueOf(post.getPostId()));
         addFavoritePost(post);
         SharedPrefHelper.saveUserFavorites(activity, user_favorites);
+
+        Thread favouriteThread = new Thread() {
+          @Override
+          public void run() {
+            ConnectToServer.postFavourite(post.getPostId(), post.getUser().getId(), UserHelper.getUsersId(activity));
+          }
+        };
+        favouriteThread.start();
         break;
 
       case UNFAVORITE_POST:
@@ -313,6 +321,13 @@ public class PostHelper implements onSubmitListener {
         user_favorites.remove(String.valueOf(post.getPostId()));
         removeFavoritePost(post);
         SharedPrefHelper.saveUserFavorites(activity, user_favorites);
+        Thread unfavouriteThread = new Thread() {
+          @Override
+          public void run() {
+            ConnectToServer.postUnfavourite(post.getPostId(), UserHelper.getUsersId(activity));
+          }
+        };
+        unfavouriteThread.start();
         break;
 
       case DELETE_POST:

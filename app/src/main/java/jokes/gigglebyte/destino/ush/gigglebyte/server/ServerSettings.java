@@ -38,6 +38,8 @@ public class ServerSettings {
   static String _postImagePost = "/post_image_post.php";
   static String _postTextPost = "/post_text_post.php";
   static String _postComment = "/comment.php";
+  static String _postFavourite = "/post_favourite.php";
+  static String _postUnfavourite = "/post_unfavourite.php";
   static String _postLike = "/post_like.php";
   static String _postUnlike = "/post_unlike.php";
   static String _commentLike = "/comment_like.php";

@@ -269,6 +269,26 @@ public class ConnectToServer {
     }
   }
 
+  public static void postFavourite(int postId, int posterId, int userId) {
+    String parameters = "post_id=" + postId + "&notify_id=" + posterId+ "&user_id=" + userId;
+    String UrlString = ServerSettings._Server + ServerSettings._postFavourite;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void postUnfavourite(int postId, int userId) {
+    String parameters = "post_id=" + postId + "&user_id=" + userId;
+    String UrlString = ServerSettings._Server + ServerSettings._postUnfavourite;
+    try {
+      response = Connect.connectToServer(UrlString, parameters);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public static void commentLike(int commentId, int userId, int commenterId) {
     String parameters = "comment_id=" + commentId + "&user_id=" + userId + "&notify_id=" + commenterId;
     String UrlString = ServerSettings._Server + ServerSettings._commentLike;
