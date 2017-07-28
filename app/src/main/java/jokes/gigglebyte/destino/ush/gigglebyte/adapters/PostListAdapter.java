@@ -5,10 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -17,7 +13,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHel
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
-import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationFollowViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationImagePostViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationMentionImageViewHolder;
@@ -57,77 +52,74 @@ public class PostListAdapter extends BaseAdapter {
   }
 
   public View getView(final int position, View convertView, ViewGroup parent) {
-    if (posts.get(position).getType() == PostType.TEXT_POST) {
-      final PostTextViewHolder holder = new PostTextViewHolder();
-      convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
-      PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setTextPostData(activity,convertView,post, fromScreen);
+    Post post = posts.get(position);
+    switch (post.getType()) {
+      case TEXT_POST:
+        final PostTextViewHolder postTextViewHolder = new PostTextViewHolder();
+        convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
+        PopulateViewHolderHelper.populatePostTextViewHolder(convertView, postTextViewHolder);
+        convertView.setTag(postTextViewHolder);
+        postTextViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        postTextViewHolder.setTextPostData(activity,convertView,post, fromScreen);
+        break;
+      case IMAGE_POST:
+        final PostImageViewHolder postImageViewHolder = new PostImageViewHolder();
+        convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
+        PopulateViewHolderHelper.populatePostImageViewHolder(convertView, postImageViewHolder);
+        convertView.setTag(postImageViewHolder);
+        postImageViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        postImageViewHolder.setImagePostData(activity, this, convertView, post, fromScreen);
+        break;
+      case FOLLOWING_NOTIFICATION:
+        final NotificationFollowViewHolder notificationFollowViewHolder = new NotificationFollowViewHolder();
+        convertView = mInflater.inflate(R.layout.notification_follow_item, parent, false);
+        PopulateViewHolderHelper.populateNotificationFollowViewHolder(convertView, notificationFollowViewHolder);
+        convertView.setTag(notificationFollowViewHolder);
+        notificationFollowViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        notificationFollowViewHolder.setData(activity, convertView, post, OpenScreen.PROFILE);
+        break;
+      case LIKE_TEXT_POST_NOTIFICATION:
+      case COMMENT_TEXT_POST_NOTIFICATION:
+        final NotificationTextPostViewHolder notificationTextPostViewHolder = new NotificationTextPostViewHolder();
+        convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
+        PopulateViewHolderHelper.populateNotificationTextPostViewHolder(convertView, notificationTextPostViewHolder);
+        convertView.setTag(notificationTextPostViewHolder);
+        notificationTextPostViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        notificationTextPostViewHolder.setData(activity, convertView, post, OpenScreen.PROFILE);
+        break;
+      case LIKE_IMAGE_POST_NOTIFICATION:
+      case COMMENT_IMAGE_POST_NOTIFICATION:
+        final NotificationImagePostViewHolder notificationImagePostViewHolder = new NotificationImagePostViewHolder();
+        convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
+        PopulateViewHolderHelper.populateNotificationImagePostViewHolder(convertView, notificationImagePostViewHolder);
+        convertView.setTag(notificationImagePostViewHolder);
+        notificationImagePostViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        notificationImagePostViewHolder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
+        break;
+      case MENTION_TEXT_POST_NOTIFICATION:
+        final NotificationMentionTextViewHolder notificationMentionTextViewHolder = new NotificationMentionTextViewHolder();
+        convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
+        PopulateViewHolderHelper.populateNotificationMentionTextViewHolder(convertView, notificationMentionTextViewHolder);
+        convertView.setTag(notificationMentionTextViewHolder);
+        notificationMentionTextViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        notificationMentionTextViewHolder.setData(activity, convertView, post, OpenScreen.PROFILE);
+        break;
+      case MENTION_IMAGE_POST_NOTIFICATION:
+        final NotificationMentionImageViewHolder notificationMentionImageViewHolder = new NotificationMentionImageViewHolder();
+        convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
+        PopulateViewHolderHelper.populateNotificationMentionImageViewHolder(convertView, notificationMentionImageViewHolder);
+        convertView.setTag(notificationMentionImageViewHolder);
+        notificationMentionImageViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+        notificationMentionImageViewHolder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
+        break;
+      case INFO_POST:
+        final PostInfoViewHolder holder = new PostInfoViewHolder();
+        convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
+        PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);
+        convertView.setTag(holder);
+        holder.setPostData(activity, post, fromScreen);
+        break;
     }
-    else if (posts.get(position).getType() == PostType.IMAGE_POST) {
-      final PostImageViewHolder holder = new PostImageViewHolder();
-      convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
-      PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setImagePostData(activity, this, convertView, post, fromScreen);
-    }
-    else if (posts.get(position).getType() == PostType.INFO_POST) {
-      final PostInfoViewHolder holder = new PostInfoViewHolder();
-      convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
-      PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      holder.setPostData(activity, posts.get(position), fromScreen);
-    }
-    else if (posts.get(position).getType() == PostType.FOLLOWING_NOTIFICATION) {
-      final NotificationFollowViewHolder holder = new NotificationFollowViewHolder();
-      convertView = mInflater.inflate(R.layout.notification_follow_item, parent, false);
-      PopulateViewHolderHelper.populateNotificationFollowViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }
-    else if (posts.get(position).getType() == PostType.LIKE_TEXT_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_TEXT_POST_NOTIFICATION) {
-      final NotificationTextPostViewHolder holder = new NotificationTextPostViewHolder();
-      convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
-      PopulateViewHolderHelper.populateNotificationTextPostViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }
-    else if (posts.get(position).getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_IMAGE_POST_NOTIFICATION) {
-      final NotificationImagePostViewHolder holder = new NotificationImagePostViewHolder();
-      convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
-      PopulateViewHolderHelper.populateNotificationImagePostViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
-    }
-    else if (posts.get(position).getType() == PostType.MENTION_TEXT_POST_NOTIFICATION) {
-      final NotificationMentionTextViewHolder holder = new NotificationMentionTextViewHolder();
-      convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
-      PopulateViewHolderHelper.populateNotificationMentionTextViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }
-    else if (posts.get(position).getType() == PostType.MENTION_IMAGE_POST_NOTIFICATION) {
-      final NotificationMentionImageViewHolder holder = new NotificationMentionImageViewHolder();
-      convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
-      PopulateViewHolderHelper.populateNotificationMentionImageViewHolder(convertView, holder);
-      convertView.setTag(holder);
-      Post post = posts.get(position);
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
-    }
-
     return convertView;
   }
 
