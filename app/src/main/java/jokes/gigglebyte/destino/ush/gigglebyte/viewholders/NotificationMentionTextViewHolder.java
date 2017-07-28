@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -23,19 +24,7 @@ public class NotificationMentionTextViewHolder extends UserGridViewHolder {
     String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + activity.getResources().getString(R.string.mentioned_on);
 
     PostTextViewHolder holder = new PostTextViewHolder();
-    holder.userName = (TextView) convertView.findViewById(R.id.content_userName);
-    holder.profileImage = (ImageView) convertView.findViewById(R.id.content_pic);
-    holder.progressBar = (ProgressBar) convertView.findViewById(R.id.content_progressBar);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.content_followButton);
-
-    holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-    holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-    holder.postText = (TextView) convertView.findViewById(R.id.postText);
-    holder.layout = (LinearLayout) convertView.findViewById(R.id.layoutView);
-    holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-    holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-    holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-    holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
+    PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder, true);
     convertView.setTag(holder);
 
     holder.setUserData(activity, post.getInnerPost().getUser(), OpenScreen.PROFILE);

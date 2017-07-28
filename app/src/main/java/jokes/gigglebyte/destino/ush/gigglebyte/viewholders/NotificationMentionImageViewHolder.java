@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -24,21 +25,7 @@ public class NotificationMentionImageViewHolder extends UserGridViewHolder {
     String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName()) + " " + activity.getResources().getString(R.string.mentioned_on);
 
     final PostImageViewHolder holder = new PostImageViewHolder();
-    holder.userName = (TextView) convertView.findViewById(R.id.content_userName);
-    holder.profileImage = (ImageView) convertView.findViewById(R.id.content_pic);
-    holder.progressBar = (ProgressBar) convertView.findViewById(R.id.content_progressBar);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.content_followButton);
-
-    holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-    holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-    holder.title = (TextView) convertView.findViewById(R.id.title);
-    holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
-    holder.layout = (LinearLayout) convertView.findViewById(R.id.layoutView);
-    holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-    holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-    holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-    holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
-    holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.imageProgressBar);
+    PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder, true);
     convertView.setTag(holder);
 
     holder.setUserData(activity, post.getInnerPost().getUser(), OpenScreen.PROFILE);

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -57,152 +58,76 @@ public class PostListAdapter extends BaseAdapter {
 
   public View getView(final int position, View convertView, ViewGroup parent) {
     if (posts.get(position).getType() == PostType.TEXT_POST) {
-      final PostTextViewHolder holder;
+      final PostTextViewHolder holder = new PostTextViewHolder();
       convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
-      holder = new PostTextViewHolder();
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-
-      holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-      holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-      holder.postText = (TextView) convertView.findViewById(R.id.postText);
-      holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-      holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-      holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-      holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-      holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
+      PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
       convertView.setTag(holder);
-
       Post post = posts.get(position);
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setTextPostData(activity,convertView,post, fromScreen);
-
-    } else if (posts.get(position).getType() == PostType.IMAGE_POST) {
-      final PostImageViewHolder holder;
+    }
+    else if (posts.get(position).getType() == PostType.IMAGE_POST) {
+      final PostImageViewHolder holder = new PostImageViewHolder();
       convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
-      holder = new PostImageViewHolder();
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-
-      holder.title = (TextView) convertView.findViewById(R.id.title);
-      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
-      holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-      holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-      holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-      holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-      holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-      holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.imageProgressBar);
-      holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-      holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
+      PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
       convertView.setTag(holder);
-
       Post post = posts.get(position);
-
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setImagePostData(activity, this, convertView, post, fromScreen);
-    } else if (posts.get(position).getType() == PostType.INFO_POST) {
-      final PostInfoViewHolder holder;
+    }
+    else if (posts.get(position).getType() == PostType.INFO_POST) {
+      final PostInfoViewHolder holder = new PostInfoViewHolder();
       convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
-      holder = new PostInfoViewHolder();
-
-      holder.title = (TextView) convertView.findViewById(R.id.title);
-      holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
+      PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);
       convertView.setTag(holder);
-
-      Post post = posts.get(position);
-
-      holder.setPostData(activity, post, fromScreen);
-    }else if (posts.get(position).getType() == PostType.FOLLOWING_NOTIFICATION) {
-      final NotificationFollowViewHolder holder;
+      holder.setPostData(activity, posts.get(position), fromScreen);
+    }
+    else if (posts.get(position).getType() == PostType.FOLLOWING_NOTIFICATION) {
+      final NotificationFollowViewHolder holder = new NotificationFollowViewHolder();
       convertView = mInflater.inflate(R.layout.notification_follow_item, parent, false);
-      holder = new NotificationFollowViewHolder();
-
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
-      holder.followeesName = (TextView) convertView.findViewById(R.id.followeesName);
-
+      PopulateViewHolderHelper.populateNotificationFollowViewHolder(convertView, holder);
       convertView.setTag(holder);
-
       Post post = posts.get(position);
-
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }else if (posts.get(position).getType() == PostType.LIKE_TEXT_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_TEXT_POST_NOTIFICATION) {
-      final NotificationTextPostViewHolder holder;
+    }
+    else if (posts.get(position).getType() == PostType.LIKE_TEXT_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_TEXT_POST_NOTIFICATION) {
+      final NotificationTextPostViewHolder holder = new NotificationTextPostViewHolder();
       convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
-      holder = new NotificationTextPostViewHolder();
-
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
-
+      PopulateViewHolderHelper.populateNotificationTextPostViewHolder(convertView, holder);
       convertView.setTag(holder);
-
       Post post = posts.get(position);
-
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }else if (posts.get(position).getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_IMAGE_POST_NOTIFICATION) {
-      final NotificationImagePostViewHolder holder;
+    }
+    else if (posts.get(position).getType() == PostType.LIKE_IMAGE_POST_NOTIFICATION || posts.get(position).getType() == PostType.COMMENT_IMAGE_POST_NOTIFICATION) {
+      final NotificationImagePostViewHolder holder = new NotificationImagePostViewHolder();
       convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
-      holder = new NotificationImagePostViewHolder();
-
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
-
+      PopulateViewHolderHelper.populateNotificationImagePostViewHolder(convertView, holder);
       convertView.setTag(holder);
-
       Post post = posts.get(position);
-
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
-    }else if (posts.get(position).getType() == PostType.MENTION_TEXT_POST_NOTIFICATION) {
-      final NotificationMentionTextViewHolder holder;
-      convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
-      holder = new NotificationMentionTextViewHolder();
-
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
-
-      convertView.setTag(holder);
-
-      Post post = posts.get(position);
-
-      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
-    }else if (posts.get(position).getType() == PostType.MENTION_IMAGE_POST_NOTIFICATION) {
-      final NotificationMentionImageViewHolder holder;
-      convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
-      holder = new NotificationMentionImageViewHolder();
-
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
-      holder.userName = (TextView) convertView.findViewById(R.id.userName);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
-
-      convertView.setTag(holder);
-
-      Post post = posts.get(position);
-
       holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
     }
+    else if (posts.get(position).getType() == PostType.MENTION_TEXT_POST_NOTIFICATION) {
+      final NotificationMentionTextViewHolder holder = new NotificationMentionTextViewHolder();
+      convertView = mInflater.inflate(R.layout.notification_on_text_post_item, parent, false);
+      PopulateViewHolderHelper.populateNotificationMentionTextViewHolder(convertView, holder);
+      convertView.setTag(holder);
+      Post post = posts.get(position);
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+      holder.setData(activity, convertView, post, OpenScreen.PROFILE);
+    }
+    else if (posts.get(position).getType() == PostType.MENTION_IMAGE_POST_NOTIFICATION) {
+      final NotificationMentionImageViewHolder holder = new NotificationMentionImageViewHolder();
+      convertView = mInflater.inflate(R.layout.notification_on_image_post_item, parent, false);
+      PopulateViewHolderHelper.populateNotificationMentionImageViewHolder(convertView, holder);
+      convertView.setTag(holder);
+      Post post = posts.get(position);
+      holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
+      holder.setData(activity, this, convertView, post, OpenScreen.PROFILE);
+    }
+
     return convertView;
   }
 

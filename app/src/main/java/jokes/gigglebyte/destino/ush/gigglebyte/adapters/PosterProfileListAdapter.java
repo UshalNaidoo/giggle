@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
@@ -59,57 +60,33 @@ public class PosterProfileListAdapter extends BaseAdapter {
 
   public View getView(final int position, View convertView, ViewGroup parent) {
     if (position == 0) {
-      UserListViewHolder holder;
+      UserListViewHolder holder = new UserListViewHolder();
       convertView = mInflater.inflate(R.layout.poster_header, parent, false);
-      holder = new UserListViewHolder();
-      holder.description = (TextView) convertView.findViewById(R.id.description);
-      holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
-      holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-      holder.viewFollowers = (Button) convertView.findViewById(R.id.button_followers);
-      holder.viewFollowing = (Button) convertView.findViewById(R.id.button_following);
+      PopulateViewHolderHelper.populateUserListViewHolder(convertView, holder);
       convertView.setTag(holder);
       holder.setUserData(activity, poster);
-    } else {
+    }
+    else {
       final int pos = position - 1;
       final Post post = posts.get(pos);
       if (post.getType() == PostType.TEXT_POST) {
-        final PostTextViewHolder holder;
+        final PostTextViewHolder holder = new PostTextViewHolder();
         convertView = mInflater.inflate(R.layout.profile_text_item, parent, false);
-        holder = new PostTextViewHolder();
-        holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
-        holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-        holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-        holder.postText = (TextView) convertView.findViewById(R.id.postText);
-        holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-        holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-        holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-        holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
-        holder.menuImage = (ImageView) convertView.findViewById(R.id.menuImage);
+        PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
         convertView.setTag(holder);
         holder.setTextPostData(activity, convertView, post, fromScreen);
-      } else if (post.getType() == PostType.IMAGE_POST) {
-        final PostImageViewHolder holder;
+      }
+      else if (post.getType() == PostType.IMAGE_POST) {
+        final PostImageViewHolder holder = new PostImageViewHolder();
         convertView = mInflater.inflate(R.layout.profile_image_item, parent, false);
-        holder = new PostImageViewHolder();
-        holder.title = (TextView) convertView.findViewById(R.id.title);
-        holder.timeSince = (TextView) convertView.findViewById(R.id.timeSince);
-        holder.postInfo = (TextView) convertView.findViewById(R.id.postInfo);
-        holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
-        holder.tags =  (TextView) convertView.findViewById(R.id.tags);
-        holder.likeImage = (ImageView) convertView.findViewById(R.id.likeImage);
-        holder.favoriteImage = (ImageView) convertView.findViewById(R.id.favoriteImage);
-        holder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
-        holder.imageProgressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-        holder.shareImage = (ImageView) convertView.findViewById(R.id.shareImage);
+        PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
         convertView.setTag(holder);
         holder.setImagePostData(activity, this, convertView, post, fromScreen);
-      } else if (post.getType() == PostType.INFO_POST) {
-        final PostInfoViewHolder holder;
+      }
+      else if (post.getType() == PostType.INFO_POST) {
+        final PostInfoViewHolder holder = new PostInfoViewHolder();
         convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
-        holder = new PostInfoViewHolder();
-
-        holder.title = (TextView) convertView.findViewById(R.id.title);
-        holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
+        PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);
         convertView.setTag(holder);
         holder.setPostData(activity, post, fromScreen);
       }

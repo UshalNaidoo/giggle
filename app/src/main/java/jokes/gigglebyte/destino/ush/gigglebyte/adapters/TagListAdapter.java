@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Tag;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.TagViewHolder;
 
@@ -47,8 +48,7 @@ public class TagListAdapter extends BaseAdapter {
     if (row == null) {
       row = mInflater.inflate(R.layout.tag_item, parent, false);
       holder = new TagViewHolder();
-      holder.tagName = (TextView) row.findViewById(R.id.tag);
-      holder.numberOfPosts = (TextView) row.findViewById(R.id.numberOfPosts);
+      PopulateViewHolderHelper.populateTagViewHolder(row, holder);
       row.setTag(holder);
     }
     else {
@@ -57,5 +57,6 @@ public class TagListAdapter extends BaseAdapter {
     holder.setTagData(activity, tags.get(position));
     return row;
   }
+
 
 }

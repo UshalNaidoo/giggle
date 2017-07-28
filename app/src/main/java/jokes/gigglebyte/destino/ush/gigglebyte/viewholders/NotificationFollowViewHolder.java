@@ -17,7 +17,6 @@ public class NotificationFollowViewHolder extends UserGridViewHolder {
   public TextView informationTextView;
   public TextView followeesName;
 
-
   public void setData(final Activity activity, View convertView,  final Post post, OpenScreen screenToOpen) {
     User user = post.getUser();
     User following = post.getFollowingUser();

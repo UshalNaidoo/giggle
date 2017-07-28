@@ -71,6 +71,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:orientation="vertical"
+        android:id="@+id/layout"
         android:background="@color/item_third_color">
       <LinearLayout
           android:layout_width="fill_parent"

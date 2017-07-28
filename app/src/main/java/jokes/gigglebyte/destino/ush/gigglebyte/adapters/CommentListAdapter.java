@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PopulateViewHolderHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
@@ -63,66 +64,27 @@ public class CommentListAdapter extends BaseAdapter {
     View row = convertView;
     if (position == 0) {
       if (post.getType() == PostType.TEXT_POST) {
-        final PostTextViewHolder holder;
+        final PostTextViewHolder holder = new PostTextViewHolder();
         row = mInflater.inflate(R.layout.post_text_item, parent, false);
-        holder = new PostTextViewHolder();
-        holder.userName = (TextView) row.findViewById(R.id.userName);
-        holder.profileImage = (ImageView) row.findViewById(R.id.pic);
-        holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-        holder.followButton = (ImageView) row.findViewById(R.id.followButton);
-
-        holder.tags =  (TextView) row.findViewById(R.id.tags);
-        holder.postText = (TextView) row.findViewById(R.id.postText);
-        holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
-        holder.layout = (LinearLayout) row.findViewById(R.id.layout);
-        holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-        holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
-        holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
-        holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
+        PopulateViewHolderHelper.populatePostTextViewHolder(row, holder);
         row.setTag(holder);
-
         holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
         holder.setTextPostData(activity, row, post, FromScreen.COMMENTS);
-
-      } else if (post.getType() == PostType.IMAGE_POST) {
-        final PostImageViewHolder holder;
+      }
+      else if (post.getType() == PostType.IMAGE_POST) {
+        final PostImageViewHolder holder = new PostImageViewHolder();
         row = mInflater.inflate(R.layout.post_image_item, parent, false);
-        holder = new PostImageViewHolder();
-        holder.userName = (TextView) row.findViewById(R.id.userName);
-        holder.profileImage = (ImageView) row.findViewById(R.id.pic);
-        holder.followButton = (ImageView) row.findViewById(R.id.followButton);
-        holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-
-        holder.title = (TextView) row.findViewById(R.id.title);
-        holder.postImage = (ImageView) row.findViewById(R.id.postImage);
-        holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
-        holder.tags =  (TextView) row.findViewById(R.id.tags);
-        holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-        holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
-        holder.layout = (LinearLayout) row.findViewById(R.id.layout);
-        holder.imageProgressBar = (ProgressBar) row.findViewById(R.id.imageProgressBar);
-        holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
-        holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
+        PopulateViewHolderHelper.populatePostImageViewHolder(row, holder);
         row.setTag(holder);
-
         holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
         holder.setImagePostData(activity, this, row, post, FromScreen.COMMENTS);
       }
     }
     else {
-      final CommentViewHolder holder;
+      final CommentViewHolder holder = new CommentViewHolder();
       row = mInflater.inflate(R.layout.comment_item, parent, false);
-      holder = new CommentViewHolder();
-      holder.layout = (LinearLayout) row.findViewById(R.id.layout);
-      holder.commentText = (TextView) row.findViewById(R.id.commentText);
-      holder.userName = (TextView) row.findViewById(R.id.userName);
-      holder.likes = (TextView) row.findViewById(R.id.likes);
-      holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
-      holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-      holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
-      holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
+      PopulateViewHolderHelper.populateCommentViewHolder(row, holder);
       row.setTag(holder);
-
       Comment comment = comments.get(position-1);
       holder.setUserData(activity, comment.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, comment);
