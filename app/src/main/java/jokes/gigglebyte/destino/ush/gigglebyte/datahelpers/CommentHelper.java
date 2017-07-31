@@ -83,28 +83,4 @@ public class CommentHelper {
     allComments.add(comment);
   }
 
-  public static void flagComment(Activity activity, final Comment comment) {
-    Set<String> commentFlags = SharedPrefHelper.getCommentFlags(activity);
-    boolean previouslyFlagged = false;
-    for (String s : commentFlags) {
-      if (comment.getCommentId() == Integer.parseInt(s)) {
-        previouslyFlagged = true;
-        break;
-      }
-    }
-    if (!previouslyFlagged) {
-      //Comment was not previously flagged
-      //Send to server
-      //add to prefs
-      commentFlags.add(String.valueOf(comment.getCommentId()));
-      SharedPrefHelper.saveCommentFlags(activity, commentFlags);
-      Thread thread = new Thread() {
-        @Override
-        public void run() {
-          ConnectToServer.flagComment(comment.getCommentId());
-        }
-      };
-      thread.start();
-    }
-  }
 }

@@ -442,31 +442,6 @@ public class PostHelper implements onSubmitListener {
     return posts;
   }
 
-  public static void flagPost(final Activity activity, final Post post) {
-    Set<String> postFlags = SharedPrefHelper.getPostFlags(activity);
-    boolean previouslyFlagged = false;
-    for (String s : postFlags) {
-      if (post.getPostId() == Integer.parseInt(s)) {
-        previouslyFlagged = true;
-        break;
-      }
-    }
-    if (!previouslyFlagged) {
-      postFlags.add(String.valueOf(post.getPostId()));
-
-      Thread thread = new Thread() {
-        @Override
-        public void run() {
-          ConnectToServer.flagPost(post.getPostId());
-          Set<String> flag_posts = SharedPrefHelper.getPostFlags(activity);
-          flag_posts.add(String.valueOf(post.getPostId()));
-          SharedPrefHelper.savePostFlags(activity, flag_posts);
-        }
-      };
-      thread.start();
-    }
-  }
-
   @Override
   public void setOnSubmitListener(Object arg) {
     newPosts.add(0, (Post) arg);

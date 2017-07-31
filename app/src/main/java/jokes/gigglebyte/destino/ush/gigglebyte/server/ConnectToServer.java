@@ -396,8 +396,8 @@ public class ConnectToServer {
     return "";
   }
 
-  public static void flagComment(int commentId) {
-    String parameters = "comment_id=" + commentId;
+  public static void flagComment(int userId,int commentId) {
+    String parameters = "comment_id=" + commentId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._flagComment;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -426,8 +426,8 @@ public class ConnectToServer {
     }
   }
 
-  public static void flagPost(int postId) {
-    String parameters = "post_id=" + postId;
+  public static void flagPost(int userId, int postId) {
+    String parameters = "post_id=" + postId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._flagPost;
     try {
       response = Connect.connectToServer(UrlString, parameters);

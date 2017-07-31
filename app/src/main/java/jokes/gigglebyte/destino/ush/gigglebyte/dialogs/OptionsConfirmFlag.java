@@ -15,6 +15,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -57,10 +58,10 @@ public class OptionsConfirmFlag extends DialogFragment {
           public void run() {
             try  {
               if (isFlagPost) {
-                ConnectToServer.flagPost(post.getPostId());
+                ConnectToServer.flagPost(UserHelper.getUsersId(activity), post.getPostId());
               }
               else {
-                ConnectToServer.flagComment(comment.getCommentId());
+                ConnectToServer.flagComment(UserHelper.getUsersId(activity), comment.getCommentId());
               }
             } catch (Exception e) {
               e.printStackTrace();
