@@ -2,13 +2,121 @@
 <items version="2" >
 
     <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/8582ad8b6d512922ca219e632f642f6b4790ed67/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_1565a36efe9e2eaeadecde6512c0a42fcb203892.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/32a751e54699a5e32c9c9ae47a8dcc39b0d1cfb7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1c3b9743fe8bb166a90a7e98b9b9f1f8021d80cd">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_a176a3aca6f5de09bb23da11aac1e21c703d894d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/5eac5ae5724c8dec36b1ad46a7383cf10e4432ef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f4fb6981392ca7680d02fd57d26d6124c141d9d9">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_376b2cd8e92ffddc75fd1d49b511e9382038dff7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/b60fb34f0f33178514c42465e361519cf8be87d4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_e4f9cb5694372a944b53ea4006e851ce33d7b9c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/ce6713d55184b725b0143c6e0096f0a03b4766a9/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_ac8407c8e7cfc1b5dec2a5c8b459a35b2774bfaf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/8582ad8b6d512922ca219e632f642f6b4790ed67/output/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.0_1576bb88d12ed96291e818646a555e5361bc4888.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/8c9a8798e4decc1f52a4a1306976c1c17cee14cc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_ae1a7799521ee24e04e61a5527281c57361da0cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/59976d947adbe389ee76a0b7e33a375441c110f1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b8e0372ca6dc89ac4fe22b76eeea4f68ece435b8">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_20e911b53b8b02e7d1fbf84a53bb23b88361286b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/8cfe4db9b2cf5cfca1fffdbb1276ca3da1151d52/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_18f6b314e2e3785ea6cfab363efa747d98fb2594.jar" />
+    </item>
+    <item
         is-multidex="true"
         jar="/home/ushal.naidoo/triage/giggle/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="2ee2085c04877c188cc876833ccb39009786b072">
+        sha1="ce34fbb60f43f46658171716dfd0ba912d27018f">
         <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04601f540849f8cdeac74c57882e584481c2bc7a/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/792b1fc495b9523cf2a3d1b345081aa3ad8f96d2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cf16220db9128d91a215aedc739584181d5ca6a4">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_7fce7fe4045938b49ea3d2fd842efa56915fe9cd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.0_41cd905095ee866d2169cb27a3ba03e31271dad1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/ushal.naidoo/.android/build-cache/40695b0a4f95da41ff121274df34f73387715414/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e6970f0554f9508c041f1f6960af15cc888c9f35">
+        <dex dex="/home/ushal.naidoo/triage/giggle/app/build/intermediates/pre-dexed/debug/classes_8699239fb1f05db3d7e0085b896629727352a98d.jar" />
     </item>
     <item
         is-multidex="true"

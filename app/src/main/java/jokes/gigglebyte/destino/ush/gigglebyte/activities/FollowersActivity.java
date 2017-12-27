@@ -1,6 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.UserGridAdapter;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -38,7 +36,7 @@ public class FollowersActivity extends Activity {
     final boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
     final boolean userList = intent.getBooleanExtra("userList", false);
 
-    UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
+//    UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
 
     final GridView gridView = (GridView) findViewById(R.id.gridView);
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -79,7 +79,7 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:background="@color/main_black"
+        android:background="@color/profile_image_colour"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"

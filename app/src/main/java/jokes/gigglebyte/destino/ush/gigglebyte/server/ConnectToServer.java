@@ -494,7 +494,6 @@ public class ConnectToServer {
       response = Connect.connectToServer(UrlString, parameters);
     } catch (Exception e) {
       e.printStackTrace();
-      Log.e("Giggle", e.toString());
     }
   }
 

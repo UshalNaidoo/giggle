@@ -69,7 +69,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
       }
     });
 
-    UIHelper.setActionBar(this, getResources().getString(R.string.comments), true);
+//    UIHelper.setActionBar(this, getResources().getString(R.string.comments), true);
 
     floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
     floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -104,14 +104,16 @@ public class CommentActivity extends Activity implements onSubmitListener {
 
   public static void reload() {
 
-    new GetPostComments(postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    new GetPostComments(activity, postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
   private static class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
 
+    Activity activity;
     int postId;
 
-    GetPostComments(int postId) {
+    GetPostComments(Activity activity, int postId) {
       this.postId = postId;
+      this.activity = activity;
     }
 
     @Override

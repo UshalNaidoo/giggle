@@ -4,10 +4,10 @@
   <string name="yes">Yes</string>
   <string name="no">No</string>
 
-  <string name="app_name">Gigglebyte</string>
+  <string name="app_name">My Gigglebyte</string>
   <string name="hello_world">Hello world!</string>
   <string name="action_settings">Settings</string>
-  <string name="newUserDescription">I\'m new to Gigglebyte</string>
+  <string name="newUserDescription">I\'m new here</string>
   <string name="action_follow">Follow user</string>
   <string name="action_unfollow">Unfollow User</string>
 
@@ -52,16 +52,16 @@
   <string name="edit_comment">Edit</string>
   <string name="delete_comment">Delete</string>
 
-  <string name="tab_profile">Profile</string>
-  <string name="tab_notifications">Notifications</string>
-  <string name="tab_feed">Feed</string>
-  <string name="tab_tags">Tags</string>
-  <string name="tab_users">Users</string>
-  <string name="tab_new">New</string>
-  <string name="tab_hot">Hot</string>
-  <string name="tab_favourite">Favourite</string>
-  <string name="tab_search">Search</string>
-  <string name="tab_posts">Posts</string>
+  <string name="tab_profile">PROFILE</string>
+  <string name="tab_notifications">NOTIFICATIONS</string>
+  <string name="tab_feed">FEED</string>
+  <string name="tab_tags">TAGS</string>
+  <string name="tab_users">USERS</string>
+  <string name="tab_new">NEW</string>
+  <string name="tab_hot">HOT</string>
+  <string name="tab_favourite">FAVOURITE</string>
+  <string name="tab_search">SEARCH</string>
+  <string name="tab_posts">POSTS</string>
 
   <string name="menu_change_picture">Change Picture</string>
   <string name="menu_add_post">Add Post</string>
