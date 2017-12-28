@@ -22,7 +22,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.CommentListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddCommentDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;

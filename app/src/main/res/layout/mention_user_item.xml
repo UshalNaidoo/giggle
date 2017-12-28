@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+  <LinearLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:padding="10dp"
+      android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+      <FrameLayout
+          android:id="@+id/frame"
+          android:layout_width="40dp"
+          android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/pic"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/nobody_m"/>
+
+        <ImageView
+            android:id="@+id/circle_crop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/circle_crop"/>
+      </FrameLayout>
+      <ProgressBar
+          android:id="@+id/progressBar"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          style="@android:style/Widget.ProgressBar.Large"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/app_grey"
+        android:textSize="@dimen/info_text_size"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight="1"/>
+
+  </LinearLayout>
+
+  <View android:id="@+id/primerdivisor"
+        android:layout_height="1dp"
+        android:layout_width="fill_parent"
+        android:background="@color/divisor_color"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"/>
+</LinearLayout>

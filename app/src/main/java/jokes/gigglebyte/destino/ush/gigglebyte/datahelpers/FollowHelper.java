@@ -111,15 +111,16 @@ public class FollowHelper {
     return followers;
   }
 
-  public static List<String> getFollowerNames() {
+  public static List<User> getFollowerNames() {
     if (followers == null) return new ArrayList<>();
-    List<String> names = new ArrayList<>();
+    List<User> users = new ArrayList<>();
     for (User user : followers) {
       if (user.getName() != null && !user.getName().isEmpty()) {
-        names.add("@" + user.getName());
+        user.setName("@" + user.getName());
+        users.add(user);
       }
     }
-    return names;
+    return users;
   }
 
   public static User getFollowerByName(String name) {

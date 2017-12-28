@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.adapters.MentionUserAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
@@ -99,9 +100,9 @@ public class AddCommentDialog extends DialogFragment {
       }
     });
 
-    ArrayAdapter<String> adp= new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, FollowHelper.getFollowerNames());
+    MentionUserAdapter mentionUserAdapter = new MentionUserAdapter(getActivity(), commentText.getId(), FollowHelper.getFollowers());
     commentText.setThreshold(0);
-    commentText.setAdapter(adp);
+    commentText.setAdapter(mentionUserAdapter);
 
     final TextWatcher watcher = new TextWatcher() {
       @Override

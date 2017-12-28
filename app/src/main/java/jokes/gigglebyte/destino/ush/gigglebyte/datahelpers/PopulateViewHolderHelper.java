@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.CommentViewHolder;
+import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.MentionViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationFollowViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationImagePostViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.NotificationMentionImageViewHolder;
@@ -74,6 +75,13 @@ public class PopulateViewHolderHelper {
     holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
     holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
     holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
+  }
+
+  public static void populateMentionHolder(View row, MentionViewHolder holder) {
+    holder.layout = (LinearLayout) row.findViewById(R.id.layout);
+    holder.userName = (TextView) row.findViewById(R.id.userName);
+    holder.profileImage = (ImageView) row.findViewById(R.id.profileImage);
+    holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
   }
 
   public static void populateCommentViewHolder(View row, CommentViewHolder holder) {
