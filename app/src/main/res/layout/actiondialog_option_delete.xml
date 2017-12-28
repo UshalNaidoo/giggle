@@ -23,7 +23,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:textColor="@color/text_color"
-        android:textSize="20sp"
+        android:textSize="@dimen/info_text_size"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
@@ -36,6 +36,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_color"
+        android:textSize="@dimen/info_text_size"
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/yes"/>
@@ -49,6 +50,7 @@
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_color"
+        android:textSize="@dimen/info_text_size"
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/no"/>

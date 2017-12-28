@@ -25,7 +25,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textColor="@color/text_color"
-      android:textSize="18sp"
+      android:textSize="@dimen/info_text_size"
       android:gravity="center"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
 
@@ -39,6 +39,7 @@
       android:maxHeight="5dip"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:textSize="@dimen/info_text_size"
       style="@android:style/Widget.ProgressBar.Horizontal"
       android:progressDrawable="@drawable/horizontal_progress_purple"/>
 </RelativeLayout>

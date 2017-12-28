@@ -18,7 +18,7 @@
         android:id="@+id/timeSince"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="@dimen/info_text_size"
         android:gravity="end"
         android:layout_weight="1"
         android:textColor="@color/text_hint_color"/>
@@ -31,19 +31,19 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:padding="5dp"
-      android:background="#fff4d9">
+      android:background="@color/item_background_white_color">
   <TextView
       android:id="@+id/postText"
       android:layout_width="fill_parent"
       android:layout_height="0dp"
-      android:textSize="18sp"
+      android:textSize="@dimen/info_text_size"
       android:layout_marginLeft="8dp"
       android:layout_marginRight="8dp"
       android:gravity="start"
       android:layout_weight="1"
       android:textColor="@color/item_secondary_color"
       android:padding="5dp"
-      android:background="#fff4d9"
+      android:background="@color/item_background_white_color"
       />
 </LinearLayout>
   <TextView
@@ -53,14 +53,14 @@
       android:text=""
       android:textColor="@color/text_hint_color"
       android:layout_marginStart="10dp"
-      android:textSize="16sp"
+      android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
   <TextView
       android:id="@+id/postInfo"
       android:layout_width="wrap_content"
       android:layout_height="0dp"
-      android:textSize="16sp"
+      android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
       android:textColor="@color/text_hint_color"/>
   <LinearLayout

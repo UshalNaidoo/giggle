@@ -59,7 +59,7 @@
           android:id="@+id/userName"
           android:layout_width="fill_parent"
           android:layout_height="0dp"
-          android:textSize="18sp"
+          android:textSize="@dimen/info_text_size"
           android:gravity="start"
           android:layout_weight="1"
           android:textColor="@color/comment_text_color"/>

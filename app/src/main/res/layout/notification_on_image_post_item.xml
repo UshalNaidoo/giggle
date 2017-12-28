@@ -120,7 +120,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/text_hint_color"
-            android:textSize="18sp"
+            android:textSize="@dimen/info_text_size"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"/>
 
@@ -137,15 +137,15 @@
           android:layout_height="wrap_content"
           android:orientation="vertical"
           android:padding="5dp"
-          android:background="#fff4d9">
+          android:background="@color/item_background_white_color">
 
         <TextView
             android:id="@+id/title"
             android:layout_marginStart="8dp"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:textColor="#fff"
-            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/info_text_size"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_weight="1"/>
 
@@ -168,14 +168,14 @@
             android:layout_height="0dp"
             android:text=""
             android:textColor="@color/app_grey"
-            android:textSize="16sp"
+            android:textSize="@dimen/info_text_size"
             android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
       <TextView
           android:id="@+id/postInfo"
           android:layout_width="wrap_content"
           android:layout_height="0dp"
-          android:textSize="16sp"
+          android:textSize="@dimen/info_text_size"
           android:layout_weight="1"
           android:textColor="@color/text_hint_color"/>
 

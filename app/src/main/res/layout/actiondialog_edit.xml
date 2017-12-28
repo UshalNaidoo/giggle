@@ -20,6 +20,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:inputType="textMultiLine"
+      android:textSize="@dimen/info_text_size"
       android:textColor="@color/text_color"
       android:textColorHint="@color/text_hint_color"
       android:gravity="top"
@@ -43,6 +44,7 @@
       android:textColor="@color/text_color"
       android:layout_height="30dp"
       android:background="@drawable/button_selector"
+      android:textSize="@dimen/info_text_size"
       android:text="@string/edit"/>
     </LinearLayout>
   </LinearLayout>

@@ -32,6 +32,7 @@
       android:id="@+id/description"
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
+      android:textSize="@dimen/info_text_size"
       android:maxLines="4"
       android:minLines="1"
       android:ellipsize="end"/>
@@ -53,6 +54,7 @@
         android:layout_height="40dp"
         android:background="@drawable/button_selector"
         android:padding="2dp"
+        android:textSize="@dimen/info_text_size"
         android:text="@string/following"/>
 
     <Button
@@ -62,6 +64,7 @@
         android:layout_gravity="end"
         android:textColor="@color/text_color"
         android:layout_height="40dp"
+        android:textSize="@dimen/info_text_size"
         android:background="@drawable/button_selector"
         android:padding="2dp"
         android:text="@string/followers"/>

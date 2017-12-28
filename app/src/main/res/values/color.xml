@@ -12,6 +12,7 @@
 
   <!-- Tab Layout Colours -->
   <color name="text_color">#ffffff</color>
+  <color name="text_color_dark">#000</color>
   <color name="tab_text_color">#ffffff</color>
   <color name="action_text_color">#1c1b20</color>
   <color name="text_hint_color">#C0C0C0</color>
@@ -33,6 +34,7 @@
   <color name="progress_end_color">#455A64</color>
 
   <color name="item_background_color">#1c1b20</color>
+  <color name="item_background_white_color">#fff4d9</color>
   <color name="item_panel_color">#1c1b20</color>
   <color name="item_secondary_color">#26272d</color>
   <color name="item_third_color">#565f94</color>

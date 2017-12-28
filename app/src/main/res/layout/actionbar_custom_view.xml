@@ -12,7 +12,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:text="@string/wait"
-      android:textSize="18sp"
+      android:textSize="@dimen/title_text_size"
       android:gravity="center"
       android:layout_weight="1"
       android:textColor="@color/action_text_color"/>

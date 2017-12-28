@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:inputType="textMultiLine"
+        android:textSize="@dimen/info_text_size"
         android:textColor="@color/text_color"
         android:textColorHint="@color/text_hint_color"
         android:maxLength="300"
@@ -37,7 +38,7 @@
         android:hint="@string/add_tags"
         android:textColorHint="@color/text_hint_color"
         android:ems="10"
-    android:textSize="12sp">
+        android:textSize="@dimen/info_text_size">
     </MultiAutoCompleteTextView>
 
     <LinearLayout
@@ -55,7 +56,7 @@
           android:layout_height="wrap_content"
           android:text="300/300"
           android:textColor="@color/text_color"
-          android:textSize="20sp"
+          android:textSize="@dimen/info_text_size"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
 
@@ -67,6 +68,7 @@
       android:textColor="@color/text_color"
       android:layout_height="30dp"
       android:background="@drawable/button_selector"
+      android:textSize="@dimen/info_text_size"
       android:text="@string/post"/>
     </LinearLayout>
   </LinearLayout>
