@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
@@ -49,7 +47,7 @@ public class AddCommentDialog extends DialogFragment {
     Button sendButton = (Button) dialog.findViewById(R.id.button1);
     commentText = (MultiAutoCompleteTextView) dialog.findViewById(R.id.editText1);
     countTextView = (TextView) dialog.findViewById(R.id.countTextView);
-    commentText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+//    commentText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
     commentText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer(){
       public int findTokenStart(CharSequence text, int cursor) {
@@ -100,8 +98,8 @@ public class AddCommentDialog extends DialogFragment {
       }
     });
 
+    commentText.setThreshold(1);
     MentionUserAdapter mentionUserAdapter = new MentionUserAdapter(getActivity(), commentText.getId(), FollowHelper.getFollowers());
-    commentText.setThreshold(0);
     commentText.setAdapter(mentionUserAdapter);
 
     final TextWatcher watcher = new TextWatcher() {

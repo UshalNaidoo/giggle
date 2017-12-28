@@ -24,7 +24,7 @@
           android:layout_height="40dp">
 
         <ImageView
-            android:id="@+id/pic"
+            android:id="@+id/profileImage"
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:src="@drawable/nobody_m"/>
