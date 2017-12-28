@@ -4,6 +4,7 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/activity_color"
     android:orientation="vertical"
     android:gravity="center_vertical">
 
@@ -54,10 +55,4 @@
 
   </LinearLayout>
 
-  <View android:id="@+id/primerdivisor"
-        android:layout_height="1dp"
-        android:layout_width="fill_parent"
-        android:background="@color/divisor_color"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"/>
 </LinearLayout>
