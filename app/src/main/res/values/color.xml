@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <!-- General App Colours -->
-  <color name="action_bar_colour">#1c1b20</color>
-  <color name="profile_image_colour">#1c1b20</color>
+  <color name="main_background_colour">#1c1b20</color>
   <color name="secondary_black">#26272d</color>
   <color name="app_primary">#455A64</color>
   <color name="app_primary_dark">#551A8B</color>
   <color name="app_grey">#9e9c9f</color>
   <color name="tab_strip">#1f2025</color>
-  <color name="tab_selected">#1c1b20</color>
 
   <!-- Tab Layout Colours -->
   <color name="text_color">#ffffff</color>
@@ -25,17 +23,10 @@
   <color name="button_selected_color">#58857e</color>
   <color name="button_ripple">#2d80c4</color>
 
-  <color name="popup_color">#1c1b20</color>
-
-  <color name="activity_color">#1c1b20</color>
-  <color name="panel_color">#1c1b20</color>
-
   <color name="progress_start_color">#551A8B</color>
   <color name="progress_end_color">#455A64</color>
 
-  <color name="item_background_color">#1c1b20</color>
   <color name="item_background_white_color">#fff4d9</color>
-  <color name="item_panel_color">#1c1b20</color>
   <color name="item_secondary_color">#26272d</color>
   <color name="item_third_color">#565f94</color>
 

@@ -12,7 +12,7 @@
       android:layout_height="fill_parent"
       android:orientation="vertical"
       android:padding="2dp"
-      android:background="@color/activity_color">
+      android:background="@color/main_background_colour">
 
     <ListView
         android:layout_width="fill_parent"

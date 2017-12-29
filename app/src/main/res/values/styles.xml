@@ -7,7 +7,7 @@
   </style>
 
   <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
-    <item name="android:background">@color/action_bar_colour</item>
+    <item name="android:background">@color/main_background_colour</item>
   </style>
 
   <style name="MenuLabelsStyle">

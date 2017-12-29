@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_color"
+    android:background="@color/main_background_colour"
     android:gravity="center"
     android:padding="4dp"
     android:orientation="vertical">
@@ -49,7 +49,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/panel_color"
+        android:background="@color/main_background_colour"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="10dp"

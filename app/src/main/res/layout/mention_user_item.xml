@@ -4,7 +4,7 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/activity_color"
+    android:background="@color/main_background_colour"
     android:orientation="vertical"
     android:gravity="center_vertical">
 

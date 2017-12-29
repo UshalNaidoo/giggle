@@ -32,7 +32,7 @@ public class Tabs_Posts extends Fragment implements FragmentLifecycle {
     tabHost.addTab(tabHost.newTabSpec("hot").setIndicator(getActivity().getResources().getString(R.string.tab_hot)), Fragment_Hot.class, null);
     tabHost.addTab(tabHost.newTabSpec("new").setIndicator(getActivity().getResources().getString(R.string.tab_new)), Fragment_New.class, null);
     tabHost.addTab(tabHost.newTabSpec("favourite").setIndicator(getActivity().getResources().getString(R.string.tab_favourite)), Fragment_Favorite.class, null);
-    tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_selected));
+    tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.main_background_colour));
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     tabHost.getTabWidget().getChildAt(2).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     TextView selectedTabText = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
@@ -51,7 +51,7 @@ public class Tabs_Posts extends Fragment implements FragmentLifecycle {
         }
         TextView tabText = (TextView) tabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
         tabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_selected));
-        tabHost.getCurrentTabView().setBackgroundColor(getActivity().getResources().getColor(R.color.tab_selected));
+        tabHost.getCurrentTabView().setBackgroundColor(getActivity().getResources().getColor(R.color.main_background_colour));
       }
     });
 

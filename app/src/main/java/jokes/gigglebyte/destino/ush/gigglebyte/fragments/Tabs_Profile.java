@@ -31,7 +31,7 @@ public class Tabs_Profile extends Fragment implements FragmentLifecycle {
 
     tabHost.addTab(tabHost.newTabSpec("profile").setIndicator(getActivity().getResources().getString(R.string.tab_profile)),Fragment_Profile.class, null);
     tabHost.addTab(tabHost.newTabSpec("notifications").setIndicator(getActivity().getResources().getString(R.string.tab_notifications)),Fragment_Notifications.class, null);
-    tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_selected));
+    tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.main_background_colour));
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     TextView selectedTabText = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
     selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_selected));
@@ -47,7 +47,7 @@ public class Tabs_Profile extends Fragment implements FragmentLifecycle {
         }
         TextView tabText = (TextView) tabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
         tabText.setTextColor(getActivity().getResources().getColor(R.color.tab_text_selected));
-        tabHost.getCurrentTabView().setBackgroundColor(getActivity().getResources().getColor(R.color.tab_selected));
+        tabHost.getCurrentTabView().setBackgroundColor(getActivity().getResources().getColor(R.color.main_background_colour));
       }
     });
 
