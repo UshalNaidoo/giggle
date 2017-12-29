@@ -77,7 +77,7 @@
       android:layout_weight="1"
       android:textColor="#000"
       android:padding="5dp"
-      android:background="#fff4d9"
+      android:background="@color/item_background_white_color"
       />
 </LinearLayout>
   <TextView

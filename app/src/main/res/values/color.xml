@@ -26,7 +26,7 @@
   <color name="progress_start_color">#551A8B</color>
   <color name="progress_end_color">#455A64</color>
 
-  <color name="item_background_white_color">#fff4d9</color>
+  <color name="item_background_white_color">#fff</color>
   <color name="item_secondary_color">#26272d</color>
   <color name="item_third_color">#565f94</color>
 

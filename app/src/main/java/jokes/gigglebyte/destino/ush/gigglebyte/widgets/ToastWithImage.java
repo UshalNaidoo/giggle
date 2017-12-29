@@ -32,8 +32,8 @@ public class ToastWithImage {
     text.setText(textToDisplay);
 
     Toast toast = new Toast(this.activity);
-    toast.setGravity(Gravity.CENTER, 0, 40);
-    toast.setDuration(Toast.LENGTH_LONG);
+    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+    toast.setDuration(Toast.LENGTH_SHORT);
     toast.setView(layout);
     toast.show();
     UIHelper.imageViewClickAnimation(image);

@@ -136,7 +136,7 @@
           android:layout_height="wrap_content"
           android:orientation="vertical"
           android:padding="5dp"
-          android:background="#fff4d9">
+          android:background="@color/item_background_white_color">
         <TextView
             android:id="@+id/postText"
             android:layout_width="fill_parent"
