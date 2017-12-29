@@ -20,6 +20,8 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
   private static List<User> users;
   private LayoutInflater inflater;
   private Activity activity;
+  private Filter filter;
+  private int filteredAmount = 0;
 
   public MentionUserAdapter(Activity activity, int viewId, List<User> results) {
     super(activity, viewId);
@@ -33,21 +35,27 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
     return arg0;
   }
 
+
+  @Override
+  public int getCount() {
+    return filteredAmount;
+  }
+
   public View getView(final int position, View convertView, ViewGroup parent) {
-    View row = convertView;
-    if (position < users.size()) {
-      final MentionViewHolder holder = new MentionViewHolder();
-      row = inflater.inflate(R.layout.mention_user_item, parent, false);
-      PopulateViewHolderHelper.populateMentionHolder(row, holder);
-      row.setTag(holder);
-      holder.setUserData(activity, users.get(position), null);
-    }
+    View row;
+    final MentionViewHolder holder = new MentionViewHolder();
+    row = inflater.inflate(R.layout.mention_user_item, parent, false);
+    PopulateViewHolderHelper.populateMentionHolder(row, holder);
+    row.setTag(holder);
+    holder.setUserData(activity, getItem(position), null);
     return row;
   }
 
   @Override
   public Filter getFilter() {
-    return nameFilter;
+    if (filter == null)
+      filter = nameFilter;
+    return filter;
   }
 
   private Filter nameFilter = new Filter() {
@@ -69,6 +77,7 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
           }
         }
 
+        filteredAmount = suggestions.size();
         results.values = suggestions;
         results.count = suggestions.size();
       }
@@ -81,8 +90,8 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
       clear();
       if (results != null && results.count > 0) {
         addAll((ArrayList<User>) results.values);
+        notifyDataSetChanged();
       }
-      notifyDataSetChanged();
     }
   };
 
