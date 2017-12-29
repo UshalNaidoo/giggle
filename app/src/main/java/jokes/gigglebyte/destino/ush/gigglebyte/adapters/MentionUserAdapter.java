@@ -42,12 +42,14 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
   }
 
   public View getView(final int position, View convertView, ViewGroup parent) {
-    View row;
-    final MentionViewHolder holder = new MentionViewHolder();
-    row = inflater.inflate(R.layout.mention_user_item, parent, false);
-    PopulateViewHolderHelper.populateMentionHolder(row, holder);
-    row.setTag(holder);
-    holder.setUserData(activity, getItem(position), null);
+    View row = convertView;
+    if (position < filteredAmount) {
+      final MentionViewHolder holder = new MentionViewHolder();
+      row = inflater.inflate(R.layout.mention_user_item, parent, false);
+      PopulateViewHolderHelper.populateMentionHolder(row, holder);
+      row.setTag(holder);
+      holder.setUserData(activity, getItem(position), null);
+    }
     return row;
   }
 
@@ -67,7 +69,7 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
       FilterResults results = new FilterResults();
-
+      filteredAmount = 0;
       if (constraint != null && constraint.length() > 1) {
         ArrayList<User> suggestions = new ArrayList<>();
 
