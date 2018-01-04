@@ -33,7 +33,7 @@
             android:id="@+id/circle_crop"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/circle_crop"/>
+            android:src="@drawable/circle_crop_white"/>
       </FrameLayout>
       <ProgressBar
           android:id="@+id/progressBar"
@@ -75,7 +75,7 @@
       android:layout_marginRight="8dp"
       android:gravity="start"
       android:layout_weight="1"
-      android:textColor="#000"
+      android:textColor="@color/text_colour_secondary"
       android:padding="5dp"
       android:background="@color/item_background_white_color"
       />

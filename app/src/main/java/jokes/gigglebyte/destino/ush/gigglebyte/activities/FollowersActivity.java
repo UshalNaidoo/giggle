@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -9,12 +7,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.UserGridAdapter;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -36,7 +37,7 @@ public class FollowersActivity extends Activity {
     final boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
     final boolean userList = intent.getBooleanExtra("userList", false);
 
-//    UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
+    UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
 
     final GridView gridView = (GridView) findViewById(R.id.gridView);
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -19,7 +19,7 @@
       android:layout_height="wrap_content"
       android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
-      android:textColor="@color/text_color"/>
+      android:textColor="@color/text_colour_main"/>
 
   <TextView
       android:id="@+id/numberOfPosts"

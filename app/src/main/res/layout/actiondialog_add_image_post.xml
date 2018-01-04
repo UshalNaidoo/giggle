@@ -10,7 +10,7 @@
   <LinearLayout
       android:layout_width="200dp"
       android:layout_height="match_parent"
-      android:background="@color/main_background_colour"
+      android:background="@color/background_colour_main"
       android:gravity="center"
       android:orientation="vertical"
       android:padding="10dp"
@@ -25,7 +25,7 @@
         android:layout_marginRight="40dp"
         android:layout_gravity="center"
         android:textSize="@dimen/info_text_size"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_colour_main"
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/gallery"/>
@@ -37,7 +37,7 @@
         android:layout_marginRight="40dp"
         android:layout_gravity="center"
         android:textSize="@dimen/info_text_size"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_colour_main"
         android:layout_height="30dp"
         android:background="@drawable/button_selector"
         android:text="@string/take_a_photo"/>

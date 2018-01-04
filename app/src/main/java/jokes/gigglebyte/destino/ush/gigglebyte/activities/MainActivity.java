@@ -33,6 +33,7 @@ import java.util.Map;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.AddTextByteDialog;
 import jokes.gigglebyte.destino.ush.gigglebyte.dialogs.ImageByteOptionsDialog;
@@ -122,7 +123,7 @@ public class MainActivity extends FragmentActivity {
     pager.setOnPageChangeListener(pageChangeListener);
     menuDown = (FloatingActionMenu) findViewById(R.id.menu_down);
 
-//    UIHelper.setActionBar(this);
+    UIHelper.setActionBar(this);
 
     pager.setCurrentItem(1, true);
     pager.postDelayed(new Runnable() {

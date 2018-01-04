@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@color/main_background_colour">
+    android:background="@color/background_colour_main">
   <android.support.v4.view.ViewPager
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:fab="http://schemas.android.com/apk/res-auto"
@@ -19,7 +19,7 @@
         android:layout_height="30dp"
         android:layout_gravity="top"
         android:background="@color/tab_strip"
-        android:textColor="@color/tab_text_color"
+        android:textColor="@color/text_colour_main"
         style="@android:style/TextAppearance.Medium"
         android:paddingBottom="4dp"/>
   </android.support.v4.view.ViewPager>

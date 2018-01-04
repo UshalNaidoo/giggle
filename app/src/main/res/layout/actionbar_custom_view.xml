@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/main_background_colour">
+    android:background="@color/background_colour_main">
 
   <TextView
       android:id="@+id/title"
@@ -15,6 +15,6 @@
       android:textSize="@dimen/title_text_size"
       android:gravity="center"
       android:layout_weight="1"
-      android:textColor="@color/action_text_color"/>
+      android:textColor="@color/text_colour_secondary"/>
 
 </LinearLayout>

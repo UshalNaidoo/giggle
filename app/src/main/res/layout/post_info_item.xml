@@ -20,7 +20,7 @@
         android:layout_marginStart="8dp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:textColor="@color/text_color_dark"
+        android:textColor="@color/text_colour_secondary"
         android:textSize="@dimen/title_text_size"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>

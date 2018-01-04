@@ -33,7 +33,7 @@
             android:id="@+id/circle_crop"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/circle_crop"/>
+            android:src="@drawable/circle_crop_white"/>
       </FrameLayout>
       <ProgressBar
           android:id="@+id/progressBar"
@@ -64,15 +64,14 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:padding="5dp"
-      android:background="@color/main_background_colour">
+      android:padding="5dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_marginStart="8dp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_colour_main"
         android:textSize="@dimen/title_text_size"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>

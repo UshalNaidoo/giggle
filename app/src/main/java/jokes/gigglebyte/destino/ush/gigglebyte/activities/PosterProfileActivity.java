@@ -17,6 +17,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -65,7 +66,7 @@ public class PosterProfileActivity extends Activity {
       }
     });
 
-//    UIHelper.setActionBar(activity);
+    UIHelper.setActionBar(activity);
     new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -109,8 +110,8 @@ public class PosterProfileActivity extends Activity {
       poster.setFollowing(following);
       poster.setFollowers(followers);
       UserHelper.selectedUser = poster;
-//      UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
-//          .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
+      UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
+          .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
 
       posts = getPostStatus(activity, posts);
       adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
