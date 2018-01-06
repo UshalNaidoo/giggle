@@ -220,7 +220,8 @@ public class PostViewHolder extends UserGridViewHolder {
       }
 
       public void updateDrawState(TextPaint ds) {
-        super.updateDrawState(ds);
+        ds.setColor(ds.linkColor);
+        ds.setUnderlineText(false);
       }
     };
   }

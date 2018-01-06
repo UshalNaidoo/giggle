@@ -170,7 +170,8 @@ public class CommentViewHolder extends UserProfilePictureHolder{
       }
 
       public void updateDrawState(TextPaint ds) {
-        super.updateDrawState(ds);
+        ds.setColor(ds.linkColor);
+        ds.setUnderlineText(false);
       }
     };
   }
