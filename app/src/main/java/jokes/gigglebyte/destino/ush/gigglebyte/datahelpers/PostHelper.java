@@ -137,7 +137,7 @@ public class PostHelper implements onSubmitListener {
     switch (action) {
       case LIKE_POST:
         /* Liking a Post */
-        image.setImageResource(R.drawable.star_like);
+        image.setImageResource(R.drawable.up_arrow);
         for (Post thisPost : getFavoritePosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserLike(true);
@@ -187,7 +187,7 @@ public class PostHelper implements onSubmitListener {
 
       case UNLIKE_POST:
         /* Un liking a Post */
-        image.setImageResource(R.drawable.star_unlike);
+        image.setImageResource(R.drawable.up_arrow_grey);
         for (Post thisPost : getFavoritePosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserLike(false);

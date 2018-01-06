@@ -1,8 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
@@ -73,7 +73,7 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
 
     List<Post> infoPost = new ArrayList<>();
     infoPost.add(new Post(activity.getResources().getString(R.string.info_follow), BitmapFactory.decodeResource(activity.getResources(), R.drawable.follow), PostType.INFO_POST));
-    infoPost.add(new Post(activity.getResources().getString(R.string.info_like), BitmapFactory.decodeResource(activity.getResources(), R.drawable.star_like), PostType.INFO_POST));
+    infoPost.add(new Post(activity.getResources().getString(R.string.info_like), BitmapFactory.decodeResource(activity.getResources(), R.drawable.up_arrow), PostType.INFO_POST));
 
     adapter = new PostListAdapter(activity, PostHelper.getFeedPosts().size() > 0 ? PostHelper.getFeedPosts() : infoPost, FromScreen.FEED);
     listView.setAdapter(adapter);

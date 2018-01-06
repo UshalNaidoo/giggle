@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    android:gravity="center_vertical"
-    android:background="@color/background_colour_main">
+    android:gravity="center_vertical">
 
 
   <LinearLayout
@@ -15,7 +14,6 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:background="@color/background_colour_main"
       android:gravity="top">
 
     <RelativeLayout
@@ -52,7 +50,6 @@
         android:layout_marginStart="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_colour_main"
         android:orientation="vertical">
 
       <TextView
@@ -90,7 +87,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_weight="0.1"
-            android:src="@drawable/star_unlike"/>
+            android:src="@drawable/up_arrow_grey"/>
         <TextView
             android:id="@+id/likes"
             android:layout_marginEnd="2dip"

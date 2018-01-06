@@ -21,8 +21,11 @@ public class PostImageViewHolder extends PostViewHolder {
   public void setImagePostData(final Activity activity, BaseAdapter adapter, View convertView, final Post post, FromScreen from) {
      setPostData(activity, convertView, post, from);
 
-    title.setText(post.getPostTitle());
-
+    if (post.getPostTitle().equals("")) {
+      title.setVisibility(View.GONE);
+    } else {
+      title.setText(post.getPostTitle());
+    }
     //get image from url like profile
     if (post.getPostPicture() != null) {
       imageProgressBar.setVisibility(View.GONE);

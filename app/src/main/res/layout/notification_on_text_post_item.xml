@@ -181,7 +181,7 @@
               android:id="@+id/likeImage"
               android:layout_width="20dp"
               android:layout_height="20dp"
-              android:src="@drawable/star_unlike"
+              android:src="@drawable/up_arrow_grey"
               android:layout_weight="1"/>
 
           <ImageView

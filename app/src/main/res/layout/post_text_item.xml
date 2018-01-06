@@ -47,8 +47,9 @@
         android:layout_marginStart="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/app_grey"
-        android:textSize="@dimen/info_text_size"
+        android:textColor="@color/text_colour_secondary"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
@@ -59,6 +60,12 @@
         android:src="@drawable/follow"/>
   </LinearLayout>
 
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/divisor_grey"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"/>
   <LinearLayout
       android:id="@+id/layoutView"
       android:layout_width="fill_parent"
@@ -80,6 +87,12 @@
       android:background="@color/item_background_white_color"
       />
 </LinearLayout>
+  <View
+        android:layout_height="1dp"
+        android:layout_width="fill_parent"
+        android:background="@color/divisor_grey"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
   <TextView
       android:id="@+id/tags"
       android:layout_width="wrap_content"
@@ -88,6 +101,8 @@
       android:textColor="@color/text_hint_color"
       android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
+      android:layout_marginStart="20dp"
+      android:textStyle="bold"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
   <TextView
       android:id="@+id/postInfo"
@@ -95,7 +110,9 @@
       android:layout_height="0dp"
       android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
+      android:layout_marginStart="20dp"
       android:textColor="@color/text_hint_color"/>
+
   <LinearLayout
       android:layout_width="fill_parent"
       android:layout_height="40dp"
@@ -114,7 +131,7 @@
           android:id="@+id/likeImage"
           android:layout_width="20dp"
           android:layout_height="20dp"
-          android:src="@drawable/star_unlike"
+          android:src="@drawable/up_arrow_grey"
           android:layout_weight="1"/>
 
       <ImageView
@@ -149,10 +166,10 @@
     </LinearLayout>
   </LinearLayout>
 
-  <View android:id="@+id/primerdivisor"
-        android:layout_height="1dp"
-        android:layout_width="fill_parent"
-        android:background="@color/divisor_color"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"/>
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/transparent_black"
+      android:layout_marginLeft="0dp"
+      android:layout_marginRight="0dp"/>
 </LinearLayout>

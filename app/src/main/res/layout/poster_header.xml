@@ -47,7 +47,7 @@
 
     <Button
         android:id="@+id/button_following"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_gravity="end"
         android:textColor="@color/text_colour_main"
@@ -59,7 +59,7 @@
 
     <Button
         android:id="@+id/button_followers"
-        android:layout_width="90dp"
+        android:layout_width="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_gravity="end"
         android:textColor="@color/text_colour_main"

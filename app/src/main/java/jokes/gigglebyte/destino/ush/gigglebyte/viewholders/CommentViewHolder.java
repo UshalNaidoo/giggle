@@ -79,9 +79,9 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     }
 
     if(comment.isUserLike()) {
-      likeImage.setImageResource(R.drawable.star_like);
+      likeImage.setImageResource(R.drawable.up_arrow);
     }else {
-      likeImage.setImageResource(R.drawable.star_unlike);
+      likeImage.setImageResource(R.drawable.up_arrow_grey);
     }
 
     likeImage.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +155,7 @@ public class CommentViewHolder extends UserProfilePictureHolder{
     if (comment.isUserLike()) {
       CommentHelper.unlikeComment(activity, likeImage, likes, comment);
     } else {
-      new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
+      new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
       CommentHelper.likeComment(activity, likeImage, likes, comment);
     }
   }

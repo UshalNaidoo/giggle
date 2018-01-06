@@ -83,9 +83,9 @@ public class PostViewHolder extends UserGridViewHolder {
     }
 
     if (post.isUserLike()) {
-      likeImage.setImageResource(R.drawable.star_like);
+      likeImage.setImageResource(R.drawable.up_arrow);
     } else {
-      likeImage.setImageResource(R.drawable.star_unlike);
+      likeImage.setImageResource(R.drawable.up_arrow_grey);
     }
 
     if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
@@ -190,7 +190,7 @@ public class PostViewHolder extends UserGridViewHolder {
     } else {
       likes = post.getLikes() + 1;
       action = PostHelper.PostAction.LIKE_POST;
-      new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.star_like);
+      new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
     }
     postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
     PostHelper.adjustPost(activity, likeImage, action , likes, post);
