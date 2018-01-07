@@ -29,7 +29,7 @@
       android:textColor="@color/text_colour_main"
       android:textSize="@dimen/title_text_size"
       android:gravity="center"
-      android:background="#000000"
+      android:background="@color/transparent_black"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
 
   <ProgressBar
