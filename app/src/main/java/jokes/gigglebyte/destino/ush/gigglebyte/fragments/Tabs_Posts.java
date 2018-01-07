@@ -36,21 +36,21 @@ public class Tabs_Posts extends Fragment implements FragmentLifecycle {
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     tabHost.getTabWidget().getChildAt(2).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
     TextView selectedTabText = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
-    selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.text_colour_main));
+    selectedTabText.setTextColor(getActivity().getResources().getColor(R.color.text_tab_selected));
     TextView unSelectedTabText1 = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
-    unSelectedTabText1.setTextColor(getActivity().getResources().getColor(R.color.text_colour_secondary));
+    unSelectedTabText1.setTextColor(getActivity().getResources().getColor(R.color.text_tab_unselected));
     TextView unSelectedTabText2 = (TextView) tabHost.getTabWidget().getChildAt(2).findViewById(android.R.id.title);
-    unSelectedTabText2.setTextColor(getActivity().getResources().getColor(R.color.text_colour_secondary));
+    unSelectedTabText2.setTextColor(getActivity().getResources().getColor(R.color.text_tab_unselected));
     tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
       @Override
       public void onTabChanged(String tabId) {
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
           TextView tabText = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title); //Unselected Tabs
-          tabText.setTextColor(getActivity().getResources().getColor(R.color.text_colour_secondary));
+          tabText.setTextColor(getActivity().getResources().getColor(R.color.text_tab_unselected));
           tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
         }
         TextView tabText = (TextView) tabHost.getCurrentTabView().findViewById(android.R.id.title); //for Selected Tab
-        tabText.setTextColor(getActivity().getResources().getColor(R.color.text_colour_main));
+        tabText.setTextColor(getActivity().getResources().getColor(R.color.text_tab_selected));
         tabHost.getCurrentTabView().setBackgroundColor(getActivity().getResources().getColor(R.color.background_colour_main));
       }
     });

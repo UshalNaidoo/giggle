@@ -115,7 +115,7 @@ public class MainActivity extends FragmentActivity {
 
 
     PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
-    pagerTabStrip.setTabIndicatorColor(activity.getResources().getColor(R.color.app_primary_dark));
+    pagerTabStrip.setTabIndicatorColor(activity.getResources().getColor(R.color.text_tab_selected));
 
     pager = (ViewPager) findViewById(R.id.pager);
     swipePagerAdapter = new SwipePagerAdapter(getSupportFragmentManager());
