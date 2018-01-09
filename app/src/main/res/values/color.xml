@@ -15,6 +15,7 @@
   <color name="text_hint_color">#C0C0C0</color>
   <color name="text_tab_selected">#2D4B89</color>
   <color name="text_tab_unselected">#fff</color>
+  <color name="text_colour_info">#807A7D</color>
 
   <!-- Post Colours -->
   <color name="button_color">#2D4B89</color>

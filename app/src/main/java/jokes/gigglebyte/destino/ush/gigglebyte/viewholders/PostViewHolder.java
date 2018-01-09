@@ -29,7 +29,9 @@ public class PostViewHolder extends UserGridViewHolder {
 
   public LinearLayout layout;
   public TextView timeSince;
-  public TextView postInfo;
+//  public TextView postInfo;
+  public TextView postNumberOfLikes;
+  public TextView postNumberOfComments;
   public TextView tags;
   public ImageView likeImage;
   public ImageView favoriteImage;
@@ -49,7 +51,9 @@ public class PostViewHolder extends UserGridViewHolder {
       timeSince.setText(post.getTimeSincePost());
     }
 
-    postInfo.setText(getPostInfoText(activity, post.getLikes(), post.getCommentCount()));
+//    postInfo.setText(getPostInfoText(activity, post.getLikes(), post.getCommentCount()));
+    postNumberOfLikes.setText(post.getLikes() + "");
+    postNumberOfComments.setText(post.getCommentCount()+ "");
     final View finalConvertView = convertView;
     shareImage.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -124,11 +128,11 @@ public class PostViewHolder extends UserGridViewHolder {
 
   }
 
-  private String getPostInfoText(Activity activity, int likes, int comments) {
-    String numberOfLikes = String.valueOf(likes) + " " + (likes == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
-    String numberOfComments = String.valueOf(comments) + " " + (comments == 1 ? activity.getResources().getString(R.string.comment) :  activity.getResources().getString(R.string.comments));
-    return numberOfLikes + " . " + numberOfComments;
-  }
+//  private String getPostInfoText(Activity activity, int likes, int comments) {
+//    String numberOfLikes = String.valueOf(likes) + " " + (likes == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
+//    String numberOfComments = String.valueOf(comments) + " " + (comments == 1 ? activity.getResources().getString(R.string.comment) :  activity.getResources().getString(R.string.comments));
+//    return numberOfLikes + " . " + numberOfComments;
+//  }
 
   View.OnLongClickListener longClickListener() {
     return new View.OnLongClickListener() {
@@ -192,7 +196,8 @@ public class PostViewHolder extends UserGridViewHolder {
       action = PostHelper.PostAction.LIKE_POST;
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
     }
-    postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
+//    postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
+    postNumberOfLikes.setText(likes);
     PostHelper.adjustPost(activity, likeImage, action , likes, post);
   }
 
