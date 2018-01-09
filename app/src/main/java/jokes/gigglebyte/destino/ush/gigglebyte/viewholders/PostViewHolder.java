@@ -34,7 +34,7 @@ public class PostViewHolder extends UserGridViewHolder {
   public TextView postNumberOfComments;
   public TextView tags;
   public ImageView likeImage;
-  public ImageView favoriteImage;
+//  public ImageView favoriteImage;
   public ImageView shareImage;
   public ImageView menuImage;
   private Post post;
@@ -92,11 +92,11 @@ public class PostViewHolder extends UserGridViewHolder {
       likeImage.setImageResource(R.drawable.up_arrow_grey);
     }
 
-    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
-      favoriteImage.setImageResource(R.drawable.heart_like);
-    } else {
-      favoriteImage.setImageResource(R.drawable.heart_unlike);
-    }
+//    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
+//      favoriteImage.setImageResource(R.drawable.heart_like);
+//    } else {
+//      favoriteImage.setImageResource(R.drawable.heart_unlike);
+//    }
 
     layout.setOnClickListener(doubleClickListener());
 
@@ -110,12 +110,12 @@ public class PostViewHolder extends UserGridViewHolder {
       }
     });
 
-    favoriteImage.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        favoritePost();
-      }
-    });
+//    favoriteImage.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        favoritePost();
+//      }
+//    });
 
     if (menuImage != null ) {
       menuImage.setOnClickListener(new View.OnClickListener() {
@@ -197,18 +197,18 @@ public class PostViewHolder extends UserGridViewHolder {
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
     }
 //    postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
-    postNumberOfLikes.setText(likes);
+    postNumberOfLikes.setText(likes + "");
     PostHelper.adjustPost(activity, likeImage, action , likes, post);
   }
 
-  private void favoritePost() {
-    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
-      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
-    } else {
-      new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
-      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
-    }
-  }
+//  private void favoritePost() {
+//    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
+//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
+//    } else {
+//      new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
+//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
+//    }
+//  }
 
   private ClickableSpan getClickableSpan() {
     return new ClickableSpan() {

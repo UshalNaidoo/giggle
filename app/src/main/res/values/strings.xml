@@ -44,6 +44,7 @@
   <string name="view_comments">View Comments</string>
   <string name="edit_username">Edit Username</string>
   <string name="edit_description">Edit Description</string>
+  <string name="save_post">Save Post</string>
   <string name="write_something">Write Something</string>
   <string name="add_tags">Add Tags</string>
   <string name="flag">Flag Inappropriate</string>

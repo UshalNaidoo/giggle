@@ -38,4 +38,5 @@
 
   <color name="list_background_colour">#c0c0c0</color>
 
+  <color name="modal_background_color">#fff</color>
 </resources>

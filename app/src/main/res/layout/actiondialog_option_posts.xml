@@ -10,7 +10,7 @@
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:background="@color/background_colour_main"
+      android:background="@color/modal_background_color"
       android:gravity="center"
       android:orientation="vertical"
       android:padding="10dp"
@@ -19,10 +19,11 @@
 
     <Button
         android:id="@+id/buttonEdit"
+        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_colour_main"
@@ -33,10 +34,11 @@
 
     <Button
         android:id="@+id/buttonProfileView"
+        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_colour_main"
@@ -47,10 +49,11 @@
 
     <Button
         android:id="@+id/buttonCommentsView"
+        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_colour_main"
@@ -60,11 +63,27 @@
         android:text="@string/view_comments"/>
 
     <Button
-        android:id="@+id/buttonFlag"
+        android:id="@+id/buttonSavePost"
+        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:padding="4dp"
+        android:layout_gravity="center"
+        android:textColor="@color/text_colour_main"
+        android:textSize="@dimen/info_text_size"
+        android:layout_height="30dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/save_post"/>
+
+    <Button
+        android:id="@+id/buttonFlag"
+    android:drawableLeft="@drawable/tag_tab"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_colour_main"
@@ -75,10 +94,11 @@
 
     <Button
         android:id="@+id/buttonDelete"
+        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
         android:padding="4dp"
         android:layout_gravity="center"
         android:textColor="@color/text_colour_main"

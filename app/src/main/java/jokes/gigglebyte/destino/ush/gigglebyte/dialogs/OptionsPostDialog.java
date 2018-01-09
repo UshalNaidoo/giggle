@@ -14,7 +14,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
@@ -42,6 +41,7 @@ public class OptionsPostDialog extends DialogFragment {
     Button buttonFlag = (Button) dialog.findViewById(R.id.buttonFlag);
     Button buttonEdit = (Button) dialog.findViewById(R.id.buttonEdit);
     Button buttonDelete = (Button) dialog.findViewById(R.id.buttonDelete);
+    Button buttonSavePost = (Button) dialog.findViewById(R.id.buttonSavePost);
 
     if (getPost().getUser().getId() == UserHelper.getUsersId(activity)) {
       buttonDelete.setOnClickListener(new View.OnClickListener() {

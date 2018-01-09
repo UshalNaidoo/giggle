@@ -69,12 +69,11 @@ public class PopulateViewHolderHelper {
       holder.followButton = (ImageView) row.findViewById(R.id.followButton);
     }
     holder.tags = (TextView) row.findViewById(R.id.tags);
-//    holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
     holder.postNumberOfLikes = (TextView) row.findViewById(R.id.postNumberOfLikes);
     holder.postNumberOfComments = (TextView) row.findViewById(R.id.postNumberOfComments);
     holder.layout = (LinearLayout) row.findViewById(R.id.layout);
     holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-    holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
+//    holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
     holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
     holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
   }
