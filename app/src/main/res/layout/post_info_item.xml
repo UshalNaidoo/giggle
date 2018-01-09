@@ -5,6 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/item_background_white_color"
     android:gravity="center_vertical">
 
   <LinearLayout
@@ -33,4 +34,10 @@
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"/>
   </LinearLayout>
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/transparent_black"
+      android:layout_marginLeft="0dp"
+      android:layout_marginRight="0dp"/>
 </LinearLayout>

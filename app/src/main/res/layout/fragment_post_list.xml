@@ -2,13 +2,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/item_background_white_color"
+    android:background="@color/list_background_colour"
     android:id="@+id/swipe">
   <ListView
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:id="@+id/listView"
-      android:divider="#c0c0c0"
+      android:divider="@color/list_background_colour"
       android:dividerHeight="8.0sp"
   />
 </android.support.v4.widget.SwipeRefreshLayout>
