@@ -177,7 +177,5 @@
   <View
       android:layout_height="1dp"
       android:layout_width="fill_parent"
-      android:background="@color/transparent_black"
-      android:layout_marginLeft="0dp"
-      android:layout_marginRight="0dp"/>
+      android:background="@color/transparent_black"/>
 </LinearLayout>
