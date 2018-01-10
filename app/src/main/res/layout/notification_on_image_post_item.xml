@@ -225,8 +225,8 @@
           <ImageView
               android:id="@+id/menuImage"
               android:layout_gravity="end"
-              android:layout_width="20dp"
-              android:layout_height="20dp"
+              android:layout_width="15dp"
+              android:layout_height="15dp"
               android:src="@drawable/dot_menu"
               android:layout_weight="1"/>
         </LinearLayout>
