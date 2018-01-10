@@ -14,16 +14,17 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
+import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
+import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 
 public class OptionsPostDialog extends DialogFragment {
 
   private Activity activity;
   private Post post;
-
   private FromScreen fromScreen;
 
   @Override
@@ -42,6 +43,13 @@ public class OptionsPostDialog extends DialogFragment {
     Button buttonEdit = (Button) dialog.findViewById(R.id.buttonEdit);
     Button buttonDelete = (Button) dialog.findViewById(R.id.buttonDelete);
     Button buttonSavePost = (Button) dialog.findViewById(R.id.buttonSavePost);
+
+    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
+      buttonSavePost.setText(activity.getResources().getText(R.string.unfavourite_post));
+    }
+    else {
+      buttonSavePost.setText(activity.getResources().getText(R.string.save_post));
+    }
 
     if (getPost().getUser().getId() == UserHelper.getUsersId(activity)) {
       buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +122,19 @@ public class OptionsPostDialog extends DialogFragment {
         dismiss();
       }
     });
+    buttonSavePost.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
+          PostHelper.adjustPost(activity, null, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
+        }
+        else {
+          new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), null);
+          PostHelper.adjustPost(activity, null, PostHelper.PostAction.FAVORITE_POST, 0, post);
+    }
+        dismiss();
+      }
+    });
 
     return dialog;
   }
@@ -130,4 +151,12 @@ public class OptionsPostDialog extends DialogFragment {
     this.fromScreen = fromScreen;
   }
 
+//  private void favoritePost() {
+//    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
+//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
+//    } else {
+//      new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
+//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
+//    }
+//  }
 }

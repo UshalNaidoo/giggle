@@ -29,12 +29,10 @@ public class PostViewHolder extends UserGridViewHolder {
 
   public LinearLayout layout;
   public TextView timeSince;
-//  public TextView postInfo;
   public TextView postNumberOfLikes;
   public TextView postNumberOfComments;
   public TextView tags;
   public ImageView likeImage;
-//  public ImageView favoriteImage;
   public ImageView shareImage;
   public ImageView menuImage;
   private Post post;
@@ -51,7 +49,6 @@ public class PostViewHolder extends UserGridViewHolder {
       timeSince.setText(post.getTimeSincePost());
     }
 
-//    postInfo.setText(getPostInfoText(activity, post.getLikes(), post.getCommentCount()));
     postNumberOfLikes.setText(post.getLikes() + "");
     postNumberOfComments.setText(post.getCommentCount()+ "");
     final View finalConvertView = convertView;
@@ -92,12 +89,6 @@ public class PostViewHolder extends UserGridViewHolder {
       likeImage.setImageResource(R.drawable.up_arrow_grey);
     }
 
-//    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
-//      favoriteImage.setImageResource(R.drawable.heart_like);
-//    } else {
-//      favoriteImage.setImageResource(R.drawable.heart_unlike);
-//    }
-
     layout.setOnClickListener(doubleClickListener());
 
     layout.setOnLongClickListener(longClickListener());
@@ -110,13 +101,6 @@ public class PostViewHolder extends UserGridViewHolder {
       }
     });
 
-//    favoriteImage.setOnClickListener(new View.OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        favoritePost();
-//      }
-//    });
-
     if (menuImage != null ) {
       menuImage.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -127,12 +111,6 @@ public class PostViewHolder extends UserGridViewHolder {
     }
 
   }
-
-//  private String getPostInfoText(Activity activity, int likes, int comments) {
-//    String numberOfLikes = String.valueOf(likes) + " " + (likes == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
-//    String numberOfComments = String.valueOf(comments) + " " + (comments == 1 ? activity.getResources().getString(R.string.comment) :  activity.getResources().getString(R.string.comments));
-//    return numberOfLikes + " . " + numberOfComments;
-//  }
 
   View.OnLongClickListener longClickListener() {
     return new View.OnLongClickListener() {
@@ -196,19 +174,9 @@ public class PostViewHolder extends UserGridViewHolder {
       action = PostHelper.PostAction.LIKE_POST;
       new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
     }
-//    postInfo.setText(getPostInfoText(activity, likes, post.getCommentCount()));
     postNumberOfLikes.setText(likes + "");
     PostHelper.adjustPost(activity, likeImage, action , likes, post);
   }
-
-//  private void favoritePost() {
-//    if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
-//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
-//    } else {
-//      new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), R.drawable.heart_like);
-//      PostHelper.adjustPost(activity, favoriteImage, PostHelper.PostAction.FAVORITE_POST, 0, post);
-//    }
-//  }
 
   private ClickableSpan getClickableSpan() {
     return new ClickableSpan() {

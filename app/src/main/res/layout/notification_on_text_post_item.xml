@@ -155,6 +155,12 @@
             android:background="@color/item_background_white_color"
         />
       </LinearLayout>
+        <View
+            android:layout_height="1dp"
+            android:layout_width="fill_parent"
+            android:background="@color/divisor_grey"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
         <TextView
             android:id="@+id/tags"
             android:layout_width="wrap_content"

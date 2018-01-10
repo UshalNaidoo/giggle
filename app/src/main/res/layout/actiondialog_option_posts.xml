@@ -19,7 +19,6 @@
 
     <Button
         android:id="@+id/buttonEdit"
-        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"
@@ -34,7 +33,6 @@
 
     <Button
         android:id="@+id/buttonProfileView"
-        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"
@@ -49,7 +47,6 @@
 
     <Button
         android:id="@+id/buttonCommentsView"
-        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"
@@ -64,7 +61,6 @@
 
     <Button
         android:id="@+id/buttonSavePost"
-        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"
@@ -79,7 +75,6 @@
 
     <Button
         android:id="@+id/buttonFlag"
-    android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"
@@ -94,7 +89,6 @@
 
     <Button
         android:id="@+id/buttonDelete"
-        android:drawableLeft="@drawable/tag_tab"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
         android:paddingStart="40dp"

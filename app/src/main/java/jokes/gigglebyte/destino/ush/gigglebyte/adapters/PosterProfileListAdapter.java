@@ -66,14 +66,14 @@ public class PosterProfileListAdapter extends BaseAdapter {
       final Post post = posts.get(pos);
       if (post.getType() == PostType.TEXT_POST) {
         final PostTextViewHolder holder = new PostTextViewHolder();
-        convertView = mInflater.inflate(R.layout.profile_text_item, parent, false);
+        convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
         PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
         convertView.setTag(holder);
         holder.setTextPostData(activity, convertView, post, fromScreen);
       }
       else if (post.getType() == PostType.IMAGE_POST) {
         final PostImageViewHolder holder = new PostImageViewHolder();
-        convertView = mInflater.inflate(R.layout.profile_image_item, parent, false);
+        convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
         PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
         convertView.setTag(holder);
         holder.setImagePostData(activity, this, convertView, post, fromScreen);

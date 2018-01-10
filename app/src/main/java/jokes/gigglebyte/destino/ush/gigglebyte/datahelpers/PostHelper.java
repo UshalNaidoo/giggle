@@ -26,6 +26,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.DELETE_POST;
 import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.EDIT_POST;
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.FAVORITE_POST;
+import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.PostAction.UNFAVORITE_POST;
 
 public class PostHelper implements onSubmitListener {
 
@@ -133,6 +135,7 @@ public class PostHelper implements onSubmitListener {
     }
   };
 
+  //TODO refactor this
   public static void adjustPost(final Activity activity, ImageView image, PostAction action, int likes, final Post post) {
     switch (action) {
       case LIKE_POST:
@@ -237,7 +240,6 @@ public class PostHelper implements onSubmitListener {
 
       case FAVORITE_POST:
         /* Favorite a Post */
-        image.setImageResource(R.drawable.heart_like);
         for (Post thisPost : getNewPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserFavorite(true);
@@ -288,7 +290,6 @@ public class PostHelper implements onSubmitListener {
 
       case UNFAVORITE_POST:
         /* Un favorite a Post */
-        image.setImageResource(R.drawable.heart_unlike);
         for (Post thisPost : getNewPosts()) {
           if (thisPost.getPostId() == post.getPostId()) {
             thisPost.setUserFavorite(false);
@@ -402,7 +403,7 @@ public class PostHelper implements onSubmitListener {
         break;
     }
 
-    if(action != DELETE_POST && action != EDIT_POST) {
+    if(action != DELETE_POST && action != EDIT_POST && action != FAVORITE_POST && action != UNFAVORITE_POST) {
       UIHelper.imageViewClickAnimation(image);
     }
     UIHelper.updateScreen();
