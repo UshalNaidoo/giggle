@@ -55,6 +55,7 @@
   <string name="delete_comment">Delete</string>
 
   <string name="tab_profile">PROFILE</string>
+  <string name="tab_details">DETAILS</string>
   <string name="tab_notifications">NOTIFICATIONS</string>
   <string name="tab_feed">FEED</string>
   <string name="tab_tags">TAGS</string>
@@ -75,7 +76,7 @@
 
   <string name="info_follow">Follow users to view their posts in your feed.</string>
   <string name="info_like">With a high enough upvotes your post will feature on the Hot list.</string>
-  <string name="info_favourite">Saved posts will be stored here to view later. Unfavourite the post to remove it from here.</string>
+  <string name="info_favourite">Saved posts will be stored here to view later.</string>
   <string name="info_add_post">Post often to get followers.</string>
 
   <string name="confirm_post_delete">Are you sure you want to delete your post?</string>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -68,6 +69,10 @@ public class PosterProfileListAdapter extends BaseAdapter {
         final PostTextViewHolder holder = new PostTextViewHolder();
         convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
         PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
+        LinearLayout user_bar = (LinearLayout)convertView.findViewById(R.id.user_bar);
+        View user_bar_divisor = convertView.findViewById(R.id.user_bar_divisor);
+        user_bar.setVisibility(View.GONE);
+        user_bar_divisor.setVisibility(View.GONE);
         convertView.setTag(holder);
         holder.setTextPostData(activity, convertView, post, fromScreen);
       }
@@ -75,6 +80,10 @@ public class PosterProfileListAdapter extends BaseAdapter {
         final PostImageViewHolder holder = new PostImageViewHolder();
         convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
         PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
+        LinearLayout user_bar = (LinearLayout)convertView.findViewById(R.id.user_bar);
+        View user_bar_divisor = convertView.findViewById(R.id.user_bar_divisor);
+        user_bar.setVisibility(View.GONE);
+        user_bar_divisor.setVisibility(View.GONE);
         convertView.setTag(holder);
         holder.setImagePostData(activity, this, convertView, post, fromScreen);
       }

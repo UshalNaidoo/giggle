@@ -29,7 +29,7 @@ public class Tabs_Profile extends Fragment implements FragmentLifecycle {
     tabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
     tabHost.setup(getActivity(), getChildFragmentManager(), R.id.content);
 
-    tabHost.addTab(tabHost.newTabSpec("profile").setIndicator(getActivity().getResources().getString(R.string.tab_profile), getActivity().getResources().getDrawable(R.drawable.profile_tab)),Fragment_Profile.class, null);
+    tabHost.addTab(tabHost.newTabSpec("profile").setIndicator(getActivity().getResources().getString(R.string.tab_details), getActivity().getResources().getDrawable(R.drawable.profile_tab)),Fragment_Profile.class, null);
     tabHost.addTab(tabHost.newTabSpec("notifications").setIndicator(getActivity().getResources().getString(R.string.tab_notifications), getActivity().getResources().getDrawable(R.drawable.notification_tab)),Fragment_Notifications.class, null);
     tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip_selected));
     tabHost.getTabWidget().getChildAt(1).setBackgroundColor(getActivity().getResources().getColor(R.color.tab_strip));
