@@ -19,7 +19,8 @@
       android:layout_height="wrap_content"
       android:textSize="@dimen/info_text_size"
       android:layout_weight="1"
-      android:textColor="@color/text_colour_main"/>
+      android:textStyle="bold"
+      android:textColor="@color/text_tab_selected"/>
 
   <TextView
       android:id="@+id/numberOfPosts"
@@ -27,14 +28,15 @@
       android:layout_height="wrap_content"
       android:textSize="@dimen/info_text_size"
       android:gravity="end"
+      android:textStyle="bold"
       android:layout_weight="1"
-      android:textColor="@color/text_hint_color"/>
+      android:textColor="@color/transparent_black"/>
   </LinearLayout>
 
   <View android:id="@+id/primerdivisor"
         android:layout_height="1dp"
         android:layout_width="fill_parent"
-        android:background="@color/divisor_color"
+        android:background="@color/list_background_colour"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
 </LinearLayout>

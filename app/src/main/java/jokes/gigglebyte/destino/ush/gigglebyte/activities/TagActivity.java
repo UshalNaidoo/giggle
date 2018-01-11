@@ -13,7 +13,6 @@ import java.util.List;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
@@ -34,7 +33,6 @@ public class TagActivity extends Activity {
     listView = (ListView) findViewById(R.id.listView);
 
     tag = getIntent().getStringExtra("tag");
-    UIHelper.setActionBar(activity);
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,7 +67,6 @@ public class TagActivity extends Activity {
     @Override
     protected void onPostExecute(String result) {
       if (result != null) {
-        UIHelper.setActionBar(activity, tag, true);
         result = "{\"posts\":" + result + "}";
         List<Post> posts = JsonParser.GetPosts(result);
         posts = getPostStatus(activity, posts);

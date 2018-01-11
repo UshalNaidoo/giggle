@@ -88,7 +88,6 @@ public class Fragment_Profile extends Fragment implements FragmentLifecycle {
 
     userName.setOnClickListener(new View.OnClickListener() {
       int i = 0;
-
       @Override
       public void onClick(View v) {
         i++;

@@ -4,10 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe"
-    android:background="@color/background_colour_main">
+    android:background="@drawable/background">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:paddingBottom="10dp">
+  <TextView
+      android:id="@+id/userName"
+      android:layout_marginStart="20dip"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/text_colour_secondary"
+      android:textSize="@dimen/username_text_size"
+      android:textStyle="bold"
+      android:textAppearance="?android:attr/textAppearanceLarge"/>
 
   <ListView
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:id="@+id/listView"/>
+  </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>

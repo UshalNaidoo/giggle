@@ -4,13 +4,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:background="@drawable/background"
     android:padding="4dp"
     android:orientation="vertical">
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/background_colour_main"
       android:gravity="center"
       android:orientation="vertical">
 
@@ -20,7 +20,7 @@
         android:layout_height="200dp"
         android:inputType="textMultiLine"
         android:textSize="@dimen/info_text_size"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:textColorHint="@color/text_hint_color"
         android:maxLength="300"
         android:gravity="top"
@@ -33,7 +33,7 @@
         android:id="@+id/tagText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:gravity="top"
         android:hint="@string/add_tags"
         android:textColorHint="@color/text_hint_color"
@@ -44,7 +44,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_colour_main"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="10dp">
@@ -55,7 +54,7 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:text="300/300"
-          android:textColor="@color/text_colour_main"
+          android:textColor="@color/text_colour_secondary"
           android:textSize="@dimen/info_text_size"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>

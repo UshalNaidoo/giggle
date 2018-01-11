@@ -107,13 +107,13 @@
   <TextView
       android:id="@+id/tags"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_height="0dp"
       android:text=""
       android:textColor="@color/text_hint_color"
-      android:textSize="@dimen/info_text_size"
+      android:textSize="@dimen/tag_text_size"
       android:layout_weight="1"
-      android:layout_marginStart="20dp"
       android:textStyle="bold"
+      android:layout_marginStart="10dp"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
   <LinearLayout
       android:layout_width="fill_parent"

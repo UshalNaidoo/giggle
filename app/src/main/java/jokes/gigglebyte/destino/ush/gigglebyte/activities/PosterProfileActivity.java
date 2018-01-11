@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -17,7 +18,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PosterProfileListAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.JsonParser;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -34,6 +34,7 @@ public class PosterProfileActivity extends Activity {
   private ListView listView;
   public static User poster;
   private Menu menu;
+  private static TextView userName;
   private ToastWithImage toastWithImage;
   private List<Post> posts;
   private List<User> following;
@@ -45,6 +46,7 @@ public class PosterProfileActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_poster_profile);
     activity = this;
+    userName = (TextView) findViewById(R.id.userName);
     listView = (ListView) findViewById(R.id.listView);
 
     userId = getIntent().getIntExtra("userId", 0);
@@ -66,7 +68,6 @@ public class PosterProfileActivity extends Activity {
       }
     });
 
-    UIHelper.setActionBar(activity);
     new GetProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -110,8 +111,7 @@ public class PosterProfileActivity extends Activity {
       poster.setFollowing(following);
       poster.setFollowers(followers);
       UserHelper.selectedUser = poster;
-      UIHelper.setActionBar(activity, (poster.getName() == null || poster.getName()
-          .isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName(), true);
+      userName.setText((poster.getName() == null || poster.getName().isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName());
 
       posts = getPostStatus(activity, posts);
       adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);

@@ -29,7 +29,6 @@ import java.util.Set;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.PostType;
@@ -46,7 +45,6 @@ public class UploadImageActivity extends FragmentActivity {
     super.onCreate(savedInstanceState);
     activity = this;
     setContentView(R.layout.activity_uploadimage);
-    UIHelper.setActionBar(this, getResources().getString(R.string.add_image), true);
 
     final ImageView image = (ImageView) findViewById(R.id.image);
     final EditText title = (EditText) findViewById(R.id.title);

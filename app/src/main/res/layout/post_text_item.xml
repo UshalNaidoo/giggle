@@ -101,7 +101,6 @@
       android:textColor="@color/text_hint_color"
       android:textSize="@dimen/tag_text_size"
       android:layout_weight="1"
-      android:layout_marginStart="20dp"
       android:textStyle="bold"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
 

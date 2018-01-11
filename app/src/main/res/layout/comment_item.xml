@@ -59,7 +59,7 @@
           android:textSize="@dimen/info_text_size"
           android:gravity="start"
           android:layout_weight="1"
-          android:textColor="@color/text_colour_main"/>
+          android:textColor="@color/text_colour_secondary"/>
       <TextView
           android:id="@+id/commentText"
           android:layout_width="fill_parent"

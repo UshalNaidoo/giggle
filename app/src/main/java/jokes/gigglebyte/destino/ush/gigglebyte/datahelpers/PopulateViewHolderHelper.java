@@ -23,7 +23,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserGridViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserListViewHolder;
 
 public class PopulateViewHolderHelper {
-
+//TODO refactor
   public static void populatePostTextViewHolder(View row, PostTextViewHolder holder) {
     populatePostViewHolder(row, holder, false);
     holder.postText = (TextView) row.findViewById(R.id.postText);

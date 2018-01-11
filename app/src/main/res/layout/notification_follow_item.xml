@@ -77,7 +77,6 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:background="@color/background_colour_main"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -89,8 +88,7 @@
         android:id= "@+id/followeesName"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:background="@color/background_colour_main"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:textSize="@dimen/info_text_size"/>

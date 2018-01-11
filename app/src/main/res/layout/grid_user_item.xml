@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/background_colour_main"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
   <RelativeLayout
@@ -13,7 +13,6 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:background="@color/background_colour_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
@@ -23,8 +22,7 @@
         android:id="@+id/userName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_colour_main"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:textSize="@dimen/info_text_size"/>
 
     <ImageView
@@ -45,7 +43,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondary_black"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:textSize="@dimen/info_text_size"/>
     <TextView
         android:layout_below="@+id/numberOfFollowing"
@@ -53,7 +51,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondary_black"
-        android:textColor="@color/text_colour_main"
+        android:textColor="@color/text_colour_secondary"
         android:textSize="@dimen/info_text_size"/>
   </RelativeLayout>
 
