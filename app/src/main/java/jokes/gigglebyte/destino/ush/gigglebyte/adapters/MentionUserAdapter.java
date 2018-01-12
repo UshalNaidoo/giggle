@@ -22,6 +22,7 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
   private Activity activity;
   private Filter filter;
   private int filteredAmount = 0;
+  private static List<User> filteredUsers;
 
   public MentionUserAdapter(Activity activity, int viewId, List<User> results) {
     super(activity, viewId);
@@ -41,6 +42,11 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
     return filteredAmount;
   }
 
+  @Override
+  public User getItem(int position) {
+    return filteredUsers.get(position);
+  }
+
   public View getView(final int position, View convertView, ViewGroup parent) {
     View row = convertView;
     if (position < filteredAmount) {
@@ -48,7 +54,9 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
       row = inflater.inflate(R.layout.mention_user_item, parent, false);
       PopulateViewHolderHelper.populateMentionHolder(row, holder);
       row.setTag(holder);
-      holder.setUserData(activity, getItem(position), null);
+      if (getCount()>0) {
+        holder.setUserData(activity, getItem(position), null);
+      }
     }
     return row;
   }
@@ -70,7 +78,7 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
     protected FilterResults performFiltering(CharSequence constraint) {
       FilterResults results = new FilterResults();
       filteredAmount = 0;
-      if (constraint != null && constraint.length() > 1) {
+      if (constraint != null && constraint.length() > 1 && constraint.charAt(0)=='@') {
         ArrayList<User> suggestions = new ArrayList<>();
 
         for (User user : users) {
@@ -79,6 +87,7 @@ public class MentionUserAdapter extends ArrayAdapter<User> {
           }
         }
 
+        filteredUsers = suggestions;
         filteredAmount = suggestions.size();
         results.values = suggestions;
         results.count = suggestions.size();

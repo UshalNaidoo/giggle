@@ -104,6 +104,7 @@
       android:textSize="@dimen/tag_text_size"
       android:layout_weight="1"
       android:textStyle="bold"
+      android:layout_marginStart="10dp"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
 
   <LinearLayout
