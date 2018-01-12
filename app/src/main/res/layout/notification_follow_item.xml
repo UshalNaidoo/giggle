@@ -52,11 +52,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
-    <ImageView
+    <Button
         android:id="@+id/followButton"
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/text_colour_main"
         android:layout_height="30dp"
-        android:src="@drawable/follow"/>
+        android:background="@drawable/button_selector"
+        android:padding="2dp"
+        android:textSize="@dimen/button_text_size"
+        android:text="@string/follow"/>
   </LinearLayout>
   <LinearLayout
       android:id="@+id/userFollowingPanel"
@@ -93,12 +98,16 @@
         android:gravity="center_horizontal"
         android:textSize="@dimen/info_text_size"/>
 
-    <ImageView
+    <Button
         android:id="@+id/followeesButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/follow"
-        android:layout_alignParentEnd="true"/>
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/text_colour_main"
+        android:layout_height="30dp"
+        android:background="@drawable/button_selector"
+        android:padding="2dp"
+        android:textSize="@dimen/button_text_size"
+        android:text="@string/follow"/>
 
     <ProgressBar
         android:id="@+id/followeesProgressBar"

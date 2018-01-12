@@ -2,10 +2,12 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
@@ -30,7 +32,7 @@ public class NotificationFollowViewHolder extends UserGridViewHolder {
     }else {
       UserGridViewHolder holder = new UserGridViewHolder();
       holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
-      holder.followButton = (ImageView) convertView.findViewById(R.id.followeesButton);
+      holder.followButton = (Button) convertView.findViewById(R.id.followeesButton);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.followeesProgressBar);
       holder.userName = (TextView) convertView.findViewById(R.id.followeesName);
       holder.setUserData(activity, following, screenToOpen);

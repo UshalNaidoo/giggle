@@ -8,6 +8,7 @@
   <dimen name="activity_vertical_margin">16dp</dimen>
 
   <!-- Font Size-->
+  <dimen name="button_text_size">10sp</dimen>
   <dimen name="post_info_size">13sp</dimen>
   <dimen name="labels_text_size">14sp</dimen>
   <dimen name="username_text_size">20sp</dimen>

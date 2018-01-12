@@ -60,20 +60,19 @@ public class PopulateViewHolderHelper {
       holder.userName = (TextView) row.findViewById(R.id.content_userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.content_pic);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.content_progressBar);
-      holder.followButton = (ImageView) row.findViewById(R.id.content_followButton);
+      holder.followButton = (Button) row.findViewById(R.id.content_followButton);
     }
     else {
       holder.userName = (TextView) row.findViewById(R.id.userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.pic);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-      holder.followButton = (ImageView) row.findViewById(R.id.followButton);
+      holder.followButton = (Button) row.findViewById(R.id.followButton);
     }
     holder.tags = (TextView) row.findViewById(R.id.tags);
     holder.postNumberOfLikes = (TextView) row.findViewById(R.id.postNumberOfLikes);
     holder.postNumberOfComments = (TextView) row.findViewById(R.id.postNumberOfComments);
     holder.layout = (LinearLayout) row.findViewById(R.id.layout);
     holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-//    holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
     holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
     holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
   }
@@ -108,7 +107,7 @@ public class PopulateViewHolderHelper {
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
     holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
   }
 
   public static void populateTagViewHolder(View row, TagViewHolder holder) {
@@ -119,7 +118,7 @@ public class PopulateViewHolderHelper {
   public static void populateNotificationFollowViewHolder(View convertView, NotificationFollowViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
     holder.followeesName = (TextView) convertView.findViewById(R.id.followeesName);
@@ -128,7 +127,7 @@ public class PopulateViewHolderHelper {
   public static void populateNotificationTextPostViewHolder(View convertView, NotificationTextPostViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
@@ -136,7 +135,7 @@ public class PopulateViewHolderHelper {
   public static void populateNotificationImagePostViewHolder(View convertView, NotificationImagePostViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
@@ -144,7 +143,7 @@ public class PopulateViewHolderHelper {
   public static void populateNotificationMentionTextViewHolder(View convertView, NotificationMentionTextViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
@@ -152,7 +151,7 @@ public class PopulateViewHolderHelper {
   public static void populateNotificationMentionImageViewHolder(View convertView, NotificationMentionImageViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
