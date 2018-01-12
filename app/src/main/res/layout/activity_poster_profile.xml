@@ -24,6 +24,8 @@
   <ListView
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:divider="@drawable/background"
+      android:dividerHeight="8.0sp"
       android:id="@+id/listView"/>
   </LinearLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
