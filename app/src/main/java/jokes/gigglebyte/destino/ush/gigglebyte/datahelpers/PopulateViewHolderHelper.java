@@ -107,7 +107,7 @@ public class PopulateViewHolderHelper {
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
     holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
+    holder.followButton = (TextView) convertView.findViewById(R.id.followButton);
   }
 
   public static void populateTagViewHolder(View row, TagViewHolder holder) {

@@ -2,7 +2,6 @@ package jokes.gigglebyte.destino.ush.gigglebyte.viewholders;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
@@ -15,7 +14,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.widgets.ToastWithImage;
 public class UserGridViewHolder extends UserProfilePictureHolder{
 
   public TextView userName;
-  public Button followButton;
+  public TextView followButton;
 
   public void setUserData(final Activity activity, final User user, OpenScreen screenToOpen) {
     setUserProfile(activity, user, screenToOpen);
