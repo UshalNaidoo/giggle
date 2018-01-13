@@ -7,6 +7,7 @@
   <color name="app_primary_dark">#2D4B89</color>
   <color name="app_grey">#9e9c9f</color>
   <color name="tab_strip">#5A8BE1</color>
+  <color name="comment_background">#EBEEF3</color>
   <color name="tab_strip_selected">#2D4B89</color>
 
   <!-- Tab Layout Colours -->
