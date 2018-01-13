@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +31,10 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   private EditText searchField;
   private TagListAdapter adapter;
   private ListView listView;
+
   @Override
   public View onCreateView(LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
+                           ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_search_tag, container, false);
 
@@ -66,14 +65,14 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
 
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-          int totalItemCount) {
+                           int totalItemCount) {
       }
     });
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parent, View v,
-          int position, long id) {
-        Tag tag = (Tag)parent.getItemAtPosition(position);
+                              int position, long id) {
+        Tag tag = (Tag) parent.getItemAtPosition(position);
         Intent intent = new Intent(activity, TagActivity.class);
         intent.putExtra("tag", tag.getTagText());
         startActivity(intent);
@@ -91,6 +90,7 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   }
 
   private class SearchForTags extends AsyncTask<Integer, Integer, List<Tag>> {
+
     String searchFor;
     boolean buttonClicked;
 
@@ -103,9 +103,9 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
     protected List<Tag> doInBackground(Integer... params) {
       if (!this.buttonClicked && !MainActivity.loadedTags.isEmpty()) {
         return MainActivity.loadedTags;
-      }
-      else {
-        return JsonParser.GetTagsFromSearch("{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
+      } else {
+        return JsonParser.GetTagsFromSearch(
+            "{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
       }
     }
 

@@ -50,23 +50,67 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.FollowHelper.g
 
 public class MainActivity extends FragmentActivity {
 
-  private AdView adView;
-  private InterstitialAd interstitialAd;
-
-  private static Activity activity;
   public static Post selectedPost;
   public static List<String> allTags;
   public static Map<Integer, Bitmap> cachedProfilePictures = new HashMap<>();
+  public static List<Tag> loadedTags = new ArrayList<>();
+  public static List<User> loadedUsers = new ArrayList<>();
+  private static Activity activity;
   private static FloatingActionMenu menuDown;
-  private SwipePagerAdapter swipePagerAdapter;
   private static ViewPager pager;
+  private AdView adView;
+  private InterstitialAd interstitialAd;
+  private SwipePagerAdapter swipePagerAdapter;
   private Tabs_Profile tabs_profile;
   private Fragment_Feed fragment_feed;
   private Tabs_Posts tabs_posts;
   private Tabs_Search tabs_search;
   private int currentPosition = 0;
-  public static List<Tag> loadedTags = new ArrayList<>();
-  public static List<User> loadedUsers = new ArrayList<>();
+  private View.OnClickListener clickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      switch (v.getId()) {
+        case R.id.addPost:
+          popUpAddText(activity);
+          break;
+        case R.id.addImage:
+          ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
+          imageByteOptionsDialog.show(getFragmentManager(), "");
+          break;
+      }
+    }
+  };
+  private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+
+    @Override
+    public void onPageSelected(int newPosition) {
+      FragmentLifecycle fragmentToShow = (FragmentLifecycle) swipePagerAdapter.getItem(newPosition);
+      fragmentToShow.onResumeFragment();
+      FragmentLifecycle fragmentToHide = (FragmentLifecycle) swipePagerAdapter.getItem(currentPosition);
+      fragmentToHide.onPauseFragment();
+      currentPosition = newPosition;
+    }
+
+    @Override
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+    }
+
+    public void onPageScrollStateChanged(int arg0) {
+    }
+  };
+
+  public static void popUpAddText(Activity activity) {
+    User user = UserHelper.getUserDetails(activity);
+    AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
+    addTextByteDialog.setListener(new PostHelper());
+    addTextByteDialog.setUserId(user.getId());
+    addTextByteDialog.setUserName(user.getName());
+    addTextByteDialog.show(activity.getFragmentManager(), "");
+  }
+
+  public static void changeTab(int position) {
+    pager.setCurrentItem(position, true);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +156,6 @@ public class MainActivity extends FragmentActivity {
     interstitialAd.setAdUnitId("ca-app-pub-8178977353276350/7496991820");
     interstitialAd.loadAd(new AdRequest.Builder().build());
 
-
     PagerTabStrip pagerTabStrip = (PagerTabStrip) findViewById(R.id.pager_title_strip);
     pagerTabStrip.setTabIndicatorColor(activity.getResources().getColor(R.color.text_tab_selected));
 
@@ -129,7 +172,7 @@ public class MainActivity extends FragmentActivity {
         currentPosition = (getFollowing() != null && getFollowing().size() > 0) ? 0 : 2;
         pager.setCurrentItem(currentPosition, true);
       }
-    },100);
+    }, 100);
 
     FloatingActionButton addPost = (FloatingActionButton) findViewById(R.id.addPost);
     FloatingActionButton addImage = (FloatingActionButton) findViewById(R.id.addImage);
@@ -148,7 +191,8 @@ public class MainActivity extends FragmentActivity {
       } else if (type.startsWith("image/")) {
         handleSendImage(intent); // Handle single image being sent
       }
-    }this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+    this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   }
 
   void handleSendText(Intent intent) {
@@ -177,30 +221,6 @@ public class MainActivity extends FragmentActivity {
     }
   }
 
-  private View.OnClickListener clickListener = new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-      switch (v.getId()) {
-        case R.id.addPost:
-          popUpAddText(activity);
-          break;
-        case R.id.addImage:
-          ImageByteOptionsDialog imageByteOptionsDialog = new ImageByteOptionsDialog();
-          imageByteOptionsDialog.show(getFragmentManager(), "");
-          break;
-      }
-    }
-  };
-
-  public static void popUpAddText(Activity activity) {
-    User user = UserHelper.getUserDetails(activity);
-    AddTextByteDialog addTextByteDialog = new AddTextByteDialog();
-    addTextByteDialog.setListener(new PostHelper());
-    addTextByteDialog.setUserId(user.getId());
-    addTextByteDialog.setUserName(user.getName());
-    addTextByteDialog.show(activity.getFragmentManager(), "");
-  }
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     return true;
@@ -209,6 +229,74 @@ public class MainActivity extends FragmentActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (menuDown.isOpened()) {
+      menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          menuDown.showMenuButton(true);
+        }
+      }, 300);
+    } else if (currentPosition == 0 && Fragment_Profile.menuDown.isOpened()) {
+      Fragment_Profile.menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          Fragment_Profile.menuDown.showMenuButton(true);
+        }
+      }, 300);
+    } else if (getFollowing().size() > 0 && pager.getCurrentItem() != 0
+               || getFollowing().size() == 0 && pager.getCurrentItem() != 2) {
+      pager.setCurrentItem(getFollowing().size() > 0 ? 0 : 2, true);
+    } else {
+      //Show Full screen ad
+      if (interstitialAd.isLoaded()) {
+        interstitialAd.show();
+        interstitialAd.setAdListener(new AdListener() {
+          @Override
+          public void onAdClosed() {
+            super.onAdClosed();
+            finish();
+          }
+        });
+      } else {
+        if (SplashScreenActivity.serverCall != null) {
+          SplashScreenActivity.serverCall.cancel(true);
+        }
+        for (Post p : PostHelper.getFavoritePosts()) {
+          p.cancelLoadingImages();
+        }
+        for (Post p : PostHelper.getHotPosts()) {
+          p.cancelLoadingImages();
+        }
+        for (Post p : PostHelper.getNewPosts()) {
+          p.cancelLoadingImages();
+        }
+        for (Post p : PostHelper.getFeedPosts()) {
+          p.cancelLoadingImages();
+        }
+        cachedProfilePictures = new HashMap<>();
+        MainActivity.super.onBackPressed();
+      }
+    }
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (menuDown != null) {
+      menuDown.hideMenuButton(false);
+      new Handler().postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          menuDown.showMenuButton(true);
+        }
+      }, 300);
+    }
   }
 
   private class SwipePagerAdapter extends FragmentStatePagerAdapter {
@@ -252,99 +340,6 @@ public class MainActivity extends FragmentActivity {
         default:
           return "";
       }
-    }
-  }
-
-  @Override
-  public void onBackPressed() {
-    if (menuDown.isOpened()) {
-      menuDown.hideMenuButton(false);
-      new Handler().postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          menuDown.showMenuButton(true);
-        }
-      }, 300);
-    }
-    else if (currentPosition==0 && Fragment_Profile.menuDown.isOpened()) {
-      Fragment_Profile.menuDown.hideMenuButton(false);
-      new Handler().postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          Fragment_Profile.menuDown.showMenuButton(true);
-        }
-      }, 300);
-    }
-    else if (getFollowing().size() > 0 && pager.getCurrentItem() != 0 || getFollowing().size() == 0 && pager.getCurrentItem() != 2) {
-        pager.setCurrentItem( getFollowing().size() > 0 ? 0 : 2, true);
-    }
-    else {
-      //Show Full screen ad
-      if (interstitialAd.isLoaded()) {
-        interstitialAd.show();
-        interstitialAd.setAdListener(new AdListener() {
-          @Override
-          public void onAdClosed() {
-            super.onAdClosed();
-            finish();
-          }
-        });
-      } else {
-        if (SplashScreenActivity.serverCall != null) {
-          SplashScreenActivity.serverCall.cancel(true);
-        }
-        for (Post p : PostHelper.getFavoritePosts()) {
-          p.cancelLoadingImages();
-        }
-        for (Post p : PostHelper.getHotPosts()) {
-          p.cancelLoadingImages();
-        }
-        for (Post p : PostHelper.getNewPosts()) {
-          p.cancelLoadingImages();
-        }
-        for (Post p : PostHelper.getFeedPosts()) {
-          p.cancelLoadingImages();
-        }
-        cachedProfilePictures = new HashMap<>();
-        MainActivity.super.onBackPressed();
-      }
-    }
-  }
-
-  private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
-
-    @Override
-    public void onPageSelected(int newPosition) {
-      FragmentLifecycle fragmentToShow = (FragmentLifecycle) swipePagerAdapter.getItem(newPosition);
-      fragmentToShow.onResumeFragment();
-      FragmentLifecycle fragmentToHide = (FragmentLifecycle) swipePagerAdapter.getItem(currentPosition);
-      fragmentToHide.onPauseFragment();
-      currentPosition = newPosition;
-    }
-
-    @Override
-    public void onPageScrolled(int arg0, float arg1, int arg2) {
-    }
-
-    public void onPageScrollStateChanged(int arg0) {
-    }
-  };
-
-  public static void changeTab(int position) {
-    pager.setCurrentItem(position, true);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    if (menuDown != null) {
-      menuDown.hideMenuButton(false);
-      new Handler().postDelayed(new Runnable() {
-        @Override
-        public void run() {
-          menuDown.showMenuButton(true);
-        }
-      }, 300);
     }
   }
 

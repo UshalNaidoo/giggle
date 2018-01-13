@@ -40,7 +40,7 @@ public class ConnectToServer {
   }
 
   public static void changeUserDescription(int id, String description) {
-    String parameters = "user_id=" + id + "&description="+description;
+    String parameters = "user_id=" + id + "&description=" + description;
     String UrlString = ServerSettings._Server + ServerSettings._changeUserDescription;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -50,7 +50,7 @@ public class ConnectToServer {
   }
 
   public static void changeUserName(int id, String userName) {
-    String parameters = "user_id=" + id + "&user_name="+userName;
+    String parameters = "user_id=" + id + "&user_name=" + userName;
     String UrlString = ServerSettings._Server + ServerSettings._changeUserName;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -72,7 +72,9 @@ public class ConnectToServer {
   }
 
   public static String getFavoritePosts(Set<String> post_ids) {
-    String parameters = "key=AoD93128Jd73jKH31je3&post_ids="+post_ids.toString().replace("[", "").replace("]", "");
+    String parameters = "key=AoD93128Jd73jKH31je3&post_ids=" + post_ids.toString()
+        .replace("[", "")
+        .replace("]", "");
     String UrlString = ServerSettings._Server + ServerSettings._getFavoritePosts;
     try {
       return Connect.connectToServer(UrlString, parameters);
@@ -175,7 +177,7 @@ public class ConnectToServer {
     JSONArray JSONposts = new JSONArray();
     for (String s : tags) {
       try {
-        if(!s.equals("oneLiner") && !s.equals("shortJoke")) {
+        if (!s.equals("oneLiner") && !s.equals("shortJoke")) {
           JSONObject JSONpost = new JSONObject();
           JSONpost.put("tags", s);
           JSONposts.put(JSONpost);
@@ -185,7 +187,7 @@ public class ConnectToServer {
       }
     }
 
-    String parameters = "user_id=" + id +"&tags="+ JSONposts+"&post_text=" + postText;
+    String parameters = "user_id=" + id + "&tags=" + JSONposts + "&post_text=" + postText;
     String UrlString = ServerSettings._Server + ServerSettings._postTextPost;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -207,7 +209,7 @@ public class ConnectToServer {
     JSONArray JSONposts = new JSONArray();
     for (String s : tags) {
       try {
-        if(!s.equals("image")) {
+        if (!s.equals("image")) {
           JSONObject JSONpost = new JSONObject();
           JSONpost.put("tags", s);
           JSONposts.put(JSONpost);
@@ -240,7 +242,9 @@ public class ConnectToServer {
   }
 
   public static void postComment(int id, int postId, String commentText, int posterId) {
-    String parameters = "user_id=" + id + "&post_id=" + postId + "&comment_text=" + commentText + "&notify_id=" + posterId;
+    String parameters =
+        "user_id=" + id + "&post_id=" + postId + "&comment_text=" + commentText + "&notify_id="
+        + posterId;
     String UrlString = ServerSettings._Server + ServerSettings._postComment;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -250,7 +254,7 @@ public class ConnectToServer {
   }
 
   public static void postLike(int postId, int posterId, int userId) {
-    String parameters = "post_id=" + postId + "&notify_id=" + posterId+ "&user_id=" + userId;
+    String parameters = "post_id=" + postId + "&notify_id=" + posterId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._postLike;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -270,7 +274,7 @@ public class ConnectToServer {
   }
 
   public static void postFavourite(int postId, int posterId, int userId) {
-    String parameters = "post_id=" + postId + "&notify_id=" + posterId+ "&user_id=" + userId;
+    String parameters = "post_id=" + postId + "&notify_id=" + posterId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._postFavourite;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -290,7 +294,8 @@ public class ConnectToServer {
   }
 
   public static void commentLike(int commentId, int userId, int commenterId) {
-    String parameters = "comment_id=" + commentId + "&user_id=" + userId + "&notify_id=" + commenterId;
+    String parameters =
+        "comment_id=" + commentId + "&user_id=" + userId + "&notify_id=" + commenterId;
     String UrlString = ServerSettings._Server + ServerSettings._commentLike;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -300,7 +305,7 @@ public class ConnectToServer {
   }
 
   public static void commentUnlike(int commentId, int userId) {
-    String parameters = "comment_id=" + commentId + "&user_id=" + userId ;
+    String parameters = "comment_id=" + commentId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._commentUnlike;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -310,7 +315,9 @@ public class ConnectToServer {
   }
 
   public static String commentMention(int userId, int mentioned, int comment_id, int post_id) {
-    String parameters = "user_id=" + userId +"&mentioned=" + mentioned +"&comment_id=" + comment_id +"&post_id=" + post_id + "&key=AoD93128Jd73jKH31je3";
+    String parameters =
+        "user_id=" + userId + "&mentioned=" + mentioned + "&comment_id=" + comment_id + "&post_id="
+        + post_id + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._commentMention;
     try {
       return Connect.connectToServer(UrlString, parameters);
@@ -354,7 +361,8 @@ public class ConnectToServer {
   }
 
   public static String followUser(int userId, int followingId) {
-    String parameters = "user_id=" + userId +"&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
+    String parameters =
+        "user_id=" + userId + "&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._follow;
     try {
       return Connect.connectToServer(UrlString, parameters);
@@ -365,7 +373,8 @@ public class ConnectToServer {
   }
 
   public static String unfollowUser(int userId, int followingId) {
-    String parameters = "user_id=" + userId +"&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
+    String parameters =
+        "user_id=" + userId + "&following_id=" + followingId + "&key=AoD93128Jd73jKH31je3";
     String UrlString = ServerSettings._Server + ServerSettings._unfollow;
     try {
       return Connect.connectToServer(UrlString, parameters);
@@ -396,7 +405,7 @@ public class ConnectToServer {
     return "";
   }
 
-  public static void flagComment(int userId,int commentId) {
+  public static void flagComment(int userId, int commentId) {
     String parameters = "comment_id=" + commentId + "&user_id=" + userId;
     String UrlString = ServerSettings._Server + ServerSettings._flagComment;
     try {
@@ -417,7 +426,7 @@ public class ConnectToServer {
   }
 
   public static void editComment(int commentId, String newComment) {
-    String parameters = "comment_id=" + commentId+ "&comment_text=" + newComment;
+    String parameters = "comment_id=" + commentId + "&comment_text=" + newComment;
     String UrlString = ServerSettings._Server + ServerSettings._editComment;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -449,7 +458,7 @@ public class ConnectToServer {
   }
 
   public static void editTextPost(int post_id, String newPost) {
-    String parameters = "post_id=" + post_id+ "&post_text=" + newPost;
+    String parameters = "post_id=" + post_id + "&post_text=" + newPost;
     String UrlString = ServerSettings._Server + ServerSettings._editTextPost;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -459,7 +468,7 @@ public class ConnectToServer {
   }
 
   public static void editTitlePost(int post_id, String newTitle) {
-    String parameters = "post_id=" + post_id+ "&post_title=" + newTitle;
+    String parameters = "post_id=" + post_id + "&post_title=" + newTitle;
     String UrlString = ServerSettings._Server + ServerSettings._editTitlePost;
     try {
       response = Connect.connectToServer(UrlString, parameters);
@@ -468,7 +477,7 @@ public class ConnectToServer {
     }
   }
 
-  public static void changeUserProfilePicture(int userId,String image) {
+  public static void changeUserProfilePicture(int userId, String image) {
     String UrlString = ServerSettings._Server + ServerSettings._changeUserProfilePicture;
     ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
     nameValuePairs.add(new BasicNameValuePair("user_id", String.valueOf(userId)));

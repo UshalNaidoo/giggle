@@ -58,6 +58,6 @@ public class ServerSettings {
   static String _editTitlePost = "/post_title_edit.php";
 
   /* Push Notifications */
-  static String _addDeviceId ="/user_add_device_id.php";
+  static String _addDeviceId = "/user_add_device_id.php";
 
 }

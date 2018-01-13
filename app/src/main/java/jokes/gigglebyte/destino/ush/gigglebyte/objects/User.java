@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
-import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +14,8 @@ import java.util.List;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
 
 public class User {
 
@@ -78,36 +78,36 @@ public class User {
     }
   }
 
-  public void setFollowing(List<User> following) {
-    this.following = following;
-  }
-
   public List<User> getFollowing() {
     return following;
   }
 
-  public void setFollowers(List<User> followers) {
-    this.followers = followers;
+  public void setFollowing(List<User> following) {
+    this.following = following;
   }
 
   public List<User> getFollowers() {
     return followers;
   }
 
-  public void setNumberOfFollowers(int numberOfFollowers) {
-    this.numberOfFollowers = numberOfFollowers;
+  public void setFollowers(List<User> followers) {
+    this.followers = followers;
   }
 
   public int getNumberOfFollowers() {
     return numberOfFollowers;
   }
 
-  public void setNumberOfPosts(int numberOfPosts) {
-    this.numberOfPosts = numberOfPosts;
+  public void setNumberOfFollowers(int numberOfFollowers) {
+    this.numberOfFollowers = numberOfFollowers;
   }
 
   public int getNumberOfPosts() {
     return numberOfPosts;
+  }
+
+  public void setNumberOfPosts(int numberOfPosts) {
+    this.numberOfPosts = numberOfPosts;
   }
 
   private class ImageLoadTask extends AsyncTask<String, String, Bitmap> {
@@ -125,17 +125,16 @@ public class User {
         return ImageHelper.getProfilePicture(getId());
       } else {
         try {
-          if(UserHelper.userImages.containsKey(getId())) {
+          if (UserHelper.userImages.containsKey(getId())) {
             return UserHelper.userImages.get(getId());
-          }else {
+          } else {
             URL url = new URL(_Server + "/Images/" + getId() + "/Profile_Pictures/profile.jpg");
             InputStream inputStream = url.openConnection().getInputStream();
             Bitmap image = BitmapFactory.decodeStream(inputStream);
             UserHelper.userImages.put(getId(), image);
             return image;
           }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
           UserHelper.userImages.put(getId(), null);
         }
       }
@@ -146,8 +145,7 @@ public class User {
       if (ret != null) {
         setProfile_pic(ret);
         imageView.setImageBitmap(ret);
-      }
-      else {
+      } else {
         imageView.setImageResource(R.drawable.nobody_m);
       }
     }

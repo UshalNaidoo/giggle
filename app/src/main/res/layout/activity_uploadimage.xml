@@ -22,7 +22,7 @@
         android:textColor="@color/text_colour_secondary"
         android:textColorHint="@color/text_hint_color"
         android:gravity="top"
-        android:ems="10" >
+        android:ems="10">
       <requestFocus/>
     </EditText>
 

@@ -38,7 +38,9 @@ public class OptionsEdit extends DialogFragment {
     Button editButton = (Button) dialog.findViewById(R.id.edit);
     final EditText editText = (EditText) dialog.findViewById(R.id.editText1);
 
-    String textToChange = isEditPost ? (post.getType() == PostType.IMAGE_POST ? post.getPostTitle() : post.getPostText()) : comment.getCommentText();
+    String textToChange = isEditPost ? (post.getType() == PostType.IMAGE_POST
+                                        ? post.getPostTitle()
+                                        : post.getPostText()) : comment.getCommentText();
     editText.setText(textToChange);
 
     editButton.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +49,7 @@ public class OptionsEdit extends DialogFragment {
         Thread thread = new Thread(new Runnable() {
           @Override
           public void run() {
-            try  {
+            try {
               if (isEditPost) {
                 if (post.getType() == PostType.TEXT_POST) {
                   ConnectToServer.editTextPost(post.getPostId(), editText.getText().toString());
@@ -78,7 +80,7 @@ public class OptionsEdit extends DialogFragment {
                       post.setPostTitle(editText.getText().toString());
                       post.setPostText(editText.getText().toString());
                       message = activity.getResources().getString(R.string.changed);
-                      PostHelper.adjustPost(activity, null, PostHelper.PostAction.EDIT_POST , 0, post);
+                      PostHelper.adjustPost(activity, null, PostHelper.PostAction.EDIT_POST, 0, post);
                     } else {
                       message = activity.getResources().getString(R.string.changed);
                       CommentActivity.reload();

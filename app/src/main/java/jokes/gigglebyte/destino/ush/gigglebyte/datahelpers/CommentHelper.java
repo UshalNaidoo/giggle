@@ -16,6 +16,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class CommentHelper {
+
   private static List<Comment> allComments = new ArrayList<>();
 
   private static void likeComment(Context context, Comment comment) {
@@ -46,7 +47,8 @@ public class CommentHelper {
                                  final Comment comment) {
     likeImage.setImageResource(R.drawable.up_arrow);
     int likesInt = comment.getLikes() + 1;
-    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources()
+        .getString(R.string.like) : activity.getResources().getString(R.string.likes));
     likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
     likeComment(activity, comment);
@@ -54,7 +56,9 @@ public class CommentHelper {
     Thread thread = new Thread() {
       @Override
       public void run() {
-        ConnectToServer.commentLike(comment.getCommentId(), UserHelper.getUsersId(activity), comment.getUser().getId());
+        ConnectToServer.commentLike(comment.getCommentId(), UserHelper.getUsersId(activity), comment
+            .getUser()
+            .getId());
       }
     };
     thread.start();
@@ -65,7 +69,8 @@ public class CommentHelper {
     likeImage.setImageResource(R.drawable.up_arrow_grey);
 
     int likesInt = comment.getLikes() - 1;
-    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources().getString(R.string.like) : activity.getResources().getString(R.string.likes));
+    String likeAmount = String.valueOf(likesInt) + " " + (likesInt == 1 ? activity.getResources()
+        .getString(R.string.like) : activity.getResources().getString(R.string.likes));
     likes.setText(likeAmount);
     UIHelper.imageViewClickAnimation(likeImage);
     unlikeComment(activity, comment);

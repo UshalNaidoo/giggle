@@ -38,7 +38,10 @@ public class OptionsConfirmDelete extends DialogFragment {
     Button buttonNo = (Button) dialog.findViewById(R.id.buttonNo);
     TextView messageTextView = (TextView) dialog.findViewById(R.id.messageTextView);
 
-    messageTextView.setText(isDeletePost ? activity.getResources().getString(R.string.confirm_post_delete) : activity.getResources().getString(R.string.confirm_comment_delete));
+    messageTextView.setText(isDeletePost
+                            ? activity.getResources()
+                                .getString(R.string.confirm_post_delete)
+                            : activity.getResources().getString(R.string.confirm_comment_delete));
 
     buttonNo.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -53,7 +56,7 @@ public class OptionsConfirmDelete extends DialogFragment {
         Thread thread = new Thread(new Runnable() {
           @Override
           public void run() {
-            try  {
+            try {
               if (isDeletePost) {
                 ConnectToServer.deletePost(post.getPostId());
               } else {
@@ -78,7 +81,7 @@ public class OptionsConfirmDelete extends DialogFragment {
                     final String message;
                     if (isDeletePost) {
                       message = activity.getResources().getString(R.string.post_deleted);
-                      PostHelper.adjustPost(activity, null, PostHelper.PostAction.DELETE_POST , 0, post);
+                      PostHelper.adjustPost(activity, null, PostHelper.PostAction.DELETE_POST, 0, post);
                     } else {
                       message = activity.getResources().getString(R.string.comment_deleted);
                       CommentActivity.reload();

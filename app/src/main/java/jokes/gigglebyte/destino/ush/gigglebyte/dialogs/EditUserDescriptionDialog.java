@@ -12,7 +12,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
@@ -40,7 +39,9 @@ public class EditUserDescriptionDialog extends DialogFragment {
     dialog.show();
     Button sendButton = (Button) dialog.findViewById(R.id.button1);
     descriptionText = (EditText) dialog.findViewById(R.id.editText1);
-    descriptionText.setText(user.getDescription().equals("I'm new to Gigglebyte")? "" : user.getDescription());
+    descriptionText.setText(user.getDescription().equals("I'm new to Gigglebyte")
+                            ? ""
+                            : user.getDescription());
     descriptionText.setSelection(descriptionText.getText().length());
     countTextView = (TextView) dialog.findViewById(R.id.countTextView);
 
@@ -92,11 +93,11 @@ public class EditUserDescriptionDialog extends DialogFragment {
     this.listener = listener;
   }
 
-  public User getUser () {
+  public User getUser() {
     return user;
   }
 
-  public void setUser (User user) {
+  public void setUser(User user) {
     this.user = user;
   }
 }

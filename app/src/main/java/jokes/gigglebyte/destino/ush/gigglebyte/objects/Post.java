@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
-import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +18,8 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.ImageHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
+
+import static jokes.gigglebyte.destino.ush.gigglebyte.server.ServerSettings._Server;
 
 public class Post {
 
@@ -141,7 +141,8 @@ public class Post {
     this.userFavorite = userFavorite;
   }
 
-  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter, ProgressBar progressBar, ImageView imageView) {
+  public void loadImagePost(Activity activity, int userId, int imageId, BaseAdapter adapter,
+                            ProgressBar progressBar, ImageView imageView) {
     if (!loadingPostImage) {
       progressBar.setVisibility(View.VISIBLE);
       setPostLoadTask(new ImageLoadTask(activity, userId, adapter, progressBar, imageView, imageId));
@@ -150,12 +151,12 @@ public class Post {
     }
   }
 
-  private void setPostLoadTask(ImageLoadTask loadTask) {
-    this.postTask = loadTask;
-  }
-
   private ImageLoadTask getPostLoadTask() {
     return this.postTask;
+  }
+
+  private void setPostLoadTask(ImageLoadTask loadTask) {
+    this.postTask = loadTask;
   }
 
   public void cancelLoadingImages() {
@@ -215,8 +216,8 @@ public class Post {
     private int imageId;
 
     ImageLoadTask(Activity activity, int userId, BaseAdapter adapter,
-        ProgressBar progressBar,
-        ImageView imageView, int imageId) {
+                  ProgressBar progressBar,
+                  ImageView imageView, int imageId) {
       this.progressBar = progressBar;
       this.imageView = imageView;
       this.userId = userId;
@@ -239,11 +240,10 @@ public class Post {
       } else {
         try {
           URL url = new URL(_Server + "/Images/" + this.userId
-                + "/Image_Posts/post"+ this.imageId +".jpg");
+                            + "/Image_Posts/post" + this.imageId + ".jpg");
           InputStream inputStream = url.openConnection().getInputStream();
           return BitmapFactory.decodeStream(inputStream);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
           e.printStackTrace();
         }
       }
@@ -256,8 +256,7 @@ public class Post {
         if (this.imageId == -1) {
           user.setProfile_pic(ret);
           MainActivity.cachedProfilePictures.put(userId, ret);
-        }
-        else {
+        } else {
           setPostPicture(ret);
         }
       } else {

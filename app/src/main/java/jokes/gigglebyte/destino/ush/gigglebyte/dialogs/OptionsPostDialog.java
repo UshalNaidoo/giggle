@@ -46,8 +46,7 @@ public class OptionsPostDialog extends DialogFragment {
 
     if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
       buttonSavePost.setText(activity.getResources().getText(R.string.unfavourite_post));
-    }
-    else {
+    } else {
       buttonSavePost.setText(activity.getResources().getText(R.string.save_post));
     }
 
@@ -75,8 +74,7 @@ public class OptionsPostDialog extends DialogFragment {
       });
       buttonViewProfile.setVisibility(View.GONE);
       buttonFlag.setVisibility(View.GONE);
-    }
-    else {
+    } else {
       buttonViewProfile.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -90,7 +88,8 @@ public class OptionsPostDialog extends DialogFragment {
         }
       });
 
-      if (!SharedPrefHelper.getPostFlags(activity).contains(String.valueOf(getPost().getPostId()))) {
+      if (!SharedPrefHelper.getPostFlags(activity)
+          .contains(String.valueOf(getPost().getPostId()))) {
         buttonFlag.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -101,8 +100,7 @@ public class OptionsPostDialog extends DialogFragment {
             dismiss();
           }
         });
-      }
-      else {
+      } else {
         buttonFlag.setVisibility(View.GONE);
       }
 
@@ -127,11 +125,11 @@ public class OptionsPostDialog extends DialogFragment {
       public void onClick(View v) {
         if (FromScreen.FAVOURITE.equals(fromScreen) || post.isUserFavorite()) {
           PostHelper.adjustPost(activity, null, PostHelper.PostAction.UNFAVORITE_POST, 0, post);
-        }
-        else {
-          new ToastWithImage(activity).show(activity.getResources().getString(R.string.favourites), null);
+        } else {
+          new ToastWithImage(activity).show(activity.getResources()
+                                                .getString(R.string.favourites), null);
           PostHelper.adjustPost(activity, null, PostHelper.PostAction.FAVORITE_POST, 0, post);
-    }
+        }
         dismiss();
       }
     });

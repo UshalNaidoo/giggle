@@ -73,52 +73,52 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-  <RelativeLayout
-      android:paddingLeft="50dp"
-      android:paddingRight="50dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal">
+      <RelativeLayout
+          android:paddingLeft="50dp"
+          android:paddingRight="50dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal">
 
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:adjustViewBounds="true"
-        android:src="@drawable/nobody_m"/>
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:src="@drawable/nobody_m"/>
 
-    <TextView
-        android:id= "@+id/followeesName"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text_colour_secondary"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/info_text_size"/>
+        <TextView
+            android:id="@+id/followeesName"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_colour_secondary"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/info_text_size"/>
 
-    <Button
-        android:id="@+id/followeesButton"
-        android:layout_width="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/text_colour_main"
-        android:layout_height="30dp"
-        android:background="@drawable/button_selector"
-        android:padding="2dp"
-        android:textSize="@dimen/button_text_size"
-        android:text="@string/follow"/>
+        <Button
+            android:id="@+id/followeesButton"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/text_colour_main"
+            android:layout_height="30dp"
+            android:background="@drawable/button_selector"
+            android:padding="2dp"
+            android:textSize="@dimen/button_text_size"
+            android:text="@string/follow"/>
 
-    <ProgressBar
-        android:id="@+id/followeesProgressBar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        style="@android:style/Widget.ProgressBar.Large"/>
-  </RelativeLayout>
-</LinearLayout>
+        <ProgressBar
+            android:id="@+id/followeesProgressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            style="@android:style/Widget.ProgressBar.Large"/>
+      </RelativeLayout>
     </LinearLayout>
+  </LinearLayout>
 
   <View
       android:layout_height="1dp"

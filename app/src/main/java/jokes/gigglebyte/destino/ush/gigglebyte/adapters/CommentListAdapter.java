@@ -40,7 +40,7 @@ public class CommentListAdapter extends BaseAdapter {
 
   @Override
   public int getCount() {
-    return comments.size()+1;
+    return comments.size() + 1;
   }
 
   @Override
@@ -66,8 +66,7 @@ public class CommentListAdapter extends BaseAdapter {
         row.setTag(holder);
         holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
         holder.setTextPostData(activity, row, post, FromScreen.COMMENTS);
-      }
-      else if (post.getType() == PostType.IMAGE_POST) {
+      } else if (post.getType() == PostType.IMAGE_POST) {
         final PostImageViewHolder holder = new PostImageViewHolder();
         row = mInflater.inflate(R.layout.post_image_item, parent, false);
         PopulateViewHolderHelper.populatePostImageViewHolder(row, holder);
@@ -75,13 +74,12 @@ public class CommentListAdapter extends BaseAdapter {
         holder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
         holder.setImagePostData(activity, this, row, post, FromScreen.COMMENTS);
       }
-    }
-    else {
+    } else {
       final CommentViewHolder holder = new CommentViewHolder();
       row = mInflater.inflate(R.layout.comment_item, parent, false);
       PopulateViewHolderHelper.populateCommentViewHolder(row, holder);
       row.setTag(holder);
-      Comment comment = comments.get(position-1);
+      Comment comment = comments.get(position - 1);
       holder.setUserData(activity, comment.getUser(), OpenScreen.PROFILE);
       holder.setData(activity, comment);
     }

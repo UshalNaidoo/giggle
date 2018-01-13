@@ -29,12 +29,12 @@ import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper.get
 
 public class PosterProfileActivity extends Activity {
 
+  public static User poster;
+  private static TextView userName;
   private int userId;
   private Activity activity;
   private ListView listView;
-  public static User poster;
   private Menu menu;
-  private static TextView userName;
   private ToastWithImage toastWithImage;
   private List<Post> posts;
   private List<User> following;
@@ -58,7 +58,7 @@ public class PosterProfileActivity extends Activity {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -93,32 +93,6 @@ public class PosterProfileActivity extends Activity {
     }
   }
 
-  private class GetProfile extends AsyncTask<Integer, Integer, String> {
-
-    @Override
-    protected String doInBackground(Integer... params) {
-      Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-      posts = JsonParser.GetPosts("{\"posts\":" + ConnectToServer.getUsersPosts(userId) + "}");
-      following = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowing(userId) + "}");
-      followers = JsonParser.GetUsers("{\"users\":" + ConnectToServer.getUserFollowers(userId) + "}");
-      return ConnectToServer.getUserDetails(userId);
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-      poster = JsonParser.GetUser(result);
-      poster.setId(userId);
-      poster.setFollowing(following);
-      poster.setFollowers(followers);
-      UserHelper.selectedUser = poster;
-      userName.setText((poster.getName() == null || poster.getName().isEmpty()) ? getResources().getString(R.string.unknown) : poster.getName());
-
-      posts = getPostStatus(activity, posts);
-      adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
-      listView.setAdapter(adapter);
-    }
-  }
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     this.menu = menu;
@@ -130,7 +104,7 @@ public class PosterProfileActivity extends Activity {
     if (UserHelper.getUsersId(activity) == userId) {
       menu.getItem(0).setVisible(false);
       menu.getItem(1).setVisible(false);
-    }else {
+    } else {
       if (FollowHelper.isFollowingUser(userId)) {
         menu.getItem(0).setVisible(false);
         menu.getItem(1).setVisible(true);
@@ -150,19 +124,51 @@ public class PosterProfileActivity extends Activity {
         this.finish();
         return true;
       case R.id.action_follow:
-        toastWithImage.show(getResources().getString(R.string.following) + " " + poster.getName(), R.drawable.following);
+        toastWithImage.show(getResources().getString(R.string.following) + " "
+                            + poster.getName(), R.drawable.following);
         menu.getItem(0).setVisible(false);
         menu.getItem(1).setVisible(true);
         FollowHelper.followUser(activity, poster);
         return true;
       case R.id.action_unfollow:
-        toastWithImage.show(getResources().getString(R.string.unfollowing) + " " + poster.getName(), R.drawable.follow);
+        toastWithImage.show(getResources().getString(R.string.unfollowing) + " "
+                            + poster.getName(), R.drawable.follow);
         menu.getItem(0).setVisible(true);
         menu.getItem(1).setVisible(false);
         FollowHelper.unfollowUser(activity, poster);
         return true;
       default:
         return super.onOptionsItemSelected(item);
+    }
+  }
+
+  private class GetProfile extends AsyncTask<Integer, Integer, String> {
+
+    @Override
+    protected String doInBackground(Integer... params) {
+      Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+      posts = JsonParser.GetPosts("{\"posts\":" + ConnectToServer.getUsersPosts(userId) + "}");
+      following = JsonParser.GetUsers(
+          "{\"users\":" + ConnectToServer.getUserFollowing(userId) + "}");
+      followers = JsonParser.GetUsers(
+          "{\"users\":" + ConnectToServer.getUserFollowers(userId) + "}");
+      return ConnectToServer.getUserDetails(userId);
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+      poster = JsonParser.GetUser(result);
+      poster.setId(userId);
+      poster.setFollowing(following);
+      poster.setFollowers(followers);
+      UserHelper.selectedUser = poster;
+      userName.setText((poster.getName() == null || poster.getName().isEmpty())
+                       ? getResources().getString(R.string.unknown)
+                       : poster.getName());
+
+      posts = getPostStatus(activity, posts);
+      adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
+      listView.setAdapter(adapter);
     }
   }
 

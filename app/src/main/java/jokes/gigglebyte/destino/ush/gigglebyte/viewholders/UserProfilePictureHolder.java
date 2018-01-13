@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.LargeProfileImageActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
@@ -37,14 +38,13 @@ public class UserProfilePictureHolder {
           }
         }
       });
-    }
-    else if (OpenScreen.PROFILE.equals(screenToOpen)) {
+    } else if (OpenScreen.PROFILE.equals(screenToOpen)) {
       profileImage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-        Intent myIntent = new Intent(activity, PosterProfileActivity.class);
-        myIntent.putExtra("userId", user.getId());
-        activity.startActivity(myIntent);
+          Intent myIntent = new Intent(activity, PosterProfileActivity.class);
+          myIntent.putExtra("userId", user.getId());
+          activity.startActivity(myIntent);
         }
       });
     }

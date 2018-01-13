@@ -73,7 +73,7 @@ public class EditUserNameDialog extends DialogFragment {
       @Override
       public void afterTextChanged(Editable s) {
         int remaining = 20 - s.toString().length();
-        String text = remaining +"/20";
+        String text = remaining + "/20";
         countTextView.setText(text);
       }
     });

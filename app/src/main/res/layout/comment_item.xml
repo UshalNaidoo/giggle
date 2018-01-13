@@ -70,7 +70,9 @@
           android:layout_weight="1"
           android:textColor="@color/transparent_black"
           android:background="@color/comment_background"
-          android:layout_marginTop="1dp"/>
+          android:layout_marginTop="1dp"
+          android:layout_marginStart="10dp"
+          android:padding="4dp"/>
 
       <View android:id="@+id/primerdivisor"
             android:layout_height="1dp"
@@ -108,7 +110,7 @@
             android:layout_height="20dp"
             android:layout_weight="0.1"
             android:src="@drawable/dot_menu"/>
-        </LinearLayout>
       </LinearLayout>
+    </LinearLayout>
   </LinearLayout>
 </LinearLayout>

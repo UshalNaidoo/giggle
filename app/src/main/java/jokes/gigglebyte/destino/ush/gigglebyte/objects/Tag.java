@@ -1,6 +1,7 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.objects;
 
 public class Tag {
+
   private String tagText;
   private int numberOfPosts;
 

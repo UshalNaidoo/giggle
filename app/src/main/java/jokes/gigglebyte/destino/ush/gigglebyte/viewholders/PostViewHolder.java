@@ -40,6 +40,16 @@ public class PostViewHolder extends UserGridViewHolder {
   private boolean isDoubleClick = false;
   private FromScreen fromScreen;
 
+  private static Integer[] getIndices(String s, char c) {
+    int pos = s.indexOf(c, 0);
+    List<Integer> indices = new ArrayList<>();
+    while (pos != -1) {
+      indices.add(pos);
+      pos = s.indexOf(c, pos + 1);
+    }
+    return indices.toArray(new Integer[indices.size()]);
+  }
+
   void setPostData(final Activity activity, View convertView, final Post post, FromScreen from) {
     this.activity = activity;
     this.post = post;
@@ -50,7 +60,7 @@ public class PostViewHolder extends UserGridViewHolder {
     }
 
     postNumberOfLikes.setText(post.getLikes() + "");
-    postNumberOfComments.setText(post.getCommentCount()+ "");
+    postNumberOfComments.setText(post.getCommentCount() + "");
     final View finalConvertView = convertView;
     shareImage.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -93,7 +103,6 @@ public class PostViewHolder extends UserGridViewHolder {
 
     layout.setOnLongClickListener(longClickListener());
 
-
     likeImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -101,7 +110,7 @@ public class PostViewHolder extends UserGridViewHolder {
       }
     });
 
-    if (menuImage != null ) {
+    if (menuImage != null) {
       menuImage.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -172,10 +181,11 @@ public class PostViewHolder extends UserGridViewHolder {
     } else {
       likes = post.getLikes() + 1;
       action = PostHelper.PostAction.LIKE_POST;
-      new ToastWithImage(activity).show(activity.getResources().getString(R.string.upvoted), R.drawable.up_arrow);
+      new ToastWithImage(activity).show(activity.getResources()
+                                            .getString(R.string.upvoted), R.drawable.up_arrow);
     }
     postNumberOfLikes.setText(likes + "");
-    PostHelper.adjustPost(activity, likeImage, action , likes, post);
+    PostHelper.adjustPost(activity, likeImage, action, likes, post);
   }
 
   private ClickableSpan getClickableSpan() {
@@ -197,16 +207,6 @@ public class PostViewHolder extends UserGridViewHolder {
         ds.setUnderlineText(false);
       }
     };
-  }
-
-  private static Integer[] getIndices(String s, char c) {
-    int pos = s.indexOf(c, 0);
-    List<Integer> indices = new ArrayList<>();
-    while (pos != -1) {
-      indices.add(pos);
-      pos = s.indexOf(c, pos + 1);
-    }
-    return indices.toArray(new Integer[indices.size()]);
   }
 
 }

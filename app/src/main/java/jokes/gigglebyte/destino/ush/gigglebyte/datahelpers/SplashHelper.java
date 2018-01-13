@@ -1,9 +1,10 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
+import android.app.Activity;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 
 public class SplashHelper {
@@ -54,7 +55,7 @@ public class SplashHelper {
     messages.put(41, activity.getResources().getString(R.string.loadMessage41));
 
     String[] strings = new String[6];
-    for (int i = 0; i < 6; i ++) {
+    for (int i = 0; i < 6; i++) {
       int j = (int) Math.floor(Math.random() * messages.size() + 1);
       strings[i] = messages.get(j);
     }

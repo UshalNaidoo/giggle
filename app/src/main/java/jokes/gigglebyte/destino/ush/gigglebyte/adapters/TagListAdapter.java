@@ -49,8 +49,7 @@ public class TagListAdapter extends BaseAdapter {
       holder = new TagViewHolder();
       PopulateViewHolderHelper.populateTagViewHolder(row, holder);
       row.setTag(holder);
-    }
-    else {
+    } else {
       holder = (TagViewHolder) row.getTag();
     }
     holder.setTagData(activity, tags.get(position));

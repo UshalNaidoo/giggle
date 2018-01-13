@@ -36,15 +36,12 @@ public class PostHelper implements onSubmitListener {
   private static List<Post> feedPosts = new ArrayList<>();
   private static List<Post> favoritePosts = new ArrayList<>();
   private static List<Post> notifications = new ArrayList<>();
-
-  public enum PostAction {
-    LIKE_POST,
-    UNLIKE_POST,
-    FAVORITE_POST,
-    UNFAVORITE_POST,
-    DELETE_POST,
-    EDIT_POST
-  }
+  private static Comparator<Post> PostComparator = new Comparator<Post>() {
+    public int compare(Post post1, Post post2) {
+      //ascending order
+      return (post2.getPostId()) - (post1.getPostId());
+    }
+  };
 
   public static List<Post> getHotPosts() {
     return hotPosts;
@@ -128,15 +125,9 @@ public class PostHelper implements onSubmitListener {
     Collections.sort(favoritePosts, PostComparator);
   }
 
-  private static Comparator<Post> PostComparator = new Comparator<Post>() {
-    public int compare(Post post1, Post post2) {
-      //ascending order
-      return (post2.getPostId()) - (post1.getPostId());
-    }
-  };
-
   //TODO refactor this
-  public static void adjustPost(final Activity activity, ImageView image, PostAction action, int likes, final Post post) {
+  public static void adjustPost(final Activity activity, ImageView image, PostAction action,
+                                int likes, final Post post) {
     switch (action) {
       case LIKE_POST:
         /* Liking a Post */
@@ -161,7 +152,8 @@ public class PostHelper implements onSubmitListener {
             thisPost.setLikes(likes);
             break;
           }
-          if (thisPost.getInnerPost() != null && thisPost.getInnerPost().getPostId() == post.getPostId()) {
+          if (thisPost.getInnerPost() != null
+              && thisPost.getInnerPost().getPostId() == post.getPostId()) {
             thisPost.getInnerPost().setUserLike(true);
             thisPost.getInnerPost().setLikes(likes);
             break;
@@ -181,7 +173,8 @@ public class PostHelper implements onSubmitListener {
         Thread likeThread = new Thread() {
           @Override
           public void run() {
-            ConnectToServer.postLike(post.getPostId(), post.getUser().getId(), UserHelper.getUsersId(activity));
+            ConnectToServer.postLike(post.getPostId(), post.getUser()
+                .getId(), UserHelper.getUsersId(activity));
           }
         };
         likeThread.start();
@@ -211,7 +204,8 @@ public class PostHelper implements onSubmitListener {
             thisPost.setLikes(likes);
             break;
           }
-          if (thisPost.getInnerPost() != null && thisPost.getInnerPost().getPostId() == post.getPostId()) {
+          if (thisPost.getInnerPost() != null
+              && thisPost.getInnerPost().getPostId() == post.getPostId()) {
             thisPost.getInnerPost().setUserLike(false);
             thisPost.getInnerPost().setLikes(likes);
             break;
@@ -269,7 +263,8 @@ public class PostHelper implements onSubmitListener {
             thisPost.setUserFavorite(true);
             break;
           }
-          if (thisPost.getInnerPost() != null && thisPost.getInnerPost().getPostId() == post.getPostId()) {
+          if (thisPost.getInnerPost() != null
+              && thisPost.getInnerPost().getPostId() == post.getPostId()) {
             thisPost.getInnerPost().setUserFavorite(true);
             break;
           }
@@ -282,7 +277,8 @@ public class PostHelper implements onSubmitListener {
         Thread favouriteThread = new Thread() {
           @Override
           public void run() {
-            ConnectToServer.postFavourite(post.getPostId(), post.getUser().getId(), UserHelper.getUsersId(activity));
+            ConnectToServer.postFavourite(post.getPostId(), post.getUser()
+                .getId(), UserHelper.getUsersId(activity));
           }
         };
         favouriteThread.start();
@@ -313,7 +309,8 @@ public class PostHelper implements onSubmitListener {
             thisPost.setUserFavorite(false);
             break;
           }
-          if (thisPost.getInnerPost() != null && thisPost.getInnerPost().getPostId() == post.getPostId()) {
+          if (thisPost.getInnerPost() != null
+              && thisPost.getInnerPost().getPostId() == post.getPostId()) {
             thisPost.getInnerPost().setUserFavorite(false);
             break;
           }
@@ -332,30 +329,31 @@ public class PostHelper implements onSubmitListener {
         break;
 
       case DELETE_POST:
-        for (int i = 0 ; i < getNewPosts().size(); i++) {
+        for (int i = 0; i < getNewPosts().size(); i++) {
           if (getNewPosts().get(i).getPostId() == post.getPostId()) {
             getNewPosts().remove(i);
             break;
           }
         }
-        for (int i = 0 ; i < getHotPosts().size(); i++) {
+        for (int i = 0; i < getHotPosts().size(); i++) {
           if (getHotPosts().get(i).getPostId() == post.getPostId()) {
             getHotPosts().remove(i);
             break;
           }
         }
-        for (int i = 0 ; i < getFavoritePosts().size(); i++) {
+        for (int i = 0; i < getFavoritePosts().size(); i++) {
           if (getFavoritePosts().get(i).getPostId() == post.getPostId()) {
             getFavoritePosts().remove(i);
             break;
           }
         }
-        for (int i = 0 ; i < getFeedPosts().size(); i++) {
+        for (int i = 0; i < getFeedPosts().size(); i++) {
           if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
             getFeedPosts().remove(i);
             break;
           }
-          if (getFeedPosts().get(i).getInnerPost() != null && getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
+          if (getFeedPosts().get(i).getInnerPost() != null
+              && getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
             getFeedPosts().remove(i);
             break;
           }
@@ -367,34 +365,35 @@ public class PostHelper implements onSubmitListener {
         break;
 
       case EDIT_POST:
-        for (int i = 0 ; i < getNewPosts().size(); i++) {
+        for (int i = 0; i < getNewPosts().size(); i++) {
           if (getNewPosts().get(i).getPostId() == post.getPostId()) {
             getNewPosts().get(i).setPostTitle(post.getPostTitle());
             getNewPosts().get(i).setPostText(post.getPostText());
             break;
           }
         }
-        for (int i = 0 ; i < getHotPosts().size(); i++) {
+        for (int i = 0; i < getHotPosts().size(); i++) {
           if (getHotPosts().get(i).getPostId() == post.getPostId()) {
             getHotPosts().get(i).setPostTitle(post.getPostTitle());
             getHotPosts().get(i).setPostText(post.getPostText());
             break;
           }
         }
-        for (int i = 0 ; i < getFavoritePosts().size(); i++) {
+        for (int i = 0; i < getFavoritePosts().size(); i++) {
           if (getFavoritePosts().get(i).getPostId() == post.getPostId()) {
             getFavoritePosts().get(i).setPostTitle(post.getPostTitle());
             getFavoritePosts().get(i).setPostText(post.getPostText());
             break;
           }
         }
-        for (int i = 0 ; i < getFeedPosts().size(); i++) {
+        for (int i = 0; i < getFeedPosts().size(); i++) {
           if (getFeedPosts().get(i).getPostId() == post.getPostId()) {
             getFeedPosts().get(i).setPostTitle(post.getPostTitle());
             getFeedPosts().get(i).setPostText(post.getPostText());
             break;
           }
-          if (getFeedPosts().get(i).getInnerPost() != null && getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
+          if (getFeedPosts().get(i).getInnerPost() != null
+              && getFeedPosts().get(i).getInnerPost().getPostId() == post.getPostId()) {
             getFeedPosts().get(i).getInnerPost().setPostTitle(post.getPostTitle());
             getFeedPosts().get(i).getInnerPost().setPostText(post.getPostText());
             break;
@@ -403,7 +402,8 @@ public class PostHelper implements onSubmitListener {
         break;
     }
 
-    if(action != DELETE_POST && action != EDIT_POST && action != FAVORITE_POST && action != UNFAVORITE_POST) {
+    if (action != DELETE_POST && action != EDIT_POST && action != FAVORITE_POST
+        && action != UNFAVORITE_POST) {
       UIHelper.imageViewClickAnimation(image);
     }
     UIHelper.updateScreen();
@@ -426,7 +426,7 @@ public class PostHelper implements onSubmitListener {
           if (p.getPostId() == Integer.parseInt(s)) {
             p.setUserLike(true);
           }
-          if(p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)){
+          if (p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)) {
             p.getInnerPost().setUserLike(true);
           }
         }
@@ -434,24 +434,13 @@ public class PostHelper implements onSubmitListener {
           if (p.getPostId() == Integer.parseInt(s)) {
             p.setUserFavorite(true);
           }
-          if(p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)){
+          if (p.getInnerPost() != null && p.getInnerPost().getPostId() == Integer.parseInt(s)) {
             p.getInnerPost().setUserFavorite(true);
           }
         }
       }
     }
     return posts;
-  }
-
-  @Override
-  public void setOnSubmitListener(Object arg) {
-    newPosts.add(0, (Post) arg);
-    Fragment_New.refreshList();
-  }
-
-  @Override
-  public void setOnSubmitListener(Activity activity, Object arg) {
-    setOnSubmitListener(null, arg);
   }
 
   public static void updatePosts(int userId, String userName, Bitmap bitmap) {
@@ -495,6 +484,26 @@ public class PostHelper implements onSubmitListener {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void setOnSubmitListener(Object arg) {
+    newPosts.add(0, (Post) arg);
+    Fragment_New.refreshList();
+  }
+
+  @Override
+  public void setOnSubmitListener(Activity activity, Object arg) {
+    setOnSubmitListener(null, arg);
+  }
+
+  public enum PostAction {
+    LIKE_POST,
+    UNLIKE_POST,
+    FAVORITE_POST,
+    UNFAVORITE_POST,
+    DELETE_POST,
+    EDIT_POST
   }
 
 }

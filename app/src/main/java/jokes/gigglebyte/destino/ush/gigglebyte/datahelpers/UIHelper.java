@@ -15,9 +15,9 @@ public class UIHelper {
   public static void imageViewClickAnimation(ImageView image) {
     final float growTo = 1.1f;
     final long duration = 400;
-    ScaleAnimation grow = new ScaleAnimation(1, growTo, 1, growTo , 1, 0.5f, 1, 0.5f);
+    ScaleAnimation grow = new ScaleAnimation(1, growTo, 1, growTo, 1, 0.5f, 1, 0.5f);
     grow.setDuration(duration / 2);
-    ScaleAnimation shrink = new ScaleAnimation(growTo, 1, growTo, 1, 2, 0.6f,2, 0.6f);
+    ScaleAnimation shrink = new ScaleAnimation(growTo, 1, growTo, 1, 2, 0.6f, 2, 0.6f);
     shrink.setDuration(duration / 2);
     shrink.setStartOffset(duration / 2);
     AnimationSet growAndShrink = new AnimationSet(true);

@@ -19,24 +19,30 @@ public class NotificationFollowViewHolder extends UserGridViewHolder {
   public TextView informationTextView;
   public TextView followeesName;
 
-  public void setData(final Activity activity, View convertView,  final Post post, OpenScreen screenToOpen) {
+  public void setData(final Activity activity, View convertView, final Post post,
+                      OpenScreen screenToOpen) {
     User user = post.getUser();
     User following = post.getFollowingUser();
     setUserProfile(activity, user, screenToOpen);
-    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : user.getName())
-                      + " " + (following.getId() == UserHelper.getUsersId(activity) ? activity.getResources().getString(R.string.started_following_you) : activity.getResources().getString(R.string.started_following));
+    String infoText = (user.getName() == null || user.getName().isEmpty() ? activity.getResources()
+        .getString(R.string.unknown) : user.getName())
+                      + " " + (following.getId() == UserHelper.getUsersId(activity)
+                               ? activity.getResources().getString(R.string.started_following_you)
+                               : activity.getResources().getString(R.string.started_following));
 
     LinearLayout userFollowingPanel = (LinearLayout) convertView.findViewById(R.id.userFollowingPanel);
-    if(following.getId() == UserHelper.getUsersId(activity) ) {
+    if (following.getId() == UserHelper.getUsersId(activity)) {
       userFollowingPanel.setVisibility(View.GONE);
-    }else {
+    } else {
       UserGridViewHolder holder = new UserGridViewHolder();
       holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
       holder.followButton = (Button) convertView.findViewById(R.id.followeesButton);
       holder.progressBar = (ProgressBar) convertView.findViewById(R.id.followeesProgressBar);
       holder.userName = (TextView) convertView.findViewById(R.id.followeesName);
       holder.setUserData(activity, following, screenToOpen);
-      followeesName.setText((following.getName() == null || following.getName().isEmpty() ? activity.getResources().getString(R.string.unknown) : following.getName()));
+      followeesName.setText((following.getName() == null || following.getName().isEmpty() ? activity
+          .getResources()
+          .getString(R.string.unknown) : following.getName()));
     }
     informationTextView.setText(infoText);
   }

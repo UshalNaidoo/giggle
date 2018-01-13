@@ -40,6 +40,16 @@ public class UploadImageActivity extends FragmentActivity {
   private Activity activity;
   private Bitmap bitmap;
 
+  private static Bitmap rotateImage(Bitmap source, int angle) {
+    Matrix matrix = new Matrix();
+    matrix.postRotate(angle);
+    return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+  }
+
+  private static Bitmap createBitmap(Bitmap bitmap) {
+    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight());
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,13 +61,13 @@ public class UploadImageActivity extends FragmentActivity {
     final MultiAutoCompleteTextView tagText = (MultiAutoCompleteTextView) findViewById(R.id.tagText);
 
     tagText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-    tagText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer(){
+    tagText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
       public int findTokenStart(CharSequence text, int cursor) {
         int i = cursor;
         while (i > 0 && text.charAt(i - 1) != ' ') {
           i--;
         }
-        while (i < cursor && text.charAt(i) == ' ' || i >0 && text.charAt(i - 1) == '\n') {
+        while (i < cursor && text.charAt(i) == ' ' || i > 0 && text.charAt(i - 1) == '\n') {
           i++;
         }
         return i;
@@ -91,15 +101,14 @@ public class UploadImageActivity extends FragmentActivity {
             SpannableString sp = new SpannableString(text + " ");
             TextUtils.copySpansFrom((Spanned) text, 0, text.length(), Object.class, sp, 0);
             return sp;
-          } else
-          {
+          } else {
             return text + " ";
           }
         }
       }
     });
 
-    ArrayAdapter<String> adp= new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.allTags);
+    ArrayAdapter<String> adp = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, MainActivity.allTags);
     tagText.setThreshold(1);
     tagText.setAdapter(adp);
 
@@ -141,14 +150,12 @@ public class UploadImageActivity extends FragmentActivity {
               byte[] byte_arr = stream.toByteArray();
               String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
-
               final Set<String> tags = new HashSet<>();
               if (!tagText.getText().toString().isEmpty()) {
                 for (String s : tagText.getText().toString().split(" ")) {
                   if (!(s.charAt(0) == '#')) {
                     tags.add(s);
-                  }
-                  else {
+                  } else {
                     tags.add(s.substring(1));
                   }
                 }
@@ -167,7 +174,6 @@ public class UploadImageActivity extends FragmentActivity {
         finish();
       }
     });
-
 
     final TextWatcher watcher = new TextWatcher() {
       @Override
@@ -199,15 +205,5 @@ public class UploadImageActivity extends FragmentActivity {
     };
 
     tagText.addTextChangedListener(watcher);
-  }
-
-  private static Bitmap rotateImage(Bitmap source, int angle) {
-    Matrix matrix = new Matrix();
-    matrix.postRotate(angle);
-    return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
-  }
-
-  private static Bitmap createBitmap(Bitmap bitmap) {
-    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight());
   }
 }

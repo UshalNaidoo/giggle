@@ -29,6 +29,12 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
 
   private static PostListAdapter adapter;
 
+  public static void refreshList() {
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
+  }
+
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -72,18 +78,17 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
     });
 
     List<Post> infoPost = new ArrayList<>();
-    infoPost.add(new Post(activity.getResources().getString(R.string.info_follow), BitmapFactory.decodeResource(activity.getResources(), R.drawable.follow), PostType.INFO_POST));
-    infoPost.add(new Post(activity.getResources().getString(R.string.info_like), BitmapFactory.decodeResource(activity.getResources(), R.drawable.up_arrow), PostType.INFO_POST));
+    infoPost.add(new Post(activity.getResources()
+                              .getString(R.string.info_follow), BitmapFactory.decodeResource(activity
+                                                                                                 .getResources(), R.drawable.follow), PostType.INFO_POST));
+    infoPost.add(new Post(activity.getResources()
+                              .getString(R.string.info_like), BitmapFactory.decodeResource(activity.getResources(), R.drawable.up_arrow), PostType.INFO_POST));
 
-    adapter = new PostListAdapter(activity, PostHelper.getFeedPosts().size() > 0 ? PostHelper.getFeedPosts() : infoPost, FromScreen.FEED);
+    adapter = new PostListAdapter(activity, PostHelper.getFeedPosts().size() > 0
+                                            ? PostHelper.getFeedPosts()
+                                            : infoPost, FromScreen.FEED);
     listView.setAdapter(adapter);
     return rootView;
-  }
-
-  public static void refreshList() {
-    if (adapter != null) {
-      adapter.notifyDataSetChanged();
-    }
   }
 
   @Override

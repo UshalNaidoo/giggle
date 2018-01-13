@@ -27,7 +27,7 @@ public class FollowHelper {
   }
 
   public static boolean isFollowingUser(int userId) {
-    if (following == null) return false;
+    if (following == null) { return false; }
     for (User user : following) {
       if (userId == user.getId()) {
         return true;
@@ -37,7 +37,7 @@ public class FollowHelper {
   }
 
   public static void followUser(final Activity activity, final User followUser) {
-    if (following == null) return;
+    if (following == null) { return; }
     following.add(followUser);
     final int id = UserHelper.getUsersId(activity);
 
@@ -63,7 +63,7 @@ public class FollowHelper {
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
-    if (following == null) return;
+    if (following == null) { return; }
     for (Iterator<User> iterator = following.listIterator(); iterator.hasNext(); ) {
       User user = iterator.next();
       if (unfollowUser.getId() == user.getId()) {
@@ -112,7 +112,7 @@ public class FollowHelper {
   }
 
   public static List<User> getFollowerNames() {
-    if (followers == null) return new ArrayList<>();
+    if (followers == null) { return new ArrayList<>(); }
     List<User> users = new ArrayList<>();
     for (User user : followers) {
       if (user.getName() != null && !user.getName().isEmpty()) {

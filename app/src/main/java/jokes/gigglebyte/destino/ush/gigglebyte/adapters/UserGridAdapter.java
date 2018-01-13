@@ -26,7 +26,8 @@ public class UserGridAdapter extends BaseAdapter {
   private Post infoPost;
   private FromScreen fromScreen;
 
-  public UserGridAdapter(Activity activity, List<User> results, boolean userList, Post infoPost, FromScreen fromScreen) {
+  public UserGridAdapter(Activity activity, List<User> results, boolean userList, Post infoPost,
+                         FromScreen fromScreen) {
     this.activity = activity;
     this.users = results;
     this.fromScreen = fromScreen;
@@ -65,8 +66,7 @@ public class UserGridAdapter extends BaseAdapter {
       PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);
       convertView.setTag(holder);
       holder.setPostData(activity, infoPost, fromScreen);
-    }
-    else {
+    } else {
       UserGridViewHolder holder = new UserGridViewHolder();
       convertView = inflater.inflate(R.layout.grid_user_item, parent, false);
       PopulateViewHolderHelper.populateUserGridViewHolder(convertView, holder);
@@ -75,8 +75,12 @@ public class UserGridAdapter extends BaseAdapter {
       convertView.setTag(holder);
       User user = users.get(position);
       holder.setUserData(activity, user, null);
-      String numberOfFollowingSuffix = user.getNumberOfFollowers() == 1 ? activity.getResources().getString(R.string.follower) : activity.getResources().getString(R.string.followers);
-      String numberOfPostsSuffix = user.getNumberOfPosts() == 1 ? activity.getResources().getString(R.string.post) : activity.getResources().getString(R.string.posts);
+      String numberOfFollowingSuffix = user.getNumberOfFollowers() == 1
+                                       ? activity.getResources().getString(R.string.follower)
+                                       : activity.getResources().getString(R.string.followers);
+      String numberOfPostsSuffix = user.getNumberOfPosts() == 1
+                                   ? activity.getResources().getString(R.string.post)
+                                   : activity.getResources().getString(R.string.posts);
       numberOfFollowing.setText(user.getNumberOfFollowers() + " " + numberOfFollowingSuffix);
       numberOfPosts.setText(user.getNumberOfPosts() + " " + numberOfPostsSuffix);
     }

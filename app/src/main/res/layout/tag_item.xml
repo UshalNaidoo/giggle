@@ -13,24 +13,24 @@
       android:orientation="horizontal"
       android:padding="10dp"
       android:gravity="center_vertical">
-  <TextView
-      android:id="@+id/tag"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="@dimen/info_text_size"
-      android:layout_weight="1"
-      android:textStyle="bold"
-      android:textColor="@color/text_tab_selected"/>
+    <TextView
+        android:id="@+id/tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/info_text_size"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:textColor="@color/text_tab_selected"/>
 
-  <TextView
-      android:id="@+id/numberOfPosts"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textSize="@dimen/info_text_size"
-      android:gravity="end"
-      android:textStyle="bold"
-      android:layout_weight="1"
-      android:textColor="@color/transparent_black"/>
+    <TextView
+        android:id="@+id/numberOfPosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/info_text_size"
+        android:gravity="end"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:textColor="@color/transparent_black"/>
   </LinearLayout>
 
   <View android:id="@+id/primerdivisor"

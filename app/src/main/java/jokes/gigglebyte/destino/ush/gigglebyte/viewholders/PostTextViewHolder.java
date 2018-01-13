@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.MainActivity;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.FromScreen;
@@ -14,7 +15,8 @@ public class PostTextViewHolder extends PostViewHolder {
 
   public TextView postText;
 
-  public void setTextPostData(final Activity activity, View convertView, final Post post, final FromScreen from) {
+  public void setTextPostData(final Activity activity, View convertView, final Post post,
+                              final FromScreen from) {
     setPostData(activity, convertView, post, from);
 
     postText.setText(post.getPostText());

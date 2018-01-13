@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.dialogs;
 
-import java.util.Set;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -11,9 +9,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Set;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
-import jokes.gigglebyte.destino.ush.gigglebyte.activities.CommentActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.PostHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
@@ -41,7 +40,10 @@ public class OptionsConfirmFlag extends DialogFragment {
     Button buttonNo = (Button) dialog.findViewById(R.id.buttonNo);
     TextView messageTextView = (TextView) dialog.findViewById(R.id.messageTextView);
 
-    messageTextView.setText(isFlagPost ? activity.getResources().getString(R.string.confirm_post_flag) : activity.getResources().getString(R.string.confirm_comment_flag));
+    messageTextView.setText(isFlagPost
+                            ? activity.getResources()
+                                .getString(R.string.confirm_post_flag)
+                            : activity.getResources().getString(R.string.confirm_comment_flag));
 
     buttonNo.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -56,11 +58,10 @@ public class OptionsConfirmFlag extends DialogFragment {
         Thread thread = new Thread(new Runnable() {
           @Override
           public void run() {
-            try  {
+            try {
               if (isFlagPost) {
                 ConnectToServer.flagPost(UserHelper.getUsersId(activity), post.getPostId());
-              }
-              else {
+              } else {
                 ConnectToServer.flagComment(UserHelper.getUsersId(activity), comment.getCommentId());
               }
             } catch (Exception e) {

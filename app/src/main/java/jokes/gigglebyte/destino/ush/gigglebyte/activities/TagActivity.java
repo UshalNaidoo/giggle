@@ -39,7 +39,7 @@ public class TagActivity extends Activity {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -50,6 +50,17 @@ public class TagActivity extends Activity {
     });
 
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        this.finish();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   private class GetTags extends AsyncTask<Integer, Integer, String> {
@@ -72,17 +83,6 @@ public class TagActivity extends Activity {
         posts = getPostStatus(activity, posts);
         listView.setAdapter(new PostListAdapter(activity, posts, FromScreen.TAG));
       }
-    }
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        this.finish();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
     }
   }
 }
