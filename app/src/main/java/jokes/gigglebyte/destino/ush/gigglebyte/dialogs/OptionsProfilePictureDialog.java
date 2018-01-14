@@ -30,7 +30,7 @@ public class OptionsProfilePictureDialog extends DialogFragment {
     dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    dialog.setContentView(R.layout.actiondialog_options_profile_picture);
+    dialog.setContentView(R.layout.actiondialog_add_image_post);
     dialog.show();
 
     Button buttonGallery = (Button) dialog.findViewById(R.id.buttonGallery);
