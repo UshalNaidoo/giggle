@@ -73,6 +73,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+      <TextView
+          android:id="@+id/followeesName"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:textColor="@color/text_colour_secondary"
+          android:layout_gravity="center"
+          android:gravity="center_horizontal"
+          android:textSize="@dimen/info_text_size"/>
+
       <RelativeLayout
           android:paddingLeft="50dp"
           android:paddingRight="50dp"
@@ -89,26 +98,6 @@
             android:adjustViewBounds="true"
             android:src="@drawable/nobody_m"/>
 
-        <TextView
-            android:id="@+id/followeesName"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_colour_secondary"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:textSize="@dimen/info_text_size"/>
-
-        <Button
-            android:id="@+id/followeesButton"
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:textColor="@color/text_colour_main"
-            android:layout_height="30dp"
-            android:background="@drawable/button_selector"
-            android:padding="2dp"
-            android:textSize="@dimen/button_text_size"
-            android:text="@string/follow"/>
-
         <ProgressBar
             android:id="@+id/followeesProgressBar"
             android:layout_width="40dp"
@@ -117,6 +106,16 @@
             android:gravity="center_horizontal"
             style="@android:style/Widget.ProgressBar.Large"/>
       </RelativeLayout>
+      <Button
+          android:id="@+id/followeesButton"
+          android:layout_width="wrap_content"
+          android:textColor="@color/text_colour_main"
+          android:layout_height="30dp"
+          android:background="@drawable/button_selector"
+          android:padding="2dp"
+          android:textSize="@dimen/button_text_size"
+          android:layout_gravity="center"
+          android:text="@string/follow"/>
     </LinearLayout>
   </LinearLayout>
 
