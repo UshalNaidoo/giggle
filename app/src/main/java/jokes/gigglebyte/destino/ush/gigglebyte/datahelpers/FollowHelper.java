@@ -2,7 +2,6 @@ package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
 import android.app.Activity;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class FollowHelper {
   }
 
   public static boolean isFollowingUser(int userId) {
-    if (following == null) { return false; }
+    if (following == null || following.isEmpty()) { return false; }
     for (User user : following) {
       if (userId == user.getId()) {
         return true;
@@ -63,7 +62,7 @@ public class FollowHelper {
   }
 
   public static void unfollowUser(Activity activity, final User unfollowUser) {
-    if (following == null) { return; }
+    if (following == null || following.isEmpty()) { return; }
     for (Iterator<User> iterator = following.listIterator(); iterator.hasNext(); ) {
       User user = iterator.next();
       if (unfollowUser.getId() == user.getId()) {
@@ -109,18 +108,6 @@ public class FollowHelper {
 
   public static List<User> getFollowers() {
     return followers;
-  }
-
-  public static List<User> getFollowerNames() {
-    if (followers == null) { return new ArrayList<>(); }
-    List<User> users = new ArrayList<>();
-    for (User user : followers) {
-      if (user.getName() != null && !user.getName().isEmpty()) {
-        user.setName("@" + user.getName());
-        users.add(user);
-      }
-    }
-    return users;
   }
 
   public static User getFollowerByName(String name) {
