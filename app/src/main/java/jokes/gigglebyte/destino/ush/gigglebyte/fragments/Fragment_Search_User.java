@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +67,33 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
       }
     });
 
+
+    final TextWatcher watcher = new TextWatcher() {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+      }
+
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        if (s.length() > 0) {
+          searchField.removeTextChangedListener(this);
+          new SearchForUsers(searchField.getText().toString(), true).execute();
+          searchField.addTextChangedListener(this);
+        }
+        else if (s.length() == 0) {
+          searchField.removeTextChangedListener(this);
+          new SearchForUsers("", true).execute();
+          searchField.addTextChangedListener(this);
+        }
+      }
+    };
+
+    searchField.addTextChangedListener(watcher);
+
     return rootView;
   }
 
@@ -105,7 +134,6 @@ public class Fragment_Search_User extends Fragment implements FragmentLifecycle 
 
     @Override
     protected void onPreExecute() {
-      searchField.setText("");
     }
   }
 
