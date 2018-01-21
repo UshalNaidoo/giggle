@@ -11,6 +11,13 @@
       android:layout_height="wrap_content"
       android:orientation="vertical"
       android:paddingBottom="10dp">
+
+  <LinearLayout
+      android:id="@+id/user_bar"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:padding="8dp">
     <TextView
         android:id="@+id/userName"
         android:layout_marginStart="20dip"
@@ -20,6 +27,23 @@
         android:textSize="@dimen/username_text_size"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/followButton"
+        android:layout_width="57dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:gravity="center"
+        android:textColor="@color/text_colour_main"
+        android:background="@drawable/button_selector"
+        android:textSize="@dimen/button_text_size"
+        android:text="@string/follow"/>
+  </LinearLayout>
 
     <ListView
         android:layout_width="fill_parent"

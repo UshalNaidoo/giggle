@@ -7,8 +7,10 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class PosterProfileActivity extends Activity {
 
   public static User poster;
   private static TextView userName;
+  private Button followButton;
   private int userId;
   private Activity activity;
   private ListView listView;
@@ -48,7 +51,8 @@ public class PosterProfileActivity extends Activity {
     activity = this;
     userName = (TextView) findViewById(R.id.userName);
     listView = (ListView) findViewById(R.id.listView);
-
+    followButton = (Button) findViewById(R.id.followButton);
+    followButton.setVisibility(View.INVISIBLE);
     userId = getIntent().getIntExtra("userId", 0);
 
     toastWithImage = new ToastWithImage(this);
@@ -168,6 +172,36 @@ public class PosterProfileActivity extends Activity {
 
       posts = getPostStatus(activity, posts);
       adapter = new PosterProfileListAdapter(activity, posts, poster, FromScreen.POSTER);
+
+
+      followButton.setText(FollowHelper.isFollowingUser(userId) ? "Following" : "Follow");
+      followButton.setBackgroundColor(FollowHelper.isFollowingUser(userId)
+                                      ? activity.getResources().getColor(R.color.button_ripple)
+                                      : activity.getResources().getColor(R.color.button_color));
+      followButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (FollowHelper.isFollowingUser(userId)) {
+            FollowHelper.unfollowUser(activity, poster);
+            new ToastWithImage(activity).show(
+                activity.getResources().getString(R.string.unfollowing) + " "
+                + poster.getName(), null);
+            followButton.setText("Follow");
+            followButton.setBackgroundColor(activity.getResources()
+                                                .getColor(R.color.button_color));
+
+          } else {
+            FollowHelper.followUser(activity, poster);
+            new ToastWithImage(activity).show(
+                activity.getResources().getString(R.string.following) + " "
+                + poster.getName(), null);
+            followButton.setText("Following");
+            followButton.setBackgroundColor(activity.getResources()
+                                                .getColor(R.color.button_ripple));
+          }
+        }
+      });
+      followButton.setVisibility(View.VISIBLE);
       listView.setAdapter(adapter);
     }
   }
