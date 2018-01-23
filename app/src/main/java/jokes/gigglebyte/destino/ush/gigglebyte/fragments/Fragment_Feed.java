@@ -62,7 +62,7 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
       }
     });
 
-    ListView listView = (ListView) rootView.findViewById(R.id.listView);
+    final ListView listView = (ListView) rootView.findViewById(R.id.listView);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -74,6 +74,10 @@ public class Fragment_Feed extends Fragment implements FragmentLifecycle {
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                            int totalItemCount) {
+        int topRowVerticalPosition =
+            (listView == null || listView.getChildCount() == 0) ?
+            0 : listView.getChildAt(0).getTop();
+        swipeView.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
       }
     });
 

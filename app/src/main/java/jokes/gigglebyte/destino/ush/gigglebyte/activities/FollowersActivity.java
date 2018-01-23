@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
@@ -104,6 +105,21 @@ public class FollowersActivity extends Activity {
           }
         }, 200);
         gridView.setAdapter(gridAdapter[0]);
+      }
+    });
+
+    gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(AbsListView view, int scrollState) {
+      }
+
+      @Override
+      public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+          int totalItemCount) {
+        int topRowVerticalPosition =
+            (gridView == null || gridView.getChildCount() == 0) ?
+            0 : gridView.getChildAt(0).getTop();
+        swipeView.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
       }
     });
 

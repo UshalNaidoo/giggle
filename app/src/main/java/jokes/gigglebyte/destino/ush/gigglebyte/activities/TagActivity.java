@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -50,6 +51,22 @@ public class TagActivity extends Activity {
     });
 
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+
+    listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+      @Override
+      public void onScrollStateChanged(AbsListView view, int scrollState) {
+      }
+
+      @Override
+      public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+          int totalItemCount) {
+        int topRowVerticalPosition =
+            (listView == null || listView.getChildCount() == 0) ?
+            0 : listView.getChildAt(0).getTop();
+        swipeView.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+      }
+    });
   }
 
   @Override

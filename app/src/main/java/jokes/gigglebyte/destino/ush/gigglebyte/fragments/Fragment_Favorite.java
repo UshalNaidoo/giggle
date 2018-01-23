@@ -40,7 +40,7 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
                            ViewGroup container, Bundle savedInstanceState) {
     final Activity activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_post_list, container, false);
-    ListView listView = (ListView) rootView.findViewById(R.id.listView);
+    final ListView listView = (ListView) rootView.findViewById(R.id.listView);
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override
@@ -83,6 +83,10 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                            int totalItemCount) {
+        int topRowVerticalPosition =
+            (listView == null || listView.getChildCount() == 0) ?
+            0 : listView.getChildAt(0).getTop();
+        swipeView.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
       }
     });
     listView.setAdapter(adapter);
