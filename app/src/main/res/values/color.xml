@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <!-- General App Colours -->
-  <color name="main_background_colour">#1c1b20</color>
-  <color name="secondary_black">#26272d</color>
+  <color name="background_colour_main">#000</color>
+  <color name="secondary_black">#fff</color>
   <color name="app_primary">#455A64</color>
-  <color name="app_primary_dark">#551A8B</color>
+  <color name="app_primary_dark">#2D4B89</color>
   <color name="app_grey">#9e9c9f</color>
-  <color name="tab_strip">#1f2025</color>
+  <color name="tab_strip">#5A8BE1</color>
+  <color name="comment_background">#EBEEF3</color>
+  <color name="tab_strip_selected">#2D4B89</color>
 
   <!-- Tab Layout Colours -->
-  <color name="text_color">#ffffff</color>
-  <color name="text_color_dark">#000</color>
-  <color name="tab_text_color">#ffffff</color>
-  <color name="action_text_color">#1c1b20</color>
+  <color name="text_colour_main">#fff</color>
+  <color name="text_colour_secondary">#000</color>
   <color name="text_hint_color">#C0C0C0</color>
-  <color name="comment_text_color">#C0C0C0</color>
-  <color name="tab_text_selected">#FFFFFF</color>
-  <color name="tab_text_unselected">#808080</color>
+  <color name="text_tab_selected">#2D4B89</color>
+  <color name="text_tab_unselected">#fff</color>
+  <color name="text_colour_info">#807A7D</color>
 
   <!-- Post Colours -->
-  <color name="button_color">#551A8B</color>
+  <color name="button_color">#2D4B89</color>
   <color name="button_selected_color">#58857e</color>
   <color name="button_ripple">#2d80c4</color>
 
-  <color name="progress_start_color">#551A8B</color>
-  <color name="progress_end_color">#455A64</color>
+  <color name="progress_start_color">#2d80c4</color>
+  <color name="progress_end_color">#2D4B89</color>
 
   <color name="item_background_white_color">#fff</color>
   <color name="item_secondary_color">#26272d</color>
   <color name="item_third_color">#565f94</color>
 
   <color name="divisor_color">#551A8B</color>
-  <color name="divisor_grey">#9e9c9f</color>
+  <color name="divisor_grey">#d3d3d3</color>
 
   <color name="transparent_black">#CC000000</color>
 
   <color name="back_button_color">#ffffff</color>
 
+  <color name="list_background_colour">#c0c0c0</color>
+
+  <color name="modal_background_color">#fff</color>
 </resources>

@@ -12,7 +12,6 @@ import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UIHelper;
 
 public class ToastWithImage {
-
   private Activity activity;
   private View layout;
 
@@ -26,7 +25,7 @@ public class ToastWithImage {
     if (imageToDisplay != null) {
       image.setImageResource(imageToDisplay);
     } else {
-      image.setVisibility(View.INVISIBLE);
+      image.setVisibility(View.GONE);
     }
     TextView text = (TextView) layout.findViewById(R.id.text);
     text.setText(textToDisplay);

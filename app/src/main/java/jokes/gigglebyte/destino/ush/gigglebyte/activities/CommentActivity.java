@@ -34,10 +34,19 @@ public class CommentActivity extends Activity implements onSubmitListener {
   private static CommentListAdapter commentListAdapter;
   private static Activity activity;
   private static int postId;
-  private int posterId;
-  private FloatingActionButton floatingActionButton;
   private static ListView listView;
   private static List<Comment> comments;
+  private int posterId;
+  private FloatingActionButton floatingActionButton;
+
+  public static void reload() {
+
+    new GetPostComments(activity, postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  public static List<Comment> getComments() {
+    return comments;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +67,7 @@ public class CommentActivity extends Activity implements onSubmitListener {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -67,8 +76,6 @@ public class CommentActivity extends Activity implements onSubmitListener {
         }, 200);
       }
     });
-
-//    UIHelper.setActionBar(this, getResources().getString(R.string.comments), true);
 
     floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
     floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +108,47 @@ public class CommentActivity extends Activity implements onSubmitListener {
     });
   }
 
-  public static void reload() {
-
-    new GetPostComments(activity, postId).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  @Override
+  protected void onResume() {
+    animateFloatingActionButton();
+    super.onResume();
   }
+
+  private void animateFloatingActionButton() {
+    floatingActionButton.hide(false);
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        floatingActionButton.show(true);
+      }
+    }, 300);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        this.finish();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override
+  public void setOnSubmitListener(Object arg) {
+    Comment comment = (Comment) arg;
+    getComments().add(comment);
+    MainActivity.selectedPost.setCommentCount(MainActivity.selectedPost.getCommentCount() + 1);
+    commentListAdapter.updateAdapter(getComments());
+    CommentHelper.addComment(comment);
+    commentListAdapter.notifyDataSetChanged();
+  }
+
+  @Override
+  public void setOnSubmitListener(Activity activity, Object arg) {
+  }
+
   private static class GetPostComments extends AsyncTask<Integer, Integer, List<Comment>> {
 
     Activity activity;
@@ -147,50 +191,5 @@ public class CommentActivity extends Activity implements onSubmitListener {
     @Override
     protected void onPreExecute() {
     }
-  }
-
-  public static List<Comment> getComments() {
-    return comments;
-  }
-
-  @Override
-  protected void onResume() {
-    animateFloatingActionButton();
-    super.onResume();
-  }
-
-  private void animateFloatingActionButton() {
-    floatingActionButton.hide(false);
-    new Handler().postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        floatingActionButton.show(true);
-      }
-    }, 300);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        this.finish();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
-    }
-  }
-
-  @Override
-  public void setOnSubmitListener(Object arg) {
-    Comment comment = (Comment) arg;
-    getComments().add(comment);
-    MainActivity.selectedPost.setCommentCount(MainActivity.selectedPost.getCommentCount() + 1);
-    commentListAdapter.updateAdapter(getComments());
-    CommentHelper.addComment(comment);
-    commentListAdapter.notifyDataSetChanged();
-  }
-
-  @Override
-  public void setOnSubmitListener(Activity activity, Object arg) {
   }
 }

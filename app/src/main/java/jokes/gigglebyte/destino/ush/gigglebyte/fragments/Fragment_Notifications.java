@@ -20,7 +20,14 @@ import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.FragmentLifecycle;
 import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 
 public class Fragment_Notifications extends Fragment implements FragmentLifecycle {
+
   private static PostListAdapter adapter;
+
+  public static void refreshList() {
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater,
@@ -32,14 +39,15 @@ public class Fragment_Notifications extends Fragment implements FragmentLifecycl
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
             Thread thread = new Thread() {
               @Override
               public void run() {
-                PostHelper.initialiseNotifications(activity, ConnectToServer.getNotifications(UserHelper.getUsersId(activity)));
+                PostHelper.initialiseNotifications(activity, ConnectToServer.getNotifications(UserHelper
+                                                                                                  .getUsersId(activity)));
               }
             };
             thread.start();
@@ -67,12 +75,6 @@ public class Fragment_Notifications extends Fragment implements FragmentLifecycl
     adapter = new PostListAdapter(activity, PostHelper.getNotifications(), FromScreen.NOTIFICATIONS);
     listView.setAdapter(adapter);
     return rootView;
-  }
-
-  public static void refreshList() {
-    if (adapter != null) {
-      adapter.notifyDataSetChanged();
-    }
   }
 
   @Override

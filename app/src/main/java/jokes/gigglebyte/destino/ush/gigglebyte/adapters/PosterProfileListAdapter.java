@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class PosterProfileListAdapter extends BaseAdapter {
   private Activity activity;
   private FromScreen fromScreen;
 
-  public PosterProfileListAdapter(Activity activity, List<Post> results, User user, FromScreen fromScreen) {
+  public PosterProfileListAdapter(Activity activity, List<Post> results, User user,
+                                  FromScreen fromScreen) {
     posts = results;
     poster = user;
     this.fromScreen = fromScreen;
@@ -60,25 +62,30 @@ public class PosterProfileListAdapter extends BaseAdapter {
       PopulateViewHolderHelper.populateUserListViewHolder(convertView, holder);
       convertView.setTag(holder);
       holder.setUserData(activity, poster);
-    }
-    else {
+    } else {
       final int pos = position - 1;
       final Post post = posts.get(pos);
       if (post.getType() == PostType.TEXT_POST) {
         final PostTextViewHolder holder = new PostTextViewHolder();
-        convertView = mInflater.inflate(R.layout.profile_text_item, parent, false);
+        convertView = mInflater.inflate(R.layout.post_text_item, parent, false);
         PopulateViewHolderHelper.populatePostTextViewHolder(convertView, holder);
+        LinearLayout user_bar = (LinearLayout) convertView.findViewById(R.id.user_bar);
+        View user_bar_divisor = convertView.findViewById(R.id.user_bar_divisor);
+        user_bar.setVisibility(View.GONE);
+        user_bar_divisor.setVisibility(View.GONE);
         convertView.setTag(holder);
         holder.setTextPostData(activity, convertView, post, fromScreen);
-      }
-      else if (post.getType() == PostType.IMAGE_POST) {
+      } else if (post.getType() == PostType.IMAGE_POST) {
         final PostImageViewHolder holder = new PostImageViewHolder();
-        convertView = mInflater.inflate(R.layout.profile_image_item, parent, false);
+        convertView = mInflater.inflate(R.layout.post_image_item, parent, false);
         PopulateViewHolderHelper.populatePostImageViewHolder(convertView, holder);
+        LinearLayout user_bar = (LinearLayout) convertView.findViewById(R.id.user_bar);
+        View user_bar_divisor = convertView.findViewById(R.id.user_bar_divisor);
+        user_bar.setVisibility(View.GONE);
+        user_bar_divisor.setVisibility(View.GONE);
         convertView.setTag(holder);
         holder.setImagePostData(activity, this, convertView, post, fromScreen);
-      }
-      else if (post.getType() == PostType.INFO_POST) {
+      } else if (post.getType() == PostType.INFO_POST) {
         final PostInfoViewHolder holder = new PostInfoViewHolder();
         convertView = mInflater.inflate(R.layout.post_info_item, parent, false);
         PopulateViewHolderHelper.populatePostInfoViewHolder(convertView, holder);

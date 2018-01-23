@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.dialogs;
 
-import java.util.Set;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -14,7 +12,6 @@ import android.widget.Button;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.activities.PosterProfileActivity;
-import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.CommentHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SharedPrefHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Comment;
@@ -63,8 +60,7 @@ public class OptionsCommentDialog extends DialogFragment {
       });
       buttonViewProfile.setVisibility(View.GONE);
       buttonFlag.setVisibility(View.GONE);
-    }
-    else {
+    } else {
       buttonViewProfile.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -75,7 +71,8 @@ public class OptionsCommentDialog extends DialogFragment {
         }
       });
 
-      if (!SharedPrefHelper.getCommentFlags(activity).contains(String.valueOf(comment.getCommentId()))) {
+      if (!SharedPrefHelper.getCommentFlags(activity)
+          .contains(String.valueOf(comment.getCommentId()))) {
         buttonFlag.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -86,8 +83,7 @@ public class OptionsCommentDialog extends DialogFragment {
             dismiss();
           }
         });
-      }
-      else {
+      } else {
         buttonFlag.setVisibility(View.GONE);
       }
 

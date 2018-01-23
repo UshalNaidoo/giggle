@@ -10,7 +10,6 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/main_background_colour"
       android:gravity="center"
       android:orientation="vertical"
       android:paddingBottom="10dp">
@@ -20,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:inputType="textMultiLine"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_colour_secondary"
         android:textColorHint="@color/text_hint_color"
         android:textSize="@dimen/info_text_size"
         android:maxLength="65"
@@ -34,7 +33,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_background_colour"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="10dp">
@@ -45,7 +43,7 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:text="65/65"
-          android:textColor="@color/text_color"
+          android:textColor="@color/text_colour_secondary"
           android:textSize="@dimen/info_text_size"
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
@@ -55,7 +53,7 @@
           android:layout_width="90dp"
           android:layout_marginEnd="8dp"
           android:layout_gravity="end"
-          android:textColor="@color/text_color"
+          android:textColor="@color/text_colour_main"
           android:textSize="@dimen/info_text_size"
           android:layout_height="30dp"
           android:background="@drawable/button_selector"

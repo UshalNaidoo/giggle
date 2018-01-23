@@ -1,8 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.PostListAdapter;
@@ -29,9 +29,15 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
 
   private static PostListAdapter adapter;
 
+  public static void refreshList() {
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
+  }
+
   @Override
   public View onCreateView(LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
+                           ViewGroup container, Bundle savedInstanceState) {
     final Activity activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_post_list, container, false);
     ListView listView = (ListView) rootView.findViewById(R.id.listView);
@@ -40,14 +46,15 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
             Thread thread = new Thread() {
               @Override
               public void run() {
-                PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper.getUserFavorites(activity)));
+                PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper
+                                                                                                  .getUserFavorites(activity)));
               }
             };
             thread.start();
@@ -58,9 +65,13 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
     });
 
     List<Post> infoPost = new ArrayList<>();
-    infoPost.add(new Post(activity.getResources().getString(R.string.info_favourite), BitmapFactory.decodeResource(activity.getResources(), R.drawable.heart_like), PostType.INFO_POST));
+    infoPost.add(new Post(activity.getResources()
+                              .getString(R.string.info_favourite), BitmapFactory.decodeResource(activity
+                                                                                                    .getResources(), R.drawable.heart_like), PostType.INFO_POST));
 
-    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts().size() > 0 ? PostHelper.getFavoritePosts() : infoPost, FromScreen.FAVOURITE);
+    adapter = new PostListAdapter(activity, PostHelper.getFavoritePosts().size() > 0
+                                            ? PostHelper.getFavoritePosts()
+                                            : infoPost, FromScreen.FAVOURITE);
     listView.setOnScrollListener(new AbsListView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -71,17 +82,11 @@ public class Fragment_Favorite extends Fragment implements FragmentLifecycle {
 
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-          int totalItemCount) {
+                           int totalItemCount) {
       }
     });
     listView.setAdapter(adapter);
     return rootView;
-  }
-
-  public static void refreshList() {
-    if (adapter != null) {
-      adapter.notifyDataSetChanged();
-    }
   }
 
   @Override

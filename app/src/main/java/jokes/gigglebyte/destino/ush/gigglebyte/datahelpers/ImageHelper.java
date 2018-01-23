@@ -17,6 +17,21 @@ import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
 public class ImageHelper implements onSubmitListener {
 
+  public static Bitmap getProfilePicture(int userId) {
+    Bitmap bitmap = null;
+    String file_path =
+        Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures/"
+        + "profile_picture_" + userId + ".png";
+    File f = new File(file_path);
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+    try {
+      bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+    } catch (FileNotFoundException e) {
+    }
+    return bitmap;
+  }
+
   private void saveProfilePicture(Bitmap bitmap, int userId) {
     try {
       String file_path =
@@ -33,21 +48,6 @@ public class ImageHelper implements onSubmitListener {
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  public static Bitmap getProfilePicture(int userId) {
-    Bitmap bitmap = null;
-    String file_path =
-        Environment.getExternalStorageDirectory().getAbsolutePath() + "/Profile_Pictures/"
-        + "profile_picture_" + userId + ".png";
-    File f = new File(file_path);
-    BitmapFactory.Options options = new BitmapFactory.Options();
-    options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-    try {
-      bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
-    } catch (FileNotFoundException e) {
-    }
-    return bitmap;
   }
 
   @Override

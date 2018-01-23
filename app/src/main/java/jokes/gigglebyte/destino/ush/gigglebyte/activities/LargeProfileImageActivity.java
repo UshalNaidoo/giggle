@@ -31,18 +31,18 @@ public class LargeProfileImageActivity extends Activity {
       progressBar.setVisibility(View.INVISIBLE);
     } else {
 //      if (getIntent().getIntExtra("userId", 0) == -1) {
-        //TODO THINK ABOUT HOW TO DO LARGE IMAGES NOW
+      //TODO THINK ABOUT HOW TO DO LARGE IMAGES NOW
 //        if (ImagePostActivity.postBitmap != null) {
 //          progressBar.setVisibility(View.VISIBLE);
 //          imageView.setImageBitmap(ImagePostActivity.postBitmap);
 //          progressBar.setVisibility(View.INVISIBLE);
 //        }
 //      } else {
-        if (PosterProfileActivity.poster != null) {
-          progressBar.setVisibility(View.VISIBLE);
-          imageView.setImageBitmap(PosterProfileActivity.poster.getProfile_pic());
-          progressBar.setVisibility(View.INVISIBLE);
-        }
+      if (PosterProfileActivity.poster != null) {
+        progressBar.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(PosterProfileActivity.poster.getProfile_pic());
+        progressBar.setVisibility(View.INVISIBLE);
+      }
 //      }
     }
 

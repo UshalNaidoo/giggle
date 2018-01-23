@@ -4,7 +4,7 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/main_background_colour"
+    android:background="@color/item_background_white_color"
     android:orientation="vertical"
     android:gravity="center_vertical">
 
@@ -34,7 +34,7 @@
             android:id="@+id/circle_crop"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/circle_crop"/>
+            android:src="@drawable/circle_crop_white"/>
       </FrameLayout>
       <ProgressBar
           android:id="@+id/progressBar"
@@ -48,11 +48,16 @@
         android:layout_marginStart="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/app_grey"
-        android:textSize="@dimen/info_text_size"
+        android:textColor="@color/text_colour_secondary"
+        android:textSize="@dimen/username_text_size"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
   </LinearLayout>
 
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/divisor_grey"/>
 </LinearLayout>

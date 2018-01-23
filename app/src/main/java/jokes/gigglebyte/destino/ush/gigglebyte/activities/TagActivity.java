@@ -33,14 +33,13 @@ public class TagActivity extends Activity {
     listView = (ListView) findViewById(R.id.listView);
 
     tag = getIntent().getStringExtra("tag");
-//    UIHelper.setActionBar(activity);
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
     swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -51,6 +50,17 @@ public class TagActivity extends Activity {
     });
 
     new GetTags().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        this.finish();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   private class GetTags extends AsyncTask<Integer, Integer, String> {
@@ -68,23 +78,11 @@ public class TagActivity extends Activity {
     @Override
     protected void onPostExecute(String result) {
       if (result != null) {
-//        UIHelper.setActionBar(activity, tag, true);
         result = "{\"posts\":" + result + "}";
         List<Post> posts = JsonParser.GetPosts(result);
         posts = getPostStatus(activity, posts);
         listView.setAdapter(new PostListAdapter(activity, posts, FromScreen.TAG));
       }
-    }
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        this.finish();
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
     }
   }
 }

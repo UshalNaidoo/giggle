@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,12 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
 
   private static PostListAdapter adapter;
 
+  public static void refreshList() {
+    if (adapter != null) {
+      adapter.notifyDataSetChanged();
+    }
+  }
+
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +38,7 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -67,12 +72,6 @@ public class Fragment_New extends Fragment implements FragmentLifecycle {
     adapter = new PostListAdapter(activity, PostHelper.getNewPosts(), FromScreen.NEW);
     listView.setAdapter(adapter);
     return rootView;
-  }
-
-  public static void refreshList() {
-    if (adapter != null) {
-      adapter.notifyDataSetChanged();
-    }
   }
 
   @Override

@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -33,6 +32,24 @@ public class EditUserProfilePictureDialog extends DialogFragment {
   private Uri uri;
   private boolean isCamera;
   private Bitmap bitmap;
+
+  private static Bitmap rotateImage(Bitmap source, int angle) {
+    Matrix matrix = new Matrix();
+    matrix.postRotate(angle);
+    return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+  }
+
+  private static Bitmap cropToSquare(Bitmap bitmap) {
+    int width = bitmap.getWidth();
+    int height = bitmap.getHeight();
+    int newWidth = (height > width) ? width : height;
+    int newHeight = (height > width) ? height - (height - width) : height;
+    int cropW = (width - height) / 2;
+    cropW = (cropW < 0) ? 0 : cropW;
+    int cropH = (height - width) / 2;
+    cropH = (cropH < 0) ? 0 : cropH;
+    return Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
+  }
 
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -109,24 +126,6 @@ public class EditUserProfilePictureDialog extends DialogFragment {
 
   public void setUri(Uri uri) {
     this.uri = uri;
-  }
-
-  private static Bitmap rotateImage(Bitmap source, int angle) {
-    Matrix matrix = new Matrix();
-    matrix.postRotate(angle);
-    return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
-  }
-
-  private static Bitmap cropToSquare(Bitmap bitmap) {
-    int width = bitmap.getWidth();
-    int height = bitmap.getHeight();
-    int newWidth = (height > width) ? width : height;
-    int newHeight = (height > width) ? height - (height - width) : height;
-    int cropW = (width - height) / 2;
-    cropW = (cropW < 0) ? 0 : cropW;
-    int cropH = (height - width) / 2;
-    cropH = (cropH < 0) ? 0 : cropH;
-    return Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
   }
 
   public boolean isCamera() {

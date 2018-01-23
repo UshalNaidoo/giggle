@@ -5,9 +5,11 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/item_background_white_color"
     android:gravity="center_vertical">
 
   <LinearLayout
+      android:id="@+id/user_bar"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -33,7 +35,7 @@
             android:id="@+id/circle_crop"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/circle_crop"/>
+            android:src="@drawable/circle_crop_white"/>
       </FrameLayout>
       <ProgressBar
           android:id="@+id/progressBar"
@@ -47,33 +49,46 @@
         android:layout_marginStart="8dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_hint_color"
-        android:textSize="@dimen/info_text_size"
+        android:textColor="@color/text_colour_secondary"
+        android:textSize="@dimen/username_text_size"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
-    <ImageView
+    <Button
         android:id="@+id/followButton"
-        android:layout_width="30dp"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/text_colour_main"
         android:layout_height="30dp"
-        android:src="@drawable/follow"/>
+        android:background="@drawable/button_selector"
+        android:padding="2dp"
+        android:textSize="@dimen/button_text_size"
+        android:text="@string/follow"/>
   </LinearLayout>
 
+  <View
+      android:id="@+id/user_bar_divisor"
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/divisor_grey"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"/>
   <LinearLayout
       android:id="@+id/layoutView"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:padding="5dp"
-      android:background="@color/main_background_colour">
+      android:padding="5dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_marginStart="8dp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:textColor="@color/text_color"
+        android:textColor="@color/text_colour_secondary"
         android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight="1"/>
 
@@ -90,30 +105,28 @@
         android:layout_height="40dp"
         style="@android:style/Widget.ProgressBar.Large"/>
   </LinearLayout>
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/divisor_grey"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"/>
   <TextView
       android:id="@+id/tags"
       android:layout_width="wrap_content"
       android:layout_height="0dp"
       android:text=""
-      android:textColor="@color/app_grey"
-      android:textSize="@dimen/info_text_size"
+      android:textColor="@color/text_hint_color"
+      android:textSize="@dimen/tag_text_size"
       android:layout_weight="1"
+      android:textStyle="bold"
+      android:layout_marginStart="10dp"
       android:textAppearance="?android:attr/textAppearanceLarge"/>
-  <TextView
-      android:id="@+id/postInfo"
-      android:layout_width="wrap_content"
-      android:layout_height="0dp"
-      android:textSize="@dimen/info_text_size"
-      android:layout_weight="1"
-      android:textColor="@color/text_hint_color"/>
-
   <LinearLayout
       android:layout_width="fill_parent"
-      android:layout_height="40dp"
+      android:layout_height="wrap_content"
       android:layout_marginTop="10dp"
-      android:orientation="horizontal"
-      android:paddingRight="0dp"
-      android:paddingLeft="0dp">
+      android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -123,47 +136,53 @@
 
       <ImageView
           android:id="@+id/likeImage"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
-          android:src="@drawable/star_unlike"
+          android:layout_width="15dp"
+          android:layout_height="15dp"
+          android:src="@drawable/up_arrow_grey"
           android:layout_weight="1"/>
-
-      <ImageView
-          android:id="@+id/favoriteImage"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
-          android:src="@drawable/heart_unlike"
-          android:layout_weight="1"/>
-
+      <TextView
+          android:id="@+id/postNumberOfLikes"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/post_info_size"
+          android:layout_weight="1"
+          android:layout_marginBottom="8dp"
+          android:textColor="@color/text_colour_info"/>
       <ImageView
           android:id="@+id/commentImage"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
+          android:layout_width="15dp"
+          android:layout_height="15dp"
           android:src="@drawable/comment"
           android:layout_weight="1"/>
+      <TextView
+          android:id="@+id/postNumberOfComments"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="@dimen/post_info_size"
+          android:layout_weight="1"
+          android:layout_marginBottom="8dp"
+          android:textColor="@color/text_colour_info"/>
 
       <ImageView
           android:id="@+id/shareImage"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
+          android:layout_width="15dp"
+          android:layout_height="15dp"
           android:src="@drawable/share"
           android:layout_weight="1"/>
 
       <ImageView
           android:id="@+id/menuImage"
           android:layout_gravity="end"
-          android:layout_width="20dp"
-          android:layout_height="20dp"
+          android:layout_width="15dp"
+          android:layout_height="15dp"
           android:src="@drawable/dot_menu"
           android:layout_weight="1"/>
     </LinearLayout>
 
   </LinearLayout>
 
-  <View android:id="@+id/primerdivisor"
-        android:layout_height="1dp"
-        android:layout_width="fill_parent"
-        android:background="@color/divisor_color"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"/>
+  <View
+      android:layout_height="1dp"
+      android:layout_width="fill_parent"
+      android:background="@color/divisor_grey"/>
 </LinearLayout>

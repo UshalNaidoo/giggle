@@ -60,7 +60,7 @@ public class PostListAdapter extends BaseAdapter {
         PopulateViewHolderHelper.populatePostTextViewHolder(convertView, postTextViewHolder);
         convertView.setTag(postTextViewHolder);
         postTextViewHolder.setUserData(activity, post.getUser(), OpenScreen.PROFILE);
-        postTextViewHolder.setTextPostData(activity,convertView,post, fromScreen);
+        postTextViewHolder.setTextPostData(activity, convertView, post, fromScreen);
         break;
       case IMAGE_POST:
         final PostImageViewHolder postImageViewHolder = new PostImageViewHolder();

@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +33,10 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   private EditText searchField;
   private TagListAdapter adapter;
   private ListView listView;
+
   @Override
   public View onCreateView(LayoutInflater inflater,
-      ViewGroup container, Bundle savedInstanceState) {
+                           ViewGroup container, Bundle savedInstanceState) {
     activity = this.getActivity();
     View rootView = inflater.inflate(R.layout.fragment_search_tag, container, false);
 
@@ -66,19 +67,52 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
 
       @Override
       public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-          int totalItemCount) {
+                           int totalItemCount) {
       }
     });
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parent, View v,
-          int position, long id) {
-        Tag tag = (Tag)parent.getItemAtPosition(position);
+                              int position, long id) {
+        Tag tag = (Tag) parent.getItemAtPosition(position);
         Intent intent = new Intent(activity, TagActivity.class);
         intent.putExtra("tag", tag.getTagText());
         startActivity(intent);
       }
     });
+
+
+    final TextWatcher watcher = new TextWatcher() {
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+      }
+
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int aft) {
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        String searchFor = searchField.getText().toString().trim();
+        if (searchFor.startsWith("#")) {
+          searchFor = searchFor.substring(1);
+        }
+        if (s.length() > 0) {
+          new SearchForTags(searchFor, true).execute();
+          searchField.removeTextChangedListener(this);
+          new SearchForTags(searchFor, true).execute();
+          searchField.addTextChangedListener(this);
+        }
+        else if (s.length() == 0) {
+          searchField.removeTextChangedListener(this);
+          new SearchForTags("", true).execute();
+          searchField.addTextChangedListener(this);
+        }
+      }
+    };
+
+    searchField.addTextChangedListener(watcher);
+
     return rootView;
   }
 
@@ -91,6 +125,7 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
   }
 
   private class SearchForTags extends AsyncTask<Integer, Integer, List<Tag>> {
+
     String searchFor;
     boolean buttonClicked;
 
@@ -103,9 +138,9 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
     protected List<Tag> doInBackground(Integer... params) {
       if (!this.buttonClicked && !MainActivity.loadedTags.isEmpty()) {
         return MainActivity.loadedTags;
-      }
-      else {
-        return JsonParser.GetTagsFromSearch("{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
+      } else {
+        return JsonParser.GetTagsFromSearch(
+            "{\"tags\":" + ConnectToServer.searchTag(searchFor) + "}");
       }
     }
 
@@ -118,7 +153,6 @@ public class Fragment_Search_Tag extends Fragment implements FragmentLifecycle {
 
     @Override
     protected void onPreExecute() {
-      searchField.setText("");
     }
   }
 

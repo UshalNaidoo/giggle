@@ -10,29 +10,27 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@color/main_background_colour"
       android:gravity="center"
       android:orientation="vertical"
       android:paddingBottom="10dp">
 
-  <MultiAutoCompleteTextView
-      android:id="@+id/editText1"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textSize="@dimen/info_text_size"
-      android:textColor="@color/text_color"
-      android:textColorHint="@color/text_hint_color"
-      android:maxLength="160"
-      android:maxLines="4"
-      android:hint="@string/add_comment"
-      android:ems="10" >
-    <requestFocus/>
-  </MultiAutoCompleteTextView>
+    <MultiAutoCompleteTextView
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/info_text_size"
+        android:textColor="@color/text_colour_secondary"
+        android:textColorHint="@color/text_hint_color"
+        android:maxLength="160"
+        android:maxLines="4"
+        android:hint="@string/add_comment"
+        android:ems="10">
+      <requestFocus/>
+    </MultiAutoCompleteTextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_background_colour"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="10dp">
@@ -48,16 +46,16 @@
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:layout_weight="1"/>
 
-  <Button
-      android:id="@+id/button1"
-      android:layout_width="80dp"
-      android:layout_marginEnd="8dp"
-      android:layout_gravity="end"
-      android:textColor="@color/text_color"
-      android:layout_height="30dp"
-      android:textSize="@dimen/info_text_size"
-      android:background="@drawable/button_selector"
-      android:text="@string/post"/>
+      <Button
+          android:id="@+id/button1"
+          android:layout_width="80dp"
+          android:layout_marginEnd="8dp"
+          android:layout_gravity="end"
+          android:textColor="@color/text_colour_main"
+          android:layout_height="30dp"
+          android:textSize="@dimen/info_text_size"
+          android:background="@drawable/button_selector"
+          android:text="@string/post"/>
     </LinearLayout>
   </LinearLayout>
 </LinearLayout>  

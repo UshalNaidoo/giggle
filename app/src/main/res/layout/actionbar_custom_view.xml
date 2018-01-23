@@ -5,16 +5,16 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:background="@color/main_background_colour">
+    android:background="@drawable/background">
 
   <TextView
       android:id="@+id/title"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:text="@string/wait"
-      android:textSize="@dimen/title_text_size"
+      android:textSize="@dimen/username_text_size"
       android:gravity="center"
       android:layout_weight="1"
-      android:textColor="@color/action_text_color"/>
+      android:textColor="@color/text_colour_secondary"/>
 
 </LinearLayout>

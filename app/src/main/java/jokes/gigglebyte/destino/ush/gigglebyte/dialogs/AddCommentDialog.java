@@ -49,14 +49,14 @@ public class AddCommentDialog extends DialogFragment {
     countTextView = (TextView) dialog.findViewById(R.id.countTextView);
 //    commentText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
-    commentText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer(){
+    commentText.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
       public int findTokenStart(CharSequence text, int cursor) {
         int i = cursor;
-        if (i > 0 && text.charAt(i - 1) == '@') return i;
+        if (i > 0 && text.charAt(i - 1) == '@') { return i; }
         while (i > 0 && text.charAt(i - 1) != ' ') {
           i--;
         }
-        while (i < cursor && text.charAt(i) == ' ' || i >0 && text.charAt(i - 1) == '\n') {
+        while (i < cursor && text.charAt(i) == ' ' || i > 0 && text.charAt(i - 1) == '\n') {
           i++;
         }
         return i;
@@ -90,8 +90,7 @@ public class AddCommentDialog extends DialogFragment {
             SpannableString sp = new SpannableString(text + " ");
             TextUtils.copySpansFrom((Spanned) text, 0, text.length(), Object.class, sp, 0);
             return sp;
-          }
-          else {
+          } else {
             return text + " ";
           }
         }
@@ -99,7 +98,8 @@ public class AddCommentDialog extends DialogFragment {
     });
 
     commentText.setThreshold(1);
-    MentionUserAdapter mentionUserAdapter = new MentionUserAdapter(getActivity(), commentText.getId(), FollowHelper.getFollowers());
+    MentionUserAdapter mentionUserAdapter = new MentionUserAdapter(getActivity(), commentText.getId(), FollowHelper
+        .getFollowers());
     commentText.setAdapter(mentionUserAdapter);
 
     final TextWatcher watcher = new TextWatcher() {
@@ -151,7 +151,8 @@ public class AddCommentDialog extends DialogFragment {
 
               String[] mentions = commentText.getText().toString().trim().split(" ");
               for (String mention : mentions) {
-                if (mention.startsWith("@") && FollowHelper.getFollowerByName(mention.substring(1)) != null) {
+                if (mention.startsWith("@")
+                    && FollowHelper.getFollowerByName(mention.substring(1)) != null) {
                   User mentioned = FollowHelper.getFollowerByName(mention.substring(1));
                   ConnectToServer.commentMention(userId, mentioned.getId(), 0, postId);
                 }
@@ -204,12 +205,12 @@ public class AddCommentDialog extends DialogFragment {
     return postId;
   }
 
-  public void setPosterId(int posterId) {
-    this.posterId = posterId;
-  }
-
   public void setPostId(int postId) {
     this.postId = postId;
+  }
+
+  public void setPosterId(int posterId) {
+    this.posterId = posterId;
   }
 
   public onSubmitListener getListener() {

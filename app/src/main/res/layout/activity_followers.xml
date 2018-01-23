@@ -1,17 +1,17 @@
-
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/swipe"
-    android:background="@color/main_background_colour">
+    android:background="@drawable/background"
+>
 
   <GridView
       android:id="@+id/gridView"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:drawSelectorOnTop="true"
-      android:numColumns="2"
+      android:numColumns="1"
       android:gravity="center"
       android:stretchMode="columnWidth"
       android:verticalSpacing="5dp"

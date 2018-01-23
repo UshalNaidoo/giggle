@@ -21,11 +21,12 @@ import jokes.gigglebyte.destino.ush.gigglebyte.server.ConnectToServer;
 import static jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.SplashHelper.getLoadingMessages;
 
 public class SplashScreenActivity extends Activity {
+
+  public static RegisterWithServer serverCall;
   private Activity activity;
   private ProgressBar progressBar;
   private TextView loadingText;
-  public static RegisterWithServer serverCall;
-  private String PROJECT_NUMBER="974166531337";
+  private String PROJECT_NUMBER = "974166531337";
   private volatile boolean running = true;
 
   @Override
@@ -68,6 +69,7 @@ public class SplashScreenActivity extends Activity {
               public void onSuccess(String registrationId, boolean isNewRegistration) {
                 ConnectToServer.addDeviceId(user.getId(), registrationId);
               }
+
               @Override
               public void onFailure(String ex) {
                 super.onFailure(ex);
@@ -84,7 +86,8 @@ public class SplashScreenActivity extends Activity {
             publishProgress(40);
             break;
           case 5:
-            PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper.getUserFavorites(activity)));
+            PostHelper.initialiseFavoritePosts(activity, ConnectToServer.getFavoritePosts(SharedPrefHelper
+                                                                                              .getUserFavorites(activity)));
             publishProgress(50);
             break;
           case 6:
@@ -101,7 +104,8 @@ public class SplashScreenActivity extends Activity {
             publishProgress(80);
             break;
           case 9:
-            MainActivity.loadedUsers = JsonParser.GetUsers("{\"users\":" + ConnectToServer.searchUser("") + "}");
+            MainActivity.loadedUsers = JsonParser.GetUsers(
+                "{\"users\":" + ConnectToServer.searchUser("") + "}");
             publishProgress(90);
             break;
           case 10:

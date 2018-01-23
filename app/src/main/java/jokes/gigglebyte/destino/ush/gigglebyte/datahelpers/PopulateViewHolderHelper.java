@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.CommentViewHolder;
 import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.MentionViewHolder;
@@ -24,6 +25,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.viewholders.UserListViewHolder;
 
 public class PopulateViewHolderHelper {
 
+  //TODO refactor
   public static void populatePostTextViewHolder(View row, PostTextViewHolder holder) {
     populatePostViewHolder(row, holder, false);
     holder.postText = (TextView) row.findViewById(R.id.postText);
@@ -37,12 +39,14 @@ public class PopulateViewHolderHelper {
     holder.imageProgressBar = (ProgressBar) row.findViewById(R.id.imageProgressBar);
   }
 
-  public static void populatePostTextViewHolder(View row, PostTextViewHolder holder, boolean isMentionContent) {
+  public static void populatePostTextViewHolder(View row, PostTextViewHolder holder,
+                                                boolean isMentionContent) {
     populatePostViewHolder(row, holder, isMentionContent);
     holder.postText = (TextView) row.findViewById(R.id.postText);
   }
 
-  public static void populatePostImageViewHolder(View row, PostImageViewHolder holder, boolean isMentionContent) {
+  public static void populatePostImageViewHolder(View row, PostImageViewHolder holder,
+                                                 boolean isMentionContent) {
     populatePostViewHolder(row, holder, isMentionContent);
     holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
     holder.title = (TextView) row.findViewById(R.id.title);
@@ -55,24 +59,24 @@ public class PopulateViewHolderHelper {
     holder.postImage = (ImageView) convertView.findViewById(R.id.postImage);
   }
 
-  private static void populatePostViewHolder(View row, PostViewHolder holder, boolean isMentionContent) {
+  private static void populatePostViewHolder(View row, PostViewHolder holder,
+                                             boolean isMentionContent) {
     if (isMentionContent) {
       holder.userName = (TextView) row.findViewById(R.id.content_userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.content_pic);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.content_progressBar);
-      holder.followButton = (ImageView) row.findViewById(R.id.content_followButton);
-    }
-    else {
+      holder.followButton = (Button) row.findViewById(R.id.content_followButton);
+    } else {
       holder.userName = (TextView) row.findViewById(R.id.userName);
       holder.profileImage = (ImageView) row.findViewById(R.id.pic);
       holder.progressBar = (ProgressBar) row.findViewById(R.id.progressBar);
-      holder.followButton = (ImageView) row.findViewById(R.id.followButton);
+      holder.followButton = (Button) row.findViewById(R.id.followButton);
     }
     holder.tags = (TextView) row.findViewById(R.id.tags);
-    holder.postInfo = (TextView) row.findViewById(R.id.postInfo);
+    holder.postNumberOfLikes = (TextView) row.findViewById(R.id.postNumberOfLikes);
+    holder.postNumberOfComments = (TextView) row.findViewById(R.id.postNumberOfComments);
     holder.layout = (LinearLayout) row.findViewById(R.id.layout);
     holder.likeImage = (ImageView) row.findViewById(R.id.likeImage);
-    holder.favoriteImage = (ImageView) row.findViewById(R.id.favoriteImage);
     holder.shareImage = (ImageView) row.findViewById(R.id.shareImage);
     holder.menuImage = (ImageView) row.findViewById(R.id.menuImage);
   }
@@ -107,7 +111,7 @@ public class PopulateViewHolderHelper {
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
     holder.profileImage = (ImageView) convertView.findViewById(R.id.profileImage);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (TextView) convertView.findViewById(R.id.followButton);
   }
 
   public static void populateTagViewHolder(View row, TagViewHolder holder) {
@@ -115,43 +119,48 @@ public class PopulateViewHolderHelper {
     holder.numberOfPosts = (TextView) row.findViewById(R.id.numberOfPosts);
   }
 
-  public static void populateNotificationFollowViewHolder(View convertView, NotificationFollowViewHolder holder) {
+  public static void populateNotificationFollowViewHolder(View convertView,
+                                                          NotificationFollowViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
     holder.followeesName = (TextView) convertView.findViewById(R.id.followeesName);
   }
 
-  public static void populateNotificationTextPostViewHolder(View convertView, NotificationTextPostViewHolder holder) {
+  public static void populateNotificationTextPostViewHolder(View convertView,
+                                                            NotificationTextPostViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
 
-  public static void populateNotificationImagePostViewHolder(View convertView, NotificationImagePostViewHolder holder) {
+  public static void populateNotificationImagePostViewHolder(View convertView,
+                                                             NotificationImagePostViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
 
-  public static void populateNotificationMentionTextViewHolder(View convertView, NotificationMentionTextViewHolder holder) {
+  public static void populateNotificationMentionTextViewHolder(View convertView,
+                                                               NotificationMentionTextViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }
 
-  public static void populateNotificationMentionImageViewHolder(View convertView, NotificationMentionImageViewHolder holder) {
+  public static void populateNotificationMentionImageViewHolder(View convertView,
+                                                                NotificationMentionImageViewHolder holder) {
     holder.profileImage = (ImageView) convertView.findViewById(R.id.pic);
     holder.userName = (TextView) convertView.findViewById(R.id.userName);
-    holder.followButton = (ImageView) convertView.findViewById(R.id.followButton);
+    holder.followButton = (Button) convertView.findViewById(R.id.followButton);
     holder.progressBar = (ProgressBar) convertView.findViewById(R.id.progressBar);
     holder.informationTextView = (TextView) convertView.findViewById(R.id.userName);
   }

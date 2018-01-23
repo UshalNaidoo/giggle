@@ -1,7 +1,5 @@
 package jokes.gigglebyte.destino.ush.gigglebyte.activities;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -9,10 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import java.util.List;
+
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
 import jokes.gigglebyte.destino.ush.gigglebyte.adapters.UserGridAdapter;
 import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
@@ -26,6 +26,16 @@ public class FollowersActivity extends Activity {
   private static Activity activity;
   private static UserGridAdapter[] gridAdapter;
 
+  public static void refresh() {
+    if (gridAdapter != null && gridAdapter[0] != null) {
+      gridAdapter[0].notifyDataSetChanged();
+    }
+  }
+
+  public static void closeActivity() {
+    activity.finish();
+  }
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -36,12 +46,10 @@ public class FollowersActivity extends Activity {
     final boolean showFollowing = intent.getBooleanExtra("showFollowing", true);
     final boolean userList = intent.getBooleanExtra("userList", false);
 
-//    UIHelper.setActionBar(this, showFollowing ? getResources().getString(R.string.following) : getResources().getString(R.string.followers), true);
-
     final GridView gridView = (GridView) findViewById(R.id.gridView);
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       public void onItemClick(AdapterView<?> parent, View v,
-          int position, long id) {
+                              int position, long id) {
         User selectedUser = (User) parent.getItemAtPosition(position);
         if (selectedUser != null) {
           Intent myIntent = new Intent(activity, PosterProfileActivity.class);
@@ -52,21 +60,24 @@ public class FollowersActivity extends Activity {
     });
 
     Post infoPost = new Post();
-    if(userList) {
+    if (userList) {
       if (showFollowing) {
         infoPost = new Post(activity.getResources().getString(R.string.info_follow),
-                              BitmapFactory.decodeResource(activity.getResources(), R.drawable.follow), PostType.INFO_POST);
-      }
-      else {
+                            BitmapFactory.decodeResource(activity.getResources(), R.drawable.follow), PostType.INFO_POST);
+      } else {
         infoPost = new Post(activity.getResources().getString(R.string.info_add_post),
-                              BitmapFactory.decodeResource(activity.getResources(), R.drawable.plus), PostType.INFO_POST);
+                            BitmapFactory.decodeResource(activity.getResources(), R.drawable.plus), PostType.INFO_POST);
       }
     }
 
-    final FromScreen fromScreen = !userList ? null : showFollowing ? FromScreen.FOLLOWING : FromScreen.FOLLOWERS;
-    List<User> users = showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers();
+    final FromScreen fromScreen = !userList
+                                  ? null
+                                  : showFollowing ? FromScreen.FOLLOWING : FromScreen.FOLLOWERS;
+    List<User> users = showFollowing
+                       ? UserHelper.selectedUser.getFollowing()
+                       : UserHelper.selectedUser.getFollowers();
     gridAdapter =
-        new UserGridAdapter[] { new UserGridAdapter(activity, users, userList, infoPost, fromScreen) };
+        new UserGridAdapter[]{new UserGridAdapter(activity, users, userList, infoPost, fromScreen)};
     gridView.setAdapter(gridAdapter[0]);
 
     final SwipeRefreshLayout swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
@@ -75,7 +86,7 @@ public class FollowersActivity extends Activity {
       @Override
       public void onRefresh() {
         swipeView.setRefreshing(true);
-        ( new Handler()).postDelayed(new Runnable() {
+        (new Handler()).postDelayed(new Runnable() {
           @Override
           public void run() {
             swipeView.setRefreshing(false);
@@ -83,7 +94,9 @@ public class FollowersActivity extends Activity {
             Thread thread = new Thread() {
               @Override
               public void run() {
-                List<User> users = showFollowing ? UserHelper.selectedUser.getFollowing() : UserHelper.selectedUser.getFollowers();
+                List<User> users = showFollowing
+                                   ? UserHelper.selectedUser.getFollowing()
+                                   : UserHelper.selectedUser.getFollowers();
                 gridAdapter[0] = new UserGridAdapter(activity, users, userList, finalInfoPost, fromScreen);
               }
             };
@@ -94,16 +107,6 @@ public class FollowersActivity extends Activity {
       }
     });
 
-  }
-
-  public static void refresh() {
-    if (gridAdapter != null && gridAdapter[0] != null) {
-      gridAdapter[0].notifyDataSetChanged();
-    }
-  }
-
-  public static void closeActivity() {
-    activity.finish();
   }
 
   @Override

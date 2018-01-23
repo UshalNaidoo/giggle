@@ -12,7 +12,7 @@ import jokes.gigglebyte.destino.ush.gigglebyte.datahelpers.UserHelper;
 import jokes.gigglebyte.destino.ush.gigglebyte.enums.OpenScreen;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.User;
 
-public class UserListViewHolder extends UserProfilePictureHolder{
+public class UserListViewHolder extends UserProfilePictureHolder {
 
   public TextView description;
   public Button viewFollowers;
@@ -21,9 +21,13 @@ public class UserListViewHolder extends UserProfilePictureHolder{
   public void setUserData(final Activity activity, final User user) {
     setUserProfile(activity, user, OpenScreen.LARGE_IMAGE);
     description.setText((user.getDescription() == null || user.getDescription()
-        .isEmpty()) ? activity.getResources().getString(R.string.newUserDescription): user.getDescription());
-    viewFollowers.setText(user.getFollowers().size() + " " + activity.getResources().getString(R.string.followers));
-    viewFollowing.setText(user.getFollowing().size() + " " + activity.getResources().getString(R.string.following));
+        .isEmpty())
+                        ? activity.getResources().getString(R.string.newUserDescription)
+                        : user.getDescription());
+    viewFollowers.setText(
+        user.getFollowers().size() + " " + activity.getResources().getString(R.string.followers));
+    viewFollowing.setText(
+        user.getFollowing().size() + " " + activity.getResources().getString(R.string.following));
 
     viewFollowers.setOnClickListener(new View.OnClickListener() {
       @Override
