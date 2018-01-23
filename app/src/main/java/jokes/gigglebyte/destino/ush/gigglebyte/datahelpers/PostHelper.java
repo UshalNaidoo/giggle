@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 import jokes.gigglebyte.destino.ush.gigglebyte.R;
+import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_Feed;
 import jokes.gigglebyte.destino.ush.gigglebyte.fragments.Fragment_New;
 import jokes.gigglebyte.destino.ush.gigglebyte.interfaces.onSubmitListener;
 import jokes.gigglebyte.destino.ush.gigglebyte.objects.Post;
@@ -85,6 +86,12 @@ public class PostHelper implements onSubmitListener {
   public static void setFeedPosts(Activity activity, List<Post> posts) {
     posts = getPostStatus(activity, posts);
     feedPosts = posts;
+    activity.runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        Fragment_Feed.refreshList();
+      }
+    });
   }
 
   public static List<Post> getNotifications() {

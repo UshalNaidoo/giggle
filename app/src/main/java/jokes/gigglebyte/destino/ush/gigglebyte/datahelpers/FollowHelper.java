@@ -2,6 +2,7 @@ package jokes.gigglebyte.destino.ush.gigglebyte.datahelpers;
 
 import android.app.Activity;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class FollowHelper {
   }
 
   public static void followUser(final Activity activity, final User followUser) {
-    if (following == null) { return; }
+    if (following == null) { following = new ArrayList<>();}
     following.add(followUser);
     final int id = UserHelper.getUsersId(activity);
 
