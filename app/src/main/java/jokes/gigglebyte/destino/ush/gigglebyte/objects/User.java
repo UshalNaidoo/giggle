@@ -146,7 +146,21 @@ public class User {
         setProfile_pic(ret);
         imageView.setImageBitmap(ret);
       } else {
-        imageView.setImageResource(R.drawable.nobody_m);
+        int random = (int )(Math.random() * 4 + 1);
+        switch (random) {
+          case 1:
+            imageView.setImageResource(R.drawable.randomprofile1);
+            break;
+          case 2:
+            imageView.setImageResource(R.drawable.randomprofile2);
+            break;
+          case 3:
+            imageView.setImageResource(R.drawable.randomprofile3);
+            break;
+          case 4:
+            imageView.setImageResource(R.drawable.randomprofile4);
+            break;
+        }
       }
     }
   }
