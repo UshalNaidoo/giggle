@@ -24,10 +24,12 @@ public class UserListViewHolder extends UserProfilePictureHolder {
         .isEmpty())
                         ? activity.getResources().getString(R.string.newUserDescription)
                         : user.getDescription());
+    int followersSize = user.getFollowers() == null ? 0 : user.getFollowers().size();
+    int followingSize = user.getFollowing() == null ? 0 : user.getFollowing().size();
     viewFollowers.setText(
-        user.getFollowers().size() + " " + activity.getResources().getString(R.string.followers));
+        new StringBuilder().append(followersSize).append(" ").append(activity.getResources().getString(R.string.followers)).toString());
     viewFollowing.setText(
-        user.getFollowing().size() + " " + activity.getResources().getString(R.string.following));
+        new StringBuilder().append(followingSize).append(" ").append(activity.getResources().getString(R.string.following)).toString());
 
     viewFollowers.setOnClickListener(new View.OnClickListener() {
       @Override
